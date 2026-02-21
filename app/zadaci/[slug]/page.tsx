@@ -7,7 +7,6 @@ import {
   ArrowLeft,
   Bookmark,
   BookmarkCheck,
-  CheckCircle,
   Bot,
   ChevronRight,
   Clock,
@@ -147,7 +146,6 @@ export default function ProblemViewPage() {
     if (!selectedAnswer || !problem) return;
     const isCorrect = selectedAnswer === problem.correctAnswer;
     setAnswerResult(isCorrect ? "correct" : "wrong");
-    setShowSolution(true);
 
     fetch(`/api/progress/${problem.id}`, {
       method: "POST",
@@ -346,26 +344,55 @@ export default function ProblemViewPage() {
             />
           </div>
 
-          {/* Answer first section */}
+          {/* Answer section */}
           {!showSolution && (
             <div className="mb-6 rounded-xl border border-[#334155] bg-[#1e293b] p-6">
               <p className="mb-4 text-[#94a3b8]">
-                Probaj da rešiš pre nego što pogledaš rešenje:
+                {answerResult
+                  ? answerResult === "correct"
+                    ? "Odlično, tačan odgovor!"
+                    : "Probaj ponovo ili pogledaj rešenje."
+                  : "Probaj da rešiš pre nego što pogledaš rešenje:"}
               </p>
 
               <div className="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-5">
                 {(problem.answerOptions as string[]).map((opt, i) => {
                   const letter = String.fromCharCode(65 + i);
+                  const isSelected = selectedAnswer === letter;
+                  const isCorrectAnswer = letter === problem.correctAnswer;
+
+                  let btnClass: string;
+                  if (answerResult) {
+                    if (isCorrectAnswer) {
+                      btnClass =
+                        "border-[#4ade80] bg-[#4ade80]/20 text-[#4ade80] ring-2 ring-[#4ade80]/30";
+                    } else if (isSelected && answerResult === "wrong") {
+                      btnClass =
+                        "border-[#f87171] bg-[#f87171]/20 text-[#f87171] line-through";
+                    } else {
+                      btnClass =
+                        "border-[#334155] bg-[#0f172a] text-[#64748b] opacity-50";
+                    }
+                  } else if (isSelected) {
+                    btnClass =
+                      "border-[#60a5fa] bg-[#60a5fa]/20 text-[#60a5fa]";
+                  } else {
+                    btnClass =
+                      "border-[#334155] bg-[#0f172a] text-[#e2e8f0] hover:border-[#60a5fa]/50";
+                  }
+
                   return (
                     <button
                       key={i}
-                      onClick={() => setSelectedAnswer(letter)}
-                      className={`rounded-lg border p-3 text-center text-sm transition ${
-                        selectedAnswer === letter
-                          ? "border-[#60a5fa] bg-[#60a5fa]/20 text-[#60a5fa]"
-                          : "border-[#334155] bg-[#0f172a] text-[#e2e8f0] hover:border-[#60a5fa]/50"
-                      }`}
+                      onClick={() => {
+                        if (!answerResult) setSelectedAnswer(letter);
+                      }}
+                      disabled={!!answerResult}
+                      className={`rounded-lg border p-3 text-center text-sm font-medium transition ${btnClass}`}
                     >
+                      <span className="text-[10px] opacity-60">
+                        ({letter})
+                      </span>{" "}
                       {opt}
                     </button>
                   );
@@ -373,33 +400,56 @@ export default function ProblemViewPage() {
               </div>
 
               {answerResult && (
-                <p
-                  className={`mb-4 text-sm font-medium ${
+                <div
+                  className={`mb-4 flex items-center gap-2 rounded-lg border px-4 py-3 ${
                     answerResult === "correct"
-                      ? "text-[#4ade80]"
-                      : "text-[#f87171]"
+                      ? "border-[#4ade80]/30 bg-[#4ade80]/10"
+                      : "border-[#f87171]/30 bg-[#f87171]/10"
                   }`}
                 >
-                  {answerResult === "correct"
-                    ? "Tačno!"
-                    : `Netačno. Tačan odgovor: (${problem.correctAnswer})`}
-                </p>
+                  <span className="text-xl">
+                    {answerResult === "correct" ? "✓" : "✗"}
+                  </span>
+                  <p
+                    className={`text-sm font-semibold ${
+                      answerResult === "correct"
+                        ? "text-[#4ade80]"
+                        : "text-[#f87171]"
+                    }`}
+                  >
+                    {answerResult === "correct"
+                      ? "Tačno!"
+                      : `Netačno. Tačan odgovor je (${problem.correctAnswer}).`}
+                  </p>
+                </div>
               )}
 
               <div className="flex gap-3">
-                <button
-                  onClick={checkAnswer}
-                  disabled={!selectedAnswer}
-                  className="rounded-lg bg-[#60a5fa] px-6 py-2.5 text-sm font-medium text-white hover:bg-[#3b82f6] disabled:opacity-50"
-                >
-                  Proveri odgovor
-                </button>
-                <button
-                  onClick={skipToSolution}
-                  className="rounded-lg border border-[#334155] px-6 py-2.5 text-sm text-[#94a3b8] hover:text-[#e2e8f0]"
-                >
-                  Preskoči → Vidi rešenje
-                </button>
+                {!answerResult && (
+                  <>
+                    <button
+                      onClick={checkAnswer}
+                      disabled={!selectedAnswer}
+                      className="rounded-lg bg-[#60a5fa] px-6 py-2.5 text-sm font-medium text-white hover:bg-[#3b82f6] disabled:opacity-50"
+                    >
+                      Proveri odgovor
+                    </button>
+                    <button
+                      onClick={skipToSolution}
+                      className="rounded-lg border border-[#334155] px-6 py-2.5 text-sm text-[#94a3b8] hover:text-[#e2e8f0]"
+                    >
+                      Preskoči → Vidi rešenje
+                    </button>
+                  </>
+                )}
+                {answerResult && (
+                  <button
+                    onClick={() => setShowSolution(true)}
+                    className="rounded-lg bg-[#a78bfa] px-6 py-2.5 text-sm font-medium text-white hover:bg-[#8b5cf6]"
+                  >
+                    Vidi rešenje →
+                  </button>
+                )}
               </div>
             </div>
           )}
@@ -425,17 +475,6 @@ export default function ProblemViewPage() {
               {bookmarked ? <BookmarkCheck size={16} /> : <Bookmark size={16} />}
               {bookmarked ? "Sačuvano" : "Sačuvaj"}
             </button>
-            {!showSolution && (
-              <button
-                onClick={() => {
-                  setShowSolution(true);
-                  setAnswerResult(null);
-                }}
-                className="flex items-center gap-2 rounded-lg border border-[#334155] px-4 py-2 text-sm text-[#94a3b8]"
-              >
-                <CheckCircle size={16} /> Označi kao rešen
-              </button>
-            )}
           </div>
 
           {/* AI contextual panel */}
