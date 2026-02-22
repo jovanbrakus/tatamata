@@ -18,6 +18,7 @@ import {
   GraduationCap,
   Clock,
   ChevronRight,
+  BarChart3,
 } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { sr } from "date-fns/locale";
@@ -254,20 +255,19 @@ export default function Dashboard({ user }: DashboardProps) {
               <span className="text-xs font-medium uppercase tracking-wider">Rešeno</span>
             </div>
             <div className="text-3xl font-bold text-[#e2e8f0]">{progress?.solved ?? 0}</div>
-            <div className="mt-1 text-xs text-[#64748b]">od {progress?.total ?? 0} zadataka</div>
           </div>
         </div>
 
-        {/* Exams */}
+        {/* Znanje */}
         <div className="relative overflow-hidden rounded-2xl border border-[#334155] bg-[#1e293b] p-5">
           <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-[#a78bfa]/5" />
           <div className="relative">
             <div className="mb-1 flex items-center gap-2 text-[#94a3b8]">
-              <ClipboardList size={16} className="text-[#a78bfa]" />
-              <span className="text-xs font-medium uppercase tracking-wider">Ispiti</span>
+              <BarChart3 size={16} className="text-[#a78bfa]" />
+              <span className="text-xs font-medium uppercase tracking-wider">Znanje</span>
             </div>
-            <div className="text-3xl font-bold text-[#e2e8f0]">{examHistory.length}</div>
-            <div className="mt-1 text-xs text-[#64748b]">Prosek: {avgExamScore}%</div>
+            <div className="text-3xl font-bold text-[#e2e8f0]">{avgExamScore}/100</div>
+            <div className="mt-1 text-xs text-[#64748b]">poena</div>
           </div>
         </div>
 
