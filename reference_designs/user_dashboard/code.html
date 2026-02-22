@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Learning Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "accent-green": "#ccff00", /* Neon yellow-green accent */
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111722",
+                        "card-dark": "#1a2233",
+                        "text-secondary": "#92a4c9",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111722; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d3b55; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b4d6e; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 h-screen bg-[#111722] border-r border-slate-800 flex flex-col justify-between p-4 fixed left-0 top-0 z-20">
+<div class="flex flex-col gap-8">
+<!-- Logo -->
+<div class="flex items-center gap-3 px-2">
+<div class="w-8 h-8 rounded bg-gradient-to-br from-primary to-blue-400 flex items-center justify-center text-white font-bold text-lg">
+                    Σ
+                </div>
+<span class="text-xl font-bold tracking-tight text-white">MathPrep<span class="text-primary">.rs</span></span>
+</div>
+<!-- Navigation -->
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl bg-primary/10 text-primary border border-primary/20 transition-all" href="#">
+<span class="material-symbols-outlined fill-1">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl text-text-secondary hover:bg-[#1a2233] hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">calculate</span>
+<span class="text-sm font-medium">Practice</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl text-text-secondary hover:bg-[#1a2233] hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">article</span>
+<span class="text-sm font-medium">Mock Exams</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl text-text-secondary hover:bg-[#1a2233] hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="text-sm font-medium">Leaderboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl text-text-secondary hover:bg-[#1a2233] hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="text-sm font-medium">AI Tutor</span>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-3 py-3 rounded-xl text-text-secondary hover:bg-[#1a2233] hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+<div class="pt-4 border-t border-slate-800 flex items-center gap-3 px-2">
+<div class="h-10 w-10 rounded-full bg-cover bg-center ring-2 ring-primary/30" data-alt="Portrait of a male student" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDaqrCQLkAWNdHhMoh9zEnGfzABoDR-E_eeMmai6iTtZEJ0Onq5APN9pzf5TKePzgRgh2WGwKfQyW7smOC5rqp1A-tKojzvVSCB74KqLg6yK63FVgYLRmIhkxlT8lfhv9-XuNLC0UhmJxYqwqasHyQRjnP6Hhmk_WFi85bnJH4ysyveTZVpu5Rftf_UC-DUrCdYsseA4u3DFBcDiHGgL0TSCuBbyB8ZxxDU_YP1H4QRcH0lrosAKqU7P3lcqlJYe4hBc8I0zkZqYAU');"></div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-white">Marko Petrović</span>
+<span class="text-xs text-accent-green">Premium Plan</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-64 p-8 h-screen overflow-y-auto pr-80"> <!-- pr-80 creates space for right sidebar -->
+<div class="max-w-5xl mx-auto flex flex-col gap-8 pb-10">
+<!-- Header -->
+<header class="flex flex-col gap-2">
+<h1 class="text-4xl font-black tracking-tight text-white">Welcome back, Marko</h1>
+<p class="text-text-secondary text-lg">You're on a 5-day streak. Keep pushing for that perfect score on the ETF exam!</p>
+</header>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Syllabus Completion (Circular Gauge approximation) -->
+<div class="bg-card-dark rounded-2xl p-6 border border-slate-800 relative overflow-hidden group">
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/30 transition-all"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="flex flex-col">
+<span class="text-text-secondary text-sm font-medium uppercase tracking-wider">Syllabus</span>
+<span class="text-3xl font-bold text-white mt-1">68%</span>
+</div>
+<div class="h-12 w-12 relative flex items-center justify-center">
+<svg class="transform -rotate-90 w-12 h-12">
+<circle cx="24" cy="24" fill="transparent" r="20" stroke="#2d3b55" stroke-width="4"></circle>
+<circle cx="24" cy="24" fill="transparent" r="20" stroke="#135bec" stroke-dasharray="125.6" stroke-dashoffset="40" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+</div>
+</div>
+<div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 68%"></div>
+</div>
+<p class="text-xs text-text-secondary mt-3"><span class="text-accent-green font-bold">+12%</span> since last week</p>
+</div>
+<!-- Daily Goal -->
+<div class="bg-card-dark rounded-2xl p-6 border border-slate-800 relative overflow-hidden group">
+<div class="absolute -right-10 -bottom-10 w-32 h-32 bg-accent-green/10 rounded-full blur-3xl group-hover:bg-accent-green/20 transition-all"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="flex flex-col">
+<span class="text-text-secondary text-sm font-medium uppercase tracking-wider">Daily Goal</span>
+<span class="text-3xl font-bold text-white mt-1">15/20</span>
+</div>
+<div class="bg-slate-800 p-2 rounded-lg text-accent-green">
+<span class="material-symbols-outlined">target</span>
+</div>
+</div>
+<div class="flex gap-1 mb-2 h-10 items-end">
+<div class="flex-1 bg-primary h-6 rounded-sm opacity-100"></div>
+<div class="flex-1 bg-primary h-4 rounded-sm opacity-100"></div>
+<div class="flex-1 bg-primary h-8 rounded-sm opacity-100"></div>
+<div class="flex-1 bg-primary h-5 rounded-sm opacity-100"></div>
+<div class="flex-1 bg-primary h-10 rounded-sm opacity-100 border border-accent-green shadow-[0_0_10px_rgba(204,255,0,0.3)]"></div>
+<div class="flex-1 bg-slate-700 h-2 rounded-sm opacity-40"></div>
+<div class="flex-1 bg-slate-700 h-2 rounded-sm opacity-40"></div>
+</div>
+<p class="text-xs text-text-secondary mt-1">5 questions left to reach your goal.</p>
+</div>
+<!-- Est. Score -->
+<div class="bg-card-dark rounded-2xl p-6 border border-slate-800 relative overflow-hidden group">
+<div class="absolute -left-10 -bottom-10 w-32 h-32 bg-indigo-500/20 rounded-full blur-3xl group-hover:bg-indigo-500/30 transition-all"></div>
+<div class="flex justify-between items-start mb-4">
+<div class="flex flex-col">
+<span class="text-text-secondary text-sm font-medium uppercase tracking-wider">Est. Score</span>
+<span class="text-3xl font-bold text-white mt-1">85<span class="text-lg text-text-secondary font-normal">/100</span></span>
+</div>
+<div class="bg-slate-800 p-2 rounded-lg text-indigo-400">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+</div>
+<div class="relative h-12 w-full mt-2">
+<!-- Tiny trend chart -->
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 100 40">
+<path d="M0 35 C 10 35, 20 20, 30 25 S 50 5, 60 15 S 80 0, 100 5" fill="none" stroke="#135bec" stroke-linecap="round" stroke-width="2"></path>
+<path d="M0 35 C 10 35, 20 20, 30 25 S 50 5, 60 15 S 80 0, 100 5 V 40 H 0 Z" fill="url(#gradient-chart)" opacity="0.3"></path>
+<defs>
+<lineargradient id="gradient-chart" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#135bec"></stop>
+<stop offset="100%" stop-color="#135bec" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+<p class="text-xs text-text-secondary mt-1"><span class="text-indigo-400 font-bold">High probability</span> of passing entrance exam.</p>
+</div>
+</div>
+<!-- Performance Trend Section -->
+<div class="w-full bg-card-dark rounded-2xl p-6 border border-slate-800">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h2 class="text-xl font-bold text-white">Performance Trend</h2>
+<p class="text-sm text-text-secondary">Last 30 Days Analysis</p>
+</div>
+<select class="bg-[#111722] text-white text-sm border border-slate-700 rounded-lg px-3 py-2 outline-none focus:border-primary">
+<option>Algebra</option>
+<option>Geometry</option>
+<option>Calculus</option>
+<option>Overall</option>
+</select>
+</div>
+<div class="h-64 w-full relative">
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between text-xs text-slate-600">
+<div class="flex w-full items-center"><span class="w-8">100</span><div class="h-px bg-slate-800 w-full ml-2"></div></div>
+<div class="flex w-full items-center"><span class="w-8">75</span><div class="h-px bg-slate-800 w-full ml-2"></div></div>
+<div class="flex w-full items-center"><span class="w-8">50</span><div class="h-px bg-slate-800 w-full ml-2"></div></div>
+<div class="flex w-full items-center"><span class="w-8">25</span><div class="h-px bg-slate-800 w-full ml-2"></div></div>
+<div class="flex w-full items-center"><span class="w-8">0</span><div class="h-px bg-slate-800 w-full ml-2"></div></div>
+</div>
+<!-- Chart SVG -->
+<svg class="absolute inset-0 h-full w-full pl-10 pt-2 pb-2" preserveaspectratio="none" viewbox="0 0 400 100">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#135bec" stop-opacity="0.4"></stop>
+<stop offset="100%" stop-color="#135bec" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,80 Q40,75 80,60 T160,50 T240,30 T320,40 T400,15" fill="none" stroke="#135bec" stroke-linecap="round" stroke-width="3"></path>
+<path d="M0,80 Q40,75 80,60 T160,50 T240,30 T320,40 T400,15 V100 H0 Z" fill="url(#chartGradient)"></path>
+<!-- Data Points -->
+<circle cx="80" cy="60" fill="#111722" r="3" stroke="#ccff00" stroke-width="2"></circle>
+<circle cx="240" cy="30" fill="#111722" r="3" stroke="#ccff00" stroke-width="2"></circle>
+<circle cx="400" cy="15" fill="#111722" r="3" stroke="#ccff00" stroke-width="2"></circle>
+</svg>
+</div>
+</div>
+<!-- Recommended Units -->
+<div>
+<div class="flex justify-between items-end mb-4">
+<h2 class="text-2xl font-bold text-white tracking-tight">Recommended Units</h2>
+<a class="text-primary text-sm font-medium hover:underline" href="#">View all syllabus</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Card 1 -->
+<div class="bg-card-dark p-5 rounded-xl border border-slate-800 hover:border-primary/50 transition-all cursor-pointer group flex flex-col justify-between">
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<span class="bg-orange-500/10 text-orange-400 text-xs px-2 py-1 rounded font-medium border border-orange-500/20">Review Needed</span>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white">Trigonometry</h3>
+<p class="text-sm text-text-secondary mt-1">Sine and Cosine rules application</p>
+</div>
+</div>
+<div class="mt-6 flex items-center justify-between">
+<div class="flex items-center gap-2 text-xs text-text-secondary">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                25 min
+                            </div>
+<div class="flex items-center gap-2 text-xs text-text-secondary">
+<span class="material-symbols-outlined text-[16px]">bar_chart</span>
+                                Hard
+                            </div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-card-dark p-5 rounded-xl border border-slate-800 hover:border-primary/50 transition-all cursor-pointer group flex flex-col justify-between">
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<span class="bg-primary/10 text-primary text-xs px-2 py-1 rounded font-medium border border-primary/20">High Yield</span>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white">Complex Numbers</h3>
+<p class="text-sm text-text-secondary mt-1">Operations and polar form</p>
+</div>
+</div>
+<div class="mt-6 flex items-center justify-between">
+<div class="flex items-center gap-2 text-xs text-text-secondary">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                40 min
+                            </div>
+<div class="flex items-center gap-2 text-xs text-text-secondary">
+<span class="material-symbols-outlined text-[16px]">bar_chart</span>
+                                Medium
+                            </div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-card-dark p-5 rounded-xl border border-slate-800 hover:border-primary/50 transition-all cursor-pointer group flex flex-col justify-between">
+<div class="flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<span class="bg-green-500/10 text-green-400 text-xs px-2 py-1 rounded font-medium border border-green-500/20">Mastered</span>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white">Functions</h3>
+<p class="text-sm text-text-secondary mt-1">Domain, range and inverse</p>
+</div>
+</div>
+<div class="mt-6 flex items-center justify-between">
+<div class="flex items-center gap-2 text-xs text-text-secondary">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                15 min
+                            </div>
+<div class="flex items-center gap-2 text-xs text-text-secondary">
+<span class="material-symbols-outlined text-[16px]">bar_chart</span>
+                                Easy
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Right Sidebar -->
+<aside class="w-80 h-screen bg-[#111722] border-l border-slate-800 p-6 fixed right-0 top-0 z-20 overflow-y-auto">
+<!-- Countdown Widget -->
+<div class="mb-8">
+<h3 class="text-sm font-bold text-text-secondary uppercase tracking-wider mb-4">Exam Countdown</h3>
+<div class="bg-gradient-to-br from-card-dark to-[#161b26] p-4 rounded-xl border border-slate-800 text-center relative overflow-hidden">
+<div class="absolute inset-0 bg-grid-slate-700/20 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))]"></div>
+<div class="relative z-10">
+<span class="text-3xl font-black text-white block">42</span>
+<span class="text-xs text-text-secondary uppercase tracking-wide">Days Left</span>
+<div class="mt-3 text-xs text-primary font-medium bg-primary/10 py-1 px-2 rounded-lg inline-block">June 24, 2024</div>
+</div>
+</div>
+</div>
+<!-- Leaderboard Snippet -->
+<div class="mb-8">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-sm font-bold text-text-secondary uppercase tracking-wider">Top Students</h3>
+<a class="text-xs text-primary hover:text-white transition-colors" href="#">View All</a>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Rank 1 -->
+<div class="flex items-center gap-3 p-3 rounded-xl bg-[#232f48]/50 border border-primary/20 hover:bg-[#232f48] transition-all">
+<div class="flex-shrink-0 relative">
+<div class="w-10 h-10 rounded-full bg-cover bg-center border-2 border-yellow-500" data-alt="Student Portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAsMitVmvxISlHODQH0mPxvAg_141NN66_Z3ET1ER2rh0erdLJt7mEtR7grR92Eb11Ga5QkYbmpISwqIIEMnpsXHc_v3k0tYCEIQqYR8JS2gEBmlCiAGIEEiOhmY9I-70ua8LPw7tv3Ga_b6KVgVssCZkzFbfUBuGIBxSXge-yeRrfXSHmy5EfCTFy-XmyhnQ-pNNFxkKycEitXQEDdjwZIUdwcYywfxVm7llRgMiJX_WucFviDaIf3frmf66gMvJG1P116TktVho4')"></div>
+<div class="absolute -top-1 -right-1 bg-yellow-500 text-black text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">1</div>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-white">Marko P.</p>
+<p class="text-xs text-text-secondary">ETF Belgrade</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-accent-green">980</p>
+<p class="text-[10px] text-text-secondary">pts</p>
+</div>
+</div>
+<!-- Rank 2 -->
+<div class="flex items-center gap-3 p-3 rounded-xl hover:bg-[#232f48] transition-all border border-transparent hover:border-slate-700">
+<div class="flex-shrink-0 relative">
+<div class="w-10 h-10 rounded-full bg-cover bg-center border-2 border-slate-500" data-alt="Student Portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAsmLbyvEeGIOIx3v0pxb01Y9lQOzxbtId5OpUEloqONXVuOIi35MK4BONBMW4BCIzf-2vcPEIqYZdqx6T6YZXFoxTiJk_VgZw0OoeQ1W8fJD4e-R6Addl2ocnyKtRovyiXk5d74-2wik1Ooi05DLCiYUMedbG4tKwphcbNErS21HGWsvi5zB-1DooNiPZrQ5WovbEOpYE4tLQV3l9oOf5pXAg3kWbKwIdJkTD_NKpDAkzKmq2W64yleXDQsmVg_pPJQwHYHxsPCd0')"></div>
+<div class="absolute -top-1 -right-1 bg-slate-400 text-black text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">2</div>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-white">Ana J.</p>
+<p class="text-xs text-text-secondary">FON Belgrade</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-white">945</p>
+<p class="text-[10px] text-text-secondary">pts</p>
+</div>
+</div>
+<!-- Rank 3 -->
+<div class="flex items-center gap-3 p-3 rounded-xl hover:bg-[#232f48] transition-all border border-transparent hover:border-slate-700">
+<div class="flex-shrink-0 relative">
+<div class="w-10 h-10 rounded-full bg-cover bg-center border-2 border-slate-700" data-alt="Student Portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC_9wAAyZOjY2ebUEjAJ9yP2txJdVk-_yaObWQ9wR0qLiWlZglPN_YS_MQ3jSuB0IJvzvEciluyrl4OZT2kZt9SUMN2dNfpnM3oARwi4WEjmbmQva-IeyaQr5DVbfZ0dEf3L4sJfGfD6lGtTmzYJc8_BaAq6GNUT0q8ipS8x5xZD0T1PEL4I6qffdavnzp107e85W54XJ-e3odjanS5C32hcg0lZdllHdZMxE43OPC1Jpet1EIWL9rkh2_DBBR12FBp_TgX2lwXOJo')"></div>
+<div class="absolute -top-1 -right-1 bg-orange-700 text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">3</div>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-white">Nikola S.</p>
+<p class="text-xs text-text-secondary">MATF Belgrade</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-white">910</p>
+<p class="text-[10px] text-text-secondary">pts</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activity Mini List -->
+<div>
+<h3 class="text-sm font-bold text-text-secondary uppercase tracking-wider mb-4">Recent Activity</h3>
+<div class="flex flex-col gap-4 relative pl-4 border-l border-slate-800">
+<div class="relative">
+<div class="absolute -left-[21px] top-1 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-[#111722]"></div>
+<p class="text-sm text-white">Completed <span class="font-medium text-primary">Polynomials Quiz</span></p>
+<p class="text-xs text-text-secondary mt-0.5">2 hours ago • Score: 95%</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[21px] top-1 h-2.5 w-2.5 rounded-full bg-slate-600 ring-4 ring-[#111722]"></div>
+<p class="text-sm text-white">Watched <span class="font-medium">Calculus Intro</span></p>
+<p class="text-xs text-text-secondary mt-0.5">Yesterday</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[21px] top-1 h-2.5 w-2.5 rounded-full bg-slate-600 ring-4 ring-[#111722]"></div>
+<p class="text-sm text-white">Badge Unlocked: <span class="text-accent-green">Math Wizard</span></p>
+<p class="text-xs text-text-secondary mt-0.5">2 days ago</p>
+</div>
+</div>
+</div>
+</aside>
+</body></html>

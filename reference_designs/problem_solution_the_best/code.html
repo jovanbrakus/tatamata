@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Masterclass Math - Problem View</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#c0f425",
+                        "primary-dim": "#8fab2b",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#121212", 
+                        "surface-dark": "#1e2310",
+                        "surface-darker": "#0a0c05",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                        "math": ["Noto Serif", "serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    boxShadow: {
+                        "neon": "0 0 10px rgba(192, 244, 37, 0.3), 0 0 20px rgba(192, 244, 37, 0.1)",
+                        "glass": "0 4px 30px rgba(0, 0, 0, 0.1)",
+                    },
+                    backgroundImage: {
+                        "grid-pattern": "linear-gradient(to right, #3f4922 1px, transparent 1px), linear-gradient(to bottom, #3f4922 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for a premium feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121212; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3f4922; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5a6831; 
+        }
+
+        /* Glassmorphism utility */
+        .glass-panel {
+            background: rgba(30, 35, 16, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(192, 244, 37, 0.1);
+        }
+        
+        .glass-card-hover:hover {
+            background: rgba(192, 244, 37, 0.05);
+            border-color: rgba(192, 244, 37, 0.4);
+            box-shadow: 0 0 15px rgba(192, 244, 37, 0.1);
+        }
+
+        /* LaTeX style approximation */
+        .latex {
+            font-family: 'Noto Serif', serif;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#3f4922] bg-[#1e2310] px-6 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-white">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-size: 32px;">change_history</span>
+</div>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight uppercase">Masterclass Math</h2>
+</div>
+<!-- Breadcrumbs -->
+<div class="hidden md:flex flex-wrap gap-2 items-center">
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Geometry</a>
+<span class="text-slate-600 text-sm font-medium">/</span>
+<a class="text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Vectors</a>
+<span class="text-slate-600 text-sm font-medium">/</span>
+<span class="text-primary text-sm font-bold">Problem 14</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-[#3f4922] transition-colors text-white">
+<span class="material-symbols-outlined">bookmark_border</span>
+</button>
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-[#3f4922] transition-colors text-white">
+<span class="material-symbols-outlined">share</span>
+</button>
+<div class="size-10 rounded-full bg-cover bg-center border-2 border-[#3f4922]" data-alt="User profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuARUSvfjo5TVuZgz3pg8N9plC9aDUAN2fiLDYjjVOA_JrWu0-1ngjOu2-UWnmvNHEbHc9UMTcxA9OMA2myznK2C_DY11NtTHC6_jjVw27fJtu89GQTlpXd73IoRUiDrvk6gTLyhnbzHJp2VE9kguLPTKFmJoTOPKVGhXcdNSAtAwM7QRZvYOVB6qJYl1iy07MObKiPhxDfDDQmwIJDyGsT6Y48JFvwXPPzL5MgSQvOKmKzpx6yl7i2nD3zLBUA2SwO80jXI_67elcU');"></div>
+</div>
+</header>
+<main class="flex-grow layout-container flex justify-center w-full py-8 px-4 md:px-8 overflow-x-hidden">
+<div class="max-w-[1200px] w-full grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Problem & Interaction -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<!-- Problem Statement Card -->
+<div class="glass-panel rounded-2xl p-6 md:p-8 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-20 group-hover:opacity-40 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">functions</span>
+</div>
+<h3 class="text-slate-400 text-xs font-bold tracking-widest uppercase mb-4">Problem Statement</h3>
+<p class="text-xl md:text-2xl font-math leading-relaxed text-white mb-6">
+                        Given vector <span class="latex text-primary">a</span> = (2, -1, 3) and <span class="latex text-primary">b</span> = (4, 2, 1), find the scalar projection of <span class="latex text-primary">a</span> onto <span class="latex text-primary">b</span>.
+                    </p>
+<div class="flex gap-2">
+<span class="inline-flex items-center rounded-full bg-[#3f4922]/50 px-3 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-[#3f4922]">Hard</span>
+<span class="inline-flex items-center rounded-full bg-[#3f4922]/50 px-3 py-1 text-xs font-medium text-slate-300 ring-1 ring-inset ring-[#3f4922]">Vectors</span>
+</div>
+</div>
+<!-- Multiple Choice Grid -->
+<div class="flex flex-col gap-3">
+<h3 class="text-slate-400 text-xs font-bold tracking-widest uppercase mb-1 px-1">Select Answer</h3>
+<label class="group relative flex cursor-pointer rounded-xl border border-[#3f4922] bg-[#1e2310]/40 p-4 shadow-sm focus:outline-none hover:border-primary/50 transition-all duration-200">
+<input aria-labelledby="answer-choice-a-label" class="sr-only" name="answer" type="radio" value="A"/>
+<span class="flex items-center justify-center size-8 rounded-full border border-slate-600 bg-transparent text-xs font-bold text-slate-400 group-hover:border-primary group-hover:text-primary transition-colors">A</span>
+<span class="ml-4 flex flex-col" id="answer-choice-a-label">
+<span class="block text-sm font-medium text-white font-math">7 / 21</span>
+</span>
+<span aria-hidden="true" class="absolute -inset-px rounded-xl border-2 border-transparent pointer-events-none group-has-[:checked]:border-primary"></span>
+</label>
+<label class="group relative flex cursor-pointer rounded-xl border border-[#3f4922] bg-[#1e2310]/40 p-4 shadow-sm focus:outline-none hover:border-primary/50 transition-all duration-200">
+<input aria-labelledby="answer-choice-b-label" checked="" class="sr-only" name="answer" type="radio" value="B"/>
+<span class="flex items-center justify-center size-8 rounded-full border border-slate-600 bg-transparent text-xs font-bold text-slate-400 group-hover:border-primary group-hover:text-primary group-has-[:checked]:bg-primary group-has-[:checked]:text-black group-has-[:checked]:border-primary transition-colors">B</span>
+<span class="ml-4 flex flex-col" id="answer-choice-b-label">
+<span class="block text-sm font-medium text-white font-math">9 / √21</span>
+</span>
+<span aria-hidden="true" class="absolute -inset-px rounded-xl border-2 border-transparent pointer-events-none group-has-[:checked]:border-primary group-has-[:checked]:shadow-neon"></span>
+</label>
+<label class="group relative flex cursor-pointer rounded-xl border border-[#3f4922] bg-[#1e2310]/40 p-4 shadow-sm focus:outline-none hover:border-primary/50 transition-all duration-200">
+<input aria-labelledby="answer-choice-c-label" class="sr-only" name="answer" type="radio" value="C"/>
+<span class="flex items-center justify-center size-8 rounded-full border border-slate-600 bg-transparent text-xs font-bold text-slate-400 group-hover:border-primary group-hover:text-primary transition-colors">C</span>
+<span class="ml-4 flex flex-col" id="answer-choice-c-label">
+<span class="block text-sm font-medium text-white font-math">3√7</span>
+</span>
+<span aria-hidden="true" class="absolute -inset-px rounded-xl border-2 border-transparent pointer-events-none group-has-[:checked]:border-primary"></span>
+</label>
+<label class="group relative flex cursor-pointer rounded-xl border border-[#3f4922] bg-[#1e2310]/40 p-4 shadow-sm focus:outline-none hover:border-primary/50 transition-all duration-200">
+<input aria-labelledby="answer-choice-d-label" class="sr-only" name="answer" type="radio" value="D"/>
+<span class="flex items-center justify-center size-8 rounded-full border border-slate-600 bg-transparent text-xs font-bold text-slate-400 group-hover:border-primary group-hover:text-primary transition-colors">D</span>
+<span class="ml-4 flex flex-col" id="answer-choice-d-label">
+<span class="block text-sm font-medium text-white font-math">9</span>
+</span>
+<span aria-hidden="true" class="absolute -inset-px rounded-xl border-2 border-transparent pointer-events-none group-has-[:checked]:border-primary"></span>
+</label>
+</div>
+<!-- Action Button -->
+<button class="w-full bg-primary hover:bg-[#aadb1e] text-black font-bold text-lg py-4 rounded-xl shadow-neon transition-all transform active:scale-[0.99] mt-2 flex items-center justify-center gap-2">
+<span>Submit Answer</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<!-- Theory Accordion (Expanded) -->
+<div class="mt-4 border-t border-[#3f4922] pt-6">
+<button class="flex w-full items-center justify-between text-left group">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-8 rounded-lg bg-[#3f4922]/50 text-primary">
+<span class="material-symbols-outlined text-lg">menu_book</span>
+</div>
+<span class="text-base font-bold text-white group-hover:text-primary transition-colors">Theory Foundation</span>
+</div>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-white transition-transform rotate-180">expand_more</span>
+</button>
+<div class="mt-4 p-5 rounded-xl bg-[#1e2310]/30 border border-[#3f4922]/50">
+<h4 class="text-primary text-sm font-bold uppercase tracking-wide mb-3">Key Formula: Scalar Projection</h4>
+<div class="font-math text-slate-200 text-lg mb-2 p-3 bg-black/20 rounded border border-white/5 text-center">
+                            comp<sub>b</sub>a = <span class="text-primary">a · b</span> / |b|
+                        </div>
+<p class="text-slate-400 text-sm leading-relaxed mt-3">
+                            The scalar projection of vector <b>a</b> onto vector <b>b</b> is the length of the shadow of <b>a</b> cast onto <b>b</b>. It is obtained by the dot product divided by the magnitude of the target vector.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Right Column: Visualization & Solution -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<!-- Dynamic Visualization Canvas -->
+<div class="relative w-full aspect-video rounded-2xl bg-[#0a0c05] border border-[#3f4922] overflow-hidden group shadow-2xl">
+<!-- Background Grid -->
+<div class="absolute inset-0 bg-[size:40px_40px] opacity-20" style="background-image: linear-gradient(to right, #3f4922 1px, transparent 1px), linear-gradient(to bottom, #3f4922 1px, transparent 1px);"></div>
+<!-- Canvas Placeholder (The Interactive Graph) -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="relative w-3/4 h-3/4" data-alt="Abstract 3D vector diagram with glowing green lines representing projection on a dark grid">
+<!-- Abstract Vectors using Tailwind shapes for mockup -->
+<div class="absolute bottom-10 left-10 w-[2px] h-[200px] bg-slate-700 origin-bottom transform -rotate-12"></div> <!-- Y axis -->
+<div class="absolute bottom-10 left-10 w-[300px] h-[2px] bg-slate-700 origin-left transform rotate-6"></div> <!-- X axis -->
+<!-- Vector A -->
+<div class="absolute bottom-10 left-10 w-[240px] h-[2px] bg-white origin-left transform -rotate-[35deg] shadow-[0_0_10px_white]">
+<span class="absolute right-0 -top-6 text-white font-math font-bold">a</span>
+</div>
+<!-- Vector B -->
+<div class="absolute bottom-10 left-10 w-[280px] h-[2px] bg-slate-400 origin-left transform -rotate-[15deg]">
+<span class="absolute right-0 top-2 text-slate-400 font-math font-bold">b</span>
+</div>
+<!-- Projection Line (The Answer) -->
+<div class="absolute bottom-10 left-10 w-[180px] h-[3px] bg-primary origin-left transform -rotate-[15deg] shadow-[0_0_15px_#c0f425]">
+<span class="absolute right-0 top-4 text-primary font-bold text-xs bg-black/80 px-2 py-1 rounded">Projection</span>
+</div>
+<!-- Dotted Line connecting A to Projection -->
+<div class="absolute bottom-[88px] left-[182px] w-[90px] h-[1px] border-t-2 border-dotted border-slate-500 origin-left transform rotate-[55deg]"></div>
+</div>
+</div>
+<!-- Canvas Controls -->
+<div class="absolute bottom-4 right-4 flex gap-2">
+<button class="size-8 rounded bg-[#1e2310] text-white flex items-center justify-center hover:bg-primary hover:text-black transition-colors" title="Rotate">
+<span class="material-symbols-outlined text-sm">3d_rotation</span>
+</button>
+<button class="size-8 rounded bg-[#1e2310] text-white flex items-center justify-center hover:bg-primary hover:text-black transition-colors" title="Zoom In">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+<button class="size-8 rounded bg-[#1e2310] text-white flex items-center justify-center hover:bg-primary hover:text-black transition-colors" title="Zoom Out">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+</div>
+<div class="absolute top-4 left-4 bg-black/60 backdrop-blur px-3 py-1 rounded border border-white/10">
+<span class="text-[10px] uppercase tracking-widest text-primary font-bold">Interactive Canvas 3D</span>
+</div>
+</div>
+<!-- Masterclass Solution Stepper -->
+<div class="flex flex-col gap-6 pl-2">
+<h3 class="text-white text-lg font-bold uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">school</span>
+                        Masterclass Solution
+                    </h3>
+<div class="relative border-l border-[#3f4922] ml-3 space-y-8">
+<!-- Step 1 -->
+<div class="relative pl-8">
+<div class="absolute -left-[9px] top-0 size-[18px] rounded-full bg-background-dark border-2 border-primary"></div>
+<h4 class="text-slate-200 font-bold text-sm uppercase mb-2">Step 01: Calculate Dot Product</h4>
+<div class="text-slate-400 text-sm leading-relaxed">
+                                First, we calculate the dot product of <span class="font-math text-slate-300">a · b</span>.
+                                <div class="mt-2 p-3 bg-[#1e2310] rounded border border-[#3f4922] font-math text-slate-200">
+                                    (2)(4) + (-1)(2) + (3)(1) = 8 - 2 + 3 = <span class="text-primary font-bold">9</span>
+</div>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative pl-8">
+<div class="absolute -left-[9px] top-0 size-[18px] rounded-full bg-background-dark border-2 border-slate-600 group-hover:border-primary transition-colors"></div>
+<h4 class="text-slate-200 font-bold text-sm uppercase mb-2">Step 02: Calculate Magnitude of b</h4>
+<div class="text-slate-400 text-sm leading-relaxed">
+                                Next, find the magnitude <span class="font-math text-slate-300">|b|</span>.
+                                <div class="mt-2 p-3 bg-[#1e2310] rounded border border-[#3f4922] font-math text-slate-200">
+                                    √(4² + 2² + 1²) = √(16 + 4 + 1) = <span class="text-primary font-bold">√21</span>
+</div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative pl-8">
+<div class="absolute -left-[9px] top-0 size-[18px] rounded-full bg-background-dark border-2 border-slate-600"></div>
+<h4 class="text-slate-200 font-bold text-sm uppercase mb-2">Step 03: Apply Formula</h4>
+<div class="text-slate-400 text-sm leading-relaxed">
+                                Finally, divide the dot product by the magnitude.
+                                <div class="mt-2 p-3 bg-[#1e2310] rounded border border-[#3f4922] font-math text-slate-200 text-lg">
+                                    9 / √21
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Status Bar -->
+<div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Correct Answer Indicator -->
+<div class="rounded-xl border border-primary/30 bg-[#1e2310] p-4 flex items-center gap-4 shadow-[0_0_15px_rgba(192,244,37,0.1)]">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div>
+<p class="text-xs text-primary font-bold uppercase tracking-wider">Correct Answer</p>
+<p class="text-white font-bold text-lg">Option B</p>
+</div>
+</div>
+<!-- Pitfall Warning -->
+<div class="rounded-xl border border-amber-500/30 bg-[#1e2310] p-4 flex items-center gap-4 relative overflow-hidden">
+<div class="absolute right-0 top-0 p-4 opacity-5">
+<span class="material-symbols-outlined text-6xl text-amber-500">warning</span>
+</div>
+<div class="flex items-center justify-center size-10 rounded-full bg-amber-500/20 text-amber-500">
+<span class="material-symbols-outlined">priority_high</span>
+</div>
+<div class="relative z-10">
+<p class="text-xs text-amber-500 font-bold uppercase tracking-wider">Common Pitfall</p>
+<p class="text-slate-300 text-sm mt-1">Don't confuse scalar projection with vector projection. The result must be a number.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Simple -->
+<footer class="border-t border-[#3f4922] bg-[#0a0c05] py-6 mt-12">
+<div class="layout-container text-center text-slate-500 text-xs">
+<p>© 2023 Masterclass Math. Premium Education.</p>
+</div>
+</footer>
+</body></html>

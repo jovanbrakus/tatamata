@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MathElite Serbia - Global Leaderboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec", // Deep Blue
+                        "primary-dark": "#0d42b0",
+                        "accent": "#ccff00", // Neon Yellow-Green
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#1a2230",
+                        "surface-lighter": "#232f48",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    backgroundImage: {
+                        'metallic': 'linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)',
+                        'glow-primary': 'radial-gradient(circle at center, rgba(19, 91, 236, 0.3) 0%, rgba(0,0,0,0) 70%)',
+                        'glow-accent': 'radial-gradient(circle at center, rgba(204, 255, 0, 0.15) 0%, rgba(0,0,0,0) 70%)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101622;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #232f48;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #35425e;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-[#232f48] bg-background-light dark:bg-background-dark/95 backdrop-blur-md px-4 sm:px-10 py-3">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<svg class="h-full w-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">MathElite Serbia</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Practice</a>
+<a class="text-primary font-bold text-sm leading-normal" href="#">Leaderboard</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Profile</a>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-10 w-10 bg-slate-200 dark:bg-[#232f48] hover:bg-slate-300 dark:hover:bg-[#35425e] text-slate-700 dark:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-10 w-10 bg-slate-200 dark:bg-[#232f48] hover:bg-slate-300 dark:hover:bg-[#35425e] text-slate-700 dark:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-[1200px] mx-auto p-4 sm:p-6 pb-24">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+<div class="flex flex-col gap-2">
+<h1 class="text-slate-900 dark:text-white text-3xl md:text-5xl font-black tracking-tight">Global Leaderboard</h1>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider border border-primary/30">Season 2024</span>
+<p class="text-slate-500 dark:text-slate-400 text-base font-medium">Elite Mathematics Preparation • Belgrade</p>
+</div>
+</div>
+<!-- Time Filter Toggle -->
+<div class="bg-slate-200 dark:bg-[#232f48] p-1 rounded-lg flex shadow-inner">
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="period" type="radio" value="week"/>
+<span class="block px-4 py-2 rounded-md text-sm font-medium text-slate-500 dark:text-slate-400 peer-checked:bg-white dark:peer-checked:bg-[#111722] peer-checked:text-primary peer-checked:shadow-sm transition-all duration-200">This Week</span>
+</label>
+<label class="cursor-pointer relative">
+<input checked="" class="peer sr-only" name="period" type="radio" value="month"/>
+<span class="block px-4 py-2 rounded-md text-sm font-medium text-slate-500 dark:text-slate-400 peer-checked:bg-white dark:peer-checked:bg-[#111722] peer-checked:text-primary peer-checked:shadow-sm transition-all duration-200">This Month</span>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="period" type="radio" value="all"/>
+<span class="block px-4 py-2 rounded-md text-sm font-medium text-slate-500 dark:text-slate-400 peer-checked:bg-white dark:peer-checked:bg-[#111722] peer-checked:text-primary peer-checked:shadow-sm transition-all duration-200">All Time</span>
+</label>
+</div>
+</div>
+<!-- Podium Section (Top 3) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end mb-12 min-h-[420px]">
+<!-- 2nd Place -->
+<div class="order-2 md:order-1 relative group">
+<div class="absolute inset-0 bg-primary/5 dark:bg-primary/10 blur-3xl rounded-full translate-y-10 group-hover:bg-primary/20 transition-all duration-700"></div>
+<div class="relative bg-white dark:bg-surface-lighter bg-metallic border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col items-center gap-4 transform translate-y-0 md:translate-y-8 shadow-xl">
+<div class="absolute -top-4 bg-slate-800 text-slate-300 font-bold px-3 py-1 rounded-full text-sm border border-slate-600 shadow-lg">#2</div>
+<div class="relative">
+<div class="w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-slate-300 to-slate-500 dark:from-slate-700 dark:to-slate-500">
+<img alt="Jelena S." class="w-full h-full object-cover rounded-full border-4 border-white dark:border-surface-lighter" data-alt="Profile picture of a female student smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTyOQUQkOrdeRXq0WamlMPeLh4mLl-9Lmnp29U1D7pzIBJ3VIYX8E6ymdk2rr5wKo0EkK5p4L8t5DBRm-FVqbdDt7f8IcJOpPEK-bGqpd2gw-PoLmX7Iaegb9WDbDGGtm9Q115hQQHmuonLhOgIGGpqQWUDZsVNxSC_AaAuYIJ9oF4k5Tdggbd4McZ7_qn4WXxW2K1JXFEnj3lGSOv23v7IRy0wiTQq4KdriV9fUENlHUELaNAM-IxTP4cZ8R2IHvzAcKFGEG2dkY"/>
+</div>
+</div>
+<div class="text-center">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Jelena S.</h3>
+<p class="text-primary font-medium text-sm">Novi Sad, Serbia</p>
+</div>
+<div class="w-full h-px bg-slate-200 dark:bg-slate-700/50"></div>
+<div class="flex justify-between w-full px-4">
+<div class="flex flex-col items-center">
+<span class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider">Points</span>
+<span class="text-lg font-bold text-slate-900 dark:text-white tabular-nums">11,200</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider">Accuracy</span>
+<span class="text-lg font-bold text-emerald-500 dark:text-accent tabular-nums">96%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 1st Place -->
+<div class="order-1 md:order-2 relative group z-10">
+<div class="absolute inset-0 bg-primary/20 dark:bg-primary/30 blur-[60px] rounded-full -translate-y-4 group-hover:bg-primary/40 transition-all duration-700"></div>
+<!-- Crown Icon -->
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.6)] animate-bounce">
+<span class="material-symbols-outlined text-[48px] fill-current">crown</span>
+</div>
+<div class="relative bg-white dark:bg-gradient-to-b dark:from-[#2a3855] dark:to-[#1e2738] border border-primary/30 dark:border-primary/50 rounded-2xl p-8 flex flex-col items-center gap-5 shadow-2xl shadow-primary/20">
+<div class="absolute -top-5 bg-gradient-to-r from-yellow-500 to-amber-600 text-white font-bold px-4 py-1.5 rounded-full text-base border border-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.4)]">#1 Rank</div>
+<div class="relative">
+<!-- Glowing Ring -->
+<div class="absolute -inset-1 rounded-full bg-gradient-to-tr from-primary to-accent opacity-75 blur-sm animate-pulse"></div>
+<div class="w-32 h-32 relative rounded-full p-1 bg-gradient-to-tr from-primary via-blue-400 to-accent">
+<img alt="Marko P." class="w-full h-full object-cover rounded-full border-4 border-white dark:border-[#2a3855]" data-alt="Profile picture of a male student wearing glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgpXWZBA7P3JSlc6nE9m3WaTmpciEaffRRL1CL0Z1Bf5L40Pqeht4cit8_sC1L3buVyueT03jRy82084LLClA8_ebaruok79P7J_ODHQzhJVhygwurLRUbVKPvD4Mfhe7AoR2TQ2QI9ddL4FYL2AK5rP9gcAecwmf_ztarNnCUsftSotjberhXUVc8Fr4YzGuR8cn7qYEzI5LWX3ZQE3eidireYu0ykarUd8BBuNkOmQaLFa_pXEsDjp6qrd4Z5p67ktyEjTtAvgA"/>
+</div>
+</div>
+<div class="text-center">
+<h3 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Marko P.</h3>
+<p class="text-primary font-bold text-sm">Belgrade, Serbia</p>
+</div>
+<div class="flex items-center gap-2 bg-slate-100 dark:bg-black/30 px-3 py-1 rounded-full border border-slate-200 dark:border-white/10">
+<span class="material-symbols-outlined text-accent text-sm">local_fire_department</span>
+<span class="text-xs font-semibold text-slate-600 dark:text-slate-300">12 Day Streak</span>
+</div>
+<div class="w-full h-px bg-slate-200 dark:bg-white/10"></div>
+<div class="grid grid-cols-2 gap-8 w-full px-2">
+<div class="flex flex-col items-center">
+<span class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Total XP</span>
+<span class="text-2xl font-black text-primary tabular-nums tracking-tight">12,500</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Accuracy</span>
+<span class="text-2xl font-black text-emerald-600 dark:text-accent tabular-nums tracking-tight">98%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 3rd Place -->
+<div class="order-3 md:order-3 relative group">
+<div class="absolute inset-0 bg-primary/5 dark:bg-primary/10 blur-3xl rounded-full translate-y-10 group-hover:bg-primary/20 transition-all duration-700"></div>
+<div class="relative bg-white dark:bg-surface-lighter bg-metallic border border-slate-200 dark:border-slate-700/50 rounded-2xl p-6 flex flex-col items-center gap-4 transform translate-y-0 md:translate-y-12 shadow-xl">
+<div class="absolute -top-4 bg-slate-800 text-slate-300 font-bold px-3 py-1 rounded-full text-sm border border-slate-600 shadow-lg">#3</div>
+<div class="relative">
+<div class="w-24 h-24 rounded-full p-1 bg-gradient-to-tr from-orange-800 to-orange-400">
+<img alt="Nikola V." class="w-full h-full object-cover rounded-full border-4 border-white dark:border-surface-lighter" data-alt="Profile picture of a male student smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcpZTY_dhcqOEqn7ZABWv3P0aCZqUdg8ToaWeuyPZi3VkLKFpVfbMW-Rx-eOd_AItGQbZx-Cq1jmrAqLjwphpXl1RVTWxK3BRvZGcw9LoQTYbuJorym4-Zx8Wl5R04TJNBuD1UzBIM63KkBlMOCL120Y_vl--ckwEkCcx-vI9VNQkNuY_skxXGt270cP5EqLzbed0RsW32674DJAZM8gIbHjxsYjrJTVv34aPn2X0mEoyqHDhn4vUNNjPhZ-aEHWxUXRPQycJRes8"/>
+</div>
+</div>
+<div class="text-center">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Nikola V.</h3>
+<p class="text-primary font-medium text-sm">Niš, Serbia</p>
+</div>
+<div class="w-full h-px bg-slate-200 dark:bg-slate-700/50"></div>
+<div class="flex justify-between w-full px-4">
+<div class="flex flex-col items-center">
+<span class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider">Points</span>
+<span class="text-lg font-bold text-slate-900 dark:text-white tabular-nums">10,800</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider">Accuracy</span>
+<span class="text-lg font-bold text-emerald-500 dark:text-accent tabular-nums">95%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Leaderboard List Header -->
+<div class="mt-8 mb-4 hidden md:grid grid-cols-12 gap-4 px-6 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+<div class="col-span-1 text-center">Rank</div>
+<div class="col-span-4 pl-2">Student</div>
+<div class="col-span-3">Performance</div>
+<div class="col-span-2 text-center">Solved</div>
+<div class="col-span-2 text-right">XP Points</div>
+</div>
+<!-- Leaderboard List -->
+<div class="flex flex-col gap-3">
+<!-- Rank 4 -->
+<div class="group relative overflow-hidden bg-white dark:bg-[#1a2230] hover:bg-slate-50 dark:hover:bg-[#232f48] border border-slate-200 dark:border-slate-800 rounded-xl transition-all duration-300">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-transparent group-hover:bg-primary transition-colors"></div>
+<div class="flex flex-col md:grid md:grid-cols-12 gap-4 items-center p-4">
+<!-- Rank & Avatar -->
+<div class="flex items-center gap-4 w-full md:col-span-5">
+<div class="flex-shrink-0 w-8 text-center font-bold text-slate-400 text-lg">4</div>
+<div class="relative">
+<img class="w-10 h-10 rounded-full object-cover border border-slate-200 dark:border-slate-600" data-alt="Profile thumbnail of a female student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiaiRS2dyppyjo4etEasbkyIlrJhi1Xmk49askAodb7ZUxJfxb0aKA_kUBbQd2uJ6NC8o0qWZYcDSTjrlBVXGMFOAR1BJ3bxXjGyRKAyf8p9jzwoY9EW7kh1OBweOEiQ0xTX7d9KLkh4A2NRk-lPktrOXLoERx4ZL9o8yd5u3SOHYQrJ0WUQQuc_MENRmjfxG3RkrIAr-6CHV_Eqc_s1OxZbHjSYm8HojrQFyFTgQjvGhr-zGlBeNkSuM4J9QxuDq0UCekCQJsf_s"/>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-slate-900 dark:text-white">Ana K.</span>
+<span class="text-xs text-slate-500 dark:text-slate-400 md:hidden">Rank #4</span>
+</div>
+<!-- Mobile stats visible only on small screens -->
+<div class="ml-auto md:hidden text-right">
+<span class="block font-bold text-primary">10,450 XP</span>
+<span class="text-xs text-emerald-500 dark:text-accent">94% Acc</span>
+</div>
+</div>
+<!-- Progress/Accuracy -->
+<div class="w-full md:col-span-3 flex items-center gap-3">
+<div class="flex-grow h-2 bg-slate-100 dark:bg-black/40 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 dark:bg-accent w-[94%] rounded-full shadow-[0_0_10px_rgba(204,255,0,0.3)]"></div>
+</div>
+<span class="text-sm font-bold text-slate-700 dark:text-slate-200 w-10">94%</span>
+</div>
+<!-- Solved Count -->
+<div class="hidden md:block col-span-2 text-center">
+<span class="px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium">842 Qs</span>
+</div>
+<!-- Total Points -->
+<div class="hidden md:block col-span-2 text-right">
+<span class="font-bold text-primary dark:text-white text-lg tabular-nums">10,450</span>
+</div>
+</div>
+</div>
+<!-- Rank 5 -->
+<div class="group relative overflow-hidden bg-white dark:bg-[#1a2230] hover:bg-slate-50 dark:hover:bg-[#232f48] border border-slate-200 dark:border-slate-800 rounded-xl transition-all duration-300">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-transparent group-hover:bg-primary transition-colors"></div>
+<div class="flex flex-col md:grid md:grid-cols-12 gap-4 items-center p-4">
+<div class="flex items-center gap-4 w-full md:col-span-5">
+<div class="flex-shrink-0 w-8 text-center font-bold text-slate-400 text-lg">5</div>
+<div class="relative">
+<img class="w-10 h-10 rounded-full object-cover border border-slate-200 dark:border-slate-600" data-alt="Profile thumbnail of a male student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU3tygLT6dGGLfKX4CnfgCJMfRmklxd3cmxv1aijomLmLLN43Nei90rnntl_9Z3loijKovDCY-K7204_tMuGfUjFcWTE853hmmZkYaRb3ko5cY-1YlVyvlc5yNPlMLd7tF08jolm_Bq6pIVYQP-NXXF1yxow5mfT29l5R0y2epfBitOsdZ3HyTaDVi00mWXSDH_3eGtcVSy9sNUABk80BCCtt_Z-YdPe8GIl1S7fQWBAKKaKGewVE3JYnLOeufYOefxj2p4ofCl98"/>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-slate-900 dark:text-white">Stefan M.</span>
+<span class="text-xs text-slate-500 dark:text-slate-400 md:hidden">Rank #5</span>
+</div>
+<div class="ml-auto md:hidden text-right">
+<span class="block font-bold text-primary">9,980 XP</span>
+<span class="text-xs text-emerald-500 dark:text-accent">92% Acc</span>
+</div>
+</div>
+<div class="w-full md:col-span-3 flex items-center gap-3">
+<div class="flex-grow h-2 bg-slate-100 dark:bg-black/40 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 dark:bg-accent w-[92%] rounded-full shadow-[0_0_10px_rgba(204,255,0,0.3)]"></div>
+</div>
+<span class="text-sm font-bold text-slate-700 dark:text-slate-200 w-10">92%</span>
+</div>
+<div class="hidden md:block col-span-2 text-center">
+<span class="px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium">810 Qs</span>
+</div>
+<div class="hidden md:block col-span-2 text-right">
+<span class="font-bold text-primary dark:text-white text-lg tabular-nums">9,980</span>
+</div>
+</div>
+</div>
+<!-- Rank 6 -->
+<div class="group relative overflow-hidden bg-white dark:bg-[#1a2230] hover:bg-slate-50 dark:hover:bg-[#232f48] border border-slate-200 dark:border-slate-800 rounded-xl transition-all duration-300">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-transparent group-hover:bg-primary transition-colors"></div>
+<div class="flex flex-col md:grid md:grid-cols-12 gap-4 items-center p-4">
+<div class="flex items-center gap-4 w-full md:col-span-5">
+<div class="flex-shrink-0 w-8 text-center font-bold text-slate-400 text-lg">6</div>
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold border border-primary/30">
+                                MP
+                            </div>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-slate-900 dark:text-white">Milica P.</span>
+<span class="text-xs text-slate-500 dark:text-slate-400 md:hidden">Rank #6</span>
+</div>
+<div class="ml-auto md:hidden text-right">
+<span class="block font-bold text-primary">9,540 XP</span>
+<span class="text-xs text-emerald-500 dark:text-accent">91% Acc</span>
+</div>
+</div>
+<div class="w-full md:col-span-3 flex items-center gap-3">
+<div class="flex-grow h-2 bg-slate-100 dark:bg-black/40 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 dark:bg-accent w-[91%] rounded-full shadow-[0_0_10px_rgba(204,255,0,0.3)]"></div>
+</div>
+<span class="text-sm font-bold text-slate-700 dark:text-slate-200 w-10">91%</span>
+</div>
+<div class="hidden md:block col-span-2 text-center">
+<span class="px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium">780 Qs</span>
+</div>
+<div class="hidden md:block col-span-2 text-right">
+<span class="font-bold text-primary dark:text-white text-lg tabular-nums">9,540</span>
+</div>
+</div>
+</div>
+<!-- Rank 7 -->
+<div class="group relative overflow-hidden bg-white dark:bg-[#1a2230] hover:bg-slate-50 dark:hover:bg-[#232f48] border border-slate-200 dark:border-slate-800 rounded-xl transition-all duration-300">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-transparent group-hover:bg-primary transition-colors"></div>
+<div class="flex flex-col md:grid md:grid-cols-12 gap-4 items-center p-4">
+<div class="flex items-center gap-4 w-full md:col-span-5">
+<div class="flex-shrink-0 w-8 text-center font-bold text-slate-400 text-lg">7</div>
+<div class="relative">
+<img class="w-10 h-10 rounded-full object-cover border border-slate-200 dark:border-slate-600" data-alt="Profile thumbnail of a male student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1pgwUSNH6LrwsL-C_EXfzCXrRE4Lr34jObw_XgDpyKYGkIydhz5-7atLfTd-JlW5hmBiV4AUh2wn-mGHf_flQtv1pOgFEy1cAOQ90jxudyPmclZBpPLh2w9pf5hwZpwzNKeC2ssnH5kJVMVZLQRBD-MxUhquvCqNlXT9jOz3TWIENYi1v3IusP5Br-TeTS9SGV1si_1B51NigN7Nyjel7gXHWv84Edga7cS2a5F5QEKyDIhDdiS0HZ1xlB9GmcYZ_PW33oAF5lOU"/>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-slate-900 dark:text-white">Luka D.</span>
+<span class="text-xs text-slate-500 dark:text-slate-400 md:hidden">Rank #7</span>
+</div>
+<div class="ml-auto md:hidden text-right">
+<span class="block font-bold text-primary">9,120 XP</span>
+<span class="text-xs text-emerald-500 dark:text-accent">89% Acc</span>
+</div>
+</div>
+<div class="w-full md:col-span-3 flex items-center gap-3">
+<div class="flex-grow h-2 bg-slate-100 dark:bg-black/40 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 dark:bg-accent w-[89%] rounded-full shadow-[0_0_10px_rgba(204,255,0,0.3)]"></div>
+</div>
+<span class="text-sm font-bold text-slate-700 dark:text-slate-200 w-10">89%</span>
+</div>
+<div class="hidden md:block col-span-2 text-center">
+<span class="px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium">745 Qs</span>
+</div>
+<div class="hidden md:block col-span-2 text-right">
+<span class="font-bold text-primary dark:text-white text-lg tabular-nums">9,120</span>
+</div>
+</div>
+</div>
+<!-- Rank 8 -->
+<div class="group relative overflow-hidden bg-white dark:bg-[#1a2230] hover:bg-slate-50 dark:hover:bg-[#232f48] border border-slate-200 dark:border-slate-800 rounded-xl transition-all duration-300">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-transparent group-hover:bg-primary transition-colors"></div>
+<div class="flex flex-col md:grid md:grid-cols-12 gap-4 items-center p-4">
+<div class="flex items-center gap-4 w-full md:col-span-5">
+<div class="flex-shrink-0 w-8 text-center font-bold text-slate-400 text-lg">8</div>
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold border border-purple-500/30">
+                                SA
+                            </div>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-slate-900 dark:text-white">Sara A.</span>
+<span class="text-xs text-slate-500 dark:text-slate-400 md:hidden">Rank #8</span>
+</div>
+<div class="ml-auto md:hidden text-right">
+<span class="block font-bold text-primary">8,950 XP</span>
+<span class="text-xs text-emerald-500 dark:text-accent">88% Acc</span>
+</div>
+</div>
+<div class="w-full md:col-span-3 flex items-center gap-3">
+<div class="flex-grow h-2 bg-slate-100 dark:bg-black/40 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 dark:bg-accent w-[88%] rounded-full shadow-[0_0_10px_rgba(204,255,0,0.3)]"></div>
+</div>
+<span class="text-sm font-bold text-slate-700 dark:text-slate-200 w-10">88%</span>
+</div>
+<div class="hidden md:block col-span-2 text-center">
+<span class="px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium">720 Qs</span>
+</div>
+<div class="hidden md:block col-span-2 text-right">
+<span class="font-bold text-primary dark:text-white text-lg tabular-nums">8,950</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center mt-8">
+<button class="flex items-center gap-2 px-6 py-3 rounded-lg bg-slate-200 dark:bg-[#232f48] text-slate-700 dark:text-white font-semibold hover:bg-slate-300 dark:hover:bg-[#35425e] transition-colors">
+<span class="material-symbols-outlined">expand_more</span>
+                Load More Students
+            </button>
+</div>
+</main>
+<!-- Sticky User Stats Bar -->
+<div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-[#1a2230] border-t border-slate-200 dark:border-primary/30 p-4 shadow-[0_-5px_20px_rgba(0,0,0,0.2)] z-40">
+<div class="max-w-[1200px] mx-auto flex items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex flex-col items-center justify-center w-12 h-12 bg-primary rounded-lg text-white font-bold shadow-[0_0_15px_rgba(19,91,236,0.5)]">
+<span class="text-xs font-normal opacity-80">Rank</span>
+<span class="text-lg leading-none">42</span>
+</div>
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full border-2 border-primary" data-alt="User current profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3dz_pN8yE0Sl7Zi4jBCRkukqlvgW0SUP1xxgU04gihD7ZzUmoO5cmJpQtFyyZ_WhqicTT3BD9SfkIyOwE51XZGQie3GXFRhgTitFahk0DjVPgSuvlB2mjbX0MNVIqZL731YpeIgOLHnLLS7vt5Jl2W9VA7pvqV1f4sMpYmnhK8Nt8WEWpFviYc7kwPnWP_USZpfz31q8dKySBhVxVzt6VgWqZy0YOZBrqgtWA64Q3jSUJCMRAKlF9jW-PfafbTDez9yp55MGhxqM"/>
+<div class="flex flex-col">
+<span class="text-sm text-slate-500 dark:text-slate-400">You are doing great!</span>
+<span class="font-bold text-slate-900 dark:text-white">Keep Pushing, Alex</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6 sm:gap-12">
+<div class="flex flex-col items-end sm:items-center">
+<span class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Your XP</span>
+<span class="font-bold text-slate-900 dark:text-white text-lg tabular-nums">4,250</span>
+</div>
+<div class="flex flex-col items-end sm:items-center">
+<span class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Accuracy</span>
+<span class="font-bold text-emerald-500 dark:text-accent text-lg tabular-nums">82%</span>
+</div>
+<button class="hidden sm:flex bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-lg font-semibold transition-colors items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                    Practice
+                </button>
+</div>
+</div>
+</div>
+</body></html>
