@@ -21,6 +21,13 @@ interface Topic {
   name: string;
 }
 
+interface MajorCategoryProgress {
+  id: string;
+  name: string;
+  solved: number;
+  total: number;
+}
+
 const FACULTY_LABELS: Record<string, string> = {
   etf: "ETF",
   fon: "FON",
@@ -41,6 +48,19 @@ const FACULTY_COLORS: Record<string, string> = {
   masf: "#fbbf24",
 };
 
+const CATEGORY_ACCENT: Record<string, string> = {
+  algebra_fundamentals: "from-[#60a5fa] to-[#38bdf8]",
+  equations_inequalities: "from-[#f59e0b] to-[#ef4444]",
+  functions_analysis: "from-[#22c55e] to-[#14b8a6]",
+  geometry: "from-[#a78bfa] to-[#6366f1]",
+  combinatorics_probability: "from-[#f472b6] to-[#db2777]",
+};
+
+function pct(solved: number, total: number) {
+  if (total <= 0) return 0;
+  return Math.round((solved / total) * 100);
+}
+
 export default function ProblemsPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -49,6 +69,7 @@ export default function ProblemsPage() {
 
   const [topicName, setTopicName] = useState("");
   const [problems, setProblems] = useState<Problem[]>([]);
+  const [majorCategoryProgress, setMajorCategoryProgress] = useState<MajorCategoryProgress[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -140,6 +161,17 @@ export default function ProblemsPage() {
   }, [topic, majorCategory, fetchTopicLabel]);
 
   useEffect(() => {
+    fetch("/api/progress/by-major-category")
+      .then((r) => r.json())
+      .then((res) => {
+        if (Array.isArray(res)) {
+          setMajorCategoryProgress(res);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
     fetchProblems();
   }, [fetchProblems]);
 
@@ -163,6 +195,46 @@ export default function ProblemsPage() {
         <BookOpen className="mr-2 inline" size={28} />
         Zadaci
       </h1>
+
+      {/* Category cards */}
+      {!loading && majorCategoryProgress.length > 0 && (
+        <div className="mb-6">
+          <div className="mb-3 flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-[#e2e8f0]">Praktikuj po kategorijama</h2>
+            <span className="text-xs text-[#94a3b8]">Klik za praksu</span>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {MAJOR_CATEGORIES.map((cat) => {
+              const progress = majorCategoryProgress.find((item) => item.id === cat.id);
+              const solved = progress?.solved || 0;
+              const totalCount = progress?.total || 0;
+              const completion = pct(solved, totalCount);
+              const accent = CATEGORY_ACCENT[cat.id] || "from-[#60a5fa] to-[#a78bfa]";
+              return (
+                <Link
+                  key={cat.id}
+                  href={`/zadaci?majorCategory=${encodeURIComponent(cat.id)}`}
+                  className="group relative overflow-hidden rounded-2xl border border-[#334155] bg-[#1e293b] p-4"
+                >
+                  <div className="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-[#fff]/5" />
+                  <div className={`mb-2 inline-block rounded-full bg-gradient-to-r ${accent} px-2.5 py-1 text-xs font-semibold text-white/90`}>
+                    Kategorija
+                  </div>
+                  <h3 className="mb-1 text-sm font-semibold text-[#e2e8f0] group-hover:text-[#fff]">{cat.name}</h3>
+                  <p className="text-xs text-[#94a3b8]">{solved}/{totalCount} zadataka</p>
+                  <div className="mt-3 h-2 overflow-hidden rounded-full bg-[#0f172a]">
+                    <div
+                      className="h-full rounded-full bg-gradient-to-r from-[#60a5fa] to-[#a78bfa]"
+                      style={{ width: `${completion}%` }}
+                    />
+                  </div>
+                  <p className="mt-2 text-xs text-[#a78bfa]">{completion}% završeno</p>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       <div className="mb-6 rounded-xl border border-[#334155] bg-[#1e293b] p-4">
         <div className="mb-3 flex flex-wrap items-center gap-3">
