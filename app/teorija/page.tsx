@@ -6,6 +6,7 @@ const topics = [
   { href: "/teorija/procenti-proporcije", label: "Procenti i proporcije", summary: "Brzi proračuni, rast/pad i proporcionalnost u zadacima sa procentima." },
   { href: "/teorija/realni-brojevi-koreni", label: "Realni brojevi i koreni", summary: "Rešenje korenskih izraza, apsolutna vrednost i redosled operacija." },
   { href: "/teorija/trigonometrija", label: "Trigonometrija", summary: "Osnovni trigonometrijski izrazi, formule i jednostavno rešenje jednačina." },
+  { href: "/teorija/apsolutna-vrednost", label: "Apsolutna vrednost", summary: "Pravila za jednačine i nejednačine sa apsolutnom vrednošću." },
   { href: "/teorija/trigonometrijske-jednadzbe", label: "Trigonometrijske jednačine", summary: "Sin, cos, tan i periodični obrasci u jednačinama." },
   { href: "/teorija/logaritmi-eksponencijalne", label: "Logaritmi i eksponencijalne", summary: "Transformacije i rešenje logaritamskih/eksponencijalnih izraza." },
   { href: "/teorija/funkcije-grafici", label: "Funkcije i grafici", summary: "Kako prepoznati rast/opadanje, nultočke i znak funkcije." },
