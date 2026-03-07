@@ -11,6 +11,7 @@ import {
   User,
   Bookmark,
   Bot,
+  GraduationCap,
   LogOut,
   Menu,
   X,
@@ -22,6 +23,7 @@ const navLinks = [
   { href: "/ispit", label: "Ispit", icon: ClipboardList },
   { href: "/rang-lista", label: "Rang lista", icon: Trophy },
   { href: "/ai", label: "AI Tutor", icon: Bot },
+  { href: "/teorija", label: "Teorija", icon: GraduationCap },
   { href: "/sacuvano", label: "Sačuvano", icon: Bookmark },
   { href: "/profil", label: "Profil", icon: User },
 ];
