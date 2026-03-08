@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Sidebar from "@/components/layout/sidebar";
 import {
   Search,
   Bell,
@@ -219,29 +218,26 @@ export default function Dashboard({ user }: DashboardProps) {
   /* loading skeleton */
   if (loading) {
     return (
-      <div className="flex h-screen overflow-hidden bg-[#0a0a0a]">
-        <Sidebar user={{ displayName: user.displayName, avatarUrl: user.avatarUrl }} />
-        <main className="flex-1 overflow-y-auto p-8">
-          <div className="mb-10 h-12 w-96 animate-pulse rounded-lg bg-white/5" />
-          <div className="grid grid-cols-12 gap-6">
-            <div className="col-span-8 space-y-6">
-              <div className="grid grid-cols-2 gap-6">
-                <div className="h-40 animate-pulse rounded-2xl bg-white/5" />
-                <div className="h-40 animate-pulse rounded-2xl bg-white/5" />
-              </div>
-              <div className="grid grid-cols-4 gap-4">
-                {[0, 1, 2, 3].map((i) => (
-                  <div key={i} className="h-52 animate-pulse rounded-2xl bg-white/5" />
-                ))}
-              </div>
-              <div className="h-32 animate-pulse rounded-2xl bg-white/5" />
+      <div className="p-8">
+        <div className="mb-10 h-12 w-96 animate-pulse rounded-lg bg-white/5" />
+        <div className="grid grid-cols-12 gap-6">
+          <div className="col-span-12 space-y-6 lg:col-span-8">
+            <div className="grid grid-cols-2 gap-6">
+              <div className="h-40 animate-pulse rounded-2xl bg-white/5" />
+              <div className="h-40 animate-pulse rounded-2xl bg-white/5" />
             </div>
-            <div className="col-span-4 space-y-6">
-              <div className="h-44 animate-pulse rounded-2xl bg-[#ec5b13]/20" />
-              <div className="h-72 animate-pulse rounded-2xl bg-white/5" />
+            <div className="grid grid-cols-4 gap-4">
+              {[0, 1, 2, 3].map((i) => (
+                <div key={i} className="h-52 animate-pulse rounded-2xl bg-white/5" />
+              ))}
             </div>
+            <div className="h-32 animate-pulse rounded-2xl bg-white/5" />
           </div>
-        </main>
+          <div className="col-span-12 space-y-6 lg:col-span-4">
+            <div className="h-44 animate-pulse rounded-2xl bg-[#ec5b13]/20" />
+            <div className="h-72 animate-pulse rounded-2xl bg-white/5" />
+          </div>
+        </div>
       </div>
     );
   }
@@ -272,14 +268,7 @@ export default function Dashboard({ user }: DashboardProps) {
     : 0;
 
   return (
-    <div className="flex h-screen overflow-hidden bg-[#0a0a0a]" style={{
-      background: "radial-gradient(circle at 50% -20%, #2a1a12 0%, #0a0a0a 100%)",
-    }}>
-      {/* Sidebar */}
-      <Sidebar user={{ displayName: user.displayName, avatarUrl: user.avatarUrl }} />
-
-      {/* Main Content */}
-      <main className="flex-1 overflow-y-auto p-8 relative">
+    <div className="relative p-8">
         {/* Header */}
         <header className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
@@ -380,7 +369,7 @@ export default function Dashboard({ user }: DashboardProps) {
                       </span>
                       <p className="text-sm text-slate-400">Nemas zavrsenih testova</p>
                       <Link
-                        href="/ispit"
+                        href="/simulacija"
                         className="mt-2 text-xs font-bold text-[#0ea5e9] hover:underline"
                       >
                         POKRENI PRVI TEST
@@ -599,7 +588,6 @@ export default function Dashboard({ user }: DashboardProps) {
             )}
           </div>
         </div>
-      </main>
-    </div>
+      </div>
   );
 }

@@ -82,7 +82,7 @@ export default function SimulationResultsPage() {
 
   if (!data)
     return (
-      <div className="flex min-h-screen items-center justify-center">
+      <div className="flex min-h-[60vh] items-center justify-center">
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-2 border-[#ec5b13] border-t-transparent" />
           <p className="mt-4 text-slate-400">Učitavanje rezultata...</p>
@@ -118,7 +118,7 @@ export default function SimulationResultsPage() {
       : "Brzi test";
 
   return (
-    <div className="min-h-screen bg-[#0a0705]">
+    <div>
       <div className="mx-auto max-w-4xl px-4 py-8">
         {/* Back link */}
         <Link

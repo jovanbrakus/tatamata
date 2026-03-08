@@ -7,11 +7,12 @@ import { signOut } from "next-auth/react";
 import {
   LayoutDashboard,
   BarChart3,
-  BookOpen,
-  GraduationCap,
+  Dumbbell,
+  History,
   User,
   LogOut,
 } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 interface SidebarUser {
   displayName: string;
@@ -20,6 +21,7 @@ interface SidebarUser {
 
 interface SidebarProps {
   user: SidebarUser;
+  onNavigate?: () => void;
 }
 
 const NAV_ITEMS = [
@@ -34,23 +36,23 @@ const NAV_ITEMS = [
     icon: BarChart3,
   },
   {
-    href: "/ispit",
-    label: "Vezbe & Simulacije",
-    icon: BookOpen,
+    href: "/vezbe",
+    label: "Vežbe & Simulacije",
+    icon: Dumbbell,
   },
   {
-    href: "/materijali",
-    label: "Materijali",
-    icon: GraduationCap,
+    href: "/simulacija/istorija",
+    label: "Istorija testova",
+    icon: History,
   },
   {
     href: "/profil",
-    label: "Korisnicki profil",
+    label: "Korisnički profil",
     icon: User,
   },
 ];
 
-export default function Sidebar({ user }: SidebarProps) {
+export default function Sidebar({ user, onNavigate }: SidebarProps) {
   const pathname = usePathname();
 
   function isActive(href: string) {
@@ -59,10 +61,14 @@ export default function Sidebar({ user }: SidebarProps) {
   }
 
   return (
-    <aside className="hidden w-72 flex-shrink-0 flex-col border-r border-white/5 lg:flex glass-card">
+    <aside className="flex h-full w-72 flex-shrink-0 flex-col border-r border-white/5 bg-[#0a0a0a]/80 backdrop-blur-xl">
       {/* Logo */}
       <div className="p-8">
-        <Link href="/" className="mb-10 flex items-center gap-3">
+        <Link
+          href="/"
+          className="mb-10 flex items-center gap-3"
+          onClick={onNavigate}
+        >
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary shadow-[0_0_15px_rgba(19,91,236,0.3)]">
             <Image src="/logo-56.png" alt="TataMata" width={24} height={22} />
           </div>
@@ -79,6 +85,7 @@ export default function Sidebar({ user }: SidebarProps) {
               <Link
                 key={href}
                 href={href}
+                onClick={onNavigate}
                 className={`flex items-center gap-4 rounded-xl px-4 py-3 transition-all ${
                   active
                     ? "border border-[#ec5b13]/20 bg-[#ec5b13]/10 text-[#ec5b13]"
@@ -86,7 +93,9 @@ export default function Sidebar({ user }: SidebarProps) {
                 }`}
               >
                 <Icon size={20} className={active ? "fill-current" : ""} />
-                <span className={`text-sm ${active ? "font-semibold" : "font-medium"}`}>
+                <span
+                  className={`text-sm ${active ? "font-semibold" : "font-medium"}`}
+                >
                   {label}
                 </span>
               </Link>
@@ -97,6 +106,9 @@ export default function Sidebar({ user }: SidebarProps) {
 
       {/* User section at bottom */}
       <div className="mt-auto border-t border-white/5 p-8">
+        <div className="mb-4 flex justify-end">
+          <ThemeToggle />
+        </div>
         <div className="flex items-center gap-3">
           <div className="h-10 w-10 overflow-hidden rounded-full border-2 border-[#ec5b13]/50">
             {user.avatarUrl ? (

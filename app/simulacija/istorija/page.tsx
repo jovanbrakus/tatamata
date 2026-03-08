@@ -194,7 +194,7 @@ export default function SimulationHistoryPage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div>
       <div className="mx-auto max-w-7xl px-4 md:px-8 py-8 space-y-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">

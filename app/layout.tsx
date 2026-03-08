@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { TopNav } from "@/components/nav/top-nav";
+import AuthenticatedLayout from "@/components/layout/authenticated-layout";
 import { SessionProvider } from "next-auth/react";
+import { auth } from "@/lib/auth";
 
 export const metadata: Metadata = {
   title: "TataMata — 1000+ rešenih zadataka za prijemni ispit",
@@ -10,11 +12,15 @@ export const metadata: Metadata = {
   keywords: "prijemni ispit, matematika, ETF, MATF, FON, rešeni zadaci, Beograd",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await auth();
+  const isAuthenticated = !!session?.user;
+  const user = isAuthenticated ? (session.user as any) : null;
+
   return (
     <html lang="sr" className="dark">
       <head>
@@ -31,8 +37,22 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen">
         <SessionProvider>
-          <TopNav />
-          <main>{children}</main>
+          {isAuthenticated ? (
+            <AuthenticatedLayout
+              user={{
+                displayName:
+                  user?.displayName || user?.name || "Korisnik",
+                avatarUrl: user?.image || null,
+              }}
+            >
+              {children}
+            </AuthenticatedLayout>
+          ) : (
+            <>
+              <TopNav />
+              <main>{children}</main>
+            </>
+          )}
         </SessionProvider>
       </body>
     </html>

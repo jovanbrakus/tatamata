@@ -478,7 +478,7 @@ export default function AnalytikaPage() {
               Nedavne simulacije
             </h4>
             <button
-              onClick={() => router.push("/ispit")}
+              onClick={() => router.push("/simulacija")}
               className="text-xs font-bold text-[#ec5b13] hover:underline"
             >
               Sve simulacije
@@ -511,7 +511,7 @@ export default function AnalytikaPage() {
                         key={exam.id}
                         className="cursor-pointer transition-colors hover:bg-[#ec5b13]/5"
                         onClick={() =>
-                          router.push(`/ispit/${exam.id}/rezultati`)
+                          router.push(`/simulacija/${exam.id}/rezultati`)
                         }
                       >
                         <td className="px-6 py-4 text-sm font-semibold text-[#e2e8f0] sm:px-8">
@@ -546,7 +546,7 @@ export default function AnalytikaPage() {
                 Nemate zavrsenih simulacija.
               </p>
               <button
-                onClick={() => router.push("/ispit")}
+                onClick={() => router.push("/simulacija")}
                 className="mt-3 text-sm font-semibold text-[#ec5b13] hover:underline"
               >
                 Zapocnite prvu simulaciju
@@ -629,7 +629,7 @@ export default function AnalytikaPage() {
               </div>
             </div>
             <button
-              onClick={() => router.push("/ispit")}
+              onClick={() => router.push("/simulacija")}
               className="w-full rounded-xl bg-[#ec5b13] py-3 text-sm font-bold text-white shadow-lg shadow-[#ec5b13]/20 transition-all hover:bg-orange-600"
             >
               Zapocni vezbu
