@@ -10,18 +10,19 @@ export async function POST(req: Request) {
 
   const userId = (session.user as any).id;
 
-  // Read user's current targetFaculty from DB (always fresh)
+  // Read user's target faculties from DB
   const [user] = await db
-    .select({ targetFaculty: users.targetFaculty })
+    .select({ targetFaculties: users.targetFaculties })
     .from(users)
     .where(eq(users.id, userId))
     .limit(1);
 
-  const targetFaculty = user?.targetFaculty;
+  const targetFaculties = (user?.targetFaculties as string[]) || [];
+  const primaryFaculty = targetFaculties.find(f => f !== "other");
 
-  // Get faculty config — fall back to first available faculty if user has "other" or none
-  let fac = targetFaculty && targetFaculty !== "other"
-    ? await db.select().from(faculties).where(eq(faculties.id, targetFaculty)).limit(1)
+  // Get faculty config — fall back to first available faculty
+  let fac = primaryFaculty
+    ? await db.select().from(faculties).where(eq(faculties.id, primaryFaculty)).limit(1)
     : [];
 
   if (fac.length === 0) {
@@ -49,19 +50,25 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Nema dostupnih zadataka" }, { status: 400 });
   }
 
+  // Point values per position for a 20-problem test
+  const fullTestPoints = [3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7];
+
   // Create exam
   const [exam] = await db.insert(mockExams).values({
     userId,
     facultyId,
+    testSize: "full",
+    mode: "timed",
     durationLimit: durationSeconds,
     status: "in_progress",
   }).returning();
 
-  // Create exam problems
+  // Create exam problems with point values
   const examProblemValues = availableProblems.map((p, i) => ({
     examId: exam.id,
     problemId: p.id,
     position: i + 1,
+    pointValue: String(fullTestPoints[i] ?? 5),
   }));
 
   await db.insert(mockExamProblems).values(examProblemValues);

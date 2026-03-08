@@ -9,18 +9,18 @@ export async function PATCH(req: Request) {
   if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const userId = (session.user as any).id;
-  const { targetFaculty } = await req.json();
+  const { targetFaculties } = await req.json();
 
-  if (!targetFaculty || typeof targetFaculty !== "string") {
-    return NextResponse.json({ error: "Fakultet je obavezan." }, { status: 400 });
+  if (!Array.isArray(targetFaculties) || targetFaculties.length === 0 || targetFaculties.length > 4) {
+    return NextResponse.json({ error: "Izaberi 1-3 fakulteta." }, { status: 400 });
   }
 
   await db
     .update(users)
-    .set({ targetFaculty, updatedAt: new Date() })
+    .set({ targetFaculties, updatedAt: new Date() })
     .where(eq(users.id, userId));
 
-  return NextResponse.json({ ok: true, targetFaculty });
+  return NextResponse.json({ ok: true, targetFaculties });
 }
 
 export async function GET() {
@@ -28,7 +28,7 @@ export async function GET() {
   if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const userId = (session.user as any).id;
-  const [user] = await db.select({ targetFaculty: users.targetFaculty }).from(users).where(eq(users.id, userId)).limit(1);
+  const [user] = await db.select({ targetFaculties: users.targetFaculties }).from(users).where(eq(users.id, userId)).limit(1);
 
-  return NextResponse.json({ targetFaculty: user?.targetFaculty || null });
+  return NextResponse.json({ targetFaculties: user?.targetFaculties || [] });
 }

@@ -93,7 +93,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           token.userId = dbUser[0].id;
           token.displayName = dbUser[0].displayName;
           token.role = dbUser[0].role;
-          token.targetFaculty = dbUser[0].targetFaculty;
+          token.targetFaculties = dbUser[0].targetFaculties;
           token.needsOnboarding =
             dbUser[0].displayName === dbUser[0].email?.split("@")[0];
         }
@@ -108,7 +108,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           token.userId = dbUser[0].id;
           token.displayName = dbUser[0].displayName;
           token.role = dbUser[0].role;
-          token.targetFaculty = dbUser[0].targetFaculty;
+          token.targetFaculties = dbUser[0].targetFaculties;
           token.needsOnboarding =
             dbUser[0].displayName === dbUser[0].email?.split("@")[0];
         }
@@ -121,7 +121,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         (session.user as any).id = token.userId as string;
         (session.user as any).displayName = token.displayName as string;
         (session.user as any).role = token.role as string;
-        (session.user as any).targetFaculty = token.targetFaculty as string | null;
+        (session.user as any).targetFaculties = token.targetFaculties as string[];
         (session.user as any).needsOnboarding = token.needsOnboarding as boolean;
       }
       return session;

@@ -30,7 +30,7 @@ interface DashboardProps {
   user: {
     displayName: string;
     email: string;
-    targetFaculty: string | null;
+    targetFaculties: string[];
     role: string;
   };
 }
@@ -226,11 +226,12 @@ export default function Dashboard({ user }: DashboardProps) {
               {user.displayName}
             </span>
           </h1>
-          {user.targetFaculty && user.targetFaculty !== "other" ? (
+          {user.targetFaculties.length > 0 && user.targetFaculties.some(f => f !== "other") ? (
             <p className="mt-1 text-lg font-medium text-[#60a5fa]">
               <Target size={16} className="mr-1.5 inline" />
-              {FACULTIES.find((f) => f.id === user.targetFaculty)?.name ||
-                user.targetFaculty.toUpperCase()}
+              {user.targetFaculties.filter(f => f !== "other").map(f =>
+                FACULTIES.find((fac) => fac.id === f)?.name || f.toUpperCase()
+              ).join(", ")}
             </p>
           ) : (
             <p className="mt-1 text-sm text-[#94a3b8]">
@@ -397,7 +398,7 @@ export default function Dashboard({ user }: DashboardProps) {
           <div className="space-y-3">
             {byFaculty.map((f) => {
               const pct = f.total > 0 ? Math.round((f.solved / f.total) * 100) : 0;
-              const isTarget = f.faculty_id === user.targetFaculty;
+              const isTarget = user.targetFaculties.includes(f.faculty_id);
               return (
                 <div key={f.faculty_id}>
                   <div className="mb-1 flex items-center justify-between text-sm">

@@ -25,9 +25,9 @@ export default function ProfilePage() {
     fetch("/api/profile/faculty")
       .then((r) => r.json())
       .then((data) => {
-        setCurrentFaculty(data.targetFaculty || null);
+        setCurrentFaculty(data.targetFaculties || null);
         setFacultyLoaded(true);
-        if (!data.targetFaculty) setShowFacultyPicker(true);
+        if (!data.targetFaculties) setShowFacultyPicker(true);
       });
   }, []);
 
@@ -43,7 +43,7 @@ export default function ProfilePage() {
       const res = await fetch("/api/profile/faculty", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ targetFaculty: facultyId }),
+        body: JSON.stringify({ targetFaculties: facultyId }),
       });
       if (res.ok) {
         setCurrentFaculty(facultyId);

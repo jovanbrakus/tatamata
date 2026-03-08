@@ -8,7 +8,7 @@ export async function POST(req: Request) {
   const session = await auth();
   if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const { displayName, targetFaculty } = await req.json();
+  const { displayName, targetFaculties } = await req.json();
 
   if (!displayName || displayName.length < 3 || displayName.length > 20) {
     return NextResponse.json({ error: "Ime mora imati između 3 i 20 karaktera." }, { status: 400 });
@@ -18,15 +18,18 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Samo slova, brojevi i donja crta." }, { status: 400 });
   }
 
+  if (!Array.isArray(targetFaculties) || targetFaculties.length === 0 || targetFaculties.length > 4) {
+    return NextResponse.json({ error: "Izaberi 1-3 fakulteta." }, { status: 400 });
+  }
+
   const userId = (session.user as any).id;
 
-  // Check uniqueness
   const existing = await db.select().from(users).where(eq(users.displayName, displayName)).limit(1);
   if (existing.length > 0 && existing[0].id !== userId) {
     return NextResponse.json({ error: "Ovo ime je već zauzeto." }, { status: 409 });
   }
 
-  await db.update(users).set({ displayName, targetFaculty, updatedAt: new Date() }).where(eq(users.id, userId));
+  await db.update(users).set({ displayName, targetFaculties, updatedAt: new Date() }).where(eq(users.id, userId));
 
   return NextResponse.json({ ok: true });
 }

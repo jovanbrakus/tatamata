@@ -22,7 +22,7 @@ export default function ExamSetupPage() {
   const [loading, setLoading] = useState(false);
   const [fetchingFaculty, setFetchingFaculty] = useState(true);
 
-  // Read user's current targetFaculty from DB (fresh) and get its config
+  // Read user's current targetFaculties from DB (fresh) and get its config
   useEffect(() => {
     async function load() {
       try {
@@ -33,8 +33,10 @@ export default function ExamSetupPage() {
         const profile = await profileRes.json();
         const allFaculties: Faculty[] = await facultiesRes.json();
 
-        if (profile.targetFaculty && profile.targetFaculty !== "other") {
-          const match = allFaculties.find((f) => f.id === profile.targetFaculty);
+        const facIds = (profile.targetFaculties as string[]) || [];
+        const primaryFaculty = facIds.find(f => f !== "other");
+        if (primaryFaculty) {
+          const match = allFaculties.find((f) => f.id === primaryFaculty);
           if (match) setFaculty(match);
         }
       } catch {}

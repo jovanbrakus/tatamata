@@ -22,7 +22,7 @@ export const users = pgTable("users", {
   avatarUrl: text("avatar_url"),
   passwordHash: varchar("password_hash", { length: 255 }),
   role: varchar("role", { length: 10 }).notNull().default("student"),
-  targetFaculty: varchar("target_faculty", { length: 20 }),
+  targetFaculties: jsonb("target_faculties").default([]),
   streakCurrent: integer("streak_current").notNull().default(0),
   streakBest: integer("streak_best").notNull().default(0),
   lastActiveDate: date("last_active_date"),
@@ -42,7 +42,16 @@ export const faculties = pgTable("faculties", {
   scoringCorrect: numeric("scoring_correct", { precision: 4, scale: 2 }).notNull().default("1.0"),
   scoringWrong: numeric("scoring_wrong", { precision: 4, scale: 2 }).notNull().default("0.0"),
   scoringBlank: numeric("scoring_blank", { precision: 4, scale: 2 }).notNull().default("0.0"),
+  examDate: date("exam_date"),
   description: text("description"),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+});
+
+export const seasons = pgTable("seasons", {
+  id: varchar("id", { length: 10 }).primaryKey(),
+  name: varchar("name", { length: 50 }).notNull(),
+  examPeriodStart: date("exam_period_start").notNull(),
+  isActive: boolean("is_active").notNull().default(false),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
 
@@ -126,6 +135,7 @@ export const problemProgress = pgTable(
     attempts: integer("attempts").notNull().default(0),
     lastAnswer: varchar("last_answer", { length: 10 }),
     isCorrect: boolean("is_correct"),
+    context: varchar("context", { length: 20 }).notNull().default("practice"),
     solvedAt: timestamp("solved_at", { withTimezone: true }),
     updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
   },
@@ -142,8 +152,10 @@ export const mockExams = pgTable(
     facultyId: varchar("faculty_id", { length: 20 })
       .notNull()
       .references(() => faculties.id),
+    testSize: varchar("test_size", { length: 20 }).notNull().default("full"),
+    mode: varchar("mode", { length: 20 }).notNull().default("timed"),
     status: varchar("status", { length: 20 }).notNull().default("in_progress"),
-    durationLimit: integer("duration_limit").notNull(),
+    durationLimit: integer("duration_limit"),
     startedAt: timestamp("started_at", { withTimezone: true }).defaultNow(),
     finishedAt: timestamp("finished_at", { withTimezone: true }),
     timeSpent: integer("time_spent"),
@@ -172,6 +184,7 @@ export const mockExamProblems = pgTable(
       .notNull()
       .references(() => problems.id),
     position: integer("position").notNull(),
+    pointValue: numeric("point_value", { precision: 4, scale: 2 }).notNull(),
     answer: varchar("answer", { length: 10 }),
     isCorrect: boolean("is_correct"),
     isFlagged: boolean("is_flagged").notNull().default(false),
@@ -243,3 +256,20 @@ export const aiDailyUsage = pgTable(
   },
   (table) => [primaryKey({ columns: [table.userId, table.date] })]
 );
+
+export const userAnalytics = pgTable("user_analytics", {
+  userId: uuid("user_id")
+    .primaryKey()
+    .references(() => users.id),
+  accuracyPercent: numeric("accuracy_percent", { precision: 5, scale: 2 }).default("0"),
+  avgSolveTimeSec: integer("avg_solve_time_sec").default(0),
+  percentileRank: numeric("percentile_rank", { precision: 5, scale: 2 }).default("0"),
+  totalSimulations: integer("total_simulations").default(0),
+  problemsSolved: integer("problems_solved").default(0),
+  problemsAttempted: integer("problems_attempted").default(0),
+  categoryBreakdown: jsonb("category_breakdown").default({}),
+  strengths: jsonb("strengths").default([]),
+  weaknesses: jsonb("weaknesses").default([]),
+  trendData: jsonb("trend_data").default([]),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
+});
