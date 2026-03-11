@@ -15,21 +15,21 @@ export default function LandingHero() {
               <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[#ec5b13]/20 bg-[#ec5b13]/10 px-3 py-1">
                 <span className="material-symbols-outlined text-sm text-[#ec5b13]">verified</span>
                 <span className="text-xs font-bold uppercase tracking-widest text-[#ec5b13]">
-                  Priprema za prijemni 2025/26
+                  Priprema za prijemni 2026/27
                 </span>
               </div>
 
               <h1 className="text-5xl font-black leading-[1.1] text-white md:text-7xl">
                 Tvoja ulaznica za{" "}
                 <span className="bg-gradient-to-r from-[#ec5b13] to-[#06b6d4] bg-clip-text text-transparent">
-                  ETF, FON i RGF
+                  FAKULTET
                 </span>
               </h1>
 
               <p className="max-w-xl text-lg leading-relaxed text-slate-400">
                 Platforma dizajnirana za buduće inženjere. Postigni maksimalan
                 broj poena uz personalizovan plan rada, AI asistenciju i bazu od
-                preko 1000 rešenih zadataka.
+                preko 2000 rešenih zadataka.
               </p>
 
               <div className="flex flex-wrap gap-4 pt-4">
@@ -57,7 +57,7 @@ export default function LandingHero() {
                 </div>
                 <div className="h-8 w-px bg-white/10" />
                 <div className="flex items-center gap-2 text-sm text-slate-400">
-                  <span className="text-2xl font-black text-white">1000+</span>
+                  <span className="text-2xl font-black text-white">2000+</span>
                   <span>rešenih zadataka</span>
                 </div>
               </div>
@@ -104,12 +104,12 @@ export default function LandingHero() {
         </div>
       </header>
 
-      {/* ─── The 1000+ Edge ─── */}
+      {/* ─── The 2000+ Edge ─── */}
       <section id="zadaci" className="relative bg-[#140c08] py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mx-auto mb-20 flex max-w-3xl flex-col gap-4 text-center">
             <h2 className="text-5xl font-black text-white">
-              The 1000+ Edge
+              The 2000+ Edge
             </h2>
             <p className="text-lg text-slate-400">
               Najobimnija baza rešenih zadataka sa prethodnih prijemnih ispita,
