@@ -4,24 +4,16 @@ import { useEffect, useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import {
-  Sparkles,
   Star,
   StarHalf,
-  ChevronRight,
   Loader2,
-  Filter,
-  BarChart3,
   Flame,
-  Award,
-  Trophy,
-  Target,
-  Plus,
+  Bookmark,
 } from "lucide-react";
 
 interface Category {
   id: string;
   name: string;
-  icon: string;
   topicIds: string[];
   totalProblems: number;
   solvedCorrectly: number;
@@ -31,7 +23,6 @@ interface Category {
 
 interface Problem {
   id: string;
-  slug: string;
   title: string;
   facultyId: string;
   year: number;
@@ -40,44 +31,57 @@ interface Problem {
   numOptions: number;
 }
 
-interface RecommendedData {
-  recommendedCategory: {
-    id: string;
-    name: string;
-    knowledgePercent: number;
-    weaknessScore: number;
-  };
-  problems: Problem[];
-}
-
 const FACULTY_LABELS: Record<string, string> = {
-  etf: "ETF",
-  fon: "FON",
-  rgf: "RGF",
-  matf: "MATF",
-  masf: "MASF",
-  grf: "GRF",
-  tmf: "TMF",
-  sf: "SF",
-  ff: "FF",
+  etf: "ETF", fon: "FON", rgf: "RGF", matf: "MATF",
+  masf: "MASF", grf: "GRF", tmf: "TMF", sf: "SF", ff: "FF",
 };
 
-const CATEGORY_ICONS: Record<string, string> = {
-  algebra: "function",
-  geometrija: "change_history",
-  verovatnoca: "casino",
-  logika: "psychology",
+// Category groups → individual categories mapping (Serbian names)
+const CATEGORY_GROUP_TOPICS: Record<string, { id: string; sr: string }[]> = {
+  algebra: [
+    { id: "percent_proportion", sr: "Procenti i proporcija" },
+    { id: "real_numbers", sr: "Realni brojevi" },
+    { id: "algebraic_expressions", sr: "Algebarski izrazi" },
+    { id: "linear_equations", sr: "Linearne jednačine" },
+    { id: "complex_numbers", sr: "Kompleksni brojevi" },
+    { id: "polynomials", sr: "Polinomi" },
+    { id: "quadratic_equations", sr: "Kvadratne jednačine" },
+    { id: "quadratic_function", sr: "Kvadratna funkcija" },
+    { id: "irrational_equations", sr: "Iracionalne jednačine" },
+    { id: "exponential_equations", sr: "Eksponencijalne jednačine" },
+    { id: "logarithm", sr: "Logaritam" },
+  ],
+  trigonometry: [
+    { id: "trigonometric_expressions", sr: "Trigonometrijski izrazi" },
+    { id: "trigonometric_equations", sr: "Trigonometrijske jednačine" },
+  ],
+  geometry: [
+    { id: "planimetry", sr: "Planimetrija" },
+    { id: "stereometry", sr: "Stereometrija" },
+    { id: "analytic_geometry", sr: "Analitička geometrija" },
+  ],
+  analysis: [
+    { id: "function_properties", sr: "Osobine funkcije" },
+    { id: "sequences", sr: "Nizovi" },
+    { id: "derivatives", sr: "Izvod funkcije" },
+  ],
+  combinatorics_and_probability: [
+    { id: "combinatorics", sr: "Kombinatorika" },
+    { id: "binomial_formula", sr: "Binomna formula" },
+  ],
 };
 
 function getDifficultyLabel(diff: number): { label: string; color: string; bgColor: string } {
   if (diff <= 3) return { label: "OSNOVNI", color: "text-text", bgColor: "bg-surface-lighter" };
-  if (diff <= 6) return { label: "NAPREDNI", color: "text-text", bgColor: "bg-surface-lighter" };
+  if (diff <= 6) return { label: "SREDNJI", color: "text-text", bgColor: "bg-surface-lighter" };
+  if (diff <= 8.5) return { label: "NAPREDNI", color: "text-white", bgColor: "bg-slate-700" };
   return { label: "ELITE", color: "text-white", bgColor: "bg-[#ec5b13]" };
 }
 
 function getDifficultyStarIcon(diff: number) {
-  if (diff >= 7) return <Star size={12} className="text-[#ec5b13]" />;
-  if (diff >= 4) return <StarHalf size={12} className="text-muted" />;
+  if (diff >= 9) return <Star size={12} className="text-[#ec5b13]" />;
+  if (diff >= 6.5) return <Star size={12} className="text-slate-400" />;
+  if (diff >= 3.5) return <StarHalf size={12} className="text-muted" />;
   return <Star size={12} className="text-muted" />;
 }
 
@@ -85,8 +89,6 @@ export default function PracticePage() {
   const { data: session, status: sessionStatus } = useSession();
 
   const [categories, setCategories] = useState<Category[]>([]);
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
-  const [recommended, setRecommended] = useState<RecommendedData | null>(null);
   const [problems, setProblems] = useState<Problem[]>([]);
   const [totalProblems, setTotalProblems] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -94,23 +96,35 @@ export default function PracticePage() {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  // Fetch categories and recommendation on mount
+  // Streak & daily goal from API
+  const [streakCurrent, setStreakCurrent] = useState(0);
+  const [solvedToday, setSolvedToday] = useState(0);
+  const [dailyGoal, setDailyGoal] = useState(3);
+
+  // Filter state
+  const [selectedGroups, setSelectedGroups] = useState<Set<string>>(new Set());
+  const [selectedTopics, setSelectedTopics] = useState<Set<string>>(new Set());
+  const [diffRange, setDiffRange] = useState<[number, number]>([1, 10]);
+  const [statusFilter, setStatusFilter] = useState<string>("all");
+
   useEffect(() => {
     if (sessionStatus !== "authenticated") return;
 
+    // Fetch categories and dashboard data in parallel
     Promise.all([
       fetch("/api/practice/categories").then((r) => r.json()),
-      fetch("/api/practice/recommended").then((r) => r.json()),
+      fetch("/api/user/dashboard").then((r) => r.json()),
     ])
-      .then(([catData, recData]) => {
+      .then(([catData, dashData]) => {
         setCategories(catData.categories || []);
-        setRecommended(recData);
+        setStreakCurrent(dashData.user?.streakCurrent ?? 0);
+        setSolvedToday(dashData.progress?.solvedToday ?? 0);
+        setDailyGoal(dashData.progress?.dailyGoal ?? 3);
         setLoading(false);
       })
       .catch(() => setLoading(false));
   }, [sessionStatus]);
 
-  // Fetch problems based on active category
   const fetchProblems = useCallback(
     async (pageNum: number, append = false) => {
       setLoadingProblems(true);
@@ -119,11 +133,30 @@ export default function PracticePage() {
         limit: "15",
       });
 
-      if (activeCategory) {
-        const cat = categories.find((c) => c.id === activeCategory);
-        if (cat && cat.topicIds.length > 0) {
-          params.set("topic", cat.topicIds[0]);
+      // Collect all category IDs to filter by
+      const topicIds: string[] = [];
+
+      if (selectedTopics.size > 0) {
+        // Specific topics selected — use those directly
+        topicIds.push(...selectedTopics);
+      } else if (selectedGroups.size > 0) {
+        // Groups selected — expand to all their child categories
+        for (const groupId of selectedGroups) {
+          const groupTopics = CATEGORY_GROUP_TOPICS[groupId];
+          if (groupTopics) {
+            topicIds.push(...groupTopics.map((t) => t.id));
+          }
         }
+      }
+
+      if (topicIds.length > 0) {
+        params.set("topics", topicIds.join(","));
+      }
+
+      // Difficulty range
+      if (diffRange[0] > 1 || diffRange[1] < 10) {
+        params.set("diffMin", String(diffRange[0]));
+        params.set("diffMax", String(diffRange[1]));
       }
 
       const res = await fetch(`/api/problems?${params}`);
@@ -138,7 +171,7 @@ export default function PracticePage() {
       setHasMore((data.problems || []).length === 15);
       setLoadingProblems(false);
     },
-    [activeCategory, categories]
+    [selectedGroups, selectedTopics, diffRange]
   );
 
   useEffect(() => {
@@ -146,7 +179,7 @@ export default function PracticePage() {
       setPage(1);
       fetchProblems(1);
     }
-  }, [sessionStatus, loading, activeCategory, fetchProblems]);
+  }, [sessionStatus, loading, selectedGroups, selectedTopics, diffRange, fetchProblems]);
 
   const handleLoadMore = () => {
     const nextPage = page + 1;
@@ -154,11 +187,34 @@ export default function PracticePage() {
     fetchProblems(nextPage, true);
   };
 
-  // Calculate overall stats
-  const totalSolved = categories.reduce((s, c) => s + c.solvedCorrectly, 0);
-  const totalAttempted = categories.reduce((s, c) => s + c.attempted, 0);
-  const overallAccuracy =
-    totalAttempted > 0 ? Math.round((totalSolved / totalAttempted) * 100) : 0;
+  const toggleGroup = (id: string) => {
+    setSelectedGroups((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+    // Clear specific topic selections when toggling groups
+    setSelectedTopics(new Set());
+  };
+
+  const toggleTopic = (id: string) => {
+    setSelectedTopics((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const resetFilters = () => {
+    setSelectedGroups(new Set());
+    setSelectedTopics(new Set());
+    setDiffRange([1, 10]);
+  };
+
+  const dailyGoalPercent = Math.min(100, Math.round((solvedToday / Math.max(dailyGoal, 1)) * 100));
+  const dailyGoalRemaining = Math.max(0, dailyGoal - solvedToday);
 
   if (sessionStatus === "loading" || loading) {
     return (
@@ -172,10 +228,7 @@ export default function PracticePage() {
     return (
       <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4">
         <p className="text-text-secondary">Moras biti prijavljen da bi vezbao.</p>
-        <Link
-          href="/prijava"
-          className="rounded-xl bg-[#ec5b13] px-6 py-3 font-bold text-white"
-        >
+        <Link href="/prijava" className="rounded-xl bg-[#ec5b13] px-6 py-3 font-bold text-white">
           Prijavi se
         </Link>
       </div>
@@ -185,105 +238,223 @@ export default function PracticePage() {
   return (
     <div className="mx-auto max-w-[1440px] px-6 py-8 lg:px-20 lg:py-12">
       {/* Hero Title */}
-      <section className="mb-8 flex flex-col gap-8">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <h2 className="text-4xl font-black tracking-tight text-heading italic lg:text-5xl">
-              Slobodna <span className="text-[#ec5b13]">Vezba</span>
-            </h2>
-            <p className="mt-2 max-w-lg font-medium text-text-secondary">
-              Odaberi oblast i kreni u osvajanje prijemnog ispita. Tvoj
-              personalizovani put ka 100 poena.
-            </p>
+      <section className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h2 className="text-4xl font-black tracking-tight text-heading lg:text-5xl">
+            Slobodna <span className="text-[#ec5b13]">Vežba</span>
+          </h2>
+          <p className="mt-2 max-w-lg font-medium text-text-secondary">
+            Personalizuj svoju pripremu. Filtriraj zadatke po oblastima, težini i
+            statusu za maksimalan učinak.
+          </p>
+        </div>
+        {streakCurrent > 0 && (
+          <div className="flex items-center gap-2 rounded-xl border border-[#ec5b13]/30 bg-[#ec5b13]/10 px-4 py-2">
+            <Flame size={14} className="text-[#ec5b13]" />
+            <span className="text-sm font-bold tracking-wide text-[#ec5b13]">
+              {streakCurrent} DANA STREAK
+            </span>
           </div>
-          {(session?.user as any)?.streakCurrent > 0 && (
-            <div className="flex gap-3">
-              <div className="flex items-center gap-2 rounded-xl border border-[#ec5b13]/30 bg-[#ec5b13]/10 px-4 py-2">
-                <Flame size={14} className="text-[#ec5b13]" />
-                <span className="text-sm font-bold tracking-wide text-[#ec5b13]">
-                  {(session?.user as any).streakCurrent || 0} DANA STREAK
-                </span>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Category Cards */}
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {categories.map((cat) => {
-            const isActive = activeCategory === cat.id;
-            return (
-              <button
-                key={cat.id}
-                onClick={() =>
-                  setActiveCategory(isActive ? null : cat.id)
-                }
-                className={`group flex flex-col rounded-2xl p-6 transition-all ${
-                  isActive
-                    ? "glass-card border-[#ec5b13]/50 ring-2 ring-[#ec5b13]/20 bg-gradient-to-br from-[#ec5b13]/10 to-transparent"
-                    : "glass-card hover:border-[var(--tint-strong)]"
-                }`}
-              >
-                <div className="mb-4 flex items-start justify-between">
-                  <div
-                    className={`flex h-12 w-12 items-center justify-center rounded-xl ${
-                      isActive
-                        ? "bg-[#ec5b13] text-white shadow-lg shadow-[#ec5b13]/30"
-                        : "border border-[var(--glass-border)] bg-card text-text-secondary group-hover:border-[#ec5b13]/50 group-hover:text-[#ec5b13]"
-                    } transition-all`}
-                  >
-                    <span className="material-symbols-outlined text-2xl">
-                      {CATEGORY_ICONS[cat.id] || "category"}
-                    </span>
-                  </div>
-                  {isActive ? (
-                    <span className="rounded bg-[#ec5b13]/20 px-2 py-1 text-[10px] font-black text-[#ec5b13]">
-                      AKTIVNO
-                    </span>
-                  ) : (
-                    <span className="rounded bg-[var(--tint)] px-2 py-1 text-[10px] font-black text-muted">
-                      {cat.totalProblems} Zadataka
-                    </span>
-                  )}
-                </div>
-                <h3 className="text-lg font-bold text-heading transition-colors group-hover:text-[#ec5b13]">
-                  {cat.name}
-                </h3>
-                <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-[var(--tint-strong)]">
-                  <div
-                    className={`h-full rounded-full transition-all ${
-                      isActive
-                        ? "bg-[#ec5b13]"
-                        : "bg-muted group-hover:bg-[#ec5b13]/50"
-                    }`}
-                    style={{ width: `${Math.max(2, cat.progressPercent)}%` }}
-                  />
-                </div>
-                <p className="mt-2 text-xs font-medium text-text-secondary">
-                  {cat.progressPercent}% Savladano
-                </p>
-              </button>
-            );
-          })}
-        </div>
+        )}
       </section>
 
-      {/* Main Content: Problem Feed + Sidebar */}
+      {/* Main: Filters Sidebar + Problem Feed */}
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
+        {/* Filters Sidebar (4 cols) */}
+        <div className="flex flex-col gap-6 lg:col-span-4">
+          {/* Daily Goal */}
+          <div className="rounded-2xl border border-dashed border-[var(--glass-border)] p-6 glass-card">
+            <h4 className="mb-4 text-[10px] font-black uppercase tracking-widest text-heading">
+              Dnevni Cilj
+            </h4>
+            <div className="h-2 w-full overflow-hidden rounded-full bg-[var(--tint-strong)]">
+              <div
+                className="h-full bg-[#ec5b13] transition-all"
+                style={{ width: `${dailyGoalPercent}%` }}
+              />
+            </div>
+            <p className="mt-3 text-[10px] font-medium text-text-secondary">
+              {dailyGoalRemaining > 0 ? (
+                <>Još <span className="font-bold text-heading">{dailyGoalRemaining}</span> {dailyGoalRemaining === 1 ? "zadatak" : dailyGoalRemaining < 5 ? "zadatka" : "zadataka"} do dnevnog cilja</>
+              ) : (
+                <span className="font-bold text-[#ec5b13]">Dnevni cilj ostvaren!</span>
+              )}
+            </p>
+          </div>
+
+          {/* Filters Panel */}
+          <div className="flex flex-col gap-8 rounded-2xl p-6 glass-card">
+            <div className="flex items-center justify-between">
+              <h4 className="text-sm font-black uppercase tracking-widest text-heading">
+                Filteri
+              </h4>
+              <button
+                onClick={resetFilters}
+                className="text-[10px] font-bold uppercase text-[#ec5b13] hover:underline"
+              >
+                Resetuj sve
+              </button>
+            </div>
+
+            {/* Status Filter */}
+            <div className="flex flex-col gap-3">
+              <p className="text-[10px] font-black uppercase tracking-widest text-muted">
+                Status
+              </p>
+              <div className="flex flex-col gap-1">
+                {[
+                  { label: "Svi", value: "all" },
+                  { label: "Rešeni", value: "solved" },
+                  { label: "Nerešeni", value: "unsolved" },
+                ].map((opt) => (
+                  <label
+                    key={opt.value}
+                    className="flex cursor-pointer items-center gap-3 rounded-lg p-2 transition-colors hover:bg-[var(--tint)]"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={statusFilter === opt.value}
+                      onChange={() => setStatusFilter(opt.value)}
+                      className="rounded border-[var(--glass-border)] bg-transparent text-[#ec5b13] focus:ring-[#ec5b13]/50"
+                    />
+                    <span className="text-sm text-text-secondary">{opt.label}</span>
+                  </label>
+                ))}
+                <label className="flex cursor-pointer items-center gap-3 rounded-lg p-2 transition-colors hover:bg-[var(--tint)]">
+                  <input
+                    type="checkbox"
+                    checked={statusFilter === "bookmarked"}
+                    onChange={() => setStatusFilter(statusFilter === "bookmarked" ? "all" : "bookmarked")}
+                    className="rounded border-[var(--glass-border)] bg-transparent text-[#ec5b13] focus:ring-[#ec5b13]/50"
+                  />
+                  <div className="flex items-center gap-2">
+                    <Bookmark size={14} className="text-text-secondary" />
+                    <span className="text-sm text-text-secondary">Sačuvani</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            {/* Main Areas (Category Groups) */}
+            <div className="flex flex-col gap-3">
+              <p className="text-[10px] font-black uppercase tracking-widest text-muted">
+                Glavne Oblasti
+              </p>
+              <div className="flex flex-col gap-1">
+                {categories.map((cat) => (
+                  <label
+                    key={cat.id}
+                    className="flex cursor-pointer items-center gap-3 rounded-lg p-2 transition-colors hover:bg-[var(--tint)]"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={selectedGroups.has(cat.id)}
+                      onChange={() => toggleGroup(cat.id)}
+                      className="rounded border-[var(--glass-border)] bg-transparent text-[#ec5b13] focus:ring-[#ec5b13]/50"
+                    />
+                    <span className="text-sm text-text-secondary">{cat.name}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Specific Topics */}
+            <div className="flex flex-col gap-3">
+              <p className="text-[10px] font-black uppercase tracking-widest text-muted">
+                Specifične Teme
+              </p>
+              <div className="custom-scrollbar flex max-h-[250px] flex-col gap-2 overflow-y-auto pr-2">
+                {Object.entries(CATEGORY_GROUP_TOPICS).map(([groupId, topics]) => {
+                  const group = categories.find((c) => c.id === groupId);
+                  if (!group) return null;
+                  return (
+                    <div key={groupId} className="flex flex-col gap-2">
+                      <span className="text-[9px] font-bold uppercase text-[#ec5b13]/60">
+                        {group.name}
+                      </span>
+                      {topics.map((t) => (
+                        <label
+                          key={t.id}
+                          className="flex cursor-pointer items-center gap-3 rounded-lg p-2 transition-colors hover:bg-[var(--tint)]"
+                        >
+                          <input
+                            type="checkbox"
+                            checked={selectedTopics.has(t.id)}
+                            onChange={() => toggleTopic(t.id)}
+                            className="rounded border-[var(--glass-border)] bg-transparent text-[#ec5b13] focus:ring-[#ec5b13]/50"
+                          />
+                          <span className="text-sm text-text-secondary">{t.sr}</span>
+                        </label>
+                      ))}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Difficulty Slider */}
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center justify-between">
+                <p className="text-[10px] font-black uppercase tracking-widest text-muted">
+                  Težina (1-10)
+                </p>
+                <span className="text-xs font-bold text-[#ec5b13]">
+                  Nivo {diffRange[0]}-{diffRange[1]}
+                </span>
+              </div>
+              <div className="px-2">
+                <div className="relative mt-2 h-6">
+                  <div className="absolute top-1/2 h-1 w-full -translate-y-1/2 rounded-full bg-[var(--tint-strong)]" />
+                  <div
+                    className="absolute top-1/2 h-1 -translate-y-1/2 rounded-full bg-[#ec5b13]/50"
+                    style={{
+                      left: `${((diffRange[0] - 1) / 9) * 100}%`,
+                      right: `${((10 - diffRange[1]) / 9) * 100}%`,
+                    }}
+                  />
+                  <input
+                    type="range"
+                    min={1}
+                    max={10}
+                    value={diffRange[0]}
+                    onChange={(e) => {
+                      const v = Number(e.target.value);
+                      setDiffRange(([, max]) => [Math.min(v, max), max]);
+                    }}
+                    className="pointer-events-none absolute top-0 h-6 w-full appearance-none bg-transparent [&::-webkit-slider-thumb]:pointer-events-auto"
+                  />
+                  <input
+                    type="range"
+                    min={1}
+                    max={10}
+                    value={diffRange[1]}
+                    onChange={(e) => {
+                      const v = Number(e.target.value);
+                      setDiffRange(([min]) => [min, Math.max(v, min)]);
+                    }}
+                    className="pointer-events-none absolute top-0 h-6 w-full appearance-none bg-transparent [&::-webkit-slider-thumb]:pointer-events-auto"
+                  />
+                </div>
+              </div>
+              <div className="flex justify-between px-1 text-[8px] font-black uppercase tracking-tighter text-muted">
+                <span>Osnovni</span>
+                <span>Srednji</span>
+                <span>Napredni</span>
+                <span>Elite</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Problem Feed (8 cols) */}
         <div className="flex flex-col gap-6 lg:col-span-8">
-          <div className="mb-2 flex items-center justify-between">
+          <div className="flex items-center justify-between">
             <h4 className="flex items-center gap-2 text-xl font-bold text-heading">
               Dostupni Zadaci
               <span className="rounded-full bg-[var(--tint)] px-2 py-1 text-xs font-normal text-muted">
-                {activeCategory
-                  ? `${problems.length} od ${totalProblems}`
-                  : `Prikazano ${problems.length} od ${totalProblems}`}
+                Prikazano {problems.length} od {totalProblems}
               </span>
             </h4>
-            <button className="flex items-center gap-1 text-sm font-semibold text-[#ec5b13] hover:underline">
-              Filteri <Filter size={14} />
-            </button>
           </div>
 
           {/* Problem Cards */}
@@ -300,7 +471,7 @@ export default function PracticePage() {
               problems.map((p) => {
                 const diff = p.difficulty ? parseFloat(p.difficulty) : 5;
                 const { label, color, bgColor } = getDifficultyLabel(diff);
-                const isElite = diff >= 7;
+                const isElite = diff >= 9;
 
                 return (
                   <div
@@ -331,7 +502,7 @@ export default function PracticePage() {
                         <div className="ml-auto flex items-center gap-1">
                           {getDifficultyStarIcon(diff)}
                           <span className="text-xs font-bold text-text-secondary">
-                            Tezina: {diff}/10
+                            Težina: {diff}/10
                           </span>
                         </div>
                       </div>
@@ -350,10 +521,10 @@ export default function PracticePage() {
                             : "bg-[#ec5b13]/20 text-[#ec5b13] hover:bg-[#ec5b13]/30"
                         }`}
                       >
-                        Probaj
+                        Reši
                       </Link>
                       <Link
-                        href={`/zadaci/${p.slug}`}
+                        href={`/zadaci/${p.id}`}
                         className="w-full rounded-xl border border-[var(--glass-border)] bg-card py-2 text-center text-sm font-bold text-text-secondary hover:bg-[var(--tint)]"
                       >
                         Pregled
@@ -375,202 +546,10 @@ export default function PracticePage() {
               {loadingProblems ? (
                 <Loader2 className="mx-auto h-4 w-4 animate-spin" />
               ) : (
-                "Ucitaj vise zadataka"
+                "Učitaj više zadataka"
               )}
             </button>
           )}
-        </div>
-
-        {/* Sidebar (4 cols) */}
-        <div className="flex flex-col gap-6 lg:col-span-4">
-          {/* AI Recommendation Card */}
-          {recommended && (
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#ec5b13] via-[#ec5b13]/80 to-[#ec5b13]/60 p-8 text-white shadow-2xl shadow-[#ec5b13]/20">
-              {/* Background pattern */}
-              <div className="pointer-events-none absolute inset-0 opacity-10">
-                <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-                  <path d="M0 0 L100 100 M0 100 L100 0" stroke="white" strokeWidth="0.5" fill="none" />
-                  <circle cx="50" cy="50" r="40" stroke="white" strokeWidth="0.5" fill="none" />
-                </svg>
-              </div>
-
-              <div className="relative z-10">
-                <div className="mb-6 flex items-center gap-2">
-                  <Sparkles size={18} className="animate-pulse text-white" />
-                  <span className="text-[10px] font-black uppercase tracking-widest">
-                    Smart Next Preporuka
-                  </span>
-                </div>
-                <h3 className="mb-2 text-2xl font-black leading-tight">
-                  {recommended.recommendedCategory.name}
-                </h3>
-                <p className="mb-8 text-sm font-medium text-white/80">
-                  Na osnovu tvoje analitike, ova oblast zahteva najvise paznje.
-                  Trenutno znanje: {recommended.recommendedCategory.knowledgePercent}%.
-                </p>
-                <div className="flex flex-col gap-3">
-                  <Link
-                    href={
-                      recommended.problems.length > 0
-                        ? `/vezbe/${recommended.problems[0].id}`
-                        : "#"
-                    }
-                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-white py-3 text-center font-black text-[#ec5b13] shadow-lg transition-all hover:bg-slate-100"
-                  >
-                    ZAPOCNI PREPORUCENO
-                    <ChevronRight size={16} className="font-bold" />
-                  </Link>
-                  <div className="flex items-center justify-between px-2">
-                    <span className="text-[10px] font-bold text-white/60">
-                      {recommended.problems.length} zadataka spremno
-                    </span>
-                    <span className="text-[10px] font-bold text-white/60">
-                      Prioritet: {recommended.recommendedCategory.weaknessScore}%
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Quick Stats */}
-          <div className="flex flex-col gap-6 rounded-2xl p-6 glass-card">
-            <h4 className="flex items-center gap-2 text-sm font-black uppercase tracking-widest text-heading">
-              Tvoj progres
-              <span className="h-[1px] flex-1 bg-[var(--tint-strong)]" />
-            </h4>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-xl border border-[var(--glass-border)] bg-card p-4">
-                <p className="text-[10px] font-bold uppercase text-muted">
-                  Reseno
-                </p>
-                <p className="mt-1 text-2xl font-black text-heading">
-                  {totalSolved}
-                </p>
-                <p className="mt-1 text-[10px] font-bold text-muted">
-                  od {categories.reduce((s, c) => s + c.totalProblems, 0)}
-                </p>
-              </div>
-              <div className="rounded-xl border border-[var(--glass-border)] bg-card p-4">
-                <p className="text-[10px] font-bold uppercase text-muted">
-                  Preciznost
-                </p>
-                <p className="mt-1 text-2xl font-black text-heading">
-                  {overallAccuracy}%
-                </p>
-                <p className="mt-1 text-[10px] font-bold text-[#ec5b13]">
-                  {overallAccuracy >= 85
-                    ? "Elite nivo"
-                    : overallAccuracy >= 65
-                    ? "Napredni"
-                    : "Nastavi vežbu"}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-4 pt-2">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-500/20 text-orange-500">
-                    <Flame size={18} />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-heading">Ukupno pokusano</p>
-                    <p className="text-[10px] text-muted">
-                      Svi pokusaji
-                    </p>
-                  </div>
-                </div>
-                <span className="text-lg font-black italic text-heading">
-                  {totalAttempted}
-                </span>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/20 text-blue-400">
-                    <Target size={18} />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-heading">Tacni odgovori</p>
-                    <p className="text-[10px] text-muted">Kroz sve kategorije</p>
-                  </div>
-                </div>
-                <span className="text-lg font-black italic text-heading">
-                  {totalSolved}
-                </span>
-              </div>
-            </div>
-
-            <Link
-              href="/analitika"
-              className="flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--glass-border)] bg-card py-4 text-xs font-bold uppercase tracking-widest text-heading transition-all hover:border-[#ec5b13]/50"
-            >
-              Puna Analitika
-              <BarChart3 size={14} />
-            </Link>
-          </div>
-
-          {/* Achievements Preview */}
-          <div className="rounded-2xl border-dashed border-[var(--glass-border)] p-6 glass-card">
-            <h4 className="mb-6 text-sm font-black uppercase tracking-widest text-heading">
-              Poslednja Postignuca
-            </h4>
-            <div className="flex gap-4">
-              {totalSolved >= 10 ? (
-                <div
-                  className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#ec5b13]/50 bg-[#ec5b13]/20 text-[#ec5b13]"
-                  title="Prvih 10 zadataka"
-                >
-                  <Award size={20} />
-                  <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-black px-2 py-1 text-[8px] opacity-0 transition-opacity group-hover:opacity-100">
-                    Prvih 10
-                  </div>
-                </div>
-              ) : (
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--glass-border)] bg-card text-muted opacity-40 grayscale">
-                  <Award size={20} />
-                </div>
-              )}
-
-              {overallAccuracy >= 80 ? (
-                <div
-                  className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#ec5b13]/50 bg-[#ec5b13]/20 text-[#ec5b13]"
-                  title="80%+ preciznost"
-                >
-                  <Trophy size={20} />
-                  <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-black px-2 py-1 text-[8px] opacity-0 transition-opacity group-hover:opacity-100">
-                    Preciznost 80%+
-                  </div>
-                </div>
-              ) : (
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--glass-border)] bg-card text-muted opacity-40 grayscale">
-                  <Trophy size={20} />
-                </div>
-              )}
-
-              {totalSolved >= 50 ? (
-                <div
-                  className="group relative flex h-12 w-12 items-center justify-center rounded-full border border-[#ec5b13]/50 bg-[#ec5b13]/20 text-[#ec5b13]"
-                  title="50 resenih"
-                >
-                  <span className="material-symbols-outlined text-lg">military_tech</span>
-                  <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-black px-2 py-1 text-[8px] opacity-0 transition-opacity group-hover:opacity-100">
-                    50 resenih
-                  </div>
-                </div>
-              ) : (
-                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--glass-border)] bg-card text-muted opacity-40 grayscale">
-                  <span className="material-symbols-outlined text-lg">military_tech</span>
-                </div>
-              )}
-
-              <div className="flex h-12 w-12 items-center justify-center rounded-full border border-dashed border-[var(--glass-border)] text-muted">
-                <Plus size={14} />
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -89,7 +89,7 @@ export default function ExamResultsPage() {
                 <td className="px-4 py-3 text-text">{p.answer ? `(${p.answer})` : "\u2014"}</td>
                 <td className="px-4 py-3 text-[#4ade80]">({p.correctAnswer})</td>
                 <td className="px-4 py-3">
-                  <Link href={`/zadaci/${p.slug}`} className="text-xs text-[#60a5fa] hover:underline">
+                  <Link href={`/zadaci/${p.id}`} className="text-xs text-[#60a5fa] hover:underline">
                     Rešenje
                   </Link>
                 </td>

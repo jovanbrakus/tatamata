@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="sr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#120b08", // Deep obsidian based on primary hue
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(236, 91, 19, 0.1);
+        }
+        .glass-card-active {
+            background: rgba(236, 91, 19, 0.1);
+            border: 1px solid rgba(236, 91, 19, 0.5);
+            box-shadow: 0 0 20px rgba(236, 91, 19, 0.15);
+        }
+        .neon-glow-primary {
+            box-shadow: 0 0 15px rgba(236, 91, 19, 0.4);
+        }
+        .obsidian-overlay {
+            background: rgba(10, 6, 4, 0.85);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen overflow-hidden">
+<!-- Background Dashboard (Simulated Screen 5) -->
+<div class="relative flex h-screen w-full flex-col opacity-40 grayscale-[0.5] pointer-events-none">
+<header class="flex items-center justify-between border-b border-primary/10 px-10 py-4 bg-background-dark/50">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">functions</span>
+<h2 class="text-xl font-bold tracking-tight">MathPrep</h2>
+</div>
+<div class="flex gap-4">
+<div class="rounded-full bg-primary/20 p-2"><span class="material-symbols-outlined">notifications</span></div>
+<div class="rounded-full bg-primary/20 p-2"><span class="material-symbols-outlined">settings</span></div>
+<div class="size-10 rounded-full bg-primary/30 border border-primary/50"></div>
+</div>
+</header>
+<main class="flex-1 p-10 max-w-6xl mx-auto w-full">
+<div class="grid grid-cols-4 gap-6 mb-10">
+<div class="h-32 rounded-xl bg-primary/5 border border-primary/10"></div>
+<div class="h-32 rounded-xl bg-primary/5 border border-primary/10"></div>
+<div class="h-32 rounded-xl bg-primary/5 border border-primary/10"></div>
+<div class="h-32 rounded-xl bg-primary/5 border border-primary/10"></div>
+</div>
+<div class="h-96 rounded-2xl bg-primary/5 border border-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary/20 text-9xl">analytics</span>
+</div>
+</main>
+</div>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 obsidian-overlay z-50 flex items-center justify-center p-4">
+<!-- Modal Dialog -->
+<div class="relative w-full max-w-3xl glass-panel rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+<!-- Modal Header -->
+<div class="px-8 pt-8 pb-4 flex justify-between items-start">
+<div>
+<h1 class="text-3xl font-black text-slate-100 tracking-tight">Započni simulaciju</h1>
+<p class="text-primary font-medium mt-1">Konfiguriši svoj test za maksimalni učinak</p>
+</div>
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined size-8 flex items-center justify-center">close</span>
+</button>
+</div>
+<div class="p-8 space-y-8">
+<!-- 1. Test Size Selection -->
+<section>
+<div class="flex items-center gap-2 mb-4">
+<span class="text-xs font-bold uppercase tracking-widest text-slate-500">Korak 1:</span>
+<h3 class="text-sm font-bold text-slate-300">VELIČINA TESTA</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Card 1 -->
+<div class="glass-card-active rounded-2xl p-6 cursor-pointer group transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-primary text-4xl">assignment</span>
+<div class="size-5 rounded-full border-2 border-primary flex items-center justify-center">
+<div class="size-2.5 bg-primary rounded-full"></div>
+</div>
+</div>
+<h4 class="text-lg font-bold text-white">Kompletan test</h4>
+<p class="text-slate-400 text-sm mt-1">20 zadataka</p>
+<div class="mt-4 pt-4 border-t border-primary/20">
+<p class="text-xs text-primary/80 flex items-center gap-1 uppercase font-bold tracking-tighter">
+<span class="material-symbols-outlined text-xs">verified</span> Simulacija mature
+                                </p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-panel rounded-2xl p-6 cursor-pointer hover:bg-white/5 transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-slate-400 text-4xl">edit_square</span>
+<div class="size-5 rounded-full border-2 border-slate-600"></div>
+</div>
+<h4 class="text-lg font-bold text-white">Srednji test</h4>
+<p class="text-slate-400 text-sm mt-1">14 zadataka</p>
+<div class="mt-4 pt-4 border-t border-white/5">
+<p class="text-xs text-slate-500 font-medium">Svakodnevna vežba</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glass-panel rounded-2xl p-6 cursor-pointer hover:bg-white/5 transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-slate-400 text-4xl">bolt</span>
+<div class="size-5 rounded-full border-2 border-slate-600"></div>
+</div>
+<h4 class="text-lg font-bold text-white">Brzi test</h4>
+<p class="text-slate-400 text-sm mt-1">8 zadataka</p>
+<div class="mt-4 pt-4 border-t border-white/5">
+<p class="text-xs text-slate-500 font-medium">Brza provera</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Time Mode Selection -->
+<section>
+<div class="flex items-center gap-2 mb-4">
+<span class="text-xs font-bold uppercase tracking-widest text-slate-500">Korak 2:</span>
+<h3 class="text-sm font-bold text-slate-300">REŽIM RADA</h3>
+</div>
+<div class="flex flex-col md:flex-row gap-4">
+<!-- Timed Toggle Active -->
+<div class="flex-1 flex items-center justify-between p-4 rounded-xl border-2 border-primary bg-primary/5">
+<div class="flex items-center gap-4">
+<div class="bg-primary/20 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined">timer</span>
+</div>
+<div>
+<p class="font-bold text-white">Vremenski ograničen</p>
+<p class="text-xs text-primary/80">Ograničenje: <span class="font-bold">180 min</span></p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+<!-- Untracked -->
+<div class="flex-1 flex items-center justify-between p-4 rounded-xl border border-white/10 glass-panel hover:bg-white/5 cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="bg-slate-800 p-2 rounded-lg text-slate-400">
+<span class="material-symbols-outlined">all_inclusive</span>
+</div>
+<div>
+<p class="font-bold text-slate-300">Bez ograničenja</p>
+<p class="text-xs text-slate-500">Vežba bez stresa</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Start Button -->
+<div class="pt-4 flex flex-col gap-4">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-black text-lg py-5 rounded-2xl neon-glow-primary transition-all active:scale-[0.98] flex items-center justify-center gap-3">
+                        ZAPOČNI TEST
+                        <span class="material-symbols-outlined">play_arrow</span>
+</button>
+<p class="text-center text-xs text-slate-500 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-xs">info</span> 
+                        Tvoj napredak će biti automatski sačuvan u profilu.
+                    </p>
+</div>
+</div>
+<!-- Background Decorative Gradients -->
+<div class="absolute -top-24 -right-24 size-64 bg-primary/10 blur-[100px] rounded-full -z-10"></div>
+<div class="absolute -bottom-24 -left-24 size-64 bg-cyan-500/10 blur-[100px] rounded-full -z-10"></div>
+</div>
+</div>
+</body></html>

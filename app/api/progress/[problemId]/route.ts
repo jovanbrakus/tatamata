@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { problemProgress } from "@/drizzle/schema";
 import { eq, and, sql } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { updateStreakOnCorrectSolve } from "@/lib/streak";
 
 export async function POST(req: Request, { params }: { params: Promise<{ problemId: string }> }) {
   const session = await auth();
@@ -37,6 +38,10 @@ export async function POST(req: Request, { params }: { params: Promise<{ problem
         updatedAt: new Date(),
       },
     });
+
+  if (isCorrect) {
+    await updateStreakOnCorrectSolve(userId);
+  }
 
   return NextResponse.json({ status, isCorrect });
 }

@@ -1,8 +1,10 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { problemProgress, problems } from "@/drizzle/schema";
-import { eq, and, sql } from "drizzle-orm";
+import { problemProgress } from "@/drizzle/schema";
+import { sql } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { getProblemFull } from "@/lib/problems";
+import { updateStreakOnCorrectSolve } from "@/lib/streak";
 
 export async function POST(
   req: Request,
@@ -22,25 +24,14 @@ export async function POST(
     return NextResponse.json({ error: "Answer is required" }, { status: 400 });
   }
 
-  // Fetch the problem to verify correctness server-side
-  const problemResult = await db
-    .select({
-      id: problems.id,
-      correctAnswer: problems.correctAnswer,
-    })
-    .from(problems)
-    .where(and(eq(problems.id, problemId), eq(problems.isPublished, true)))
-    .limit(1);
-
-  if (problemResult.length === 0) {
+  const problem = getProblemFull(problemId);
+  if (!problem) {
     return NextResponse.json({ error: "Problem not found" }, { status: 404 });
   }
 
-  const problem = problemResult[0];
   const isCorrect = answer === problem.correctAnswer;
   const status = isCorrect ? "solved" : "attempted";
 
-  // Record to problem_progress with context='practice'
   await db
     .insert(problemProgress)
     .values({
@@ -66,6 +57,10 @@ export async function POST(
         updatedAt: new Date(),
       },
     });
+
+  if (isCorrect) {
+    await updateStreakOnCorrectSolve(userId);
+  }
 
   return NextResponse.json({
     isCorrect,

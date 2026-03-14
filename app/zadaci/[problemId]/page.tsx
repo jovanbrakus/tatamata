@@ -14,18 +14,17 @@ import {
 
 interface Problem {
   id: string;
-  slug: string;
   title: string;
   facultyId: string;
   year: number;
   problemNumber: number;
   correctAnswer: string;
   answerOptions: string[];
-  topics: { id: string; name: string }[];
+  category: string | null;
 }
 
 interface SidebarItem {
-  slug: string;
+  id: string;
   title: string;
   facultyId: string;
   year: number;
@@ -69,7 +68,7 @@ function SidebarProblemItem({
   const label = FACULTY_LABELS[item.facultyId] || item.facultyId.toUpperCase();
   return (
     <Link
-      href={`/zadaci/${item.slug}`}
+      href={`/zadaci/${item.id}`}
       className={`group flex flex-col gap-1 rounded-lg px-3 py-2.5 transition-colors ${
         isActive ? "bg-[var(--tint-strong)]" : "hover:bg-[var(--tint)]"
       }`}
@@ -110,7 +109,7 @@ function SidebarProblemItem({
 export default function ProblemViewPage() {
   const params = useParams();
   const router = useRouter();
-  const slug = params.slug as string;
+  const problemId = params.problemId as string;
 
   const [problem, setProblem] = useState<Problem | null>(null);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
@@ -125,7 +124,7 @@ export default function ProblemViewPage() {
   const [historyList, setHistoryList] = useState<SidebarItem[]>([]);
 
   useEffect(() => {
-    fetch(`/api/problems/${slug}`)
+    fetch(`/api/problems/${problemId}`)
       .then((r) => r.json())
       .then(setProblem);
     fetch("/api/ai/usage")
@@ -140,7 +139,7 @@ export default function ProblemViewPage() {
       .then((r) => r.json())
       .then((data) => (Array.isArray(data) ? setHistoryList(data) : null))
       .catch(() => {});
-  }, [slug]);
+  }, [problemId]);
 
   function checkAnswer() {
     if (!selectedAnswer || !problem) return;
@@ -215,9 +214,9 @@ export default function ProblemViewPage() {
             <div className="flex flex-col gap-0.5">
               {bookmarksPreview.map((item) => (
                 <SidebarProblemItem
-                  key={item.slug}
+                  key={item.id}
                   item={item}
-                  isActive={item.slug === slug}
+                  isActive={item.id === problemId}
                 />
               ))}
             </div>
@@ -261,9 +260,9 @@ export default function ProblemViewPage() {
             <div className="flex flex-1 flex-col gap-0.5">
               {historyPreview.map((item) => (
                 <SidebarProblemItem
-                  key={item.slug}
+                  key={item.id}
                   item={item}
-                  isActive={item.slug === slug}
+                  isActive={item.id === problemId}
                   showStatus
                 />
               ))}
@@ -301,16 +300,11 @@ export default function ProblemViewPage() {
             </span>
           </div>
 
-          {problem.topics?.length > 0 && (
+          {problem.category && (
             <div className="mb-3 flex flex-wrap gap-1.5">
-              {problem.topics.map((t) => (
-                <span
-                  key={t.id}
-                  className="rounded-full bg-[#a78bfa]/20 px-2.5 py-0.5 text-xs text-[#a78bfa]"
-                >
-                  {t.name}
-                </span>
-              ))}
+              <span className="rounded-full bg-[#a78bfa]/20 px-2.5 py-0.5 text-xs text-[#a78bfa]">
+                {problem.category}
+              </span>
             </div>
           )}
 
@@ -319,7 +313,7 @@ export default function ProblemViewPage() {
           {/* Problem statement */}
           <div className="mb-6 overflow-hidden rounded-xl border border-border">
             <iframe
-              src={`/api/problems/${slug}/html?section=statement`}
+              src={`/api/problems/${problemId}/html?section=statement`}
               sandbox="allow-scripts allow-same-origin"
               className="w-full border-none"
               title="Postavka zadatka"
@@ -458,7 +452,7 @@ export default function ProblemViewPage() {
           {showSolution && (
             <div className="mb-6 overflow-hidden rounded-xl border border-border">
               <iframe
-                src={`/api/problems/${slug}/html`}
+                src={`/api/problems/${problemId}/html`}
                 sandbox="allow-scripts allow-same-origin"
                 className="h-[80vh] w-full border-none"
                 title="Rešenje"

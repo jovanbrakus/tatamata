@@ -18,17 +18,15 @@ import {
 
 interface ProblemDetail {
   id: string;
-  slug: string;
   title: string;
   facultyId: string;
-  facultyShortName: string;
   year: number;
   problemNumber: number;
   correctAnswer: string;
   answerOptions: string[];
   numOptions: number;
   difficulty: string | null;
-  topics: { id: string; name: string }[];
+  category: string | null;
 }
 
 interface NextProblemInfo {
@@ -53,7 +51,6 @@ export default function PracticeProblemPage() {
   const [bookmarked, setBookmarked] = useState(false);
   const [nextProblem, setNextProblem] = useState<NextProblemInfo | null>(null);
 
-  // Fetch problem details directly by ID using the practice API
   useEffect(() => {
     if (sessionStatus !== "authenticated") return;
 
@@ -71,7 +68,6 @@ export default function PracticeProblemPage() {
       .then((data) => {
         setProblem(data);
         setLoading(false);
-        // Fetch next recommended problem
         fetchNextProblem(data.id);
       })
       .catch(() => {
@@ -110,7 +106,6 @@ export default function PracticeProblemPage() {
         correctAnswer: data.correctAnswer,
       });
     } catch {
-      // Fallback: check locally
       const isCorrect = selectedAnswer === problem.correctAnswer;
       setAnswerResult({
         isCorrect,
@@ -167,7 +162,7 @@ export default function PracticeProblemPage() {
       <div className="mb-6">
         <div className="mb-3 flex flex-wrap items-center gap-3">
           <span className="rounded-full bg-[#ec5b13]/20 px-3 py-1 text-xs font-bold text-[#ec5b13]">
-            {problem.facultyShortName || problem.facultyId.toUpperCase()}
+            {problem.facultyId.toUpperCase()}
           </span>
           <span className="text-sm text-text-secondary">{problem.year}</span>
           <span className="text-sm text-text-secondary">
@@ -181,16 +176,11 @@ export default function PracticeProblemPage() {
           </div>
         </div>
 
-        {problem.topics?.length > 0 && (
+        {problem.category && (
           <div className="mb-3 flex flex-wrap gap-1.5">
-            {problem.topics.map((t) => (
-              <span
-                key={t.id}
-                className="rounded-full bg-[#a78bfa]/20 px-2.5 py-0.5 text-xs text-[#a78bfa]"
-              >
-                {t.name}
-              </span>
-            ))}
+            <span className="rounded-full bg-[#a78bfa]/20 px-2.5 py-0.5 text-xs text-[#a78bfa]">
+              {problem.category}
+            </span>
           </div>
         )}
 
@@ -210,10 +200,10 @@ export default function PracticeProblemPage() {
         </div>
       </div>
 
-      {/* Problem content iframe (MathJax rendered) */}
+      {/* Problem content iframe */}
       <div className="mb-8 overflow-hidden rounded-2xl border border-[var(--glass-border)] glass-card">
         <iframe
-          src={`/api/problems/${problem.slug}/html?section=statement`}
+          src={`/api/problems/${problem.id}/html?section=statement`}
           sandbox="allow-scripts allow-same-origin"
           className="w-full border-none"
           title="Postavka zadatka"
@@ -385,7 +375,7 @@ export default function PracticeProblemPage() {
               </h3>
             </div>
             <iframe
-              src={`/api/problems/${problem.slug}/html`}
+              src={`/api/problems/${problem.id}/html`}
               sandbox="allow-scripts allow-same-origin"
               className="w-full border-none"
               title="Resenje"

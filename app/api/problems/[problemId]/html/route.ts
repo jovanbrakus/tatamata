@@ -1,6 +1,4 @@
-import { db } from "@/lib/db";
-import { problems } from "@/drizzle/schema";
-import { eq } from "drizzle-orm";
+import { getProblemHtml } from "@/lib/problems";
 import { NextResponse } from "next/server";
 
 const HEADERS = {
@@ -10,12 +8,10 @@ const HEADERS = {
 };
 
 function extractStatementHtml(html: string): string {
-  // Extract the problem-statement div
   const startMarker = '<div class="card problem-statement">';
   const startIdx = html.indexOf(startMarker);
   if (startIdx === -1) return "";
 
-  // Find the matching closing div
   let depth = 0;
   let i = startIdx;
   while (i < html.length) {
@@ -36,11 +32,8 @@ function extractStatementHtml(html: string): string {
 
   const statementDiv = html.substring(startIdx, i);
 
-  // Extract <head> content (styles and MathJax scripts)
   const headMatch = html.match(/<head[^>]*>([\s\S]*?)<\/head>/i);
   const headContent = headMatch ? headMatch[1] : "";
-
-  // Remove the logic-scratchpad script from head
   const cleanHead = headContent.replace(/<script[^>]*id="logic-scratchpad"[^>]*>[\s\S]*?<\/script>/i, "");
 
   return `<!DOCTYPE html>
@@ -63,22 +56,16 @@ ${cleanHead}
 </html>`;
 }
 
-export async function GET(req: Request, { params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export async function GET(req: Request, { params }: { params: Promise<{ problemId: string }> }) {
+  const { problemId } = await params;
   const url = new URL(req.url);
   const section = url.searchParams.get("section");
 
-  const result = await db
-    .select({ htmlContent: problems.htmlContent })
-    .from(problems)
-    .where(eq(problems.slug, slug))
-    .limit(1);
+  const html = getProblemHtml(problemId);
 
-  if (result.length === 0) {
+  if (!html) {
     return new NextResponse("Not found", { status: 404 });
   }
-
-  const html = result[0].htmlContent;
 
   if (section === "statement") {
     const statementHtml = extractStatementHtml(html);

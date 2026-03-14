@@ -1,8 +1,9 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { mockExams, mockExamProblems, problems, faculties } from "@/drizzle/schema";
+import { mockExams, mockExamProblems, faculties } from "@/drizzle/schema";
 import { eq, and, asc } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { getProblemFull } from "@/lib/problems";
 
 export async function GET(
   req: Request,
@@ -30,21 +31,34 @@ export async function GET(
     .where(eq(faculties.id, exam[0].facultyId))
     .limit(1);
 
-  const examProblems = await db
+  // Get exam problem rows (no join with problems table)
+  const examProblemRows = await db
     .select({
       position: mockExamProblems.position,
       pointValue: mockExamProblems.pointValue,
       answer: mockExamProblems.answer,
       isCorrect: mockExamProblems.isCorrect,
       isFlagged: mockExamProblems.isFlagged,
-      slug: problems.slug,
-      title: problems.title,
-      correctAnswer: problems.correctAnswer,
+      problemId: mockExamProblems.problemId,
     })
     .from(mockExamProblems)
-    .innerJoin(problems, eq(mockExamProblems.problemId, problems.id))
     .where(eq(mockExamProblems.examId, id))
     .orderBy(asc(mockExamProblems.position));
+
+  // Enrich each problem with data from the filesystem
+  const examProblems = examProblemRows.map((row) => {
+    const problem = getProblemFull(row.problemId);
+    return {
+      position: row.position,
+      pointValue: row.pointValue,
+      answer: row.answer,
+      isCorrect: row.isCorrect,
+      isFlagged: row.isFlagged,
+      id: row.problemId,
+      title: problem?.title ?? row.problemId,
+      correctAnswer: problem?.correctAnswer ?? "A",
+    };
+  });
 
   return NextResponse.json({
     exam: exam[0],

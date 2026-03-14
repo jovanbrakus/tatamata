@@ -1,8 +1,9 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { problemProgress, problems, faculties } from "@/drizzle/schema";
-import { eq, sql, and } from "drizzle-orm";
+import { problemProgress } from "@/drizzle/schema";
+import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { getAllMeta } from "@/lib/problems";
 
 export async function GET() {
   const session = await auth();
@@ -10,18 +11,40 @@ export async function GET() {
 
   const userId = (session.user as any).id;
 
-  const result = await db.execute(sql`
-    SELECT
-      f.id as faculty_id,
-      f.short_name,
-      COUNT(DISTINCT p.id) as total,
-      COUNT(DISTINCT CASE WHEN pp.status = 'solved' THEN p.id END) as solved
-    FROM faculties f
-    JOIN problems p ON p.faculty_id = f.id AND p.is_published = true
-    LEFT JOIN problem_progress pp ON pp.problem_id = p.id AND pp.user_id = ${userId}
-    GROUP BY f.id, f.short_name
-    ORDER BY f.short_name
-  `);
+  const allMeta = getAllMeta();
+  const totalByFaculty: Record<string, number> = {};
+  const idToFaculty = new Map<string, string>();
+  for (const p of allMeta) {
+    totalByFaculty[p.facultyId] = (totalByFaculty[p.facultyId] ?? 0) + 1;
+    idToFaculty.set(p.id, p.facultyId);
+  }
 
-  return NextResponse.json(result.rows);
+  const progressRows = await db
+    .select({
+      problemId: problemProgress.problemId,
+      status: problemProgress.status,
+    })
+    .from(problemProgress)
+    .where(eq(problemProgress.userId, userId));
+
+  const solvedByFaculty: Record<string, number> = {};
+  for (const row of progressRows) {
+    if (row.status === "solved") {
+      const faculty = idToFaculty.get(row.problemId);
+      if (faculty) {
+        solvedByFaculty[faculty] = (solvedByFaculty[faculty] ?? 0) + 1;
+      }
+    }
+  }
+
+  const result = Object.entries(totalByFaculty).map(([facultyId, total]) => ({
+    faculty_id: facultyId,
+    short_name: facultyId,
+    total,
+    solved: solvedByFaculty[facultyId] ?? 0,
+  }));
+
+  result.sort((a, b) => a.short_name.localeCompare(b.short_name));
+
+  return NextResponse.json(result);
 }

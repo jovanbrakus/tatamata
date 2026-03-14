@@ -1,13 +1,11 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { aiSolutions, problems } from "@/drizzle/schema";
-import { eq } from "drizzle-orm";
+import { aiSolutions } from "@/drizzle/schema";
 import { NextResponse } from "next/server";
 import { createLLMProvider } from "@/lib/llm/factory";
 import { getContextualPrompt } from "@/lib/llm/prompt";
-import { parseLLMResponse } from "@/lib/llm/parser";
-import { calculateCost } from "@/lib/llm/pricing";
 import { checkAiRateLimit, incrementAiUsage } from "@/lib/utils/rate-limit";
+import { getProblemHtml } from "@/lib/problems";
 
 export async function POST(req: Request) {
   const session = await auth();
@@ -26,11 +24,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Nedostaje ID zadatka ili pitanje." }, { status: 400 });
   }
 
-  // Get the source problem HTML
-  const problem = await db.select({ htmlContent: problems.htmlContent }).from(problems).where(eq(problems.id, sourceProblemId)).limit(1);
-  if (problem.length === 0) return NextResponse.json({ error: "Zadatak nije pronađen." }, { status: 404 });
+  // Get the source problem HTML from filesystem
+  const htmlContent = getProblemHtml(sourceProblemId);
+  if (!htmlContent) return NextResponse.json({ error: "Zadatak nije pronađen." }, { status: 404 });
 
-  const contextualPrompt = getContextualPrompt(problem[0].htmlContent, contextHint);
+  const contextualPrompt = getContextualPrompt(htmlContent, contextHint);
 
   try {
     const provider = createLLMProvider();

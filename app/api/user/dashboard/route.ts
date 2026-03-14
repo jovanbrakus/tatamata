@@ -1,17 +1,16 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import {
-  problems,
   problemProgress,
   mockExams,
   faculties,
   leaderboardScores,
-  topics,
   users,
   seasons,
 } from "@/drizzle/schema";
 import { eq, sql, gt, desc, and } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { getProblemsCount, getCategoryGroupsWithCounts } from "@/lib/problems";
 
 export async function GET() {
   const session = await auth();
@@ -22,9 +21,8 @@ export async function GET() {
 
   const [
     userRow,
-    totalResult,
     progressResult,
-    topicResult,
+    solvedIdsResult,
     examHistoryResult,
     myScoreResult,
     seasonResult,
@@ -32,12 +30,6 @@ export async function GET() {
   ] = await Promise.all([
     // User info (streak, target faculties)
     db.select().from(users).where(eq(users.id, userId)).limit(1),
-
-    // Total published problems
-    db
-      .select({ count: sql<number>`count(*)` })
-      .from(problems)
-      .where(eq(problems.isPublished, true)),
 
     // User progress by status
     db
@@ -49,21 +41,16 @@ export async function GET() {
       .where(eq(problemProgress.userId, userId))
       .groupBy(problemProgress.status),
 
-    // Topic progress
-    db.execute(sql`
-      SELECT
-        t.id as topic_id,
-        t.name,
-        t.icon,
-        COUNT(DISTINCT pt.problem_id) as total,
-        COUNT(DISTINCT CASE WHEN pp.status = 'solved' THEN pt.problem_id END) as solved
-      FROM topics t
-      JOIN problem_topics pt ON pt.topic_id = t.id
-      JOIN problems p ON p.id = pt.problem_id AND p.is_published = true
-      LEFT JOIN problem_progress pp ON pp.problem_id = pt.problem_id AND pp.user_id = ${userId}
-      GROUP BY t.id, t.name, t.icon
-      ORDER BY t.sort_order, t.name
-    `),
+    // Solved IDs for category group counts
+    db
+      .select({ problemId: problemProgress.problemId })
+      .from(problemProgress)
+      .where(
+        and(
+          eq(problemProgress.userId, userId),
+          eq(problemProgress.status, "solved")
+        )
+      ),
 
     // Exam history (last 5)
     db
@@ -114,7 +101,7 @@ export async function GET() {
     .from(leaderboardScores);
 
   // Aggregate progress
-  const total = Number(totalResult[0]?.count ?? 0);
+  const total = getProblemsCount();
   const byStatus: Record<string, number> = {};
   for (const row of progressResult) {
     byStatus[row.status] = Number(row.count);
@@ -168,6 +155,10 @@ export async function GET() {
         }
       : null;
 
+  // Category groups with solved counts
+  const solvedIds = new Set(solvedIdsResult.map((r) => r.problemId));
+  const categoryGroups = getCategoryGroupsWithCounts(solvedIds);
+
   return NextResponse.json({
     user: {
       displayName: user?.displayName ?? "Korisnik",
@@ -179,12 +170,12 @@ export async function GET() {
     progress: {
       total,
       solved,
-      dailyGoal: 20,
+      dailyGoal: user?.dailyGoal ?? 3,
       solvedToday,
     },
     lastExam,
     countdown: countdownTarget,
-    topics: topicResult.rows,
+    categoryGroups,
     rank: {
       position: rank,
       totalParticipants: Number(totalParticipants[0]?.count ?? 0),

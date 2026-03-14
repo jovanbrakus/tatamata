@@ -1,487 +1,400 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en"><head>
+<html class="dark" lang="sr"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>MathPrep Pro - Premium Math Preparation</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
-<!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Tailwind Config -->
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;family=Playfair+Display:wght@700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#135bec",
-                        "primary-glow": "#3b82f6",
-                        "accent-banana": "#ccff00", // Nano Banana Pro neon accent
-                        "background-light": "#f6f6f8",
-                        "background-dark": "#101622",
-                        "surface-dark": "#1a2332",
-                        "glass": "rgba(255, 255, 255, 0.05)",
+                        "primary": "#ec5b13",
+                        "secondary": "#06b6d4",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#0a0604",
+                        "obsidian": "#140c08",
+                        "glass": "rgba(255, 255, 255, 0.03)",
                     },
                     fontFamily: {
-                        "display": ["Inter", "sans-serif"],
-                        "body": ["Inter", "sans-serif"],
+                        "display": ["Public Sans", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
                     },
-                    backgroundImage: {
-                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-                        'hero-glow': 'conic-gradient(from 180deg at 50% 50%, #135bec 0deg, #ccff00 180deg, #135bec 360deg)',
-                    },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
                 },
             },
         }
     </script>
 <style>
-        /* Custom scrollbar for webkit */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #101622;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #232f48;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #135bec;
-        }
-        
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(34, 22, 16, 0.4);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(236, 91, 19, 0.1);
         }
-        
-        .neon-text {
-            text-shadow: 0 0 10px rgba(204, 255, 0, 0.3);
+        .neon-glow-orange {
+            box-shadow: 0 0 20px rgba(236, 91, 19, 0.2);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #ec5b13 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .step-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ec5b13, #06b6d4);
+            transform: translateX(-50%);
+            z-index: 0;
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden selection:bg-accent-banana selection:text-black">
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden">
 <!-- Top Navigation -->
-<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-white/10 bg-background-dark/80 backdrop-blur-md">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="flex items-center justify-between h-20">
-<!-- Logo -->
+<nav class="sticky top-0 z-50 w-full border-b border-white/5 bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
 <div class="flex items-center gap-3">
-<div class="size-8 text-primary relative">
-<div class="absolute inset-0 bg-primary/20 blur-lg rounded-full"></div>
-<span class="material-symbols-outlined text-3xl relative z-10 text-accent-banana">function</span>
+<div class="bg-primary p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-white">functions</span>
 </div>
-<span class="text-white text-xl font-bold tracking-tight">MathPrep <span class="text-primary">Pro</span></span>
+<h2 class="font-serif text-2xl font-black tracking-tight text-white italic">MathPrep <span class="text-primary">Elite</span></h2>
 </div>
-<!-- Desktop Nav -->
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-slate-300 hover:text-white hover:text-accent-banana transition-colors text-sm font-medium" href="#">Curriculum</a>
-<a class="text-slate-300 hover:text-white hover:text-accent-banana transition-colors text-sm font-medium" href="#">Pricing</a>
-<a class="text-slate-300 hover:text-white hover:text-accent-banana transition-colors text-sm font-medium" href="#">Tutors</a>
-<a class="text-slate-300 hover:text-white hover:text-accent-banana transition-colors text-sm font-medium" href="#">Universities</a>
-</nav>
-<!-- CTA Buttons -->
+<div class="hidden md:flex items-center gap-10">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Zadaci</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Teorija</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Simulacija</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Analitika</a>
+</div>
 <div class="flex items-center gap-4">
-<a class="hidden sm:block text-slate-300 hover:text-white text-sm font-medium" href="#">Log In</a>
-<button class="bg-primary hover:bg-blue-600 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition-all shadow-[0_0_15px_rgba(19,91,236,0.3)] hover:shadow-[0_0_25px_rgba(19,91,236,0.5)] flex items-center gap-2 group">
-<span>Get Started</span>
-<span class="material-symbols-outlined text-[18px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+<button class="text-sm font-bold px-5 py-2 hover:text-primary transition-colors">Prijava</button>
+<button class="bg-primary text-white text-sm font-bold px-6 py-2.5 rounded-xl hover:scale-105 transition-transform neon-glow-orange">
+                    Počni besplatno
+                </button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative pt-20 pb-32 overflow-hidden">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-gradient-to-b from-primary/10 to-transparent opacity-50 blur-[120px] pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="flex flex-col gap-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 w-fit">
+<span class="material-symbols-outlined text-primary text-sm">verified</span>
+<span class="text-xs font-bold uppercase tracking-widest text-primary">Premium priprema za 2024/25</span>
+</div>
+<h1 class="font-serif text-6xl md:text-7xl font-black leading-[1.1] text-white">
+                        Tvoja ulaznica za <span class="gradient-text">ETF, FON i FTN</span>
+</h1>
+<p class="text-lg text-slate-400 max-w-xl leading-relaxed">
+                        Elite platforma dizajnirana za buduće inženjere. Postigni maksimalan broj poena uz personalizovan plan rada, AI asistenciju i bazu od preko 2000 zadataka.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="bg-primary text-white px-8 py-4 rounded-xl font-bold text-lg flex items-center gap-3 hover:bg-primary/90 transition-all group">
+                            Počni besplatno
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
 </button>
+<button class="bg-white/5 border border-white/10 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all">
+                            Pogledaj primer
+                        </button>
+</div>
+<div class="flex items-center gap-6 pt-8">
+<div class="flex -space-x-3">
+<img class="w-10 h-10 rounded-full border-2 border-background-dark" data-alt="Student profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGa7e8RCVU_jbX1a_mt0t7ZiEdB0FRuPmz398mGJ842r8-tvei7vn6X-LFqB-Qj27sMRLTU2c19vWt3iibQqSuMuj05X4xOR0e9injvB6i9vu9JxRDs3QxAumNMFc6GvZUbD18QAhjZcgngdQizkBM9HPt75EiBaaMkm7qJzS5oX1zJaedBmzMgRv_B88LJzO_TuN5HdRljgtHXPzaC-licZkkea6hUL6TPoxqV10GXNgunbAbwyK0JmpMz3-A84Fcy_5B0W_iurCt"/>
+<img class="w-10 h-10 rounded-full border-2 border-background-dark" data-alt="Student profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3kFnjqcCBRI2MxMSgqAqBVinxZW3QRuDCX3ydq7spbWEfXuY4bUfi-z-0CiPb5AbshHQaXHnhCOPgiIhU7SX2Vx9ZKI-qv0HAieviDQOhvJSiF-GjJzAiEL65wTkwhrsKhSbRD5h2KiqV_iKUvCLJHU7rg4RgSUt4B1b6bp5AKSAkfCcksklGX_NjBdBWublniPaBRUxAoizu5GPR0yJV6A5j5dg2PoKCv8ff0_xk_gHHOQBOSceld8W3wjUaIryre5vk57lvF2my"/>
+<img class="w-10 h-10 rounded-full border-2 border-background-dark" data-alt="Student profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWU_UCNf6H3NRivxzSgHtTv6b0TTQTbUHoaTYsoAlb7X41aW2N1d5qi4YP62AGVaq67ecY6u28nMAGAyesehHhfQd4QwwkZ1jJk_8en5bhgzurzMVJjI8JLXnJxvYPEwHNPKTEkgoc62kZm4ffNEixqCwqUvWLvntRhrT1D_NMIgDqsRS5ALrIZv4ch3lZ5XI-v4RqybLMCn-3gwoQ3U1NvTShYWnB289qDTrppqsz_5Skv4erkGaN1AHU6vVSJZZTPoskcDZlZ-i2"/>
+</div>
+<p class="text-sm text-slate-400"><span class="text-white font-bold">1,200+</span> studenata je već upisalo željeni fakultet</p>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -inset-4 bg-gradient-to-r from-primary/20 to-secondary/20 blur-3xl rounded-full"></div>
+<div class="relative glass-card rounded-3xl p-4 overflow-hidden shadow-2xl">
+<img class="w-full h-[500px] object-cover rounded-2xl opacity-80" data-alt="Abstract 3D mathematical geometry visualization" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz3nOTheoDKQu2-NcRe58M_AwdjMrUtUaauK4cs_3MygzSL3lYaGLJFm40pQImwUp4VTxrcRNPUCrJ9y_IpaTsNKB1sN3UhtR9RYjDtDmF2h4drg9PS_RxzhaGo9LqMZQU0j-rjcXxEcV4sUXd4WttuGfvswkUy7W_CrUnm-_cRWkBrqI2nGNuc-497u10a-Ik55JcNDZ54TlDJ8ou0VDh1Eoevz9Pbl-amngOUsZzRwPeBIHZsVZqo29A9pYUM1L6f__nNBQMrD4d"/>
+<div class="absolute bottom-10 left-10 right-10 flex gap-4">
+<div class="glass-card p-4 rounded-2xl flex-1 flex flex-col gap-1 border-white/10">
+<span class="text-secondary text-xs font-bold uppercase">Uspeh</span>
+<span class="text-white text-2xl font-black">98.4%</span>
+</div>
+<div class="glass-card p-4 rounded-2xl flex-1 flex flex-col gap-1 border-white/10">
+<span class="text-primary text-xs font-bold uppercase">Zadaci</span>
+<span class="text-white text-2xl font-black">2000+</span>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 </header>
-<main class="flex-grow pt-20">
-<!-- Hero Section -->
-<section class="relative pt-16 pb-20 lg:pt-32 lg:pb-32 overflow-hidden">
-<!-- Background Elements -->
-<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] -z-10 opacity-40 pointer-events-none"></div>
-<div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-accent-banana/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-<div class="grid lg:grid-cols-2 gap-12 items-center">
-<!-- Hero Content -->
-<div class="flex flex-col gap-6 text-center lg:text-left">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 w-fit mx-auto lg:mx-0 backdrop-blur-sm">
-<span class="w-2 h-2 rounded-full bg-accent-banana animate-pulse"></span>
-<span class="text-xs font-medium text-slate-300 uppercase tracking-wider">Admissions Open 2024</span>
+<!-- The 2000+ Edge -->
+<section class="py-24 bg-obsidian relative">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center max-w-3xl mx-auto mb-20 flex flex-col gap-4">
+<h2 class="font-serif text-5xl font-black text-white italic">The 2000+ Edge</h2>
+<p class="text-slate-400 text-lg">Najobimnija baza rešenih zadataka sa prethodnih prijemnih ispita, kategorisana po težini i oblastima.</p>
 </div>
-<h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1.1] tracking-tight">
-                            Master the <br/>
-<span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400">Entrance Exam</span>
-</h1>
-<p class="text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                            The smartest way to prepare for mathematics entrance exams at top universities like ETF, FON, and MATF. Powered by AI, designed for elite performance.
-                        </p>
-<div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-<button class="bg-primary hover:bg-blue-600 text-white h-12 px-8 rounded-lg text-base font-bold transition-all shadow-[0_0_20px_rgba(19,91,236,0.4)] hover:shadow-[0_0_30px_rgba(19,91,236,0.6)] flex items-center justify-center gap-2">
-                                Start Preparing Free
-                            </button>
-<button class="glass-card hover:bg-white/10 text-white h-12 px-8 rounded-lg text-base font-medium transition-all flex items-center justify-center gap-2 group">
-<span class="material-symbols-outlined text-accent-banana group-hover:rotate-12 transition-transform">play_circle</span>
-                                Watch Demo
-                            </button>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="glass-card p-8 rounded-3xl border-t-primary/30 group hover:translate-y-[-8px] transition-transform">
+<div class="w-14 h-14 bg-primary/20 rounded-2xl flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined text-3xl">menu_book</span>
 </div>
-<div class="pt-8 flex items-center justify-center lg:justify-start gap-6 text-sm text-slate-500">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-accent-banana text-lg">check_circle</span>
-<span>15k+ Students</span>
+<h3 class="text-xl font-bold mb-3 text-white">Kompletna arhiva</h3>
+<p class="text-slate-400 leading-relaxed mb-6">Svi zadaci koji su se pojavili na ETF, FON i FTN ispitima u poslednjih 20 godina.</p>
+<div class="h-1 w-12 bg-primary group-hover:w-full transition-all duration-500"></div>
 </div>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-accent-banana text-lg">check_circle</span>
-<span>98% Pass Rate</span>
+<div class="glass-card p-8 rounded-3xl border-t-secondary/30 group hover:translate-y-[-8px] transition-transform">
+<div class="w-14 h-14 bg-secondary/20 rounded-2xl flex items-center justify-center mb-6 text-secondary">
+<span class="material-symbols-outlined text-3xl">smart_display</span>
 </div>
+<h3 class="text-xl font-bold mb-3 text-white">Korak-po-korak</h3>
+<p class="text-slate-400 leading-relaxed mb-6">Svaki zadatak poseduje detaljno video rešenje i tekstualni postupak sa objašnjenjem.</p>
+<div class="h-1 w-12 bg-secondary group-hover:w-full transition-all duration-500"></div>
 </div>
+<div class="glass-card p-8 rounded-3xl border-t-primary/30 group hover:translate-y-[-8px] transition-transform">
+<div class="w-14 h-14 bg-primary/20 rounded-2xl flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined text-3xl">account_tree</span>
 </div>
-<!-- Hero Visual -->
-<div class="relative h-[400px] lg:h-[600px] w-full flex items-center justify-center perspective-[1000px]">
-<!-- Abstract 3D shape container -->
-<div class="relative w-full h-full">
-<div class="absolute inset-0 bg-contain bg-center bg-no-repeat animate-[float_6s_ease-in-out_infinite]" data-alt="Abstract 3D geometric mathematical shape floating in dark space with blue and neon lighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDEQh90rm5Rn6bgAtG6tjbeCu_8GnSDtggx_5R3NND2-urDjf19TY0Ekxet_G6kTK1_lmD7ffF4FJS8J9f_YiIwsBAwqvaw2TIjUcBXsmwFVjnh2f-jSn_bygdms2aP_AP1bM8YlQCzFuM3uNRlFO3vCDcfpfcuq4ZQEMKdgw45Q-fpGo6T1pjFVKIxMaJkcVrbovqgoxgxV1s7I-ehKkfBcknsW4wiAytsqlXOuDhHrPmuijUoU1g0AGO0CLcaHND5Z4I4Zr72nsk');">
-</div>
-<!-- Floating glass cards overlaid -->
-<div class="absolute top-1/4 right-0 lg:-right-8 p-4 glass-card rounded-xl border-l-4 border-l-accent-banana animate-[float_7s_ease-in-out_infinite_1s]">
-<div class="flex items-center gap-3">
-<div class="bg-primary/20 p-2 rounded-lg text-primary">
-<span class="material-symbols-outlined">analytics</span>
-</div>
-<div>
-<p class="text-xs text-slate-400">Calculus Mastery</p>
-<p class="text-white font-bold">98.5%</p>
-</div>
-</div>
-</div>
-<div class="absolute bottom-1/4 left-0 lg:-left-8 p-4 glass-card rounded-xl border-l-4 border-l-primary animate-[float_5s_ease-in-out_infinite_0.5s]">
-<div class="flex items-center gap-3">
-<div class="bg-accent-banana/20 p-2 rounded-lg text-accent-banana">
-<span class="material-symbols-outlined">school</span>
-</div>
-<div>
-<p class="text-xs text-slate-400">University Acceptance</p>
-<p class="text-white font-bold">Top 1%</p>
-</div>
-</div>
-</div>
-</div>
+<h3 class="text-xl font-bold mb-3 text-white">Teorijski linkovi</h3>
+<p class="text-slate-400 leading-relaxed mb-6">Zaboravio si formulu? Jednim klikom otvori teorijski podsetnik direktno iz zadatka.</p>
+<div class="h-1 w-12 bg-primary group-hover:w-full transition-all duration-500"></div>
 </div>
 </div>
 </div>
 </section>
-<!-- Stats Section -->
-<section class="py-10 border-y border-white/5 bg-surface-dark/30">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-<div class="text-center">
-<p class="text-4xl font-bold text-white mb-1">2.5M+</p>
-<p class="text-sm text-slate-400">Questions Solved</p>
-</div>
-<div class="text-center">
-<p class="text-4xl font-bold text-white mb-1">15k+</p>
-<p class="text-sm text-slate-400">Active Students</p>
-</div>
-<div class="text-center">
-<p class="text-4xl font-bold text-white mb-1">24/7</p>
-<p class="text-sm text-slate-400">AI Tutor Support</p>
-</div>
-<div class="text-center">
-<p class="text-4xl font-bold text-white mb-1">Top 3</p>
-<p class="text-sm text-slate-400">Target Universities</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Features Grid -->
+<!-- The Roadmap -->
 <section class="py-24 relative overflow-hidden">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="text-center max-w-3xl mx-auto mb-16">
-<h2 class="text-primary font-bold tracking-wide uppercase text-sm mb-3">Premium Features</h2>
-<h3 class="text-3xl md:text-5xl font-bold text-white mb-6">Powered by AI, <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-banana to-emerald-400">Designed for Mastery</span></h3>
-<p class="text-slate-400 text-lg">Experience the future of test preparation with our advanced learning tools tailored for the Serbian curriculum.</p>
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col lg:flex-row gap-16 items-center">
+<div class="lg:w-1/2">
+<h2 class="font-serif text-5xl font-black text-white mb-8">Put do indeksa bez <span class="text-primary">gubljenja vremena</span></h2>
+<div class="relative space-y-12 step-line">
+<div class="relative z-10 flex gap-6 items-start">
+<div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center shrink-0 border-4 border-background-dark font-black text-white">1</div>
+<div>
+<h4 class="text-xl font-bold text-white mb-2">Dijagnostički test</h4>
+<p class="text-slate-400">Utvrđujemo tvoje trenutno predznanje i identifikujemo kritične oblasti.</p>
 </div>
-<div class="grid md:grid-cols-3 gap-6">
-<!-- Feature 1 -->
-<div class="glass-card rounded-2xl p-8 hover:bg-white/5 transition-all group relative overflow-hidden">
-<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-16 -mt-16 group-hover:bg-primary/20 transition-all"></div>
-<div class="w-14 h-14 bg-surface-dark rounded-xl flex items-center justify-center mb-6 border border-white/10 group-hover:border-primary/50 transition-colors">
-<span class="material-symbols-outlined text-3xl text-primary">model_training</span>
 </div>
-<h4 class="text-xl font-bold text-white mb-3">Unit Mastery</h4>
-<p class="text-slate-400 leading-relaxed mb-6">Deep dive into Calculus, Algebra, and Geometry with adaptive lessons that evolve with your skill level.</p>
-<a class="inline-flex items-center text-primary font-semibold hover:text-accent-banana transition-colors" href="#">
-                            Explore Curriculum <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
-</a>
+<div class="relative z-10 flex gap-6 items-start">
+<div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center shrink-0 border-4 border-background-dark font-black text-white">2</div>
+<div>
+<h4 class="text-xl font-bold text-white mb-2">Personalizovan plan</h4>
+<p class="text-slate-400">Dobijaš dnevne zadatke i lekcije prilagođene tvom tempu i slobodnom vremenu.</p>
 </div>
-<!-- Feature 2 -->
-<div class="glass-card rounded-2xl p-8 hover:bg-white/5 transition-all group relative overflow-hidden border-t-4 border-t-accent-banana">
-<div class="absolute top-0 right-0 w-32 h-32 bg-accent-banana/10 rounded-full blur-2xl -mr-16 -mt-16 group-hover:bg-accent-banana/20 transition-all"></div>
-<div class="w-14 h-14 bg-surface-dark rounded-xl flex items-center justify-center mb-6 border border-white/10 group-hover:border-accent-banana/50 transition-colors">
-<span class="material-symbols-outlined text-3xl text-accent-banana">psychology</span>
 </div>
-<h4 class="text-xl font-bold text-white mb-3">AI Tutor</h4>
-<p class="text-slate-400 leading-relaxed mb-6">Instant, step-by-step feedback on every equation you solve. Available 24/7 to answer your doubts.</p>
-<a class="inline-flex items-center text-accent-banana font-semibold hover:text-white transition-colors" href="#">
-                            Try AI Demo <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
-</a>
+<div class="relative z-10 flex gap-6 items-start">
+<div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center shrink-0 border-4 border-background-dark font-black text-white">3</div>
+<div>
+<h4 class="text-xl font-bold text-white mb-2">Simulacije &amp; Brušenje</h4>
+<p class="text-slate-400">Radiš realne testove pod pritiskom vremena uz AI analizu svake greške.</p>
 </div>
-<!-- Feature 3 -->
-<div class="glass-card rounded-2xl p-8 hover:bg-white/5 transition-all group relative overflow-hidden">
-<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -mr-16 -mt-16 group-hover:bg-primary/20 transition-all"></div>
-<div class="w-14 h-14 bg-surface-dark rounded-xl flex items-center justify-center mb-6 border border-white/10 group-hover:border-primary/50 transition-colors">
-<span class="material-symbols-outlined text-3xl text-primary">timer</span>
 </div>
-<h4 class="text-xl font-bold text-white mb-3">Mock Exams</h4>
-<p class="text-slate-400 leading-relaxed mb-6">Simulate the real testing environment of University of Belgrade with timed past papers and predicted questions.</p>
-<a class="inline-flex items-center text-primary font-semibold hover:text-accent-banana transition-colors" href="#">
-                            View Papers <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
-</a>
+<div class="relative z-10 flex gap-6 items-start">
+<div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center shrink-0 border-4 border-background-dark font-black text-white">4</div>
+<div>
+<h4 class="text-xl font-bold text-white mb-2">Dan ispita: Pobeda</h4>
+<p class="text-slate-400">Izlaziš na ispit pun samopouzdanja, znajući da si prošao sve moguće tipove zadataka.</p>
 </div>
 </div>
 </div>
-</section>
-<!-- Dashboard Preview Section -->
-<section class="py-20 bg-surface-dark/30 border-y border-white/5">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="grid lg:grid-cols-2 gap-16 items-center">
-<div class="order-2 lg:order-1 relative">
-<!-- Dashboard Mockup -->
-<div class="relative rounded-xl overflow-hidden shadow-2xl border border-white/10 bg-[#1e293b] aspect-video group">
-<!-- Header of Mockup -->
-<div class="h-8 bg-[#0f172a] flex items-center px-4 gap-2 border-b border-white/5">
-<div class="w-3 h-3 rounded-full bg-red-500"></div>
-<div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-<div class="w-3 h-3 rounded-full bg-green-500"></div>
 </div>
-<!-- Body of Mockup -->
-<div class="p-6 grid grid-cols-3 gap-4 h-full">
-<div class="col-span-2 space-y-4">
-<div class="h-32 rounded bg-white/5 animate-pulse"></div>
-<div class="h-24 rounded bg-white/5"></div>
+<div class="lg:w-1/2 relative">
+<div class="glass-card rounded-[2.5rem] p-8 relative z-10 border-white/5 shadow-2xl overflow-hidden">
+<div class="flex items-center justify-between mb-8">
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-green-500/50"></div>
 </div>
-<div class="space-y-4">
-<div class="h-20 rounded bg-primary/20 border border-primary/30"></div>
-<div class="h-20 rounded bg-white/5"></div>
-<div class="h-16 rounded bg-white/5"></div>
+<span class="text-xs font-mono text-slate-500 uppercase tracking-widest">Live Progress Track</span>
 </div>
-</div>
-<!-- Overlay CTA -->
-<div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
-<button class="bg-accent-banana text-black font-bold py-3 px-6 rounded-full transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                                    View Full Analytics
-                                </button>
-</div>
-</div>
-<!-- Decorative glow behind -->
-<div class="absolute -inset-4 bg-gradient-to-r from-primary to-accent-banana opacity-20 blur-xl -z-10 rounded-xl"></div>
-</div>
-<div class="order-1 lg:order-2">
-<div class="flex items-center gap-2 mb-4">
-<span class="h-px w-8 bg-accent-banana"></span>
-<span class="text-accent-banana font-medium uppercase tracking-wider text-xs">Analytics Dashboard</span>
-</div>
-<h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Track your progress with surgical precision.</h2>
 <div class="space-y-6">
-<div class="flex gap-4">
-<div class="flex-shrink-0 mt-1">
-<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">show_chart</span>
+<div class="bg-white/5 rounded-2xl p-6 border border-white/5">
+<div class="flex justify-between items-center mb-4">
+<span class="text-sm font-bold">Algebra &amp; Funkcije</span>
+<span class="text-primary text-xs font-bold">85% Završeno</span>
 </div>
-<div>
-<h4 class="text-white font-semibold text-lg">Performance Insights</h4>
-<p class="text-slate-400 text-sm mt-1">Visualize your strengths and weaknesses across every math topic.</p>
-</div>
-</div>
-<div class="flex gap-4">
-<div class="flex-shrink-0 mt-1">
-<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">target</span>
-</div>
-<div>
-<h4 class="text-white font-semibold text-lg">Goal Tracking</h4>
-<p class="text-slate-400 text-sm mt-1">Set your target university score and let our AI build your roadmap.</p>
+<div class="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+<div class="w-[85%] h-full bg-primary"></div>
 </div>
 </div>
-<div class="flex gap-4">
-<div class="flex-shrink-0 mt-1">
-<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">history_edu</span>
+<div class="bg-white/5 rounded-2xl p-6 border border-white/5">
+<div class="flex justify-between items-center mb-4">
+<span class="text-sm font-bold">Geometrija &amp; Trigonometrija</span>
+<span class="text-secondary text-xs font-bold">42% Završeno</span>
 </div>
-<div>
-<h4 class="text-white font-semibold text-lg">Exam History</h4>
-<p class="text-slate-400 text-sm mt-1">Review past attempts and learn from mistakes with detailed solutions.</p>
+<div class="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+<div class="w-[42%] h-full bg-secondary"></div>
+</div>
+</div>
+<div class="bg-white/5 rounded-2xl p-6 border border-white/5">
+<div class="flex justify-between items-center mb-4">
+<span class="text-sm font-bold">Kombinatorika &amp; Verovatnoća</span>
+<span class="text-slate-500 text-xs font-bold">Sledeće na redu</span>
+</div>
+<div class="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+<div class="w-[0%] h-full bg-slate-600"></div>
 </div>
 </div>
 </div>
+</div>
+<div class="absolute -bottom-10 -right-10 w-64 h-64 bg-secondary/20 rounded-full blur-[100px]"></div>
 </div>
 </div>
 </div>
 </section>
-<!-- Pricing / Access Section -->
+<!-- Theory Vault & Simulation Lab -->
+<section class="py-24 bg-obsidian">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-12">
+<!-- Theory Vault -->
+<div class="glass-card p-10 rounded-[2.5rem] relative overflow-hidden border-primary/20">
+<div class="relative z-10">
+<h3 class="font-serif text-3xl font-black text-white mb-6">Theory Vault</h3>
+<p class="text-slate-400 mb-10 leading-relaxed">Pristup elitnoj bazi teorijskih lekcija. Svaka formula, definicija i teorema je objašnjena kroz praktične primere koji se zapravo pojavljuju na testu.</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-white/5 p-4 rounded-2xl border border-white/10 flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<span class="text-sm font-bold text-white">320+ Video lekcija</span>
+</div>
+<div class="bg-white/5 p-4 rounded-2xl border border-white/10 flex flex-col gap-2">
+<span class="material-symbols-outlined text-primary">description</span>
+<span class="text-sm font-bold text-white">PDF Cheat sheets</span>
+</div>
+</div>
+</div>
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
+</div>
+<!-- Simulation Lab -->
+<div class="glass-card p-10 rounded-[2.5rem] relative overflow-hidden border-secondary/20">
+<div class="relative z-10">
+<h3 class="font-serif text-3xl font-black text-white mb-6">Simulation Lab</h3>
+<p class="text-slate-400 mb-10 leading-relaxed">Iskusi pravi ispit pre samog ispita. Naš AI Proctor prati tvoj tempo i identifikuje pod kojim oblastima gubiš najviše vremena.</p>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 px-4 py-2 bg-secondary/10 rounded-full border border-secondary/20">
+<div class="w-2 h-2 bg-secondary rounded-full animate-pulse"></div>
+<span class="text-xs font-bold text-secondary uppercase tracking-widest">AI Monitoring Active</span>
+</div>
+<button class="bg-secondary text-white px-6 py-2.5 rounded-xl font-bold text-sm">Započni probu</button>
+</div>
+</div>
+<div class="absolute -bottom-10 -left-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Deep Analytics -->
 <section class="py-24 relative">
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-full max-h-[500px] bg-primary/5 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="text-center mb-16">
-<h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Simple, transparent pricing</h2>
-<p class="text-slate-400">Invest in your future today.</p>
+<div class="max-w-7xl mx-auto px-6 text-center">
+<h2 class="font-serif text-5xl font-black text-white mb-16">Deep Analytics</h2>
+<div class="glass-card rounded-[3rem] p-12 border-white/5">
+<div class="grid lg:grid-cols-3 gap-12 items-center">
+<div class="text-left space-y-8">
+<div>
+<h4 class="text-white font-bold mb-2">Procena uspeha</h4>
+<p class="text-slate-400 text-sm">Algoritam predviđa tvoj rang listu na osnovu trenutnih rezultata.</p>
 </div>
-<div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-<!-- Standard Plan -->
-<div class="glass-card rounded-2xl p-8 flex flex-col hover:border-white/20 transition-colors">
-<div class="mb-4">
-<h3 class="text-xl font-medium text-slate-300">Self-Paced</h3>
-<div class="mt-4 flex items-baseline">
-<span class="text-4xl font-bold text-white">€49</span>
-<span class="ml-2 text-slate-500">/month</span>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="text-sm text-slate-300">ETF Beograd</span>
+<span class="text-sm font-bold text-green-400">Visoka šansa (Top 50)</span>
 </div>
-<p class="text-slate-400 text-sm mt-2">Perfect for disciplined students.</p>
+<div class="flex items-center justify-between">
+<span class="text-sm text-slate-300">FON Beograd</span>
+<span class="text-sm font-bold text-green-400">Siguran upis</span>
 </div>
-<ul class="space-y-4 mb-8 flex-1">
-<li class="flex items-center text-slate-300 text-sm">
-<span class="material-symbols-outlined text-primary mr-2 text-lg">check</span> Full Curriculum Access
-                            </li>
-<li class="flex items-center text-slate-300 text-sm">
-<span class="material-symbols-outlined text-primary mr-2 text-lg">check</span> 500+ Practice Problems
-                            </li>
-<li class="flex items-center text-slate-300 text-sm">
-<span class="material-symbols-outlined text-primary mr-2 text-lg">check</span> Basic Progress Tracking
-                            </li>
-</ul>
-<button class="w-full py-3 rounded-lg border border-white/20 text-white font-semibold hover:bg-white/5 transition-colors">
-                            Start Learning
-                        </button>
-</div>
-<!-- Pro Plan -->
-<div class="relative rounded-2xl p-8 flex flex-col bg-surface-dark border border-primary shadow-2xl shadow-primary/20">
-<div class="absolute top-0 right-0 bg-accent-banana text-black text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">POPULAR</div>
-<div class="mb-4">
-<h3 class="text-xl font-medium text-white">MathPrep <span class="text-primary">Pro</span></h3>
-<div class="mt-4 flex items-baseline">
-<span class="text-4xl font-bold text-white">€89</span>
-<span class="ml-2 text-slate-500">/month</span>
-</div>
-<p class="text-slate-400 text-sm mt-2">Maximum support for top scores.</p>
-</div>
-<ul class="space-y-4 mb-8 flex-1">
-<li class="flex items-center text-white text-sm">
-<span class="material-symbols-outlined text-accent-banana mr-2 text-lg">check_circle</span> Unlimited AI Tutor Access
-                            </li>
-<li class="flex items-center text-white text-sm">
-<span class="material-symbols-outlined text-accent-banana mr-2 text-lg">check_circle</span> 10 Full Mock Exams
-                            </li>
-<li class="flex items-center text-white text-sm">
-<span class="material-symbols-outlined text-accent-banana mr-2 text-lg">check_circle</span> Detailed Analytics &amp; Predictions
-                            </li>
-<li class="flex items-center text-white text-sm">
-<span class="material-symbols-outlined text-accent-banana mr-2 text-lg">check_circle</span> Priority Support
-                            </li>
-</ul>
-<button class="w-full py-3 rounded-lg bg-primary hover:bg-blue-600 text-white font-bold transition-all shadow-lg hover:shadow-primary/50">
-                            Get Pro Access
-                        </button>
+<div class="flex items-center justify-between">
+<span class="text-sm text-slate-300">FTN Novi Sad</span>
+<span class="text-sm font-bold text-primary">Umerena šansa</span>
 </div>
 </div>
 </div>
-</section>
-<!-- Trust Section -->
-<section class="py-16 border-t border-white/5 bg-[#0d121c]">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-<p class="text-sm font-medium text-slate-500 uppercase tracking-widest mb-8">Trusted by future students of</p>
-<div class="flex flex-wrap justify-center gap-12 grayscale opacity-50 hover:opacity-100 transition-opacity duration-500">
-<!-- Using placeholder text for logos to keep it clean, or simple icons -->
-<div class="flex items-center gap-2 text-white font-bold text-xl">
-<span class="material-symbols-outlined text-3xl">account_balance</span> University of Belgrade
-                    </div>
-<div class="flex items-center gap-2 text-white font-bold text-xl">
-<span class="material-symbols-outlined text-3xl">science</span> ETF
-                    </div>
-<div class="flex items-center gap-2 text-white font-bold text-xl">
-<span class="material-symbols-outlined text-3xl">computer</span> FON
-                    </div>
-<div class="flex items-center gap-2 text-white font-bold text-xl">
-<span class="material-symbols-outlined text-3xl">calculate</span> MATF
-                    </div>
+<div class="relative flex justify-center">
+<div class="w-64 h-64 rounded-full border-[16px] border-white/5 flex items-center justify-center">
+<div class="absolute inset-0 rounded-full border-[16px] border-t-primary border-r-primary border-l-secondary border-b-transparent rotate-45"></div>
+<div class="text-center">
+<span class="block text-5xl font-black text-white">82%</span>
+<span class="text-xs font-bold text-slate-500 uppercase">Spremnost</span>
+</div>
+</div>
+</div>
+<div class="text-left space-y-6">
+<h4 class="text-white font-bold mb-4">Dnevni izazov zajednice</h4>
+<div class="bg-white/5 p-5 rounded-2xl border border-white/10">
+<div class="flex items-center gap-3 mb-3">
+<span class="material-symbols-outlined text-primary text-xl">workspace_premium</span>
+<span class="text-sm font-bold text-white">Zadatak Dana</span>
+</div>
+<p class="text-xs text-slate-400 mb-4 italic">"Odredi sve vrednosti parametra k tako da..."</p>
+<div class="flex items-center justify-between">
+<span class="text-[10px] text-slate-500">432 rešilo danas</span>
+<button class="text-xs font-bold text-primary">Reši sad →</button>
+</div>
+</div>
+<div class="flex items-center gap-3 px-2">
+<span class="material-symbols-outlined text-secondary">groups</span>
+<span class="text-xs text-slate-400">Pridruži se grupi od 14k+ kolega na Discord-u</span>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
 <!-- Final CTA -->
-<section class="py-24 relative overflow-hidden">
-<div class="absolute inset-0 bg-primary/10"></div>
-<div class="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-radial from-primary/30 to-transparent blur-3xl pointer-events-none"></div>
-<div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
-<h2 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">Ready to ace your exam?</h2>
-<p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">Join thousands of students securing their spots at top Serbian universities. Start your journey to mastery today.</p>
-<div class="flex flex-col sm:flex-row gap-4 justify-center">
-<button class="bg-accent-banana hover:bg-[#b3e600] text-slate-900 h-14 px-10 rounded-lg text-lg font-bold transition-all shadow-[0_0_20px_rgba(204,255,0,0.3)] hover:shadow-[0_0_30px_rgba(204,255,0,0.5)] flex items-center justify-center gap-2">
-                        Start Free Trial
-                        <span class="material-symbols-outlined">arrow_forward</span>
-</button>
-<button class="bg-surface-dark border border-white/10 hover:bg-white/5 text-white h-14 px-10 rounded-lg text-lg font-medium transition-all">
-                        View Syllabus
-                    </button>
+<section class="py-32 relative">
+<div class="absolute inset-0 overflow-hidden pointer-events-none">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[800px] bg-primary/20 blur-[150px] opacity-30"></div>
+</div>
+<div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+<h2 class="font-serif text-6xl md:text-7xl font-black text-white mb-8">Tvoja <span class="italic text-primary">budućnost</span> počinje ovde.</h2>
+<p class="text-xl text-slate-400 mb-12 leading-relaxed">Ne ostavljaj upis slučaju. Pridruži se eliti i osiguraj svoje mesto na budžetu uz najnapredniju platformu za učenje.</p>
+<div class="flex flex-col sm:flex-row gap-6 justify-center">
+<button class="bg-primary text-white px-10 py-5 rounded-2xl font-bold text-xl hover:scale-105 transition-all neon-glow-orange">
+                    Započni besplatnu probu
+                </button>
+<button class="bg-white/5 border border-white/10 text-white px-10 py-5 rounded-2xl font-bold text-xl hover:bg-white/10 transition-all">
+                    Svi paketi usluga
+                </button>
+</div>
+<div class="mt-16 flex items-center justify-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-2xl">school</span>
+<span class="font-bold">ETF</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-2xl">science</span>
+<span class="font-bold">FON</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-2xl">settings</span>
+<span class="font-bold">FTN</span>
+</div>
 </div>
 </div>
 </section>
-</main>
 <!-- Footer -->
-<footer class="bg-background-dark border-t border-white/10 pt-16 pb-8">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-<div class="col-span-2 md:col-span-1">
-<div class="flex items-center gap-2 mb-4">
-<div class="size-6 text-primary">
-<span class="material-symbols-outlined text-2xl text-accent-banana">function</span>
+<footer class="border-t border-white/5 py-12 bg-obsidian">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="bg-white/10 p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-white text-sm">functions</span>
 </div>
-<span class="text-white text-lg font-bold">MathPrep Pro</span>
+<h2 class="font-serif text-lg font-black text-white">MathPrep <span class="text-primary">Elite</span></h2>
 </div>
-<p class="text-slate-500 text-sm leading-relaxed">
-                        The #1 AI-powered math preparation platform for University entrance exams in Serbia.
-                    </p>
+<div class="flex gap-8 text-sm text-slate-500">
+<a class="hover:text-white" href="#">O nama</a>
+<a class="hover:text-white" href="#">Kontakt</a>
+<a class="hover:text-white" href="#">Uslovi korišćenja</a>
+<a class="hover:text-white" href="#">Privatnost</a>
 </div>
-<div>
-<h4 class="text-white font-semibold mb-4">Platform</h4>
-<ul class="space-y-2 text-sm text-slate-400">
-<li><a class="hover:text-primary transition-colors" href="#">Curriculum</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">AI Tutor</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Pricing</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Testimonials</a></li>
-</ul>
-</div>
-<div>
-<h4 class="text-white font-semibold mb-4">Resources</h4>
-<ul class="space-y-2 text-sm text-slate-400">
-<li><a class="hover:text-primary transition-colors" href="#">Blog</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Past Papers</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Formula Sheets</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Study Guide</a></li>
-</ul>
-</div>
-<div>
-<h4 class="text-white font-semibold mb-4">Legal</h4>
-<ul class="space-y-2 text-sm text-slate-400">
-<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Cookie Policy</a></li>
-</ul>
-</div>
-</div>
-<div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-<p class="text-slate-600 text-xs">© 2024 MathPrep Pro. All rights reserved.</p>
-<div class="flex gap-4">
-<a class="text-slate-500 hover:text-white transition-colors" href="#"><span class="sr-only">Twitter</span><svg class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
-<a class="text-slate-500 hover:text-white transition-colors" href="#"><span class="sr-only">GitHub</span><svg class="h-5 w-5" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path></svg></a>
-</div>
-</div>
+<p class="text-sm text-slate-600">© 2024 MathPrep Elite. Sva prava zadržana.</p>
 </div>
 </footer>
-<style>
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-    </style>
 </body></html>

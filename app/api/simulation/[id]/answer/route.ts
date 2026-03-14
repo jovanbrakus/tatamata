@@ -1,6 +1,6 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { mockExamProblems, mockExams } from "@/drizzle/schema";
+import { mockExamProblems } from "@/drizzle/schema";
 import { eq, and } from "drizzle-orm";
 import { NextResponse } from "next/server";
 

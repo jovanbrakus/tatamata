@@ -22,10 +22,9 @@ interface DashboardProps {
   };
 }
 
-interface TopicData {
-  topic_id: string;
+interface CategoryGroupData {
+  id: string;
   name: string;
-  icon: string | null;
   total: number;
   solved: number;
 }
@@ -50,7 +49,7 @@ interface DashboardData {
     startedAt: string;
   } | null;
   countdown: string | null;
-  topics: TopicData[];
+  categoryGroups: CategoryGroupData[];
   rank: {
     position: number | null;
     totalParticipants: number;
@@ -67,110 +66,59 @@ interface DashboardData {
   season: { name: string; examPeriodStart: string } | null;
 }
 
-/* ─── topic styling ─── */
+/* ─── category group styling ─── */
 
-const TOPIC_STYLES: Record<
+const GROUP_STYLES: Record<
   string,
-  { color: string; hoverBorder: string; icon: string; bgClass: string }
+  { color: string; barColor: string; hoverBorder: string; icon: string; bgClass: string }
 > = {
   algebra: {
     color: "text-[#ec5b13]",
+    barColor: "#ec5b13",
     hoverBorder: "hover:border-[#ec5b13]/30",
     icon: "square_foot",
     bgClass: "bg-orange-500/10",
   },
-  geometrija: {
-    color: "text-[#0ea5e9]",
-    hoverBorder: "hover:border-[#0ea5e9]/30",
-    icon: "category",
-    bgClass: "bg-sky-500/10",
-  },
-  verovatnoca: {
-    color: "text-emerald-500",
-    hoverBorder: "hover:border-emerald-500/30",
-    icon: "casino",
-    bgClass: "bg-emerald-500/10",
-  },
-  logika: {
-    color: "text-purple-500",
-    hoverBorder: "hover:border-purple-500/30",
-    icon: "psychology",
-    bgClass: "bg-purple-500/10",
-  },
-  trigonometrija: {
+  trigonometry: {
     color: "text-rose-500",
+    barColor: "#f43f5e",
     hoverBorder: "hover:border-rose-500/30",
     icon: "change_history",
     bgClass: "bg-rose-500/10",
   },
-  kombinatorika: {
-    color: "text-amber-500",
-    hoverBorder: "hover:border-amber-500/30",
-    icon: "grid_view",
-    bgClass: "bg-amber-500/10",
+  geometry: {
+    color: "text-[#0ea5e9]",
+    barColor: "#0ea5e9",
+    hoverBorder: "hover:border-[#0ea5e9]/30",
+    icon: "category",
+    bgClass: "bg-sky-500/10",
   },
-  analiza: {
+  analysis: {
     color: "text-cyan-500",
+    barColor: "#06b6d4",
     hoverBorder: "hover:border-cyan-500/30",
     icon: "trending_up",
     bgClass: "bg-cyan-500/10",
   },
-};
-
-const DEFAULT_TOPIC_COLORS = [
-  {
-    color: "text-[#ec5b13]",
-    hoverBorder: "hover:border-[#ec5b13]/30",
-    icon: "functions",
-    bgClass: "bg-orange-500/10",
-  },
-  {
-    color: "text-[#0ea5e9]",
-    hoverBorder: "hover:border-[#0ea5e9]/30",
-    icon: "calculate",
-    bgClass: "bg-sky-500/10",
-  },
-  {
+  combinatorics_and_probability: {
     color: "text-emerald-500",
+    barColor: "#10b981",
     hoverBorder: "hover:border-emerald-500/30",
-    icon: "data_object",
+    icon: "casino",
     bgClass: "bg-emerald-500/10",
   },
-  {
-    color: "text-purple-500",
-    hoverBorder: "hover:border-purple-500/30",
-    icon: "hub",
-    bgClass: "bg-purple-500/10",
-  },
-];
+};
 
-function getTopicStyle(name: string, index: number) {
-  const key = name
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[čćšžđ]/g, (m) => {
-      const map: Record<string, string> = { č: "c", ć: "c", š: "s", ž: "z", đ: "d" };
-      return map[m] || m;
-    });
+const DEFAULT_GROUP_STYLE = {
+  color: "text-purple-500",
+  barColor: "#a855f7",
+  hoverBorder: "hover:border-purple-500/30",
+  icon: "functions",
+  bgClass: "bg-purple-500/10",
+};
 
-  for (const [k, v] of Object.entries(TOPIC_STYLES)) {
-    if (key.includes(k)) return v;
-  }
-  return DEFAULT_TOPIC_COLORS[index % DEFAULT_TOPIC_COLORS.length];
-}
-
-function getTopicBarColor(name: string, index: number) {
-  const style = getTopicStyle(name, index);
-  // Extract the color value from the class
-  if (style.color.includes("ec5b13")) return "#ec5b13";
-  if (style.color.includes("0ea5e9")) return "#0ea5e9";
-  if (style.color.includes("emerald")) return "#10b981";
-  if (style.color.includes("purple")) return "#a855f7";
-  if (style.color.includes("rose")) return "#f43f5e";
-  if (style.color.includes("amber")) return "#f59e0b";
-  if (style.color.includes("cyan")) return "#06b6d4";
-  return "#ec5b13";
+function getGroupStyle(id: string) {
+  return GROUP_STYLES[id] ?? DEFAULT_GROUP_STYLE;
 }
 
 /* ─── helpers ─── */
@@ -252,19 +200,18 @@ export default function Dashboard({ user }: DashboardProps) {
   const lastExamScore = lastExam ? parseFloat(lastExam.scorePercent || "0").toFixed(0) : null;
   const rank = data?.rank;
   const streak = data?.user?.streakCurrent ?? 0;
-  const topics = data?.topics ?? [];
-  const displayTopics = topics.slice(0, 4);
+  const categoryGroups = data?.categoryGroups ?? [];
 
-  // Find weakest topic for AI recommendation
-  const weakest = [...topics]
-    .filter((t) => Number(t.total) > 0)
+  // Find weakest group for AI recommendation
+  const weakest = [...categoryGroups]
+    .filter((g) => g.total > 0)
     .sort(
       (a, b) =>
-        Number(a.solved) / Math.max(Number(a.total), 1) -
-        Number(b.solved) / Math.max(Number(b.total), 1)
+        a.solved / Math.max(a.total, 1) -
+        b.solved / Math.max(b.total, 1)
     )[0];
   const weakestPct = weakest
-    ? Math.round((Number(weakest.solved) / Math.max(Number(weakest.total), 1)) * 100)
+    ? Math.round((weakest.solved / Math.max(weakest.total, 1)) * 100)
     : 0;
 
   return (
@@ -299,8 +246,8 @@ export default function Dashboard({ user }: DashboardProps) {
         </header>
 
         <div className="grid grid-cols-12 gap-6">
-          {/* ─── LEFT COLUMN (8 cols) ─── */}
-          <div className="col-span-12 space-y-6 lg:col-span-8">
+          {/* ─── LEFT COLUMN (9 cols) ─── */}
+          <div className="col-span-12 space-y-6 lg:col-span-9">
             {/* Daily Goal + Last Test */}
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               {/* Daily Progress Card */}
@@ -391,20 +338,17 @@ export default function Dashboard({ user }: DashboardProps) {
                   Vidi sve
                 </Link>
               </div>
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                {displayTopics.map((topic, i) => {
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+                {categoryGroups.map((group) => {
                   const pct =
-                    Number(topic.total) > 0
-                      ? Math.round(
-                          (Number(topic.solved) / Math.max(Number(topic.total), 1)) * 100
-                        )
+                    group.total > 0
+                      ? Math.round((group.solved / Math.max(group.total, 1)) * 100)
                       : 0;
-                  const style = getTopicStyle(topic.name, i);
-                  const barColor = getTopicBarColor(topic.name, i);
+                  const style = getGroupStyle(group.id);
 
                   return (
                     <div
-                      key={topic.topic_id}
+                      key={group.id}
                       className={`glass-card group rounded-2xl p-5 transition-all ${style.hoverBorder}`}
                     >
                       <div
@@ -414,30 +358,27 @@ export default function Dashboard({ user }: DashboardProps) {
                           {style.icon}
                         </span>
                       </div>
-                      <h4 className="mb-1 text-sm font-bold">{topic.name}</h4>
-                      <p className="mb-3 text-[10px] text-muted">{pct}% Zavrseno</p>
+                      <h4 className="mb-1 text-sm font-bold">{group.name}</h4>
+                      <p className="mb-3 text-[10px] text-muted">
+                        {group.total} zadataka
+                      </p>
                       <div className="mb-4 h-1 w-full overflow-hidden rounded-full bg-[var(--tint)]">
                         <div
                           className="h-full rounded-full transition-all duration-700"
-                          style={{ width: `${pct}%`, backgroundColor: barColor }}
+                          style={{ width: `${pct}%`, backgroundColor: style.barColor }}
                         />
                       </div>
                       <Link
                         href="/zadaci"
                         className="block w-full rounded-lg bg-[var(--tint)] py-2 text-center text-xs font-bold transition-all hover:text-white"
-                        style={
-                          {
-                            "--hover-bg": barColor,
-                          } as React.CSSProperties
-                        }
                         onMouseEnter={(e) => {
-                          (e.target as HTMLElement).style.backgroundColor = barColor;
+                          (e.target as HTMLElement).style.backgroundColor = style.barColor;
                         }}
                         onMouseLeave={(e) => {
                           (e.target as HTMLElement).style.backgroundColor = "";
                         }}
                       >
-                        NASTAVI
+                        VEZBAJ
                       </Link>
                     </div>
                   );
@@ -475,8 +416,8 @@ export default function Dashboard({ user }: DashboardProps) {
             </div>
           </div>
 
-          {/* ─── RIGHT COLUMN (4 cols) ─── */}
-          <div className="col-span-12 space-y-6 lg:col-span-4">
+          {/* ─── RIGHT COLUMN (3 cols) ─── */}
+          <div className="col-span-12 space-y-6 lg:col-span-3">
             {/* Countdown Widget */}
             <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#ec5b13] to-[#ff8c00] p-6 text-white shadow-2xl">
               <div className="pointer-events-none absolute -bottom-10 -right-10 opacity-20">
@@ -486,26 +427,12 @@ export default function Dashboard({ user }: DashboardProps) {
                 <p className="mb-6 text-center text-sm font-bold uppercase tracking-widest opacity-80">
                   Do prijemnog ispita
                 </p>
-                <div className="flex items-center justify-center gap-4 text-center">
+                <div className="flex items-center justify-center text-center">
                   <div className="space-y-1">
-                    <div className="text-4xl font-black">
-                      {String(countdown.days).padStart(2, "0")}
+                    <div className="text-5xl font-black">
+                      {countdown.days}
                     </div>
                     <p className="text-[10px] font-bold uppercase opacity-80">Dana</p>
-                  </div>
-                  <div className="text-2xl font-light opacity-50">:</div>
-                  <div className="space-y-1">
-                    <div className="text-4xl font-black">
-                      {String(countdown.hours).padStart(2, "0")}
-                    </div>
-                    <p className="text-[10px] font-bold uppercase opacity-80">Sati</p>
-                  </div>
-                  <div className="text-2xl font-light opacity-50">:</div>
-                  <div className="space-y-1">
-                    <div className="text-4xl font-black">
-                      {String(countdown.minutes).padStart(2, "0")}
-                    </div>
-                    <p className="text-[10px] font-bold uppercase opacity-80">Minuta</p>
                   </div>
                 </div>
               </div>

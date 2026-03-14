@@ -1,8 +1,9 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { mockExams, mockExamProblems, problems, faculties, problemProgress } from "@/drizzle/schema";
+import { mockExams, mockExamProblems, faculties, problemProgress } from "@/drizzle/schema";
 import { eq, and } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { getProblemFull } from "@/lib/problems";
 
 export async function POST(req: Request, { params }: { params: Promise<{ id: string }> }) {
   const session = await auth();
@@ -25,16 +26,14 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
   const scoringWrong = parseFloat(fac[0].scoringWrong ?? "0");
   const scoringBlank = parseFloat(fac[0].scoringBlank ?? "0");
 
-  // Get exam problems with correct answers
+  // Get exam problems (no join with problems table)
   const examProblems = await db
     .select({
       epId: mockExamProblems.id,
       answer: mockExamProblems.answer,
-      problemId: problems.id,
-      correctAnswer: problems.correctAnswer,
+      problemId: mockExamProblems.problemId,
     })
     .from(mockExamProblems)
-    .innerJoin(problems, eq(mockExamProblems.problemId, problems.id))
     .where(eq(mockExamProblems.examId, id));
 
   let score = 0;
@@ -44,8 +43,12 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
   const maxScore = examProblems.length * scoringCorrect;
 
   for (const ep of examProblems) {
-    const isCorrect = ep.answer?.toUpperCase() === ep.correctAnswer.toUpperCase();
+    // Look up correct answer from filesystem
+    const problem = getProblemFull(ep.problemId);
+    const correctAnswer = problem?.correctAnswer ?? "A";
+
     const isBlank = !ep.answer;
+    const isCorrect = !isBlank && ep.answer?.toUpperCase() === correctAnswer.toUpperCase();
 
     if (isBlank) {
       score += scoringBlank;
@@ -65,7 +68,15 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
     const status = isCorrect ? "solved" : isBlank ? "unseen" : "attempted";
     if (!isBlank) {
       await db.insert(problemProgress).values({
-        userId, problemId: ep.problemId, status, attempts: 1, lastAnswer: ep.answer, isCorrect, solvedAt: isCorrect ? new Date() : null, updatedAt: new Date(),
+        userId,
+        problemId: ep.problemId,
+        status,
+        attempts: 1,
+        lastAnswer: ep.answer,
+        isCorrect,
+        context: "exam",
+        solvedAt: isCorrect ? new Date() : null,
+        updatedAt: new Date(),
       }).onConflictDoNothing();
     }
   }

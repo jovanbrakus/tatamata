@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="sr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#120c0a", /* Deeper obsidian */
+                        "obsidian": "#1a1310",
+                        "glass": "rgba(255, 255, 255, 0.03)",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .orange-glow:hover {
+            box-shadow: 0 0 15px rgba(236, 91, 19, 0.3);
+            border-color: #ec5b13;
+        }
+        .active-sidebar-item {
+            background: linear-gradient(90deg, rgba(236, 91, 19, 0.15) 0%, rgba(236, 91, 19, 0) 100%);
+            border-left: 3px solid #ec5b13;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-72 bg-obsidian border-r border-white/5 flex flex-col shrink-0">
+<div class="p-8 flex items-center gap-3">
+<div class="bg-primary p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-white text-2xl">functions</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight">MathPrep <span class="text-primary">Elite</span></h1>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium">Kontrolna tabla</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-medium">Kursevi</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 active-sidebar-item text-primary" href="#">
+<span class="material-symbols-outlined text-primary" style="font-variant-settings: 'FILL' 1">book_2</span>
+<span class="font-medium">Materijali</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="font-medium">Vežbe</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium">Podešavanja</span>
+</a>
+</nav>
+<div class="p-6">
+<div class="glass-panel rounded-xl p-4 border border-primary/20">
+<p class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-2">Premium status</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">workspace_premium</span>
+<span class="text-sm font-semibold">Aktivan do 01.09.</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<!-- Top Navigation -->
+<header class="h-20 flex items-center justify-between px-10 border-b border-white/5 shrink-0 bg-background-dark/50 backdrop-blur-md sticky top-0 z-10">
+<h2 class="text-2xl font-bold">Materijali za učenje</h2>
+<div class="flex items-center gap-6">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">search</span>
+<input class="w-full bg-glass border-white/10 rounded-xl pl-10 pr-4 py-2 focus:ring-primary focus:border-primary text-sm transition-all" placeholder="Pretraži lekcije, PDF-ove ili formule..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 flex items-center justify-center rounded-xl bg-glass border border-white/10 hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="flex items-center gap-3 pl-3 border-l border-white/10">
+<div class="text-right">
+<p class="text-sm font-bold leading-none">Nikola Petrović</p>
+<p class="text-xs text-slate-500 mt-1">Gimnazijalac</p>
+</div>
+<div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-primary to-orange-400 p-0.5">
+<img class="w-full h-full rounded-[10px] object-cover" data-alt="User profile avatar of a student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoFHYGqBtJdItkYyyRRS4pDj-ikkUfc30RK6d5z_1dMdbFvfYLmqmYuIBl_8hvpG4a-_H3IqCbTuvx0WLtqvA5zdLfZ3dJrn_TD_5nj8REXmZMfSCyna4pvlxauRinMSD0807ixaAgGPdj0xJ7vXBsvudOJi-64ejQXB3m4qJLSRFhg1RwHcj0-cD6XlrqflgedUXfN0ls6p5WjErr32V1LiVUhbciUgXxiBkcSZaqcO1yId5h4qzBdXZqdCOQ2fMN3vwVsZ01r4s6"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<div class="p-10 space-y-12 max-w-7xl mx-auto w-full">
+<!-- Filters -->
+<section class="flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<span class="text-sm font-medium text-slate-500 mr-2">Tip materijala:</span>
+<button class="px-4 py-2 rounded-full bg-primary text-white text-sm font-semibold">Sve</button>
+<button class="px-4 py-2 rounded-full bg-glass border border-white/5 hover:border-primary/50 text-sm font-medium transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">videocam</span> Video
+                        </button>
+<button class="px-4 py-2 rounded-full bg-glass border border-white/5 hover:border-primary/50 text-sm font-medium transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">description</span> PDF
+                        </button>
+<button class="px-4 py-2 rounded-full bg-glass border border-white/5 hover:border-primary/50 text-sm font-medium transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">functions</span> Formule
+                        </button>
+</div>
+<div class="h-6 w-px bg-white/10"></div>
+<div class="flex items-center gap-3">
+<span class="text-sm font-medium text-slate-500 mr-2">Kategorija:</span>
+<select class="bg-glass border-white/5 rounded-xl text-sm py-2 px-4 focus:ring-primary focus:border-primary">
+<option>Sve kategorije</option>
+<option>Algebra</option>
+<option>Geometrija</option>
+<option>Verovatnoća</option>
+<option>Logika</option>
+</select>
+</div>
+</section>
+<!-- Recommended (Horizontal Slider) -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+                            Preporučeno za tebe
+                        </h3>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+<div class="flex gap-6 overflow-x-hidden">
+<!-- Recommendation Card 1 -->
+<div class="min-w-[400px] glass-panel rounded-2xl overflow-hidden group orange-glow transition-all duration-300">
+<div class="relative h-48">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Abstract mathematical digital visualization in neon colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx3WOrsqRhsY6v3kQ7_6fb6lcj6uA7fTObVAm1pG-9q9LIIMhLNQxDx8lm1Vxupe9_lXlc2eHqOwLkbVVQktB9cweEWyY_gFe8ED7uLBlb3t7Wrp2BBNMMtanw4uv_10Bz6DV6zuuTjE6iSUP0xq82NebLsy7b6tVNTkAgn0ZUR0kIZUriJ3eBlWSzIm2ZDj9Hrr3PF8K4CgWXvdq_sPn2voJdOwGVBWSRnIfO8JGnwJlWxPDesrVE0vSDvPPhX9o42D4P6_I-zTv5"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-4 left-4 flex items-center gap-2">
+<span class="bg-primary px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">Novo</span>
+<span class="bg-black/50 backdrop-blur-md px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">15 min</span>
+</div>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-lg shadow-primary/40">
+<span class="material-symbols-outlined text-white fill-current">play_arrow</span>
+</div>
+</div>
+</div>
+<div class="p-6">
+<h4 class="text-lg font-bold mb-2">Sistemi linearnih jednačina - Napredni trikovi</h4>
+<p class="text-sm text-slate-400 line-clamp-2 mb-4">Nauči kako da rešiš sisteme sa 3 nepoznate za manje od 2 minuta koristeći Gausovu metodu eliminacije.</p>
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-primary">ALGEBRA</span>
+<button class="text-sm font-bold flex items-center gap-1 hover:underline underline-offset-4">Gledaj lekciju <span class="material-symbols-outlined text-xs">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<!-- Recommendation Card 2 -->
+<div class="min-w-[400px] glass-panel rounded-2xl overflow-hidden group orange-glow transition-all duration-300">
+<div class="relative h-48">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Geometrical complex patterns and wireframes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt5n4_Dk2Lx5YGJ3HN-emhalL8WAy75_yuc8E1Vedoej010SCMK0eDWFAsmp_5mglNJA8_VOOTDWLk9nej-xSyNREQCRxmRAuIiWcsy_Mpeh9yIVbQRofvPFMjD8vT6Y5w1C2h9PphiE1CVVQWXFzn8oRAVQDxIxUbwv4_D4u4tRCU9AtBkRmqjx-WsliOl0yMA2SL5hXEYRrVK7qvxSQIMd1gvKlgnK7PGiSZS_MQuwb3bbodjbndNuecs9glJpjYeHRDRRUWVJvo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-4 left-4 flex items-center gap-2">
+<span class="bg-primary px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">Popularno</span>
+<span class="bg-black/50 backdrop-blur-md px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">22 min</span>
+</div>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-lg shadow-primary/40">
+<span class="material-symbols-outlined text-white fill-current">play_arrow</span>
+</div>
+</div>
+</div>
+<div class="p-6">
+<h4 class="text-lg font-bold mb-2">Stereometrija: Tela upisana u sferu</h4>
+<p class="text-sm text-slate-400 line-clamp-2 mb-4">Vizuelizacija i rešavanje najčešćih zadataka sa prijemnih ispita koji uključuju loptu i poliedre.</p>
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-primary">GEOMETRIJA</span>
+<button class="text-sm font-bold flex items-center gap-1 hover:underline underline-offset-4">Gledaj lekciju <span class="material-symbols-outlined text-xs">arrow_forward</span></button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+<!-- Main Columns -->
+<div class="lg:col-span-2 space-y-12">
+<!-- Category Grid -->
+<section>
+<h3 class="text-xl font-bold mb-6">Glavne kategorije</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Algebra -->
+<div class="glass-panel p-6 rounded-2xl flex items-start gap-5 hover:border-primary/40 transition-all cursor-pointer group">
+<div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined text-3xl">variables</span>
+</div>
+<div class="flex-1">
+<h4 class="text-lg font-bold mb-1">Algebra</h4>
+<p class="text-sm text-slate-500 mb-4">12 Video lekcija • 8 PDF-ova</p>
+<button class="bg-glass border border-white/10 px-4 py-1.5 rounded-lg text-sm font-bold group-hover:bg-primary transition-all">Otvori</button>
+</div>
+</div>
+<!-- Geometrija -->
+<div class="glass-panel p-6 rounded-2xl flex items-start gap-5 hover:border-primary/40 transition-all cursor-pointer group">
+<div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined text-3xl">polyline</span>
+</div>
+<div class="flex-1">
+<h4 class="text-lg font-bold mb-1">Geometrija</h4>
+<p class="text-sm text-slate-500 mb-4">15 Video lekcija • 10 PDF-ova</p>
+<button class="bg-glass border border-white/10 px-4 py-1.5 rounded-lg text-sm font-bold group-hover:bg-primary transition-all">Otvori</button>
+</div>
+</div>
+<!-- Verovatnoća -->
+<div class="glass-panel p-6 rounded-2xl flex items-start gap-5 hover:border-primary/40 transition-all cursor-pointer group">
+<div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined text-3xl">casino</span>
+</div>
+<div class="flex-1">
+<h4 class="text-lg font-bold mb-1">Verovatnoća</h4>
+<p class="text-sm text-slate-500 mb-4">6 Video lekcija • 4 PDF-a</p>
+<button class="bg-glass border border-white/10 px-4 py-1.5 rounded-lg text-sm font-bold group-hover:bg-primary transition-all">Otvori</button>
+</div>
+</div>
+<!-- Logika -->
+<div class="glass-panel p-6 rounded-2xl flex items-start gap-5 hover:border-primary/40 transition-all cursor-pointer group">
+<div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+</div>
+<div class="flex-1">
+<h4 class="text-lg font-bold mb-1">Logika</h4>
+<p class="text-sm text-slate-500 mb-4">5 Video lekcija • 3 PDF-a</p>
+<button class="bg-glass border border-white/10 px-4 py-1.5 rounded-lg text-sm font-bold group-hover:bg-primary transition-all">Otvori</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Latest Scripts -->
+<section>
+<h3 class="text-xl font-bold mb-6">Najnovije skripte i formule</h3>
+<div class="space-y-3">
+<div class="glass-panel p-4 rounded-xl flex items-center justify-between hover:bg-white/5 transition-all group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div>
+<h5 class="font-bold text-sm">Zbirka rešenih zadataka - Trigonometrija</h5>
+<p class="text-xs text-slate-500">PDF • 4.2 MB • Objavljeno pre 2 dana</p>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center border border-white/10 text-primary hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">download</span>
+</button>
+</div>
+<div class="glass-panel p-4 rounded-xl flex items-center justify-between hover:bg-white/5 transition-all group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500">
+<span class="material-symbols-outlined">functions</span>
+</div>
+<div>
+<h5 class="font-bold text-sm">Formule: Planimetrija i Stereometrija</h5>
+<p class="text-xs text-slate-500">PDF • 1.5 MB • Objavljeno pre 5 dana</p>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center border border-white/10 text-primary hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">download</span>
+</button>
+</div>
+<div class="glass-panel p-4 rounded-xl flex items-center justify-between hover:bg-white/5 transition-all group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div>
+<h5 class="font-bold text-sm">Logaritmi - Od osnova do takmičenja</h5>
+<p class="text-xs text-slate-500">PDF • 2.8 MB • Objavljeno pre 1 nedelju</p>
+</div>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center border border-white/10 text-primary hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-lg">download</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Moj Kutak (Side panel) -->
+<aside class="space-y-8">
+<section class="glass-panel p-6 rounded-2xl sticky top-28">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary" style="font-variant-settings: 'FILL' 1">bookmark</span>
+<h3 class="text-lg font-bold">Moj kutak</h3>
+</div>
+<div class="space-y-6">
+<div>
+<p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Sačuvano za kasnije</p>
+<div class="space-y-4">
+<div class="flex gap-3 group cursor-pointer">
+<div class="w-16 h-12 rounded-lg bg-obsidian overflow-hidden border border-white/10 shrink-0">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="Small thumbnail of mathematical equation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGLnRV47rup3CheVnKYgcCd4XhToa5qN5az_QaXaQ5kKAGxPrvpaDOE8Kb6tPrQp-a8DTKi2LnoqtHUqUYZ3da4tAin6D8I8EelKlBAsZx_28bYKXFw70dvX8b-8xolGoHRbcj7j0-995Zr22O5EtiXXMD8UWIFsEM2_Tenq7IT633_X3Nod_WfTn4aI-hnte1DP9XoMAzudrpQVu8i8ZHMKuMPbLgaEz-lJwgByLQWajk8GRzhHlePT4fFguC5GRjGOHH8B7M6rf8"/>
+</div>
+<div>
+<h6 class="text-sm font-bold leading-tight group-hover:text-primary transition-colors">Vektori u prostoru</h6>
+<p class="text-xs text-slate-500 mt-1">Video • 18 min</p>
+</div>
+</div>
+<div class="flex gap-3 group cursor-pointer">
+<div class="w-16 h-12 rounded-lg bg-obsidian overflow-hidden border border-white/10 shrink-0">
+<div class="w-full h-full flex items-center justify-center bg-red-500/10 text-red-500">
+<span class="material-symbols-outlined text-xl">description</span>
+</div>
+</div>
+<div>
+<h6 class="text-sm font-bold leading-tight group-hover:text-primary transition-colors">Kombinatorika skripta</h6>
+<p class="text-xs text-slate-500 mt-1">PDF • 12 strana</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 text-xs font-bold text-slate-400 hover:text-white transition-colors py-2 border border-white/10 rounded-lg">Pogledaj sve sačuvano</button>
+</div>
+<div class="pt-6 border-t border-white/5">
+<p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Preuzeto</p>
+<div class="flex items-center gap-3 p-3 rounded-xl bg-primary/5 border border-primary/20">
+<div class="w-8 h-8 rounded bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm">download_done</span>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold">Probni prijemni 2023</p>
+<div class="w-full bg-white/10 h-1 rounded-full mt-1 overflow-hidden">
+<div class="bg-primary h-full w-[100%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</aside>
+</div>
+</div>
+<!-- Footer-like space -->
+<footer class="mt-auto py-10 px-10 border-t border-white/5 bg-obsidian">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-slate-500 text-sm">© 2024 MathPrep Elite. Sva prava zadržana.</p>
+<div class="flex gap-8">
+<a class="text-slate-500 hover:text-primary text-sm transition-colors" href="#">Pomoć</a>
+<a class="text-slate-500 hover:text-primary text-sm transition-colors" href="#">Uslovi korišćenja</a>
+<a class="text-slate-500 hover:text-primary text-sm transition-colors" href="#">Privatnost</a>
+</div>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

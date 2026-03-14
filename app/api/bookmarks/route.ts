@@ -1,8 +1,9 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { bookmarks, problems } from "@/drizzle/schema";
+import { bookmarks } from "@/drizzle/schema";
 import { eq, desc } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { getProblemMeta } from "@/lib/problems";
 
 export async function GET() {
   const session = await auth();
@@ -10,20 +11,29 @@ export async function GET() {
 
   const userId = (session.user as any).id;
 
-  const result = await db
+  const rows = await db
     .select({
       problemId: bookmarks.problemId,
       createdAt: bookmarks.createdAt,
-      slug: problems.slug,
-      title: problems.title,
-      facultyId: problems.facultyId,
-      year: problems.year,
-      problemNumber: problems.problemNumber,
     })
     .from(bookmarks)
-    .innerJoin(problems, eq(bookmarks.problemId, problems.id))
     .where(eq(bookmarks.userId, userId))
     .orderBy(desc(bookmarks.createdAt));
+
+  const result = rows
+    .map((row) => {
+      const meta = getProblemMeta(row.problemId);
+      if (!meta) return null;
+      return {
+        id: meta.id,
+        title: `${meta.facultyId} ${meta.year} #${meta.problemNumber}`,
+        facultyId: meta.facultyId,
+        year: meta.year,
+        problemNumber: meta.problemNumber,
+        createdAt: row.createdAt,
+      };
+    })
+    .filter(Boolean);
 
   return NextResponse.json(result);
 }

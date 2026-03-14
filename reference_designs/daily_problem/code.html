@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#120b08",
+                        "obsidian": "#1a110d",
+                        "accent-blue": "#0ea5e9"
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass {
+            background: rgba(26, 17, 13, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(236, 91, 19, 0.1);
+        }
+        .neon-glow-orange {
+            box-shadow: 0 0 15px rgba(236, 91, 19, 0.2);
+        }
+        .neon-glow-blue {
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 glass border-b border-primary/20 px-6 py-3 lg:px-20">
+<div class="flex items-center justify-between max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-3xl font-bold">functions</span>
+<h2 class="text-xl font-black tracking-tighter uppercase italic">MathPrep Elite</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Challenges</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Courses</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Practice</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Community</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary/60 text-lg">search</span>
+<input class="bg-obsidian border border-primary/20 rounded-xl py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/50 focus:outline-none w-64" placeholder="Search problems..."/>
+</div>
+<button class="p-2 rounded-xl bg-obsidian border border-primary/20 text-primary hover:bg-primary/10 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full border-2 border-primary overflow-hidden">
+<img alt="User Profile" data-alt="Close up of a student user profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8h34fVXR08JFwRNYZa-0bBH1JhFWmmbtv26K9NGRMQMa4vX0YeodEsXqGV3-ssOy-NvzQhJ8p41rjtrzJU72apmmVS6ndDzGcETcNAq8JfNkHpDymO1mmMm4FoVj-YaIl0R7VL3jUGxMhRoapursdcdtudkYP_AdimktR09kQj5OVq1-y4OlUA7QZ9yVNCjC4WUqLse8Blkza5oSG-sBSo7Rbz21H4ByD4ttC-9ToyHeo9J9HtVLuYd6z8D1TMZn6FpG5p4jFkT33"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-7xl mx-auto px-6 py-8 lg:px-20 grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Sidebar Navigation (Desktop) -->
+<aside class="hidden lg:flex flex-col gap-2 col-span-2">
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-slate-400">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary border border-primary/20 neon-glow-orange transition-colors" href="#">
+<span class="material-symbols-outlined fill-1">bolt</span>
+<span class="text-sm font-bold">Daily Challenge</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-400" href="#">
+<span class="material-symbols-outlined">edit_square</span>
+<span class="text-sm font-medium">Practice Sets</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-400" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="text-sm font-medium">Mock Exams</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-primary/10 transition-colors text-slate-400" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="text-sm font-medium">Leaderboard</span>
+</a>
+</div>
+<div class="mt-8 p-4 rounded-2xl glass border border-accent-blue/30 bg-accent-blue/5">
+<p class="text-xs font-bold text-accent-blue uppercase tracking-widest mb-2">Pro Perk</p>
+<p class="text-sm font-medium mb-4">Unlock step-by-step AI solutions for all challenges.</p>
+<button class="w-full py-2 bg-accent-blue hover:bg-accent-blue/80 text-white rounded-lg text-xs font-bold transition-all shadow-lg shadow-accent-blue/20">Upgrade Now</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="col-span-1 lg:col-span-7 flex flex-col gap-8">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 text-xs font-medium text-slate-500 uppercase tracking-widest">
+<a class="hover:text-primary" href="#">Home</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-primary">Daily Challenge</span>
+</div>
+<!-- Problem Hero Section -->
+<section class="flex flex-col gap-6">
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+<div class="flex flex-col gap-1">
+<h1 class="text-4xl font-black tracking-tight dark:text-white">Zadatak dana</h1>
+<p class="text-slate-400 font-medium">Level: <span class="text-primary">Elite Advanced</span> • 800 XP</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 glass rounded-xl text-xs font-bold hover:bg-primary/10 border border-primary/20 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">history</span> Archive
+                            </button>
+<button class="px-4 py-2 glass rounded-xl text-xs font-bold hover:bg-primary/10 border border-primary/20 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">share</span> Share
+                            </button>
+</div>
+</div>
+<!-- The Challenge Card -->
+<div class="glass rounded-3xl p-8 border border-primary/30 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[120px] text-primary">architecture</span>
+</div>
+<div class="relative z-10 flex flex-col gap-8">
+<div class="flex flex-col gap-4">
+<h3 class="text-xl font-bold text-accent-blue">Integral Calculus: Multidimensional Analysis</h3>
+<div class="bg-obsidian/50 p-6 rounded-2xl border border-primary/10 font-serif italic text-2xl text-center flex flex-col gap-4">
+<p>Evaluate the triple integral:</p>
+<p class="text-3xl font-medium tracking-widest text-white">
+                                        ∭<sub>V</sub> (x<sup>2</sup> + y<sup>2</sup>) dz dy dx
+                                    </p>
+<p class="text-base font-sans italic text-slate-400 not-italic">
+                                        Where V is the region bounded by the paraboloid z = 4 - x<sup>2</sup> - y<sup>2</sup> and the xy-plane.
+                                    </p>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<label class="text-sm font-bold text-slate-400 uppercase tracking-widest">Your Solution</label>
+<div class="flex gap-3">
+<input class="flex-1 bg-obsidian border border-primary/30 rounded-2xl px-6 py-4 text-xl font-mono focus:ring-2 focus:ring-primary focus:outline-none placeholder:text-slate-700" placeholder="e.g. 8π/3" type="text"/>
+<button class="bg-primary hover:bg-primary/90 text-white font-bold px-8 rounded-2xl transition-all shadow-xl shadow-primary/20 flex items-center gap-2">
+                                        Submit <span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<p class="text-xs text-slate-500 italic">Immediate feedback: You will receive partial XP for showing your work in the discussion below.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Discussion Section -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h2 class="text-2xl font-black tracking-tight flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">forum</span> Diskusija
+                            <span class="text-sm font-normal text-slate-500 bg-obsidian border border-primary/10 px-3 py-1 rounded-full">142 comments</span>
+</h2>
+<div class="flex gap-2">
+<button class="text-xs font-bold text-primary hover:underline">Newest First</button>
+<span class="text-slate-700">|</span>
+<button class="text-xs font-bold text-slate-500 hover:text-primary">Most Helpful</button>
+</div>
+</div>
+<!-- Comment Input -->
+<div class="flex gap-4 p-4 glass rounded-2xl border border-primary/10">
+<div class="h-10 w-10 shrink-0 rounded-full border border-primary overflow-hidden">
+<img alt="Current User" data-alt="Close up student user profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO_kWTfw-7m5beABAsv4G4kjDYjiUMG-tu1d0WM4F3sySGiFtqxlRpn2pheGDs5qADyN5vVXD006vjpJyFSs5Dy5i0d9zDznwiMi7e5S6xnxpsVzFR-Xdd-tED51YLj7NBypElb8Fvk_SvxkY7u-ZdVXWWx4swNpo3Eq0HFp9vGXmrszB6xIS3-sf8huBkxnfvOo-B22kwvd4Ccm8F66gSlGl_vrWPd9U04e_oxXav2OBphOdZjhGhRWvhfOHBF_SHFnPN_Pw8ijph"/>
+</div>
+<div class="flex-1 flex flex-col gap-3">
+<textarea class="w-full bg-obsidian/40 border-none focus:ring-0 rounded-xl p-3 text-sm placeholder:text-slate-600 resize-none min-h-[100px]" placeholder="Share your approach or ask a question... Use $ for LaTeX formulas."></textarea>
+<div class="flex justify-between items-center">
+<div class="flex gap-2 text-slate-500">
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">image</span></button>
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">functions</span></button>
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">link</span></button>
+</div>
+<button class="bg-primary/20 text-primary hover:bg-primary border border-primary/30 hover:text-white px-5 py-2 rounded-xl text-xs font-bold transition-all">Post Solution</button>
+</div>
+</div>
+</div>
+<!-- Comments List -->
+<div class="flex flex-col gap-4">
+<!-- Comment 1 (Mentor) -->
+<div class="glass rounded-2xl p-6 border-l-4 border-l-accent-blue border border-primary/5">
+<div class="flex gap-4">
+<div class="h-12 w-12 shrink-0 rounded-xl border-2 border-accent-blue overflow-hidden">
+<img alt="Mentor Profile" data-alt="Headshot of a smiling math professor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGIU-kPQyTjY40jtc5zkTcYGerC9guX5Z4E76rjUqPwQGWCbjwUe3QFxGjnj1GeB4iXBA9ZFWgYvYEbJLCiHNBZF51d3_jVRFWcWXGMGwMnRzdXU40VjB6AeEqDnTBvYnvbmL51Ml3K2nwUTBCL-IolKV3Nomz2z7P6rjBfD-Kn5VUlPdaE_Vbn35wvLSChY1eBPpwZza-wF7iOsKsheFnkZGlS_cn2d55ZymUAaJ_FvyhAle7cLckiRulwJIOVrXhIrDukmwA2yIR"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="font-bold text-slate-200">Dr. Aris Thorne</span>
+<span class="bg-accent-blue/10 text-accent-blue text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-tighter border border-accent-blue/20">Mentor</span>
+<span class="text-xs text-slate-500 italic ml-2">2 hours ago</span>
+</div>
+<button class="text-slate-600 hover:text-primary"><span class="material-symbols-outlined text-lg">more_horiz</span></button>
+</div>
+<p class="text-sm text-slate-300 leading-relaxed mb-4">
+                                        Excellent challenge today. Remember to switch to cylindrical coordinates for this volume. The limits for $r$ would be $[0, 2]$ and $\theta$ would be $[0, 2\pi]$. The height $z$ ranges from $0$ to $4-r^2$. This makes the integrand much simpler!
+                                    </p>
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-base">thumb_up</span> 24
+                                        </button>
+<button class="flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-base">reply</span> Reply
+                                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Comment 2 -->
+<div class="glass rounded-2xl p-6 border border-primary/5">
+<div class="flex gap-4">
+<div class="h-12 w-12 shrink-0 rounded-xl border border-primary/20 overflow-hidden">
+<img alt="Student Profile" data-alt="Smiling female student headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtCspRblP4WwNSkwJEYXvSdDzJStYntkU3ArvjFDvuYLnA2YPn9v-qWROv8VydVb-rAS36WZf0TVB_QQp_efiVVTBd1ZlW08gpRsTeaKKTk9_M-j8-Vqd1xy6pym4xlNgKv0SxrGMRh89SxB6s-o4q7Ml5GbzBEGakcxB-K6eTPv-vFwTiHEssqDUPnic9ZelZETdSM5sl4oYZ7oKIurqiWZTejLMtXHbgD4uhZq_s5E82fRmgnIU7ejg3vBA1wZ3jFNrNQfRjHm3o"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="font-bold text-slate-200">Sarah Chen</span>
+<span class="bg-primary/10 text-primary text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-tighter border border-primary/20">Top 1%</span>
+<span class="text-xs text-slate-500 italic ml-2">5 hours ago</span>
+</div>
+<button class="text-slate-600 hover:text-primary"><span class="material-symbols-outlined text-lg">more_horiz</span></button>
+</div>
+<p class="text-sm text-slate-300 leading-relaxed mb-4">
+                                        I got $8\pi$ for the final volume integral. Did anyone else get a different coefficient? I might have missed a factor of $1/2$ during the $r^3$ integration step.
+                                    </p>
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-1.5 text-xs font-bold text-primary transition-colors">
+<span class="material-symbols-outlined text-base fill-1">thumb_up</span> 12
+                                        </button>
+<button class="flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-base">reply</span> 3 Replies
+                                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full py-4 rounded-2xl border-2 border-dashed border-primary/20 text-slate-500 hover:text-primary hover:border-primary/50 text-sm font-bold transition-all">Load More Discussions</button>
+</section>
+</div>
+<!-- Right Sidebar Area -->
+<aside class="col-span-1 lg:col-span-3 flex flex-col gap-8">
+<!-- Top Contributors -->
+<div class="glass rounded-3xl p-6 border border-primary/10">
+<h3 class="text-lg font-black tracking-tight mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">emoji_events</span> Top Contributors
+                    </h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Contributor" class="h-10 w-10 rounded-xl object-cover border border-primary/20" data-alt="Student contributor avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASdifBMPImNm7DTqH4T74H3AaOGQqq5VYECtdeYPVR0caNYFk-ffcPgiINuxcmff88WpxcLfZRFM4ZXk79LA9TfTX5PaLRc8i_Oc5aRp0_CErZWS4h1hzNgM7Cg-7V3j_ebnGm_putII5ZVbZBWlSWDhHnw5FxaD5AwyTmimeEITxVhPSxuvtrm2etIEakJH_Pt-oAAXXenD-s5OAIoj2CGc7bCZKDVMHIcG6lY1B6uOdPNNpB4T-RR_2YdCL2uxQI9O0Hyv3nrclQ"/>
+<div class="absolute -top-1 -right-1 bg-primary text-[8px] h-4 w-4 rounded-full flex items-center justify-center font-bold text-white">1</div>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold group-hover:text-primary transition-colors">Marcus V.</span>
+<span class="text-[10px] text-slate-500 uppercase tracking-widest font-black">12.4k XP</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-700 text-lg group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Contributor" class="h-10 w-10 rounded-xl object-cover border border-primary/20" data-alt="Female contributor student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTvlWAs4Xwn-7yaS39D0ht6pW4Pjh8pCTNFCz4XFy70aGOHLxTCrGjDWBNgjQPF2NHO5urCYWh_OIvMF_Ss-SHrnz2zDvTgn5W19so_RM9V9GqMDfRCmJzZ5b_DLrRFDSwzSwZpqz76Ovw8ehJafIhdNZkzcPhkJJdd-gz5dv8mNYbMLBpg7fF8vrMVm6KaXJ8IOCTAcDHeb7QtAqxo19l7zkzAc_sQzYSjCUGuytZTgCU_92S7z62Shm8uOwKXY5mhZm6mUfzWQ88"/>
+<div class="absolute -top-1 -right-1 bg-slate-400 text-[8px] h-4 w-4 rounded-full flex items-center justify-center font-bold text-white">2</div>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold group-hover:text-primary transition-colors">Elena Rose</span>
+<span class="text-[10px] text-slate-500 uppercase tracking-widest font-black">10.1k XP</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-700 text-lg group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Contributor" class="h-10 w-10 rounded-xl object-cover border border-primary/20" data-alt="Male contributor student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs6lIUOzIObOqQOK4WJgw3sNYmqGxe5upiLWQDOz_pi7cfivWjI_DNilUwH3eZBtK9M2XdsTFnBFFg-NHJYFUitUSEtMd4xtucnhF4NHqtgvG6qknKTMUoAgwVSPery7vpXKuj9IylpPVad-80AKSfUJe2h8ZI85JeQBsidB8gl3vkb7y1ahhu5GqJ5hkm7uhe27Az8iQRedkxsTN3k-8VvAfJIACfVU7XBq5QI43GVg4e1lAxAUsMZ7fBBSWKo5fQ4P1gffa-8fo1"/>
+<div class="absolute -top-1 -right-1 bg-orange-800 text-[8px] h-4 w-4 rounded-full flex items-center justify-center font-bold text-white">3</div>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold group-hover:text-primary transition-colors">Julian K.</span>
+<span class="text-[10px] text-slate-500 uppercase tracking-widest font-black">9.8k XP</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-700 text-lg group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Related Challenges -->
+<div class="flex flex-col gap-4">
+<h3 class="text-lg font-black tracking-tight flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">extension</span> Related Challenges
+                    </h3>
+<div class="flex flex-col gap-3">
+<div class="p-4 glass rounded-2xl border border-primary/5 hover:border-primary/30 transition-all cursor-pointer group">
+<p class="text-[10px] font-black text-accent-blue uppercase tracking-widest mb-1">Calculus III</p>
+<h4 class="text-sm font-bold mb-2 group-hover:text-primary transition-colors">Line Integrals in Vector Fields</h4>
+<div class="flex items-center justify-between">
+<span class="text-[10px] text-slate-500">400 XP</span>
+<span class="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded italic">Hard</span>
+</div>
+</div>
+<div class="p-4 glass rounded-2xl border border-primary/5 hover:border-primary/30 transition-all cursor-pointer group">
+<p class="text-[10px] font-black text-accent-blue uppercase tracking-widest mb-1">Linear Algebra</p>
+<h4 class="text-sm font-bold mb-2 group-hover:text-primary transition-colors">Eigenvalues of Sparse Matrices</h4>
+<div class="flex items-center justify-between">
+<span class="text-[10px] text-slate-500">550 XP</span>
+<span class="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded italic">Elite</span>
+</div>
+</div>
+<div class="p-4 glass rounded-2xl border border-primary/5 hover:border-primary/30 transition-all cursor-pointer group">
+<p class="text-[10px] font-black text-accent-blue uppercase tracking-widest mb-1">Complex Variables</p>
+<h4 class="text-sm font-bold mb-2 group-hover:text-primary transition-colors">Residue Theorem Applications</h4>
+<div class="flex items-center justify-between">
+<span class="text-[10px] text-slate-500">300 XP</span>
+<span class="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded italic">Expert</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Ad/CTA -->
+<div class="relative rounded-3xl overflow-hidden aspect-square neon-glow-orange">
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10"></div>
+<img alt="Elite Promo" class="absolute inset-0 h-full w-full object-cover" data-alt="Abstract glowing 3D mathematical geometric shapes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6GXP8MGPhc89TyID1eUBSZDfftisKEgD7CD8Cpupbe6qEs20gV8lQasEW89ZnQCPpn-h84M1pL_Ia9-NaMwSNaAqLQyXGrUZI1PJ21CVBCXX0U1ievAPCKwBWkR4sxcs8Y22b9mUJEYOzKAbpCJ_ceF0B0Zlxosp4xoY1eQeOWPqRdP3aBynysaT4dqnTTkBVr2SXkgqowJuUGeVJVGRa3oSollUlrrgBThGNlkhZHqjxeDDQShm66FK0X8WTU4OHX9ClSl0EUOHv"/>
+<div class="absolute bottom-0 left-0 right-0 p-6 z-20">
+<p class="text-xs font-black text-primary uppercase tracking-widest mb-1">Join the Elite</p>
+<h3 class="text-xl font-black text-white leading-tight mb-4 tracking-tighter italic">MASTER THE IMPOSSIBLE</h3>
+<button class="w-full py-2.5 bg-primary text-white font-bold rounded-xl text-xs uppercase tracking-widest shadow-lg shadow-primary/30">Get Access</button>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer Footer -->
+<footer class="mt-auto border-t border-primary/10 glass py-12 px-6 lg:px-20">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-3 text-primary opacity-50 grayscale">
+<span class="material-symbols-outlined text-2xl">functions</span>
+<h2 class="text-lg font-black tracking-tighter uppercase italic">MathPrep Elite</h2>
+</div>
+<div class="flex gap-8 text-xs font-bold text-slate-500 uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms</a>
+<a class="hover:text-primary transition-colors" href="#">Support</a>
+<a class="hover:text-primary transition-colors" href="#">API</a>
+</div>
+<p class="text-[10px] text-slate-600 uppercase tracking-widest font-medium">© 2024 MathPrep Elite Global. All rights reserved.</p>
+</div>
+</footer>
+</div>
+</body></html>

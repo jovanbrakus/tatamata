@@ -3,13 +3,13 @@ import { db } from "@/lib/db";
 import {
   mockExams,
   mockExamProblems,
-  problems,
   faculties,
   users,
   problemProgress,
 } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { getAllMeta, type ProblemMeta } from "@/lib/problems";
 
 // Full 20-problem point values (position 1..20)
 const FULL_TEST_POINTS: Record<number, number> = {
@@ -99,14 +99,8 @@ export async function POST(req: Request) {
 
   // --- Problem Selection Algorithm (spec 12.1) ---
 
-  // Get all published problems
-  const allProblems = await db
-    .select({
-      id: problems.id,
-      difficulty: problems.difficulty,
-    })
-    .from(problems)
-    .where(eq(problems.isPublished, true));
+  // Get all problems from the filesystem index
+  const allProblems = getAllMeta();
 
   if (allProblems.length < testSize) {
     return NextResponse.json(
@@ -115,16 +109,16 @@ export async function POST(req: Request) {
     );
   }
 
-  // Get problems the user has already seen
-  const seenProblems = await db
+  // Get problem slugs the user has already seen
+  const seenRows = await db
     .select({ problemId: problemProgress.problemId })
     .from(problemProgress)
     .where(eq(problemProgress.userId, userId));
 
-  const seenIds = new Set(seenProblems.map((p) => p.problemId));
+  const seenIds = new Set(seenRows.map((p) => p.problemId));
 
   // Classify problems by difficulty tier
-  const parseDiff = (d: string | null) => (d ? parseFloat(d) : 5.0);
+  const parseDiff = (d: number | null) => d ?? 5.0;
 
   const easyProblems = allProblems.filter((p) => parseDiff(p.difficulty) <= 3.0);
   const mediumProblems = allProblems.filter(
@@ -139,9 +133,9 @@ export async function POST(req: Request) {
 
   // Priority: unseen first, then seen
   function selectFromPool(
-    pool: typeof allProblems,
+    pool: ProblemMeta[],
     count: number
-  ): typeof allProblems {
+  ): ProblemMeta[] {
     const unseen = pool.filter((p) => !seenIds.has(p.id));
     const seen = pool.filter((p) => seenIds.has(p.id));
 

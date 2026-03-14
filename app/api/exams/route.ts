@@ -1,8 +1,9 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { mockExams, mockExamProblems, problems, faculties, users } from "@/drizzle/schema";
-import { eq, sql } from "drizzle-orm";
+import { mockExams, mockExamProblems, faculties, users } from "@/drizzle/schema";
+import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { getAllMeta } from "@/lib/problems";
 
 export async function POST(req: Request) {
   const session = await auth();
@@ -38,15 +39,12 @@ export async function POST(req: Request) {
   const durationSeconds = faculty.examDuration * 60;
   const facultyId = faculty.id;
 
-  // Select random problems from ALL faculties (math is shared)
-  const availableProblems = await db
-    .select({ id: problems.id })
-    .from(problems)
-    .where(eq(problems.isPublished, true))
-    .orderBy(sql`RANDOM()`)
-    .limit(numProblems);
+  // Select random problems from filesystem index
+  const allProblems = getAllMeta();
+  const shuffled = [...allProblems].sort(() => Math.random() - 0.5);
+  const selectedProblems = shuffled.slice(0, numProblems);
 
-  if (availableProblems.length === 0) {
+  if (selectedProblems.length === 0) {
     return NextResponse.json({ error: "Nema dostupnih zadataka" }, { status: 400 });
   }
 
@@ -64,7 +62,7 @@ export async function POST(req: Request) {
   }).returning();
 
   // Create exam problems with point values
-  const examProblemValues = availableProblems.map((p, i) => ({
+  const examProblemValues = selectedProblems.map((p, i) => ({
     examId: exam.id,
     problemId: p.id,
     position: i + 1,

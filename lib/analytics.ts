@@ -1,17 +1,10 @@
 import { db } from "@/lib/db";
 import { sql } from "drizzle-orm";
+import { getAllMeta, getCategories } from "@/lib/problems";
 
 /**
  * Recalculates all analytics for a given user and upserts into user_analytics.
  * Called synchronously after test simulation completion or problem solve.
- *
- * Algorithm (from spec 12.7):
- * 1. Accuracy = correct / total attempted * 100
- * 2. Avg solve time from timed exams (time_spent / num_problems per exam)
- * 3. Percentile rank among all users with >= 10 attempts
- * 4. Category breakdown from problem_progress JOIN problem_topics
- * 5. Strengths = top 3 categories >= 70%, Weaknesses = bottom 3
- * 6. Trend = weekly rolling average of exam scores over last 12 weeks
  */
 export async function recalculateAnalytics(userId: string): Promise<void> {
   // 1. Accuracy: correct / total attempted * 100
@@ -45,7 +38,7 @@ export async function recalculateAnalytics(userId: string): Promise<void> {
     ? Math.round(Number(avgTimeResult.rows[0].avg_time_per_problem))
     : 0;
 
-  // Total simulations (all completed exams, not just timed)
+  // Total simulations
   const totalSimsResult = await db.execute(sql`
     SELECT COUNT(*) AS count
     FROM mock_exams
@@ -76,30 +69,40 @@ export async function recalculateAnalytics(userId: string): Promise<void> {
     percentileRank = totalUsers > 0 ? (usersBelow / totalUsers) * 100 : 0;
   }
 
-  // 4. Category breakdown from problem_progress JOIN problem_topics
-  const categoryResult = await db.execute(sql`
-    SELECT
-      t.id AS topic_id,
-      t.name AS topic_name,
-      COUNT(*) FILTER (WHERE pp.is_correct = true) AS correct,
-      COUNT(*) AS total
-    FROM problem_progress pp
-    JOIN problem_topics pt ON pt.problem_id = pp.problem_id
-    JOIN topics t ON t.id = pt.topic_id
-    WHERE pp.user_id = ${userId} AND pp.status != 'unseen'
-    GROUP BY t.id, t.name
-    ORDER BY t.sort_order
+  // 4. Category breakdown from problem_progress + filesystem index
+  const progressResult = await db.execute(sql`
+    SELECT problem_id, is_correct
+    FROM problem_progress
+    WHERE user_id = ${userId} AND status != 'unseen'
   `);
 
+  // Build id -> category map from filesystem index
+  const allProblems = getAllMeta();
+  const idToCategory = new Map<string, string>();
+  for (const p of allProblems) {
+    if (p.category) idToCategory.set(p.id, p.category);
+  }
+
+  const categories = getCategories();
+  const categoryNameMap = new Map(categories.map((c) => [c.id, c.sr]));
+
+  const catStats: Record<string, { correct: number; total: number }> = {};
+  for (const row of progressResult.rows) {
+    const problemId = row.problem_id as string;
+    const cat = idToCategory.get(problemId);
+    if (!cat) continue;
+    if (!catStats[cat]) catStats[cat] = { correct: 0, total: 0 };
+    catStats[cat].total++;
+    if (row.is_correct) catStats[cat].correct++;
+  }
+
   const categoryBreakdown: Record<string, { name: string; correct: number; total: number; percent: number }> = {};
-  for (const row of categoryResult.rows) {
-    const total = Number(row.total);
-    const correct = Number(row.correct);
-    const percent = total > 0 ? Math.round((correct / total) * 100) : 0;
-    categoryBreakdown[row.topic_id as string] = {
-      name: row.topic_name as string,
-      correct,
-      total,
+  for (const [catId, stats] of Object.entries(catStats)) {
+    const percent = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0;
+    categoryBreakdown[catId] = {
+      name: categoryNameMap.get(catId) || catId,
+      correct: stats.correct,
+      total: stats.total,
       percent,
     };
   }

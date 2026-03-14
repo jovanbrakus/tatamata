@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="sr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#1a0f0a",
+                        "obsidian": "#120a07",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(236, 91, 19, 0.1);
+        }
+        .glow-accent {
+            box-shadow: 0 0 20px rgba(236, 91, 19, 0.15);
+        }
+        .neon-border {
+            border: 1px solid rgba(236, 91, 19, 0.3);
+        }
+        body {
+            background-color: #120a07;
+        }
+    </style>
+</head>
+<body class="font-display text-slate-100 selection:bg-primary/30">
+<div class="relative flex min-h-screen w-full flex-col bg-obsidian overflow-x-hidden">
+<!-- Navigation Bar -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-primary/10 bg-obsidian/80 px-6 py-3 backdrop-blur-md md:px-20 lg:px-40">
+<div class="flex items-center gap-12">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary shadow-[0_0_15px_rgba(236,91,19,0.4)]">
+<span class="material-symbols-outlined text-white">functions</span>
+</div>
+<h2 class="text-xl font-black tracking-tighter text-white">MathPrep <span class="text-primary">Elite</span></h2>
+</div>
+<nav class="hidden items-center gap-8 lg:flex">
+<a class="text-sm font-semibold text-slate-400 transition-colors hover:text-primary" href="#">Kontrolna tabla</a>
+<a class="text-sm font-semibold text-primary" href="#">Kurikulum</a>
+<a class="text-sm font-semibold text-slate-400 transition-colors hover:text-primary" href="#">Teorija</a>
+<a class="text-sm font-semibold text-slate-400 transition-colors hover:text-primary" href="#">Vežbe</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 md:flex">
+<span class="material-symbols-outlined text-primary text-sm">bolt</span>
+<span class="text-xs font-bold uppercase tracking-wider text-primary">Premium Plan</span>
+</div>
+<div class="flex gap-3">
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800/50 text-slate-300 transition-all hover:bg-slate-700">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-10 w-10 overflow-hidden rounded-full border-2 border-primary/30 bg-slate-800" data-alt="Korisnički profilni avatar">
+<img alt="Avatar" class="h-full w-full object-cover" data-alt="Portret nastavnika matematike" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUV_DG_5OimF0huHYi7Cn0s3vdyQ8ltwq5WDyft-0hFhLPFYnXNwm17omXxNzAnhXRJ9jtFbtseNTTN_tZSh1ptLWJUtezT8yDX0lG2qP_3ovSaG0TR_KGc693xfQCanaEML_nyqZ4i-h2WozW4H976-PZkZoiAOKH5LdDC6PbCRMZdhO4LAYzBawpq1KjNHnns69tRsmAtQ-kRWE_OWk9d8VtGrdvFaegXgrCL0PoYh95OKs_gmci7j97_gsGnju8MPIe4_czF0Pu"/>
+</div>
+</div>
+</div>
+</header>
+<main class="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-8 px-6 py-10 md:px-12">
+<!-- Hero & Search -->
+<div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+<div class="flex flex-col gap-2">
+<h1 class="text-4xl font-black tracking-tight text-white lg:text-5xl">Kurikulum i <span class="bg-gradient-to-r from-primary to-orange-400 bg-clip-text text-transparent">Teorija</span></h1>
+<p class="max-w-xl text-lg text-slate-400">Vaša elitna mapa puta ka maksimalnom broju poena na prijemnom ispitu.</p>
+</div>
+<div class="w-full lg:max-w-md">
+<div class="group relative">
+<div class="absolute inset-y-0 left-4 flex items-center text-primary/50 group-focus-within:text-primary">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full rounded-2xl border-none bg-slate-900/50 py-4 pl-12 pr-6 text-white placeholder:text-slate-500 focus:ring-2 focus:ring-primary/50" placeholder="Pretraži teoreme, formule ili oblasti..." type="text"/>
+</div>
+</div>
+</div>
+<!-- Categories Grid -->
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+<!-- Algebra -->
+<div class="glass-panel group relative overflow-hidden rounded-3xl p-6 transition-all hover:bg-primary/5">
+<div class="mb-4 flex items-center justify-between">
+<div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-3xl">calculate</span>
+</div>
+<span class="text-2xl font-black text-white/20 group-hover:text-primary/20">01</span>
+</div>
+<h3 class="mb-1 text-xl font-bold text-white">Algebra</h3>
+<div class="mb-4 flex items-center gap-2">
+<div class="h-1.5 flex-1 rounded-full bg-slate-800">
+<div class="h-full w-[85%] rounded-full bg-primary glow-accent"></div>
+</div>
+<span class="text-xs font-bold text-primary">85%</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between text-xs">
+<span class="text-slate-400">Logaritmi</span>
+<span class="rounded-full bg-green-500/10 px-2 py-0.5 text-green-500">Mastered</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-slate-400">Kvadratne f-je</span>
+<span class="rounded-full bg-primary/10 px-2 py-0.5 text-primary">In Progress</span>
+</div>
+</div>
+</div>
+<!-- Geometrija -->
+<div class="glass-panel group relative overflow-hidden rounded-3xl p-6 transition-all hover:bg-primary/5">
+<div class="mb-4 flex items-center justify-between">
+<div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-3xl">category</span>
+</div>
+<span class="text-2xl font-black text-white/20 group-hover:text-primary/20">02</span>
+</div>
+<h3 class="mb-1 text-xl font-bold text-white">Geometrija</h3>
+<div class="mb-4 flex items-center gap-2">
+<div class="h-1.5 flex-1 rounded-full bg-slate-800">
+<div class="h-full w-[42%] rounded-full bg-primary glow-accent"></div>
+</div>
+<span class="text-xs font-bold text-primary">42%</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between text-xs">
+<span class="text-slate-400">Trigonometrija</span>
+<span class="rounded-full bg-primary/10 px-2 py-0.5 text-primary">In Progress</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-slate-400">Solid Geometry</span>
+<span class="rounded-full bg-slate-700/50 px-2 py-0.5 text-slate-500">Not Started</span>
+</div>
+</div>
+</div>
+<!-- Probability -->
+<div class="glass-panel group relative overflow-hidden rounded-3xl p-6 transition-all hover:bg-primary/5">
+<div class="mb-4 flex items-center justify-between">
+<div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-3xl">analytics</span>
+</div>
+<span class="text-2xl font-black text-white/20 group-hover:text-primary/20">03</span>
+</div>
+<h3 class="mb-1 text-xl font-bold text-white leading-tight">Verovatnoća</h3>
+<div class="mb-4 flex items-center gap-2">
+<div class="h-1.5 flex-1 rounded-full bg-slate-800">
+<div class="h-full w-[15%] rounded-full bg-primary glow-accent"></div>
+</div>
+<span class="text-xs font-bold text-primary">15%</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between text-xs">
+<span class="text-slate-400">Kombinatorika</span>
+<span class="rounded-full bg-primary/10 px-2 py-0.5 text-primary">In Progress</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-slate-400">Diskretni nizovi</span>
+<span class="rounded-full bg-slate-700/50 px-2 py-0.5 text-slate-500">Not Started</span>
+</div>
+</div>
+</div>
+<!-- Logic -->
+<div class="glass-panel group relative overflow-hidden rounded-3xl p-6 transition-all hover:bg-primary/5">
+<div class="mb-4 flex items-center justify-between">
+<div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+</div>
+<span class="text-2xl font-black text-white/20 group-hover:text-primary/20">04</span>
+</div>
+<h3 class="mb-1 text-xl font-bold text-white">Logika i Ostalo</h3>
+<div class="mb-4 flex items-center gap-2">
+<div class="h-1.5 flex-1 rounded-full bg-slate-800">
+<div class="h-full w-[0%] rounded-full bg-primary glow-accent"></div>
+</div>
+<span class="text-xs font-bold text-primary">0%</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between text-xs">
+<span class="text-slate-400">Skupovi i Iskaz</span>
+<span class="rounded-full bg-slate-700/50 px-2 py-0.5 text-slate-500">Not Started</span>
+</div>
+<div class="flex items-center justify-between text-xs">
+<span class="text-slate-400">Kompleksni Brojevi</span>
+<span class="rounded-full bg-slate-700/50 px-2 py-0.5 text-slate-500">Not Started</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Content Row -->
+<div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+<!-- Topic Breakdown -->
+<div class="lg:col-span-2">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold text-white">Detaljan Pregled Modula</h2>
+<div class="flex gap-2">
+<button class="rounded-lg bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary">SVI</button>
+<button class="rounded-lg bg-slate-900 px-3 py-1.5 text-xs font-bold text-slate-400 hover:text-white">AKTIVNI</button>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Module Item -->
+<div class="glass-panel flex flex-col gap-4 rounded-3xl p-6 transition-all hover:border-primary/40">
+<div class="flex flex-wrap items-start justify-between gap-4">
+<div class="flex gap-4">
+<div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-slate-800 text-primary">
+<span class="material-symbols-outlined text-3xl">schema</span>
+</div>
+<div>
+<h4 class="text-lg font-bold text-white">Logaritamske Jednačine i Nejednačine</h4>
+<p class="text-sm text-slate-400">Algebra • 12 Lekcija • 4 Dokaza</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/5 px-4 py-2 text-sm font-bold text-primary transition-all hover:bg-primary hover:text-white">
+<span class="material-symbols-outlined text-sm">smart_toy</span>
+                                        Pitaj AI Mentora
+                                    </button>
+<button class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-800 text-slate-300 hover:text-white">
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-3 md:grid-cols-3">
+<div class="flex items-center gap-3 rounded-xl bg-slate-900/50 p-3">
+<span class="material-symbols-outlined text-green-500">check_circle</span>
+<span class="text-sm font-medium text-slate-300">Definicija logaritma</span>
+</div>
+<div class="flex items-center gap-3 rounded-xl bg-slate-900/50 p-3">
+<span class="material-symbols-outlined text-primary">motion_photos_on</span>
+<span class="text-sm font-medium text-slate-300">Pravila logaritmovanja</span>
+</div>
+<div class="flex items-center gap-3 rounded-xl bg-slate-900/50 p-3">
+<span class="material-symbols-outlined text-slate-600">radio_button_unchecked</span>
+<span class="text-sm font-medium text-slate-500">Smena osnove</span>
+</div>
+</div>
+</div>
+<!-- Module Item 2 -->
+<div class="glass-panel flex flex-col gap-4 rounded-3xl p-6 opacity-80 grayscale-[0.5] transition-all hover:opacity-100 hover:grayscale-0">
+<div class="flex flex-wrap items-start justify-between gap-4">
+<div class="flex gap-4">
+<div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-slate-800 text-slate-400">
+<span class="material-symbols-outlined text-3xl">change_history</span>
+</div>
+<div>
+<h4 class="text-lg font-bold text-white">Trigonometrijske Funkcije</h4>
+<p class="text-sm text-slate-400">Geometrija • 18 Lekcija • 6 Teorema</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/5 px-4 py-2 text-sm font-bold text-primary transition-all hover:bg-primary hover:text-white">
+<span class="material-symbols-outlined text-sm">smart_toy</span>
+                                        Pitaj AI Mentora
+                                    </button>
+<button class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-800 text-slate-300">
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Theory Vault -->
+<div class="flex flex-col gap-6">
+<h2 class="text-2xl font-bold text-white">Trezor Teorije</h2>
+<div class="flex flex-col gap-4">
+<!-- Card 1 -->
+<div class="glass-panel relative flex flex-col gap-4 overflow-hidden rounded-3xl p-6 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-primary">
+<div class="flex items-center justify-between">
+<span class="rounded-lg bg-primary/20 px-2 py-1 text-[10px] font-black uppercase tracking-widest text-primary">Key Formula</span>
+<span class="material-symbols-outlined text-slate-600">bookmark</span>
+</div>
+<div>
+<h5 class="text-base font-bold text-white">Brze Formule: Trigonometrija</h5>
+<p class="text-sm text-slate-500">Adicione formule i transformacije proizvoda.</p>
+</div>
+<div class="mt-2 flex items-center justify-between text-xs text-slate-400">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">description</span> PDF • 1.2MB</span>
+<button class="text-primary font-bold hover:underline">Preuzmi</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-panel relative flex flex-col gap-4 overflow-hidden rounded-3xl p-6 before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-orange-400">
+<div class="flex items-center justify-between">
+<span class="rounded-lg bg-orange-400/20 px-2 py-1 text-[10px] font-black uppercase tracking-widest text-orange-400">Cheat Sheet</span>
+<span class="material-symbols-outlined text-primary fill-1">bookmark</span>
+</div>
+<div>
+<h5 class="text-base font-bold text-white">Mala Matura: Algebra</h5>
+<p class="text-sm text-slate-500">Sve definicije od realnih brojeva do funkcija.</p>
+</div>
+<div class="mt-2 flex items-center justify-between text-xs text-slate-400">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">visibility</span> 4.5k Pregleda</span>
+<button class="text-primary font-bold hover:underline">Otvori</button>
+</div>
+</div>
+<!-- Key Proofs -->
+<div class="rounded-3xl bg-gradient-to-br from-primary/20 to-orange-600/5 p-6 border border-primary/20">
+<div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined text-white">history_edu</span>
+</div>
+<h5 class="mb-2 text-lg font-bold text-white">Ključni Dokazi</h5>
+<p class="mb-4 text-sm text-slate-400 leading-relaxed">Naučite logiku iza teorema. Najčešći dokazi koji se traže na elitnim fakultetima (ETF, MATF).</p>
+<button class="w-full rounded-xl bg-white py-3 text-sm font-black uppercase tracking-widest text-obsidian transition-transform active:scale-95">Pregledaj Kolekciju</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Stats -->
+<footer class="mt-12 border-t border-primary/10 bg-slate-900/30 py-10">
+<div class="mx-auto max-w-7xl px-6 md:px-12">
+<div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+<div class="flex flex-col gap-1">
+<span class="text-3xl font-black text-white">124</span>
+<span class="text-xs font-bold uppercase tracking-widest text-slate-500">Video Lekcija</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-3xl font-black text-white">450+</span>
+<span class="text-xs font-bold uppercase tracking-widest text-slate-500">Zadataka</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-3xl font-black text-white">32</span>
+<span class="text-xs font-bold uppercase tracking-widest text-slate-500">Teorijske Skripte</span>
+</div>
+<div class="flex flex-col gap-1 text-primary">
+<span class="text-3xl font-black">24/7</span>
+<span class="text-xs font-bold uppercase tracking-widest">AI Mentor Dostupan</span>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

@@ -1,58 +1,9 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { sql } from "drizzle-orm";
+import { problemProgress } from "@/drizzle/schema";
+import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
-
-// Main category groups for the practice page
-const CATEGORY_GROUPS: Record<string, { name: string; icon: string; topicIds: string[] }> = {
-  algebra: {
-    name: "Algebra",
-    icon: "function",
-    topicIds: [
-      "algebra",
-      "linearna_algebra",
-      "jednacine",
-      "nejednacine",
-      "trigonometrija",
-      "kompleksni_brojevi",
-      "polinomi",
-      "nizovi_i_redovi",
-      "logaritmi",
-      "eksponencijalne_funkcije",
-    ],
-  },
-  geometrija: {
-    name: "Geometrija",
-    icon: "change_history",
-    topicIds: [
-      "geometrija",
-      "analiticka_geometrija",
-      "planimetrija",
-      "stereometrija",
-      "trigonometrija_geometrija",
-      "vektori",
-    ],
-  },
-  verovatnoca: {
-    name: "Verovatnoca",
-    icon: "casino",
-    topicIds: [
-      "verovatnoca",
-      "kombinatorika",
-      "statistika",
-    ],
-  },
-  logika: {
-    name: "Logika",
-    icon: "psychology",
-    topicIds: [
-      "logika",
-      "skupovi",
-      "matematicka_indukcija",
-      "teorija_brojeva",
-    ],
-  },
-};
+import { getCategoryGroups, getAllMeta, getCategories } from "@/lib/problems";
 
 export async function GET() {
   const session = await auth();
@@ -62,39 +13,43 @@ export async function GET() {
 
   const userId = (session.user as any).id;
 
-  // Get all topics with their problem counts and user progress
-  const result = await db.execute(sql`
-    SELECT
-      t.id as topic_id,
-      t.name as topic_name,
-      COUNT(DISTINCT pt.problem_id) as total_problems,
-      COUNT(DISTINCT CASE WHEN pp.is_correct = true THEN pt.problem_id END) as solved_correctly,
-      COUNT(DISTINCT CASE WHEN pp.status IS NOT NULL AND pp.status != 'unseen' THEN pt.problem_id END) as attempted
-    FROM topics t
-    JOIN problem_topics pt ON pt.topic_id = t.id
-    JOIN problems p ON p.id = pt.problem_id AND p.is_published = true
-    LEFT JOIN problem_progress pp ON pp.problem_id = pt.problem_id AND pp.user_id = ${userId}
-    GROUP BY t.id, t.name
-    ORDER BY t.name
-  `);
+  // Get user's progress from DB
+  const progressRows = await db
+    .select({
+      problemId: problemProgress.problemId,
+      isCorrect: problemProgress.isCorrect,
+      status: problemProgress.status,
+    })
+    .from(problemProgress)
+    .where(eq(problemProgress.userId, userId));
 
-  const topicStats: Record<string, { total: number; solved: number; attempted: number }> = {};
-  for (const row of result.rows) {
-    topicStats[row.topic_id as string] = {
-      total: Number(row.total_problems),
-      solved: Number(row.solved_correctly),
-      attempted: Number(row.attempted),
-    };
+  const solvedIds = new Set(progressRows.filter((r) => r.isCorrect).map((r) => r.problemId));
+  const attemptedIds = new Set(progressRows.filter((r) => r.status !== "unseen").map((r) => r.problemId));
+
+  // Count problems per category from filesystem index
+  const allProblems = getAllMeta();
+  const categoryGroups = getCategoryGroups();
+  const categoriesData = getCategories();
+  const categoryNameMap = new Map(categoriesData.map((c) => [c.id, c.sr]));
+
+  // Build per-category stats
+  const categoryStats: Record<string, { total: number; solved: number; attempted: number }> = {};
+  for (const p of allProblems) {
+    if (!p.category) continue;
+    if (!categoryStats[p.category]) categoryStats[p.category] = { total: 0, solved: 0, attempted: 0 };
+    categoryStats[p.category].total++;
+    if (solvedIds.has(p.id)) categoryStats[p.category].solved++;
+    if (attemptedIds.has(p.id)) categoryStats[p.category].attempted++;
   }
 
   // Aggregate into category groups
-  const categories = Object.entries(CATEGORY_GROUPS).map(([id, group]) => {
+  const categories = categoryGroups.map((group) => {
     let totalProblems = 0;
     let solvedCorrectly = 0;
     let attempted = 0;
 
-    for (const topicId of group.topicIds) {
-      const stats = topicStats[topicId];
+    for (const catId of group.categories) {
+      const stats = categoryStats[catId];
       if (stats) {
         totalProblems += stats.total;
         solvedCorrectly += stats.solved;
@@ -107,10 +62,10 @@ export async function GET() {
       : 0;
 
     return {
-      id,
-      name: group.name,
-      icon: group.icon,
-      topicIds: group.topicIds,
+      id: group.id,
+      name: group.sr,
+      icon: group.id,
+      topicIds: group.categories,
       totalProblems,
       solvedCorrectly,
       attempted,

@@ -29,8 +29,8 @@ export default function BookmarksPage() {
         <div className="space-y-3">
           {bookmarks.map((b) => (
             <Link
-              key={b.problemId}
-              href={`/zadaci/${b.slug}`}
+              key={b.id}
+              href={`/zadaci/${b.id}`}
               className="flex items-center justify-between rounded-xl border border-border bg-card p-4 transition hover:border-[#60a5fa]/50"
             >
               <div>

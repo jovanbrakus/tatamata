@@ -11,7 +11,6 @@ export async function POST(req: Request, { params }: { params: Promise<{ problem
   const userId = (session.user as any).id;
   const { problemId } = await params;
 
-  // Toggle bookmark
   const existing = await db
     .select()
     .from(bookmarks)

@@ -3,11 +3,12 @@ import { db } from "@/lib/db";
 import {
   mockExams,
   mockExamProblems,
-  problems,
   problemProgress,
 } from "@/drizzle/schema";
 import { eq, and } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { getProblemFull } from "@/lib/problems";
+import { updateStreakOnCorrectSolve } from "@/lib/streak";
 
 export async function POST(
   req: Request,
@@ -35,17 +36,15 @@ export async function POST(
       { status: 400 }
     );
 
-  // Get exam problems with correct answers and point values
+  // Get exam problems
   const examProblems = await db
     .select({
       epId: mockExamProblems.id,
       answer: mockExamProblems.answer,
       pointValue: mockExamProblems.pointValue,
-      problemId: problems.id,
-      correctAnswer: problems.correctAnswer,
+      problemId: mockExamProblems.problemId,
     })
     .from(mockExamProblems)
-    .innerJoin(problems, eq(mockExamProblems.problemId, problems.id))
     .where(eq(mockExamProblems.examId, id));
 
   // Scoring algorithm (spec 12.2)
@@ -59,10 +58,14 @@ export async function POST(
     const pv = parseFloat(ep.pointValue);
     maxScore += pv;
 
+    // Look up correct answer from filesystem
+    const problem = getProblemFull(ep.problemId);
+    const correctAnswer = problem?.correctAnswer ?? "A";
+
     const isBlank = !ep.answer || ep.answer === "N";
     const isCorrect =
       !isBlank &&
-      ep.answer?.toUpperCase() === ep.correctAnswer.toUpperCase();
+      ep.answer?.toUpperCase() === correctAnswer.toUpperCase();
 
     if (isBlank) {
       // Blank: 0 points
@@ -97,11 +100,16 @@ export async function POST(
           attempts: 1,
           lastAnswer: ep.answer,
           isCorrect,
+          context: "simulation",
           solvedAt: isCorrect ? new Date() : null,
           updatedAt: new Date(),
         })
         .onConflictDoNothing();
     }
+  }
+
+  if (numCorrect > 0) {
+    await updateStreakOnCorrectSolve(userId);
   }
 
   const timeSpent = Math.floor(

@@ -46,7 +46,7 @@ interface ExamResult {
     answer: string | null;
     isCorrect: boolean | null;
     isFlagged: boolean;
-    slug: string;
+    id: string;
     title: string;
     correctAnswer: string;
   }[];
@@ -333,7 +333,7 @@ export default function SimulationResultsPage() {
                       </td>
                       <td className="px-6 py-4 text-right">
                         <Link
-                          href={`/zadaci/${p.slug}`}
+                          href={`/zadaci/${p.id}`}
                           className="inline-flex items-center gap-1 text-xs text-[#ec5b13] hover:text-[#ff7a33] font-bold"
                         >
                           Rešenje

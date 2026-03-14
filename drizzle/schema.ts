@@ -26,6 +26,7 @@ export const users = pgTable("users", {
   streakCurrent: integer("streak_current").notNull().default(0),
   streakBest: integer("streak_best").notNull().default(0),
   lastActiveDate: date("last_active_date"),
+  dailyGoal: integer("daily_goal").notNull().default(3),
   isActive: boolean("is_active").notNull().default(true),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
@@ -55,68 +56,13 @@ export const seasons = pgTable("seasons", {
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
 
-export const topics = pgTable("topics", {
-  id: varchar("id", { length: 50 }).primaryKey(),
-  name: varchar("name", { length: 100 }).notNull(),
-  icon: varchar("icon", { length: 10 }),
-  sortOrder: integer("sort_order").notNull().default(0),
-  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
-});
-
-export const problems = pgTable(
-  "problems",
-  {
-    id: uuid("id").primaryKey().defaultRandom(),
-    facultyId: varchar("faculty_id", { length: 20 })
-      .notNull()
-      .references(() => faculties.id),
-    year: integer("year").notNull(),
-    problemNumber: integer("problem_number").notNull(),
-    title: varchar("title", { length: 255 }).notNull(),
-    htmlContent: text("html_content").notNull(),
-    problemText: text("problem_text"),
-    correctAnswer: varchar("correct_answer", { length: 10 }).notNull(),
-    answerOptions: jsonb("answer_options").notNull(),
-    numOptions: integer("num_options").notNull().default(5),
-    logicScratchpad: text("logic_scratchpad"),
-    slug: varchar("slug", { length: 200 }).unique().notNull(),
-    difficulty: numeric("difficulty", { precision: 3, scale: 1 }),
-    isPublished: boolean("is_published").notNull().default(true),
-    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
-    updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
-  },
-  (table) => [
-    index("idx_problems_faculty").on(table.facultyId),
-    index("idx_problems_year").on(table.year),
-    index("idx_problems_slug").on(table.slug),
-  ]
-);
-
-export const problemTopics = pgTable(
-  "problem_topics",
-  {
-    problemId: uuid("problem_id")
-      .notNull()
-      .references(() => problems.id, { onDelete: "cascade" }),
-    topicId: varchar("topic_id", { length: 50 })
-      .notNull()
-      .references(() => topics.id, { onDelete: "cascade" }),
-  },
-  (table) => [
-    primaryKey({ columns: [table.problemId, table.topicId] }),
-    index("idx_problem_topics_topic").on(table.topicId),
-  ]
-);
-
 export const bookmarks = pgTable(
   "bookmarks",
   {
     userId: uuid("user_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
-    problemId: uuid("problem_id")
-      .notNull()
-      .references(() => problems.id, { onDelete: "cascade" }),
+    problemId: varchar("problem_id", { length: 20 }).notNull(),
     createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
   },
   (table) => [primaryKey({ columns: [table.userId, table.problemId] })]
@@ -128,9 +74,7 @@ export const problemProgress = pgTable(
     userId: uuid("user_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
-    problemId: uuid("problem_id")
-      .notNull()
-      .references(() => problems.id, { onDelete: "cascade" }),
+    problemId: varchar("problem_id", { length: 20 }).notNull(),
     status: varchar("status", { length: 20 }).notNull().default("unseen"),
     attempts: integer("attempts").notNull().default(0),
     lastAnswer: varchar("last_answer", { length: 10 }),
@@ -180,9 +124,7 @@ export const mockExamProblems = pgTable(
     examId: uuid("exam_id")
       .notNull()
       .references(() => mockExams.id, { onDelete: "cascade" }),
-    problemId: uuid("problem_id")
-      .notNull()
-      .references(() => problems.id),
+    problemId: varchar("problem_id", { length: 20 }).notNull(),
     position: integer("position").notNull(),
     pointValue: numeric("point_value", { precision: 4, scale: 2 }).notNull(),
     answer: varchar("answer", { length: 10 }),
@@ -224,7 +166,7 @@ export const aiSolutions = pgTable(
       .notNull()
       .references(() => users.id),
     contextType: varchar("context_type", { length: 20 }).notNull(),
-    sourceProblemId: uuid("source_problem_id").references(() => problems.id),
+    sourceProblemId: varchar("source_problem_id", { length: 20 }),
     title: varchar("title", { length: 255 }).notNull(),
     promptText: text("prompt_text"),
     hadScreenshot: boolean("had_screenshot").notNull().default(false),

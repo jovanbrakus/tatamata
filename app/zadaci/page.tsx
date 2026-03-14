@@ -6,7 +6,6 @@ import { Search, Filter, BookOpen } from "lucide-react";
 
 interface Problem {
   id: string;
-  slug: string;
   title: string;
   facultyId: string;
   year: number;
@@ -130,7 +129,7 @@ export default function ProblemsPage() {
             {problems.map((p) => (
               <Link
                 key={p.id}
-                href={`/zadaci/${p.slug}`}
+                href={`/zadaci/${p.id}`}
                 className="group rounded-xl border border-border bg-card p-5 transition hover:border-[#60a5fa]/50"
               >
                 <div className="mb-2 flex items-center gap-2">

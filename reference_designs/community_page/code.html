@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html lang="sr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MathPrep Elite - Zajednica i Mentori</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "secondary": "#0ea5e9",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#1a0f0a",
+                        "accent-dark": "#2d1a12",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass {
+            background: rgba(45, 26, 18, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(236, 91, 19, 0.2);
+        }
+        .neon-glow-primary {
+            box-shadow: 0 0 15px rgba(236, 91, 19, 0.3);
+        }
+        .neon-glow-secondary {
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 bg-background-dark/80 backdrop-blur-md px-6 md:px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl font-bold">functions</span>
+</div>
+<h2 class="text-slate-100 text-xl font-black leading-tight tracking-[-0.015em]">MathPrep <span class="text-primary">Elite</span></h2>
+</div>
+<nav class="hidden lg:flex items-center gap-9">
+<a class="text-slate-100 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Izazovi</a>
+<a class="text-slate-100 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Rang Lista</a>
+<a class="text-slate-100 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Mentori</a>
+<a class="text-slate-100 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Zajednica</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-4 items-center">
+<label class="hidden md:flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full">
+<div class="text-primary/60 flex border-none bg-accent-dark items-center justify-center pl-4 rounded-l-xl" data-icon="MagnifyingGlass">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-accent-dark text-white focus:ring-0 placeholder:text-primary/40 px-4 rounded-r-xl text-base font-normal" placeholder="Pretraži izazove..."/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="flex size-10 items-center justify-center rounded-xl bg-accent-dark text-slate-100 border border-primary/10 hover:border-primary/40 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-xl bg-accent-dark text-slate-100 border border-primary/10 hover:border-primary/40 transition-all">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<div class="flex flex-1">
+<!-- Sidebar -->
+<aside class="hidden xl:flex w-72 flex-col gap-4 border-r border-primary/10 bg-background-dark p-6">
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-3 p-3 rounded-xl bg-primary/10 border border-primary/20">
+<div class="bg-primary/20 rounded-full p-2">
+<span class="material-symbols-outlined text-primary">diamond</span>
+</div>
+<div class="flex flex-col">
+<p class="text-white text-sm font-bold">Premium Status</p>
+<p class="text-primary text-xs">Aktivan do: 12. Dec</p>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 transition-all text-slate-400 hover:text-white" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-sm font-medium">Kontrolna Tabla</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary transition-all border border-primary/20" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-sm font-bold">Zajednica</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 transition-all text-slate-400 hover:text-white" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="text-sm font-medium">Vežbe</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 transition-all text-slate-400 hover:text-white" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="text-sm font-medium">Turniri</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 transition-all text-slate-400 hover:text-white" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="text-sm font-medium">Mentori</span>
+</a>
+<div class="h-px bg-primary/10 my-4"></div>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 transition-all text-slate-400 hover:text-white" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Podešavanja</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-6 md:p-10 space-y-12 max-w-7xl mx-auto">
+<!-- Hero Section: Daily Challenge -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl md:text-3xl font-black text-white flex items-center gap-3">
+<span class="material-symbols-outlined text-primary scale-125">bolt</span>
+                        Dnevni Izazov
+                    </h2>
+<span class="text-primary text-sm font-bold tracking-widest uppercase">Osvežava se za 04:22:10</span>
+</div>
+<div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-accent-dark to-background-dark border border-primary/30 p-8 neon-glow-primary">
+<div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[200px] text-primary rotate-12">calculate</span>
+</div>
+<div class="flex flex-col lg:flex-row gap-10 items-center relative z-10">
+<div class="flex-1 space-y-6">
+<div>
+<span class="px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-widest border border-primary/30">Zadatak Dana: Integralni Račun</span>
+<h1 class="text-3xl md:text-4xl font-black text-white mt-4 leading-tight">Izračunaj površinu oblasti ograničene krivom <span class="text-secondary italic">y = e^x</span> i pravom <span class="text-secondary italic">y = x + 2</span>.</h1>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+<div class="flex flex-col">
+<span class="text-primary/60 text-xs font-bold uppercase">Težina</span>
+<span class="text-white font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-sm">stars</span> Ekspert
+                                    </span>
+</div>
+<div class="flex flex-col">
+<span class="text-primary/60 text-xs font-bold uppercase">Nagrada</span>
+<span class="text-white font-bold">+450 Elo</span>
+</div>
+<div class="flex flex-col">
+<span class="text-primary/60 text-xs font-bold uppercase">Uspešnost</span>
+<span class="text-white font-bold">142 Rešilo</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="px-8 py-4 rounded-xl bg-primary text-white font-black hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
+                                    REŠI ODMAH <span class="material-symbols-outlined">rocket_launch</span>
+</button>
+<button class="px-8 py-4 rounded-xl glass text-white font-bold hover:bg-white/10 transition-all">
+                                    Pogledaj hint
+                                </button>
+</div>
+</div>
+<div class="w-full lg:w-80 h-64 rounded-2xl bg-black/40 border border-white/5 flex items-center justify-center overflow-hidden">
+<img alt="Mathematical formula for integration challenge" class="w-full h-full object-contain p-6 opacity-80" data-alt="Abstract math formula visualization with integration symbols" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDxzaNSdtKZTzy4e00vUn6BQsPtRUICQ9Ap6XmL5pMNiBRtgISszPnWJHlNQQarRkEot4199Z17PYGKPZqz6EKaHuCJlDJOLIY8ZP8f0eX2kHTg7mGYYnSH5lzFboSy02dWOXKo56oNBshUvEIWwc9pJ09_fAN53_eMwG5iVPwfCEBEj4wYjdy4T18clzvH5S7XzQfsLZmU14M7bWYwYRxenpPLPV5Ni8T8qqpTqTj_vwtTJ_0AiI3MZOWbrM-HsYq0wafQT23eu7j"/>
+</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+<!-- Global Leaderboard -->
+<section class="lg:col-span-2 space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">trophy</span>
+                            Globalna Rang Lista
+                        </h3>
+<a class="text-secondary text-sm font-bold hover:underline" href="#">Vidi sve</a>
+</div>
+<div class="glass rounded-2xl overflow-hidden border border-white/5">
+<table class="w-full text-left">
+<thead class="bg-white/5 border-b border-white/5">
+<tr>
+<th class="px-6 py-4 text-xs font-bold uppercase text-primary/60">Pozicija</th>
+<th class="px-6 py-4 text-xs font-bold uppercase text-primary/60">Student</th>
+<th class="px-6 py-4 text-xs font-bold uppercase text-primary/60">Fakultet</th>
+<th class="px-6 py-4 text-xs font-bold uppercase text-primary/60 text-right">Rejting</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-5">
+<div class="size-8 rounded-full bg-amber-500/20 text-amber-500 flex items-center justify-center font-black">1</div>
+</td>
+<td class="px-6 py-5 flex items-center gap-3">
+<div class="size-10 rounded-full bg-primary/20 border border-primary/40 p-0.5">
+<img alt="User avatar" class="rounded-full" data-alt="Profile photo of a top student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQ6jE5jxxhguf4lT7wIbUNntaPBCQJzGnxq_lmi41RuZkAFsYBnl8PqZ_QPq1hbxIOmc0mZ27wMc3thM6j2qsFUwyShsGLbTeuGEfsnUvpp50WOKqGBeOTFfuEudcy-lZRz3R7kFj1XZwjyoH-usfv4rSt8JknA7x-dTn7evzg-Ymb-t36Ij26BvloxaxbrdorFW_1ysEavhsFMI8mEzGc1NvUBaghN8fDVjIZXTd81mhEU4RvAX2yNwfnhcvATwYIm-aP4NAtL6qj"/>
+</div>
+<span class="text-white font-bold">Luka Jovanović</span>
+</td>
+<td class="px-6 py-5">
+<span class="text-slate-400 font-medium">ETF BG</span>
+</td>
+<td class="px-6 py-5 text-right">
+<span class="text-secondary font-black">2850 Elo</span>
+</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-5">
+<div class="size-8 rounded-full bg-slate-400/20 text-slate-400 flex items-center justify-center font-black">2</div>
+</td>
+<td class="px-6 py-5 flex items-center gap-3">
+<div class="size-10 rounded-full bg-primary/20 border border-primary/40 p-0.5">
+<img alt="User avatar" class="rounded-full" data-alt="Profile photo of a student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuOWR2T6kTPpl23oeESRAGNqr_j_woVyfHRCWoY9EnEl5hiKrG6Yk02uOw2fnctGlbkTx14uHGyxrDunJhwl_ztzSEr9piwE-k1DrGe0QHXqPzy7N299H-sDvCHIiZuMHlavyKO-afXKvWRqOAkwpVc1NbQcTnS6fZEYFCHu38IumHxEJgfk9F9aJVfrMradX4YNYRN-tsoVWqXh55Ooz3KXIn2gOid8h-DL8LUWkoIQDFBK377foQ3YvTDFDMo4kE7spfVQgkEEFm"/>
+</div>
+<span class="text-white font-bold">Milica Nikolić</span>
+</td>
+<td class="px-6 py-5">
+<span class="text-slate-400 font-medium">FON BG</span>
+</td>
+<td class="px-6 py-5 text-right">
+<span class="text-secondary font-black">2715 Elo</span>
+</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-5">
+<div class="size-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-black">3</div>
+</td>
+<td class="px-6 py-5 flex items-center gap-3">
+<div class="size-10 rounded-full bg-primary/20 border border-primary/40 p-0.5">
+<img alt="User avatar" class="rounded-full" data-alt="Profile photo of a student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZQsRPxqO4QXBxbuhZlkA-81h-cp3zIRkC6KCCTI9UvKrPZBE_d6FYDcq0S1Nlophga-9UBRZ4RDspA_U_r3ItxRQUG0PbAQW3ON_EsKn3lwSLn0CHG0j5chXTN3dtjET5Q9W4siur1KwCD800GHzJILZ65M6ciiu0-tHjH2QFAYB0jfKH-ZCXRdDyCCwz93cZdmPMsjgUFrZ-yoGU1beW3KPhCA1GDlyqGTJJ74oyWcBVfdyXOSSAzcSBeICDzJOib1scj6YGTRqH"/>
+</div>
+<span class="text-white font-bold">Stefan Petrović</span>
+</td>
+<td class="px-6 py-5">
+<span class="text-slate-400 font-medium">MATF BG</span>
+</td>
+<td class="px-6 py-5 text-right">
+<span class="text-secondary font-black">2680 Elo</span>
+</td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="px-6 py-5">
+<div class="size-8 rounded-full bg-white/5 text-slate-400 flex items-center justify-center font-black">4</div>
+</td>
+<td class="px-6 py-5 flex items-center gap-3">
+<div class="size-10 rounded-full bg-primary/20 border border-primary/40 p-0.5">
+<img alt="User avatar" class="rounded-full" data-alt="Profile photo of a student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAidsehjupiGSZKGowhPryKongpyHdn6JZy7qxuwa4qjfu-fHmAYe9QPlAUdbdZO4WABXb2S7rEcKMbxItu9BkRkgumdpDmsTDBJwmPXzx-gNUTpvx-6zn1UM-58XXlfBRHY7CtBRrIgkHsAIHeC-8PCysz8IpckPqM_eMQDYUAQ448C9Et26KalM64dN1nKJdlC7v3K7OaHYz_mRS6KRLq9TgfuSVa1C4hSrc8cdVhlt1ryyeT1JnBGt_L-33h_ZPasK4Kw6qsOV2h"/>
+</div>
+<span class="text-white font-bold">Ana Marić</span>
+</td>
+<td class="px-6 py-5">
+<span class="text-slate-400 font-medium">FTN NS</span>
+</td>
+<td class="px-6 py-5 text-right">
+<span class="text-secondary font-black">2490 Elo</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Community Activity Feed -->
+<section class="space-y-6">
+<h3 class="text-xl font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">diversity_3</span>
+                        Aktivnost Zajednice
+                    </h3>
+<div class="space-y-4">
+<div class="glass p-4 rounded-xl border-l-4 border-l-primary flex gap-4 items-start">
+<div class="size-10 rounded-full bg-primary/20 flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl">star</span>
+</div>
+<div>
+<p class="text-white text-sm"><span class="font-bold text-primary">Nikola</span> je upravo rešio <span class="font-bold">500. zadatak!</span></p>
+<span class="text-primary/40 text-xs">Pre 2 minuta</span>
+</div>
+</div>
+<div class="glass p-4 rounded-xl border-l-4 border-l-secondary flex gap-4 items-start">
+<div class="size-10 rounded-full bg-secondary/20 flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-xl">workspace_premium</span>
+</div>
+<div>
+<p class="text-white text-sm"><span class="font-bold text-secondary">Jelena</span> je dobila značku <span class="font-bold italic">"Trig Master"</span></p>
+<span class="text-primary/40 text-xs">Pre 15 minuta</span>
+</div>
+</div>
+<div class="glass p-4 rounded-xl border-l-4 border-l-green-500/50 flex gap-4 items-start">
+<div class="size-10 rounded-full bg-green-500/10 flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-green-500 text-xl">trending_up</span>
+</div>
+<div>
+<p class="text-white text-sm"><span class="font-bold text-green-500">Miloš</span> je napredovao u <span class="font-bold uppercase tracking-tighter">Grandmaster</span> ligu.</p>
+<span class="text-primary/40 text-xs">Pre 45 minuta</span>
+</div>
+</div>
+<div class="glass p-4 rounded-xl border-l-4 border-l-primary flex gap-4 items-start">
+<div class="size-10 rounded-full bg-primary/20 flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl">forum</span>
+</div>
+<div>
+<p class="text-white text-sm"><span class="font-bold text-primary">Zoran</span> je postavio novo pitanje u <span class="italic underline">Kombinatorika</span>.</p>
+<span class="text-primary/40 text-xs">Pre 1 sat</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Mentor Tips Grid -->
+<section class="space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">psychology_alt</span>
+                        Mentorski Saveti i Hakovi
+                    </h3>
+<button class="glass px-4 py-2 rounded-lg text-sm text-white hover:bg-white/10 transition-all flex items-center gap-2">
+                        Prikaži sve mentore <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+<!-- Tip 1 -->
+<div class="glass rounded-2xl overflow-hidden group hover:border-primary/50 transition-all cursor-pointer">
+<div class="aspect-video relative overflow-hidden">
+<img alt="Mentor video thumbnail" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Mathematical graph explaining trigonometry shortcuts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIaygVSvI0uedz1ESJOnO5E9tiH9DpQjZ5X9xfOROvAd9Fk0EzgSV1meXAFXiTe4A-t60FkcpsppgMQ9-hIazoDaFnXfHdwx4w_KqNs0ZOZ-jlFMhKIAI33Duy8QG0dfIAgrjsAOvcqD_6zmYJdw1h0-pt_k-coLLqdGNCu2owGpRCl1ACsx7seZvd6x8DSdL2swre8_JIPwAKG92YCjbxa5VQfkAXWKPx-7lJ8pxa0K6E0jYfTDO7yE42EB8QOdcCNWmsjGw7mTLu"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<div class="size-12 rounded-full bg-primary text-white flex items-center justify-center neon-glow-primary">
+<span class="material-symbols-outlined">play_arrow</span>
+</div>
+</div>
+</div>
+<div class="p-5">
+<h4 class="text-white font-bold mb-2 group-hover:text-primary transition-colors">Brzo rešavanje trigonometrije</h4>
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-secondary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-secondary">person</span>
+</div>
+<span class="text-primary/60 text-xs font-bold uppercase">Prof. Dragan Lukić</span>
+</div>
+</div>
+</div>
+<!-- Tip 2 -->
+<div class="glass rounded-2xl overflow-hidden group hover:border-primary/50 transition-all cursor-pointer">
+<div class="aspect-video relative overflow-hidden">
+<img alt="Mentor video thumbnail" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Combinatorics diagram with tree structures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSFNWkwgZiCWjnJYUe5Xq7Oz5UVMnqhrmITRWTmeu6wQbZitjLXGOVal9bXLCalV4xp2zj5aI5lgsXx5U1txf_Z2XOBFlWueWC4svBN-O4Vua9Q0Dt30DGdMnrL9olwhhp5Ne8ZQg_sn8pmAQRgI8by2dnAuulthTERC9Ecurq-JAZgoKxSHrYeMeLnywyC1Or0NVT5BHj0vt319HM1jBDQrWr-69nM-U_Zy_FWjq2pQZ6bbx26WKyN9KY9AiWDWjyVzJyP1CD6hTT"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<div class="size-12 rounded-full bg-primary text-white flex items-center justify-center neon-glow-primary">
+<span class="material-symbols-outlined">play_arrow</span>
+</div>
+</div>
+</div>
+<div class="p-5">
+<h4 class="text-white font-bold mb-2 group-hover:text-primary transition-colors">Kombinatorika bez greške</h4>
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-secondary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-secondary">person</span>
+</div>
+<span class="text-primary/60 text-xs font-bold uppercase">Doc. Jelena Stosić</span>
+</div>
+</div>
+</div>
+<!-- Tip 3 -->
+<div class="glass rounded-2xl overflow-hidden group hover:border-primary/50 transition-all cursor-pointer">
+<div class="aspect-video relative overflow-hidden">
+<img alt="Mentor video thumbnail" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Linear algebra visualization with 3D vectors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu4JLN2q2Hvx81qiWWiNHl3ynVl7Mx60SLza3R6xXaQYP8FBxEIrD5lsBHNxFMhGYPB0gt5bT76Ke_yT-_X7ZcnBNVuoxmu0OsvUuZQl8fNrOP1IDkuSVP7KtDn0E7VhCHwI0ECUKol5tTnNQfGphSQKrdSpJbkXaZdQOc4AanpnuHd2Ngpp4fqHSfwL0VEJybtZIUQ7b5mRrGDOSxp0ntvEo90On1x1q9UYfpX5l-M6hYvcHiDQ44u5vT9zDJ3O0HzdPH3mij-wYp"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<div class="size-12 rounded-full bg-primary text-white flex items-center justify-center neon-glow-primary">
+<span class="material-symbols-outlined">description</span>
+</div>
+</div>
+</div>
+<div class="p-5">
+<h4 class="text-white font-bold mb-2 group-hover:text-primary transition-colors">Geometrijski smisao matrica</h4>
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-secondary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-secondary">person</span>
+</div>
+<span class="text-primary/60 text-xs font-bold uppercase">Prof. Ivan Milić</span>
+</div>
+</div>
+</div>
+<!-- Tip 4 -->
+<div class="glass rounded-2xl overflow-hidden group hover:border-primary/50 transition-all cursor-pointer">
+<div class="aspect-video relative overflow-hidden">
+<img alt="Mentor video thumbnail" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Conceptual image showing focus and brain symbols" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYPfjI2ZJPXjGY3SzfgzybR4ia7dCjERNH7vLqh8s81_Yr68nFL9CvjcLSRTL_WYaFjOUgfZsEnEhlMDhQidOgiukk3GR3OsrAT9NDlyjrMWt4pavw6pSxmO_zFOoktcUsoqxG5C2dQx0IwTfEQIAA9cq5onKcVMf3qQhYTnvaDSkTNVl8N15eOFkOCUL9mGjRBt3ImLgRmQC0i3F8LAkPs1VX6y0P4QacEfo9Ad1FwU9Ytb2AB5Ccbfu-hgtAvKOlpzEJ4EpzZVT8"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<div class="size-12 rounded-full bg-primary text-white flex items-center justify-center neon-glow-primary">
+<span class="material-symbols-outlined">emoji_objects</span>
+</div>
+</div>
+</div>
+<div class="p-5">
+<h4 class="text-white font-bold mb-2 group-hover:text-primary transition-colors">Psihološka priprema za ispit</h4>
+<div class="flex items-center gap-2">
+<div class="size-6 rounded-full bg-secondary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-secondary">person</span>
+</div>
+<span class="text-primary/60 text-xs font-bold uppercase">Spec. Marko Simić</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Footer Area -->
+<footer class="bg-accent-dark/50 border-t border-primary/10 p-10 mt-auto">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-4 text-primary">
+<span class="material-symbols-outlined text-3xl">functions</span>
+<span class="text-white font-black">MathPrep Elite</span>
+</div>
+<div class="flex gap-8 text-slate-500 text-sm font-medium">
+<a class="hover:text-primary transition-colors" href="#">Uslovi korišćenja</a>
+<a class="hover:text-primary transition-colors" href="#">Privatnost</a>
+<a class="hover:text-primary transition-colors" href="#">O nama</a>
+<a class="hover:text-primary transition-colors" href="#">Kontakt</a>
+</div>
+<p class="text-slate-600 text-sm">© 2024 MathPrep Elite. Sva prava zadržana.</p>
+</div>
+</footer>
+</div>
+</body></html>

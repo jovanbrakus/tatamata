@@ -1,8 +1,9 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { problemProgress, problems } from "@/drizzle/schema";
+import { problemProgress } from "@/drizzle/schema";
 import { eq, desc } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { getProblemMeta } from "@/lib/problems";
 
 export async function GET(req: Request) {
   const session = await auth();
@@ -12,22 +13,32 @@ export async function GET(req: Request) {
   const url = new URL(req.url);
   const limit = Math.min(Number(url.searchParams.get("limit") || "20"), 50);
 
-  const result = await db
+  const rows = await db
     .select({
-      slug: problems.slug,
-      title: problems.title,
-      facultyId: problems.facultyId,
-      year: problems.year,
-      problemNumber: problems.problemNumber,
+      problemId: problemProgress.problemId,
       status: problemProgress.status,
       isCorrect: problemProgress.isCorrect,
       updatedAt: problemProgress.updatedAt,
     })
     .from(problemProgress)
-    .innerJoin(problems, eq(problemProgress.problemId, problems.id))
     .where(eq(problemProgress.userId, userId))
     .orderBy(desc(problemProgress.updatedAt))
     .limit(limit);
+
+  const result = rows
+    .map((row) => {
+      const meta = getProblemMeta(row.problemId);
+      return {
+        id: row.problemId,
+        title: meta ? `${meta.facultyId} ${meta.year} #${meta.problemNumber}` : row.problemId,
+        facultyId: meta?.facultyId ?? null,
+        year: meta?.year ?? null,
+        problemNumber: meta?.problemNumber ?? null,
+        status: row.status,
+        isCorrect: row.isCorrect,
+        updatedAt: row.updatedAt,
+      };
+    });
 
   return NextResponse.json(result);
 }

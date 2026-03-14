@@ -1,8 +1,9 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { problemProgress, problems } from "@/drizzle/schema";
-import { eq, sql, and } from "drizzle-orm";
+import { problemProgress } from "@/drizzle/schema";
+import { eq, sql } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { getProblemsCount } from "@/lib/problems";
 
 export async function GET() {
   const session = await auth();
@@ -10,19 +11,17 @@ export async function GET() {
 
   const userId = (session.user as any).id;
 
-  const [totalResult, progressResult] = await Promise.all([
-    db.select({ count: sql<number>`count(*)` }).from(problems).where(eq(problems.isPublished, true)),
-    db
-      .select({
-        status: problemProgress.status,
-        count: sql<number>`count(*)`,
-      })
-      .from(problemProgress)
-      .where(eq(problemProgress.userId, userId))
-      .groupBy(problemProgress.status),
-  ]);
+  const total = getProblemsCount();
 
-  const total = Number(totalResult[0]?.count ?? 0);
+  const progressResult = await db
+    .select({
+      status: problemProgress.status,
+      count: sql<number>`count(*)`,
+    })
+    .from(problemProgress)
+    .where(eq(problemProgress.userId, userId))
+    .groupBy(problemProgress.status);
+
   const byStatus: Record<string, number> = {};
   for (const row of progressResult) {
     byStatus[row.status] = Number(row.count);

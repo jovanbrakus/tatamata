@@ -1,7 +1,9 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { sql } from "drizzle-orm";
+import { problemProgress } from "@/drizzle/schema";
+import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { getAllMeta, getCategories } from "@/lib/problems";
 
 export async function GET() {
   const session = await auth();
@@ -9,19 +11,48 @@ export async function GET() {
 
   const userId = (session.user as any).id;
 
-  const result = await db.execute(sql`
-    SELECT
-      t.id as topic_id,
-      t.name,
-      COUNT(DISTINCT pt.problem_id) as total,
-      COUNT(DISTINCT CASE WHEN pp.status = 'solved' THEN pt.problem_id END) as solved
-    FROM topics t
-    JOIN problem_topics pt ON pt.topic_id = t.id
-    JOIN problems p ON p.id = pt.problem_id AND p.is_published = true
-    LEFT JOIN problem_progress pp ON pp.problem_id = pt.problem_id AND pp.user_id = ${userId}
-    GROUP BY t.id, t.name
-    ORDER BY t.name
-  `);
+  const allMeta = getAllMeta();
+  const totalByCategory: Record<string, number> = {};
+  const idToCategory = new Map<string, string>();
+  for (const p of allMeta) {
+    if (p.category) {
+      totalByCategory[p.category] = (totalByCategory[p.category] ?? 0) + 1;
+      idToCategory.set(p.id, p.category);
+    }
+  }
 
-  return NextResponse.json(result.rows);
+  const progressRows = await db
+    .select({
+      problemId: problemProgress.problemId,
+      status: problemProgress.status,
+    })
+    .from(problemProgress)
+    .where(eq(problemProgress.userId, userId));
+
+  const solvedByCategory: Record<string, number> = {};
+  for (const row of progressRows) {
+    if (row.status === "solved") {
+      const cat = idToCategory.get(row.problemId);
+      if (cat) {
+        solvedByCategory[cat] = (solvedByCategory[cat] ?? 0) + 1;
+      }
+    }
+  }
+
+  const categories = getCategories();
+  const categoryNames: Record<string, string> = {};
+  for (const c of categories) {
+    categoryNames[c.id] = c.sr;
+  }
+
+  const result = Object.entries(totalByCategory).map(([categoryId, total]) => ({
+    topic_id: categoryId,
+    name: categoryNames[categoryId] ?? categoryId,
+    total,
+    solved: solvedByCategory[categoryId] ?? 0,
+  }));
+
+  result.sort((a, b) => a.name.localeCompare(b.name));
+
+  return NextResponse.json(result);
 }

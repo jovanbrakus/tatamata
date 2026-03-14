@@ -1,41 +1,8 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import {
-  problemTopics,
-} from "@/drizzle/schema";
-import { sql, inArray } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 import { NextResponse } from "next/server";
-
-// Category group definitions (same as categories route)
-const CATEGORY_GROUPS: Record<string, { name: string; topicIds: string[] }> = {
-  algebra: {
-    name: "Algebra",
-    topicIds: [
-      "algebra", "linearna_algebra", "jednacine", "nejednacine",
-      "trigonometrija", "kompleksni_brojevi", "polinomi",
-      "nizovi_i_redovi", "logaritmi", "eksponencijalne_funkcije",
-    ],
-  },
-  geometrija: {
-    name: "Geometrija",
-    topicIds: [
-      "geometrija", "analiticka_geometrija", "planimetrija",
-      "stereometrija", "trigonometrija_geometrija", "vektori",
-    ],
-  },
-  verovatnoca: {
-    name: "Verovatnoca",
-    topicIds: [
-      "verovatnoca", "kombinatorika", "statistika",
-    ],
-  },
-  logika: {
-    name: "Logika",
-    topicIds: [
-      "logika", "skupovi", "matematicka_indukcija", "teorija_brojeva",
-    ],
-  },
-};
+import { getAllMeta, getCategoryGroups, getProblemFull, type ProblemMeta } from "@/lib/problems";
 
 export async function GET() {
   const session = await auth();
@@ -44,164 +11,165 @@ export async function GET() {
   }
 
   const userId = (session.user as any).id;
+  const categoryGroups = getCategoryGroups();
 
-  // Step 1: Calculate knowledge per category (with recency weighting)
+  // Step 1: Get all user progress from DB
   const progressResult = await db.execute(sql`
     SELECT
-      pt.topic_id,
-      pp.is_correct,
-      pp.updated_at
-    FROM problem_progress pp
-    JOIN problem_topics pt ON pt.problem_id = pp.problem_id
-    WHERE pp.user_id = ${userId}
-      AND pp.status != 'unseen'
+      problem_id,
+      is_correct,
+      updated_at
+    FROM problem_progress
+    WHERE user_id = ${userId}
+      AND status != 'unseen'
   `);
 
-  // Build per-category knowledge scores using exponential decay
+  // Build a map of id -> progress for quick lookup
+  const progressById = new Map<string, { isCorrect: boolean; updatedAt: Date }>();
+  for (const row of progressResult.rows) {
+    progressById.set(row.problem_id as string, {
+      isCorrect: row.is_correct as boolean,
+      updatedAt: new Date(row.updated_at as string),
+    });
+  }
+
+  // Build a map of id -> category from the problems index
+  const allProblems = getAllMeta();
+  const idToCategory = new Map<string, string>();
+  for (const p of allProblems) {
+    if (p.category) {
+      idToCategory.set(p.id, p.category);
+    }
+  }
+
+  // Step 2: Calculate knowledge per category group (with recency weighting)
   const categoryKnowledge: Record<string, number | null> = {};
   const categoryLastPractice: Record<string, Date | null> = {};
 
-  for (const [categoryId, group] of Object.entries(CATEGORY_GROUPS)) {
+  for (const group of categoryGroups) {
+    const categorySet = new Set(group.categories);
     let weightedCorrect = 0;
     let weightedTotal = 0;
     let lastPracticeDate: Date | null = null;
 
-    for (const row of progressResult.rows) {
-      const topicId = row.topic_id as string;
-      if (!group.topicIds.includes(topicId)) continue;
+    for (const [id, progress] of progressById) {
+      const cat = idToCategory.get(id);
+      if (!cat || !categorySet.has(cat)) continue;
 
-      const updatedAt = new Date(row.updated_at as string);
-      const daysAgo = Math.max(0, (Date.now() - updatedAt.getTime()) / (1000 * 60 * 60 * 24));
+      const daysAgo = Math.max(0, (Date.now() - progress.updatedAt.getTime()) / (1000 * 60 * 60 * 24));
       const weight = Math.pow(0.95, daysAgo); // half-life ~14 days
 
       weightedTotal += weight;
-      if (row.is_correct) {
+      if (progress.isCorrect) {
         weightedCorrect += weight;
       }
 
-      if (!lastPracticeDate || updatedAt > lastPracticeDate) {
-        lastPracticeDate = updatedAt;
+      if (!lastPracticeDate || progress.updatedAt > lastPracticeDate) {
+        lastPracticeDate = progress.updatedAt;
       }
     }
 
-    categoryKnowledge[categoryId] = weightedTotal > 0
+    categoryKnowledge[group.id] = weightedTotal > 0
       ? (weightedCorrect / weightedTotal) * 100
       : null;
-    categoryLastPractice[categoryId] = lastPracticeDate;
+    categoryLastPractice[group.id] = lastPracticeDate;
   }
 
-  // Step 2: Calculate weakness scores
+  // Step 3: Calculate weakness scores
   const weaknessScores: Record<string, number> = {};
-  for (const categoryId of Object.keys(CATEGORY_GROUPS)) {
-    const knowledge = categoryKnowledge[categoryId];
+  for (const group of categoryGroups) {
+    const knowledge = categoryKnowledge[group.id];
     if (knowledge === null) {
-      weaknessScores[categoryId] = 100; // never tried = highest priority
+      weaknessScores[group.id] = 100; // never tried = highest priority
     } else {
-      weaknessScores[categoryId] = 100 - knowledge;
+      weaknessScores[group.id] = 100 - knowledge;
     }
 
     // Recency boost
-    const lastPractice = categoryLastPractice[categoryId];
+    const lastPractice = categoryLastPractice[group.id];
     if (lastPractice) {
       const daysSince = Math.max(0, (Date.now() - lastPractice.getTime()) / (1000 * 60 * 60 * 24));
-      weaknessScores[categoryId] += Math.min(20, daysSince * 2);
+      weaknessScores[group.id] += Math.min(20, daysSince * 2);
     } else {
-      weaknessScores[categoryId] += 20; // never practiced = max boost
+      weaknessScores[group.id] += 20; // never practiced = max boost
     }
   }
 
-  // Step 3: Find recommended category (highest weakness score)
-  let recommendedCategoryId = "algebra";
+  // Step 4: Find recommended category group (highest weakness score)
+  let recommendedGroupId = categoryGroups[0]?.id ?? "algebra";
   let highestScore = -1;
-  for (const [categoryId, score] of Object.entries(weaknessScores)) {
+  for (const [groupId, score] of Object.entries(weaknessScores)) {
     if (score > highestScore) {
       highestScore = score;
-      recommendedCategoryId = categoryId;
+      recommendedGroupId = groupId;
     }
   }
 
-  const recommendedCategory = CATEGORY_GROUPS[recommendedCategoryId];
-  const topicIds = recommendedCategory.topicIds;
+  const recommendedGroup = categoryGroups.find((g) => g.id === recommendedGroupId)!;
+  const groupCategorySet = new Set(recommendedGroup.categories);
 
-  // Step 4: Select problems from recommended category using parameterized query
-  // Get problem IDs in this category
-  const categoryProblemIds = await db
-    .selectDistinct({ problemId: problemTopics.problemId })
-    .from(problemTopics)
-    .where(inArray(problemTopics.topicId, topicIds));
+  // Step 5: Select problems from recommended category group
+  // Filter all problems that belong to one of this group's categories
+  const categoryProblems = allProblems.filter(
+    (p) => p.category && groupCategorySet.has(p.category)
+  );
 
-  const pIds = categoryProblemIds.map((r) => r.problemId);
+  // Separate into unseen/failed and solved
+  const unseenOrFailed: ProblemMeta[] = [];
+  const solvedProblems: ProblemMeta[] = [];
 
-  let recommendedProblems: any[] = [];
-
-  if (pIds.length > 0) {
-    // Get unseen or failed problems, sorted by difficulty ASC
-    recommendedProblems = await db.execute(sql`
-      SELECT DISTINCT
-        p.id,
-        p.slug,
-        p.title,
-        p.faculty_id,
-        p.year,
-        p.problem_number,
-        p.difficulty,
-        p.num_options,
-        pp.is_correct,
-        pp.status as progress_status
-      FROM problems p
-      LEFT JOIN problem_progress pp ON pp.problem_id = p.id AND pp.user_id = ${userId}
-      WHERE p.is_published = true
-        AND p.id = ANY(${pIds})
-        AND (pp.is_correct IS NULL OR pp.is_correct = false)
-      ORDER BY
-        CASE WHEN pp.status IS NULL THEN 0 ELSE 1 END,
-        COALESCE(p.difficulty, 5.0) ASC
-      LIMIT 5
-    `).then(r => r.rows);
-
-    // If all problems in category are solved correctly, pick ones they got wrong for retry
-    if (recommendedProblems.length === 0) {
-      recommendedProblems = await db.execute(sql`
-        SELECT DISTINCT
-          p.id,
-          p.slug,
-          p.title,
-          p.faculty_id,
-          p.year,
-          p.problem_number,
-          p.difficulty,
-          p.num_options,
-          pp.is_correct,
-          pp.status as progress_status
-        FROM problems p
-        LEFT JOIN problem_progress pp ON pp.problem_id = p.id AND pp.user_id = ${userId}
-        WHERE p.is_published = true
-          AND p.id = ANY(${pIds})
-        ORDER BY pp.updated_at ASC NULLS FIRST
-        LIMIT 5
-      `).then(r => r.rows);
+  for (const p of categoryProblems) {
+    const progress = progressById.get(p.id);
+    if (!progress || !progress.isCorrect) {
+      unseenOrFailed.push(p);
+    } else {
+      solvedProblems.push(p);
     }
+  }
+
+  // Sort unseen first (no progress), then failed, then by difficulty ASC
+  unseenOrFailed.sort((a, b) => {
+    const aProgress = progressById.get(a.id);
+    const bProgress = progressById.get(b.id);
+    const aUnseen = !aProgress ? 0 : 1;
+    const bUnseen = !bProgress ? 0 : 1;
+    if (aUnseen !== bUnseen) return aUnseen - bUnseen;
+    return (a.difficulty ?? 5) - (b.difficulty ?? 5);
+  });
+
+  let recommendedProblems = unseenOrFailed.slice(0, 5);
+
+  // If all problems in category are solved, pick least recently practiced for retry
+  if (recommendedProblems.length === 0) {
+    solvedProblems.sort((a, b) => {
+      const aTime = progressById.get(a.id)?.updatedAt.getTime() ?? 0;
+      const bTime = progressById.get(b.id)?.updatedAt.getTime() ?? 0;
+      return aTime - bTime; // oldest first
+    });
+    recommendedProblems = solvedProblems.slice(0, 5);
   }
 
   return NextResponse.json({
     recommendedCategory: {
-      id: recommendedCategoryId,
-      name: recommendedCategory.name,
-      knowledgePercent: categoryKnowledge[recommendedCategoryId] !== null
-        ? Math.round(categoryKnowledge[recommendedCategoryId]!)
+      id: recommendedGroupId,
+      name: recommendedGroup.sr,
+      knowledgePercent: categoryKnowledge[recommendedGroupId] !== null
+        ? Math.round(categoryKnowledge[recommendedGroupId]!)
         : 0,
-      weaknessScore: Math.round(weaknessScores[recommendedCategoryId]),
+      weaknessScore: Math.round(weaknessScores[recommendedGroupId]),
     },
-    problems: recommendedProblems.map((p: any) => ({
-      id: p.id,
-      slug: p.slug,
-      title: p.title,
-      facultyId: p.faculty_id,
-      year: p.year,
-      problemNumber: p.problem_number,
-      difficulty: p.difficulty,
-      numOptions: p.num_options,
-    })),
+    problems: recommendedProblems.map((p) => {
+      const full = getProblemFull(p.id);
+      return {
+        id: p.id,
+        title: full?.title ?? `Zadatak ${p.problemNumber}`,
+        facultyId: p.facultyId,
+        year: p.year,
+        problemNumber: p.problemNumber,
+        difficulty: p.difficulty,
+        numOptions: full?.numOptions ?? 5,
+      };
+    }),
     weaknessScores,
   });
 }

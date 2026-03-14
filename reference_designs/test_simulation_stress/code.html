@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="sr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "accent-cyan": "#00f2ff",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#0a0705",
+                        "obsidian": "#140d0a",
+                        "card-glass": "rgba(34, 22, 16, 0.7)",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(34, 22, 16, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(236, 91, 19, 0.1);
+        }
+        .glow-orange {
+            box-shadow: 0 0 15px rgba(236, 91, 19, 0.3);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+        }
+        .math-gradient {
+            background: linear-gradient(135deg, rgba(236, 91, 19, 0.05) 0%, rgba(0, 242, 255, 0.05) 100%);
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-screen w-full flex-col overflow-hidden">
+<!-- Header / Top Nav -->
+<header class="flex items-center justify-between border-b border-primary/20 bg-obsidian/90 px-8 py-3 backdrop-blur-md">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-primary rounded-xl flex items-center justify-center glow-orange">
+<span class="material-symbols-outlined text-white text-2xl">functions</span>
+</div>
+<div>
+<h2 class="text-white text-lg font-extrabold leading-tight tracking-tight uppercase">MathPrep <span class="text-primary">Elite</span></h2>
+<div class="flex gap-3 text-[10px] font-bold text-slate-400 tracking-widest uppercase">
+<span class="text-primary/80">ETF</span>
+<span>FON</span>
+<span>FTN</span>
+</div>
+</div>
+</div>
+<div class="h-8 w-px bg-white/10 mx-2"></div>
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-red-500 animate-pulse"></span>
+<span class="text-xs font-bold text-slate-300 uppercase tracking-tighter">Live Proctor Mode</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex flex-col items-end">
+<span class="text-[10px] text-primary font-bold uppercase tracking-widest">Preostalo vreme</span>
+<div class="flex items-center gap-3">
+<div class="bg-primary/10 border border-primary/30 rounded-lg px-4 py-1 text-2xl font-mono font-black text-primary glow-orange">
+                            02:44:12
+                        </div>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex size-10 items-center justify-center rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="size-10 rounded-xl overflow-hidden border border-primary/50">
+<img class="w-full h-full object-cover" data-alt="Korisnički profil studenta" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNcpKYxgUrnY5FSOVeFGj3pK4azlG7q8ay9FDPRQStRExH4a-2EPIV9JpKu-gfSJqQaWsE__uqEfUXR9jM9FlW8wrSr6INs6mf1qitPWSlIu928UXNxED0n_ZL2PG_bP_bWh1IFOUbdPBwxzaXTot7M15TgNZWWWf0FzJTiWFpWIiGWFe6MV5_yanYj0iCFnNr8qHRviFWXKjvsFxKKirYs0KNpQ40Klcx90uHfXSCVCXbY82o90nihfOte1GDwM5Suqskx1obGOL8"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex flex-1 overflow-hidden">
+<!-- Sidebar Left: Pacing & Stress -->
+<aside class="w-80 flex flex-col gap-4 p-6 bg-obsidian border-r border-white/5 overflow-y-auto">
+<!-- Pacing Radar -->
+<div class="glass-panel p-5 rounded-2xl flex flex-col gap-4 border-l-4 border-l-accent-cyan">
+<div class="flex justify-between items-center">
+<h3 class="text-xs font-bold uppercase tracking-widest text-accent-cyan">Pacing Radar</h3>
+<span class="material-symbols-outlined text-accent-cyan">radar</span>
+</div>
+<div class="relative size-40 mx-auto flex items-center justify-center">
+<div class="absolute inset-0 rounded-full border-2 border-dashed border-accent-cyan/20 animate-spin-slow"></div>
+<div class="flex flex-col items-center">
+<span class="text-3xl font-black text-white">88%</span>
+<span class="text-[10px] text-accent-cyan font-bold uppercase">Optimalno</span>
+</div>
+</div>
+<p class="text-xs text-slate-400 text-center leading-relaxed">Trenutno ste <span class="text-accent-cyan font-bold">+4 min</span> ispred predviđenog vremena za ETF prijemni.</p>
+</div>
+<!-- Stress Level -->
+<div class="glass-panel p-5 rounded-2xl flex flex-col gap-3 border-l-4 border-l-primary">
+<div class="flex justify-between items-center">
+<h3 class="text-xs font-bold uppercase tracking-widest text-primary">Nivo Stresa</h3>
+<span class="material-symbols-outlined text-primary">ecg_heart</span>
+</div>
+<div class="flex items-end gap-1 h-12">
+<div class="w-full bg-primary/20 h-4 rounded-sm"></div>
+<div class="w-full bg-primary/40 h-8 rounded-sm"></div>
+<div class="w-full bg-primary/60 h-6 rounded-sm"></div>
+<div class="w-full bg-primary h-12 rounded-sm glow-orange"></div>
+<div class="w-full bg-primary/30 h-5 rounded-sm"></div>
+</div>
+<div class="flex justify-between text-[10px] font-bold text-slate-500">
+<span>FOKUSIRAN</span>
+<span class="text-primary">INTENZIVAN</span>
+</div>
+</div>
+<!-- Live Proctor Insights -->
+<div class="flex-1 flex flex-col gap-3">
+<h3 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-1">AI Proctor Insight</h3>
+<div class="glass-panel p-4 rounded-xl border border-white/5 bg-gradient-to-br from-white/5 to-transparent">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-accent-cyan">bolt</span>
+<p class="text-xs leading-relaxed text-slate-300">
+<span class="text-accent-cyan font-bold uppercase">Savet:</span> Tempo u oblasti <span class="text-white font-bold">Geometrije</span> je usporen. Preporuka: prioritizuj <span class="text-white font-bold">Algebru</span> u narednih 15 min.
+                            </p>
+</div>
+</div>
+<div class="glass-panel p-4 rounded-xl border border-white/5 opacity-60">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-slate-400">info</span>
+<p class="text-xs leading-relaxed text-slate-400">
+                                Detektovan visok nivo preciznosti u Trigonometriji. Nastavite ovim tempom.
+                            </p>
+</div>
+</div>
+</div>
+<!-- Battle Report Button -->
+<button class="mt-auto w-full py-4 bg-primary text-white font-black uppercase tracking-widest rounded-xl hover:bg-primary/90 transition-all glow-orange flex items-center justify-center gap-2 group">
+<span>Završi Simulaciju</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">military_tech</span>
+</button>
+</aside>
+<!-- Main Workspace: Problem Area -->
+<section class="flex-1 bg-background-dark p-8 flex flex-col overflow-y-auto">
+<div class="max-w-4xl mx-auto w-full flex flex-col gap-8">
+<!-- Question Header -->
+<div class="flex justify-between items-end border-b border-white/5 pb-4">
+<div>
+<span class="text-primary font-bold text-sm tracking-widest uppercase">Zadatak 14 / 20</span>
+<h1 class="text-3xl font-black text-white mt-1">Kompleksna Integracija</h1>
+<p class="text-slate-400 text-sm mt-1">Oblast: Matematička analiza i trigonometrija (Nivo: Elite)</p>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-slate-400 uppercase tracking-wider">ETF 2024</span>
+<span class="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-bold text-primary uppercase tracking-wider">Težina: 9/10</span>
+</div>
+</div>
+<!-- LaTeX Display Area -->
+<div class="glass-panel rounded-3xl p-12 math-gradient flex flex-col items-center justify-center min-h-[300px] border border-white/5 relative overflow-hidden group">
+<!-- Decorative grid background -->
+<div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 30px 30px;"></div>
+<div class="relative z-10 text-center">
+<p class="text-slate-400 mb-8 italic text-lg">Izračunati vrednost integrala duž zatvorene konture C:</p>
+<div class="text-5xl md:text-6xl text-white font-light tracking-wide py-4 select-none">
+<span class="font-serif">∮</span><sub>C</sub>
+<span class="inline-block px-2">
+<div class="inline-flex flex-col items-center align-middle">
+<span class="border-b border-white/50 pb-1">e<sup>z</sup> dz</span>
+<span class="pt-1">z<sup>2</sup> + 2z + 2</span>
+</div>
+</span>
+</div>
+<p class="text-slate-500 mt-8 text-sm">Gde je C pozitivno orijentisana kružnica |z + 1| = 2</p>
+</div>
+</div>
+<!-- Answer Choices Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Option A -->
+<button class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-primary/50 transition-all flex items-center justify-between group text-left">
+<div class="flex items-center gap-4">
+<span class="size-10 rounded-lg bg-white/5 flex items-center justify-center font-bold text-slate-400 group-hover:bg-primary group-hover:text-white transition-colors">A</span>
+<span class="text-xl text-white font-medium italic">2πi ⋅ sin(1) / e</span>
+</div>
+<div class="size-6 rounded-full border-2 border-white/20 group-hover:border-primary transition-colors"></div>
+</button>
+<!-- Option B -->
+<button class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-primary/50 transition-all flex items-center justify-between group text-left">
+<div class="flex items-center gap-4">
+<span class="size-10 rounded-lg bg-white/5 flex items-center justify-center font-bold text-slate-400 group-hover:bg-primary group-hover:text-white transition-colors">B</span>
+<span class="text-xl text-white font-medium italic">πi ⋅ cos(1) ⋅ e</span>
+</div>
+<div class="size-6 rounded-full border-2 border-white/20 group-hover:border-primary transition-colors"></div>
+</button>
+<!-- Option C -->
+<button class="glass-panel p-6 rounded-2xl border border-white/10 border-primary/40 bg-primary/5 flex items-center justify-between group text-left">
+<div class="flex items-center gap-4">
+<span class="size-10 rounded-lg bg-primary flex items-center justify-center font-bold text-white">C</span>
+<span class="text-xl text-white font-medium italic">2πi ⋅ sin(1) ⋅ e<sup>-1</sup></span>
+</div>
+<div class="size-6 rounded-full border-2 border-primary bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-white font-bold">check</span>
+</div>
+</button>
+<!-- Option D -->
+<button class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-primary/50 transition-all flex items-center justify-between group text-left">
+<div class="flex items-center gap-4">
+<span class="size-10 rounded-lg bg-white/5 flex items-center justify-center font-bold text-slate-400 group-hover:bg-primary group-hover:text-white transition-colors">D</span>
+<span class="text-xl text-white font-medium italic">-2πi / e</span>
+</div>
+<div class="size-6 rounded-full border-2 border-white/20 group-hover:border-primary transition-colors"></div>
+</button>
+</div>
+<!-- Action Bar -->
+<div class="mt-4 flex justify-between items-center py-6">
+<button class="px-8 py-3 rounded-xl border border-white/10 text-slate-400 font-bold uppercase tracking-widest hover:bg-white/5 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">chevron_left</span>
+                            Prethodni
+                        </button>
+<div class="flex gap-4">
+<button class="px-8 py-3 rounded-xl border border-primary/30 text-primary font-bold uppercase tracking-widest hover:bg-primary/5 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">flag</span>
+                                Označi za kasnije
+                            </button>
+<button class="px-10 py-3 rounded-xl bg-white text-black font-black uppercase tracking-widest hover:bg-slate-200 transition-all flex items-center gap-2 shadow-xl">
+                                Sledeći zadatak
+                                <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Sidebar: Question Grid & Progress -->
+<aside class="w-24 bg-obsidian border-l border-white/5 flex flex-col items-center py-6 gap-4 overflow-y-auto scrollbar-hide">
+<div class="text-[10px] font-bold text-slate-600 uppercase tracking-tighter mb-2">Status</div>
+<!-- Simple Question Map -->
+<div class="flex flex-col gap-3">
+<div class="size-12 rounded-xl bg-accent-cyan/20 border border-accent-cyan/50 flex items-center justify-center text-accent-cyan font-bold text-xs">01</div>
+<div class="size-12 rounded-xl bg-accent-cyan/20 border border-accent-cyan/50 flex items-center justify-center text-accent-cyan font-bold text-xs">02</div>
+<div class="size-12 rounded-xl bg-accent-cyan/20 border border-accent-cyan/50 flex items-center justify-center text-accent-cyan font-bold text-xs">03</div>
+<div class="size-12 rounded-xl bg-primary/20 border border-primary/50 flex items-center justify-center text-primary font-bold text-xs glow-orange">14</div>
+<div class="size-12 rounded-xl border border-white/10 flex items-center justify-center text-slate-600 font-bold text-xs">15</div>
+<div class="size-12 rounded-xl border border-white/10 flex items-center justify-center text-slate-600 font-bold text-xs">16</div>
+<div class="size-12 rounded-xl border border-white/10 flex items-center justify-center text-slate-600 font-bold text-xs">17</div>
+<div class="size-12 rounded-xl border border-white/10 flex items-center justify-center text-slate-600 font-bold text-xs">18</div>
+<div class="size-12 rounded-xl border border-white/10 flex items-center justify-center text-slate-600 font-bold text-xs">19</div>
+<div class="size-12 rounded-xl border border-white/10 flex items-center justify-center text-slate-600 font-bold text-xs">20</div>
+</div>
+<div class="mt-auto flex flex-col items-center gap-4 py-4">
+<div class="size-1 w-full bg-white/5 mx-auto"></div>
+<button class="size-12 rounded-full border border-primary/50 text-primary flex items-center justify-center hover:bg-primary/10 transition-all">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+</aside>
+</main>
+</div>
+</body></html>
