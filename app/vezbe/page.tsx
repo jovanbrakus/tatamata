@@ -9,6 +9,7 @@ import {
   Loader2,
   Flame,
   Bookmark,
+  Zap,
 } from "lucide-react";
 
 interface Category {
@@ -107,6 +108,9 @@ export default function PracticePage() {
   const [diffRange, setDiffRange] = useState<[number, number]>([1, 10]);
   const [statusFilter, setStatusFilter] = useState<string>("all");
 
+  // Random recommended problem
+  const [randomProblemId, setRandomProblemId] = useState<string | null>(null);
+
   useEffect(() => {
     if (sessionStatus !== "authenticated") return;
 
@@ -114,12 +118,18 @@ export default function PracticePage() {
     Promise.all([
       fetch("/api/practice/categories").then((r) => r.json()),
       fetch("/api/user/dashboard").then((r) => r.json()),
+      fetch("/api/problems?limit=100").then((r) => r.json()),
     ])
-      .then(([catData, dashData]) => {
+      .then(([catData, dashData, problemsData]) => {
         setCategories(catData.categories || []);
         setStreakCurrent(dashData.user?.streakCurrent ?? 0);
         setSolvedToday(dashData.progress?.solvedToday ?? 0);
         setDailyGoal(dashData.progress?.dailyGoal ?? 3);
+        // Pick a random problem for the recommended card
+        const allIds = (problemsData.problems || []).map((p: any) => p.id);
+        if (allIds.length > 0) {
+          setRandomProblemId(allIds[Math.floor(Math.random() * allIds.length)]);
+        }
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -159,6 +169,11 @@ export default function PracticePage() {
         params.set("diffMax", String(diffRange[1]));
       }
 
+      // Status filter
+      if (statusFilter !== "all") {
+        params.set("status", statusFilter);
+      }
+
       const res = await fetch(`/api/problems?${params}`);
       const data = await res.json();
 
@@ -171,7 +186,7 @@ export default function PracticePage() {
       setHasMore((data.problems || []).length === 15);
       setLoadingProblems(false);
     },
-    [selectedGroups, selectedTopics, diffRange]
+    [selectedGroups, selectedTopics, diffRange, statusFilter]
   );
 
   useEffect(() => {
@@ -179,7 +194,7 @@ export default function PracticePage() {
       setPage(1);
       fetchProblems(1);
     }
-  }, [sessionStatus, loading, selectedGroups, selectedTopics, diffRange, fetchProblems]);
+  }, [sessionStatus, loading, selectedGroups, selectedTopics, diffRange, statusFilter, fetchProblems]);
 
   const handleLoadMore = () => {
     const nextPage = page + 1;
@@ -448,6 +463,31 @@ export default function PracticePage() {
 
         {/* Problem Feed (8 cols) */}
         <div className="flex flex-col gap-6 lg:col-span-8">
+          {/* Recommended Problem Card */}
+          {randomProblemId && (
+            <div className="group relative flex flex-col items-center justify-between gap-4 overflow-hidden rounded-2xl border border-[#ec5b13]/20 bg-[#ec5b13]/5 p-6 glass-card md:flex-row hover:border-[#ec5b13]/40 transition-all">
+              <div className="flex flex-col gap-1">
+                <div className="mb-1 flex items-center gap-2">
+                  <Zap size={20} className="text-[#ec5b13]" />
+                  <h4 className="text-xl font-bold tracking-tight text-heading">
+                    Preporučeni zadaci
+                  </h4>
+                </div>
+                <p className="max-w-lg text-sm text-text-secondary">
+                  Zadaci preporučeni na osnovu tvog nivoa znanja i istorije rešavanja.
+                </p>
+              </div>
+              <div className="shrink-0">
+                <Link
+                  href={`/vezbe/${randomProblemId}`}
+                  className="inline-block rounded-xl bg-[#ec5b13] px-8 py-3 text-sm font-black uppercase tracking-wider text-white shadow-lg shadow-[#ec5b13]/30 transition-transform hover:scale-105"
+                >
+                  Kreni
+                </Link>
+              </div>
+            </div>
+          )}
+
           <div className="flex items-center justify-between">
             <h4 className="flex items-center gap-2 text-xl font-bold text-heading">
               Dostupni Zadaci

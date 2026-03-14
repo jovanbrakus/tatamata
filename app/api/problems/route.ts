@@ -1,3 +1,7 @@
+import { auth } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { problemProgress, bookmarks } from "@/drizzle/schema";
+import { eq, and } from "drizzle-orm";
 import { getProblemFull, queryProblems } from "@/lib/problems";
 import { NextResponse } from "next/server";
 
@@ -10,10 +14,47 @@ export async function GET(req: Request) {
   const diffMin = url.searchParams.get("diffMin");
   const diffMax = url.searchParams.get("diffMax");
   const search = url.searchParams.get("search") || undefined;
+  const status = url.searchParams.get("status") || undefined;
   const page = parseInt(url.searchParams.get("page") || "1");
   const limit = parseInt(url.searchParams.get("limit") || "30");
 
-  const { problems, total } = queryProblems({
+  // If status filter is used, we need the user's progress/bookmarks
+  let solvedIds: Set<string> | null = null;
+  let bookmarkedIds: Set<string> | null = null;
+
+  if (status && status !== "all") {
+    const session = await auth();
+    const userId = (session?.user as any)?.id;
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    if (status === "solved" || status === "unsolved") {
+      const rows = await db
+        .select({ problemId: problemProgress.problemId })
+        .from(problemProgress)
+        .where(
+          and(
+            eq(problemProgress.userId, userId),
+            eq(problemProgress.isCorrect, true)
+          )
+        );
+      solvedIds = new Set(rows.map((r) => r.problemId));
+    }
+
+    if (status === "bookmarked") {
+      const rows = await db
+        .select({ problemId: bookmarks.problemId })
+        .from(bookmarks)
+        .where(eq(bookmarks.userId, userId));
+      bookmarkedIds = new Set(rows.map((r) => r.problemId));
+    }
+  }
+
+  // Query all matching problems (without pagination if we need to filter by status)
+  const needsPostFilter = solvedIds !== null || bookmarkedIds !== null;
+
+  const { problems: allProblems, total: rawTotal } = queryProblems({
     faculty,
     year: year ? parseInt(year) : undefined,
     category: topic,
@@ -21,9 +62,23 @@ export async function GET(req: Request) {
     diffMin: diffMin ? parseFloat(diffMin) : undefined,
     diffMax: diffMax ? parseFloat(diffMax) : undefined,
     search,
-    page,
-    limit,
+    page: needsPostFilter ? 1 : page,
+    limit: needsPostFilter ? 100000 : limit,
   });
+
+  let filtered = allProblems;
+
+  if (status === "solved" && solvedIds) {
+    filtered = filtered.filter((p) => solvedIds!.has(p.id));
+  } else if (status === "unsolved" && solvedIds) {
+    filtered = filtered.filter((p) => !solvedIds!.has(p.id));
+  } else if (status === "bookmarked" && bookmarkedIds) {
+    filtered = filtered.filter((p) => bookmarkedIds!.has(p.id));
+  }
+
+  const total = needsPostFilter ? filtered.length : rawTotal;
+  const offset = needsPostFilter ? (page - 1) * limit : 0;
+  const problems = needsPostFilter ? filtered.slice(offset, offset + limit) : filtered;
 
   return NextResponse.json({
     problems: problems.map((p) => {
