@@ -2,19 +2,10 @@
 
 import { useEffect, useState, useCallback, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
-import {
-  Flag,
-  ChevronLeft,
-  ChevronRight,
-  Settings,
-  Activity,
-  Radar,
-  Zap,
-  Info,
-  HelpCircle,
-  Award,
-} from "lucide-react";
+import { Flag, ChevronLeft, ChevronRight, Award } from "lucide-react";
 import AnswerOptions from "@/components/problems/AnswerOptions";
+import ProblemStatement from "@/components/problems/ProblemStatement";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 interface ExamProblem {
   id: string;
@@ -71,6 +62,7 @@ export default function SimulationPage() {
   const [elapsed, setElapsed] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const startTimeRef = useRef<number>(0);
 
@@ -114,7 +106,6 @@ export default function SimulationPage() {
           if (t === null) return null;
           if (t <= 1) {
             clearInterval(timerRef.current!);
-            // Auto-submit on expiry
             handleSubmit(true);
             return 0;
           }
@@ -159,7 +150,6 @@ export default function SimulationPage() {
 
   async function selectAnswer(answer: string) {
     const p = problems[current];
-    // Toggle: if same answer clicked, deselect
     const newAnswer = p.answer === answer ? null : answer;
 
     setProblems((prev) =>
@@ -208,7 +198,7 @@ export default function SimulationPage() {
     return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
   }
 
-  // Pacing radar calculation (spec 12.3)
+  // Pacing radar calculation
   function getPacingData() {
     if (!exam || !exam.durationLimit) return null;
 
@@ -218,30 +208,21 @@ export default function SimulationPage() {
     const pacingScore = progressPercent / Math.max(timePercent, 1);
     const displayPercent = Math.min(100, Math.round(pacingScore * 100));
 
-    let color: string;
     let label: string;
-    let message: string;
-
     if (displayPercent >= 90) {
-      color = "text-emerald-400";
-      label = "Optimalno";
-      message = "Ispred plana!";
+      label = "Ispred plana";
     } else if (displayPercent >= 70) {
-      color = "text-yellow-400";
-      label = "Umereno";
-      message = "Napredak u skladu sa planom";
+      label = "Po planu";
     } else {
-      color = "text-red-400";
-      label = "Kasniš";
-      message = `Trošiš ${Math.round(timePercent - progressPercent)}% više vremena`;
+      label = "Kašnjenje";
     }
 
-    return { displayPercent, color, label, message, timePercent, progressPercent };
+    return { displayPercent, label, timePercent, progressPercent };
   }
 
   if (!exam || problems.length === 0) {
     return (
-      <div className="flex h-screen items-center justify-center bg-[#0a0705]">
+      <div className="flex min-h-[60vh] items-center justify-center">
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-2 border-[#ec5b13] border-t-transparent" />
           <p className="mt-4 text-text-secondary">Učitavanje simulacije...</p>
@@ -256,11 +237,11 @@ export default function SimulationPage() {
   const testSizeNum = problems.length;
 
   return (
-    <div className="fixed inset-0 z-50 flex h-screen w-full flex-col overflow-hidden bg-[#0a0705]">
+    <div>
       {/* Confirmation Dialog */}
       {showConfirm && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 backdrop-blur-sm">
-          <div className="mx-4 w-full max-w-md rounded-2xl border border-[#ec5b13]/20 bg-[#140d0a] p-8 shadow-2xl">
+          <div className="mx-4 w-full max-w-md rounded-2xl border border-[#ec5b13]/20 bg-surface-dark p-8 shadow-2xl">
             <h3 className="text-xl font-bold text-heading mb-3">
               Završi simulaciju?
             </h3>
@@ -289,45 +270,50 @@ export default function SimulationPage() {
         </div>
       )}
 
-      {/* Header */}
-      <header className="flex items-center justify-between border-b border-[#ec5b13]/20 bg-[#140d0a]/90 px-8 py-3 backdrop-blur-md">
+      {/* Header — sticky within scrollable main area */}
+      <div className="sticky top-0 z-10 flex items-center justify-between border-b border-[#ec5b13]/20 bg-surface-dark/95 px-6 py-3 backdrop-blur-md">
         <div className="flex items-center gap-6">
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl bg-[#ec5b13] flex items-center justify-center shadow-[0_0_15px_rgba(236,91,19,0.3)]">
-              <span className="material-symbols-outlined text-white text-2xl">
-                functions
-              </span>
-            </div>
-            <div>
-              <h2 className="text-heading text-lg font-extrabold leading-tight tracking-tight uppercase">
-                Matoteka{" "}
-                <span className="text-[#ec5b13]">Simulacija</span>
-              </h2>
-              <div className="flex gap-3 text-[10px] font-bold text-text-secondary tracking-widest uppercase">
-                <span className="text-[#ec5b13]/80">
-                  {faculty?.shortName}
-                </span>
-                <span>
-                  {exam.testSize === "full"
-                    ? "Kompletan"
-                    : exam.testSize === "medium"
-                    ? "Srednji"
-                    : "Brzi"}
-                </span>
-              </div>
-            </div>
-          </div>
-          {exam.mode === "timed" && (
+          {/* Pacing indicator (timed mode only) */}
+          {pacing && (
             <>
-              <div className="h-8 w-px bg-[var(--tint-strong)] mx-2" />
-              <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
-                <span className="text-xs font-bold text-text uppercase tracking-tighter">
-                  Vremenski ograničen
-                </span>
+              <div className="flex flex-col items-start gap-1">
+                <span className="text-[9px] font-black text-muted uppercase tracking-[0.2em]">Proctor Insight</span>
+                <div className="flex items-center gap-3 bg-cyan-400/10 border border-cyan-400/20 px-3 py-1.5 rounded-lg">
+                  <div className="flex items-center gap-2">
+                    <div className="relative flex size-2 items-center justify-center">
+                      <span className="absolute h-full w-full rounded-full bg-cyan-400 opacity-75 animate-ping" />
+                      <span className="relative size-1.5 rounded-full bg-cyan-400" />
+                    </div>
+                    <span className="text-xs font-black text-heading">{pacing.displayPercent}%</span>
+                  </div>
+                  <div className="h-3 w-px bg-cyan-400/30" />
+                  <div className="flex items-center gap-1.5">
+                    <span className="material-symbols-outlined text-[14px] text-cyan-400">radar</span>
+                    <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-tighter whitespace-nowrap">{pacing.label}</span>
+                  </div>
+                </div>
               </div>
+              <div className="h-10 w-px bg-[var(--glass-border)]" />
             </>
           )}
+
+          {/* Status */}
+          <div className="flex flex-col items-start gap-1">
+            <span className="text-[9px] font-black text-muted uppercase tracking-[0.2em]">Status</span>
+            <div className="flex items-center gap-2 px-1">
+              {exam.mode === "timed" ? (
+                <>
+                  <span className="size-2 rounded-full bg-red-500 animate-pulse" />
+                  <span className="text-[10px] font-bold text-text-secondary uppercase tracking-widest">Proktor aktivan</span>
+                </>
+              ) : (
+                <>
+                  <span className="size-2 rounded-full bg-emerald-500" />
+                  <span className="text-[10px] font-bold text-text-secondary uppercase tracking-widest">Slobodan režim</span>
+                </>
+              )}
+            </div>
+          </div>
         </div>
 
         <div className="flex items-center gap-6">
@@ -336,140 +322,38 @@ export default function SimulationPage() {
             <span className="text-[10px] text-[#ec5b13] font-bold uppercase tracking-widest">
               {exam.mode === "timed" ? "Preostalo vreme" : "Proteklo vreme"}
             </span>
-            <div className="flex items-center gap-3">
-              <div
-                className={`rounded-lg px-4 py-1 text-2xl font-mono font-black shadow-[0_0_15px_rgba(236,91,19,0.3)] ${
-                  timeLeft !== null && timeLeft < 300
-                    ? "bg-red-500/10 border border-red-500/30 text-red-400"
-                    : "bg-[#ec5b13]/10 border border-[#ec5b13]/30 text-[#ec5b13]"
-                }`}
-              >
-                {timeLeft !== null ? formatTime(timeLeft) : formatTime(elapsed)}
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <main className="flex flex-1 overflow-hidden">
-        {/* Left Sidebar: Pacing & Info */}
-        <aside className="w-80 flex flex-col gap-4 p-6 bg-[#140d0a] border-r border-[var(--glass-border)] overflow-y-auto hidden lg:flex">
-          {/* Pacing Radar */}
-          {pacing && (
-            <div className="bg-[var(--glass-bg)] backdrop-blur-xl border border-[#ec5b13]/10 p-5 rounded-2xl flex flex-col gap-4 border-l-4 border-l-cyan-400">
-              <div className="flex justify-between items-center">
-                <h3 className="text-xs font-bold uppercase tracking-widest text-cyan-400">
-                  Pacing Radar
-                </h3>
-                <Radar size={16} className="text-cyan-400" />
-              </div>
-              <div className="relative w-40 h-40 mx-auto flex items-center justify-center">
-                {/* Circular progress ring */}
-                <svg className="absolute inset-0 w-full h-full -rotate-90">
-                  <circle
-                    cx="80"
-                    cy="80"
-                    r="70"
-                    fill="none"
-                    stroke="rgba(0,242,255,0.1)"
-                    strokeWidth="6"
-                  />
-                  <circle
-                    cx="80"
-                    cy="80"
-                    r="70"
-                    fill="none"
-                    stroke="rgba(0,242,255,0.6)"
-                    strokeWidth="6"
-                    strokeDasharray={`${(pacing.displayPercent / 100) * 440} 440`}
-                    strokeLinecap="round"
-                    className="transition-all duration-500"
-                  />
-                </svg>
-                <div className="flex flex-col items-center">
-                  <span className="text-3xl font-black text-heading">
-                    {pacing.displayPercent}%
-                  </span>
-                  <span
-                    className={`text-[10px] font-bold uppercase ${pacing.color}`}
-                  >
-                    {pacing.label}
-                  </span>
-                </div>
-              </div>
-              <p className="text-xs text-text-secondary text-center leading-relaxed">
-                {pacing.message}
-              </p>
-            </div>
-          )}
-
-          {/* Problem Stats */}
-          <div className="bg-[var(--glass-bg)] backdrop-blur-xl border border-[#ec5b13]/10 p-5 rounded-2xl flex flex-col gap-3 border-l-4 border-l-[#ec5b13]">
-            <div className="flex justify-between items-center">
-              <h3 className="text-xs font-bold uppercase tracking-widest text-[#ec5b13]">
-                Napredak
-              </h3>
-              <Activity size={16} className="text-[#ec5b13]" />
-            </div>
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-text-secondary">Odgovoreno</span>
-                <span className="font-bold text-heading">
-                  {problems.filter((p) => p.answer).length}/{problems.length}
-                </span>
-              </div>
-              <div className="h-2 w-full rounded-full bg-[var(--tint-strong)] overflow-hidden">
-                <div
-                  className="h-full bg-[#ec5b13] rounded-full transition-all duration-300"
-                  style={{
-                    width: `${
-                      (problems.filter((p) => p.answer).length /
-                        problems.length) *
-                      100
-                    }%`,
-                  }}
-                />
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-text-secondary">Označeno</span>
-                <span className="font-bold text-yellow-400">
-                  {problems.filter((p) => p.isFlagged).length}
-                </span>
-              </div>
+            <div
+              className={`rounded-lg px-4 py-1 text-2xl font-mono font-black shadow-[0_0_15px_rgba(236,91,19,0.3)] ${
+                timeLeft !== null && timeLeft < 300
+                  ? "bg-red-500/10 border border-red-500/30 text-red-400"
+                  : "bg-[#ec5b13]/10 border border-[#ec5b13]/30 text-[#ec5b13]"
+              }`}
+            >
+              {timeLeft !== null ? formatTime(timeLeft) : formatTime(elapsed)}
             </div>
           </div>
 
-          {/* AI Insight */}
-          <div className="flex-1 flex flex-col gap-3">
-            <h3 className="text-[10px] font-bold text-muted uppercase tracking-widest px-1">
-              Uvid
-            </h3>
-            <div className="bg-[var(--glass-bg)] backdrop-blur-xl border border-[var(--glass-border)] p-4 rounded-xl bg-gradient-to-br from-[var(--tint)] to-transparent">
-              <div className="flex gap-3">
-                <Zap size={16} className="text-cyan-400 shrink-0 mt-0.5" />
-                <p className="text-xs leading-relaxed text-text">
-                  <span className="text-cyan-400 font-bold uppercase">
-                    Savet:
-                  </span>{" "}
-                  Fokusiraj se na preostale zadatke. Označi teže za kasniji pregled.
-                </p>
-              </div>
-            </div>
-          </div>
+          {/* Theme toggle */}
+          <ThemeToggle />
 
-          {/* Submit Button */}
+          <div className="h-6 w-px bg-[var(--glass-border)]" />
+
+          {/* Submit button */}
           <button
             onClick={() => handleSubmit()}
             disabled={submitting}
-            className="mt-auto w-full py-4 bg-[#ec5b13] text-white font-black uppercase tracking-widest rounded-xl hover:bg-[#ec5b13]/90 transition-all shadow-[0_0_15px_rgba(236,91,19,0.3)] flex items-center justify-center gap-2 disabled:opacity-50"
+            className="px-6 py-2.5 bg-[#ec5b13] text-white text-[11px] font-black uppercase tracking-[0.15em] rounded-xl hover:bg-[#ec5b13]/90 transition-all shadow-[0_0_20px_rgba(236,91,19,0.4)] flex items-center justify-center gap-2 group shrink-0 disabled:opacity-50"
           >
             <span>Završi Simulaciju</span>
-            <Award size={18} />
+            <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">military_tech</span>
           </button>
-        </aside>
+        </div>
+      </div>
 
-        {/* Main Content: Problem Area */}
-        <section className="flex-1 bg-[#0a0705] p-4 md:p-8 flex flex-col overflow-y-auto">
+      {/* Content: problem area + right sidebar strip */}
+      <div className="flex">
+        {/* Problem Area */}
+        <div className="flex-1 p-4 md:p-8">
           <div className="max-w-4xl mx-auto w-full flex flex-col gap-6 md:gap-8">
             {/* Question Header */}
             <div className="flex flex-col md:flex-row justify-between md:items-end border-b border-[var(--glass-border)] pb-4 gap-2">
@@ -493,20 +377,9 @@ export default function SimulationPage() {
               </div>
             </div>
 
-            {/* Problem Content - render HTML */}
-            <div className="bg-[var(--glass-bg)] backdrop-blur-xl border border-[var(--glass-border)] rounded-3xl p-6 md:p-12 min-h-[200px] md:min-h-[300px] relative overflow-hidden">
-              {/* Decorative grid */}
-              <div
-                className="absolute inset-0 opacity-5 pointer-events-none"
-                style={{
-                  backgroundImage: "radial-gradient(#fff 1px, transparent 1px)",
-                  backgroundSize: "30px 30px",
-                }}
-              />
-              <div
-                className="relative z-10 problem-content text-slate-200"
-                dangerouslySetInnerHTML={{ __html: cp.htmlContent }}
-              />
+            {/* Problem Content */}
+            <div className="overflow-hidden rounded-2xl border border-[var(--glass-border)] glass-card">
+              <ProblemStatement problemId={cp.problemId} section="statement" />
             </div>
 
             {/* Answer Options */}
@@ -560,22 +433,10 @@ export default function SimulationPage() {
               </div>
             </div>
           </div>
-
-          {/* Mobile submit button */}
-          <div className="lg:hidden mt-4 px-4">
-            <button
-              onClick={() => handleSubmit()}
-              disabled={submitting}
-              className="w-full py-4 bg-[#ec5b13] text-white font-black uppercase tracking-widest rounded-xl hover:bg-[#ec5b13]/90 transition-all shadow-[0_0_15px_rgba(236,91,19,0.3)] flex items-center justify-center gap-2 disabled:opacity-50"
-            >
-              <span>Završi Simulaciju</span>
-              <Award size={18} />
-            </button>
-          </div>
-        </section>
+        </div>
 
         {/* Right Sidebar: Question Grid */}
-        <aside className="w-24 bg-[#140d0a] border-l border-[var(--glass-border)] flex flex-col items-center py-6 gap-4 overflow-y-auto hidden md:flex">
+        <aside className="w-24 border-l border-[var(--glass-border)] flex-col items-center py-6 gap-4 hidden md:flex sticky top-14 self-start">
           <div className="text-[10px] font-bold text-muted uppercase tracking-tighter mb-2">
             Status
           </div>
@@ -614,10 +475,86 @@ export default function SimulationPage() {
               );
             })}
           </div>
-        </aside>
-      </main>
+          <div className="mt-4 flex flex-col items-center gap-4 py-4 relative">
+            <div className="h-px w-full bg-[var(--glass-border)]" />
+            <button
+              onClick={() => setShowHelp(!showHelp)}
+              className={`size-12 rounded-full border flex items-center justify-center transition-all ${
+                showHelp
+                  ? "border-[#ec5b13] bg-[#ec5b13]/20 text-[#ec5b13]"
+                  : "border-[#ec5b13]/50 text-[#ec5b13] hover:bg-[#ec5b13]/10"
+              }`}
+            >
+              <span className="material-symbols-outlined">help</span>
+            </button>
 
-      {/* MathJax loaded via useEffect */}
+            {/* Help popover */}
+            {showHelp && (
+              <div className="absolute bottom-16 right-14 w-64 rounded-xl border border-[var(--glass-border)] bg-surface-dark p-4 shadow-2xl z-20">
+                <div className="flex items-center justify-between mb-3">
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-heading">Pomoć</h4>
+                  <button onClick={() => setShowHelp(false)} className="text-muted hover:text-heading">
+                    <span className="material-symbols-outlined text-[16px]">close</span>
+                  </button>
+                </div>
+
+                <div className="space-y-3 text-[11px] text-text-secondary leading-relaxed">
+                  {/* Color legend */}
+                  <div>
+                    <p className="font-bold text-text uppercase tracking-wider text-[10px] mb-1.5">Legenda boja</p>
+                    <div className="space-y-1.5">
+                      <div className="flex items-center gap-2">
+                        <span className="size-3 rounded bg-[#ec5b13]/30 border border-[#ec5b13]/60 shrink-0" />
+                        <span>Trenutni zadatak</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="size-3 rounded bg-cyan-400/30 border border-cyan-400/60 shrink-0" />
+                        <span>Odgovoreno</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="size-3 rounded bg-yellow-400/30 border border-yellow-400/60 shrink-0" />
+                        <span>Označeno za kasnije</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="size-3 rounded border border-[var(--glass-border)] shrink-0" />
+                        <span>Neodgovoreno</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="h-px bg-[var(--glass-border)]" />
+
+                  {/* Navigation */}
+                  <div>
+                    <p className="font-bold text-text uppercase tracking-wider text-[10px] mb-1">Navigacija</p>
+                    <p>Klikni na broj zadatka za brzi prelaz. Koristi dugmad "Prethodni" / "Sledeći" za redom.</p>
+                  </div>
+
+                  <div className="h-px bg-[var(--glass-border)]" />
+
+                  {/* Timer */}
+                  <div>
+                    <p className="font-bold text-text uppercase tracking-wider text-[10px] mb-1">Vreme</p>
+                    <p>
+                      {exam?.mode === "timed"
+                        ? "Kada vreme istekne, test se automatski predaje sa trenutnim odgovorima."
+                        : "Nema vremenskog ograničenja. Radi sopstvenim tempom."}
+                    </p>
+                  </div>
+
+                  <div className="h-px bg-[var(--glass-border)]" />
+
+                  {/* Scoring */}
+                  <div>
+                    <p className="font-bold text-text uppercase tracking-wider text-[10px] mb-1">Bodovanje</p>
+                    <p>Tačan odgovor donosi bodove. Netačan ili prazan odgovor donosi 0 bodova. Nema negativnih bodova.</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </aside>
+      </div>
     </div>
   );
 }

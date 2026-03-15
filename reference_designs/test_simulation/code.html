@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
-<html class="light" lang="sr"><head>
+<html class="dark" lang="sr"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -14,9 +14,11 @@
                 extend: {
                     colors: {
                         "primary": "#ec5b13",
+                        "accent-cyan": "#00f2ff",
                         "background-light": "#f8f6f6",
-                        "background-dark": "#16100d",
-                        "accent-dark": "#2d1b14",
+                        "background-dark": "#0a0705",
+                        "obsidian": "#140d0a",
+                        "card-glass": "rgba(34, 22, 16, 0.7)",
                     },
                     fontFamily: {
                         "display": ["Public Sans", "sans-serif"]
@@ -27,277 +29,249 @@
         }
     </script>
 <style>
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
+        .glass-panel {
+            background: rgba(34, 22, 16, 0.6);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(236, 91, 19, 0.1);
         }
-        .math-font {
-            font-family: "Times New Roman", Times, serif;
-            font-style: italic;
+        .glow-orange {
+            box-shadow: 0 0 15px rgba(236, 91, 19, 0.3);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+        }
+        .math-gradient {
+            background: linear-gradient(135deg, rgba(236, 91, 19, 0.05) 0%, rgba(0, 242, 255, 0.05) 100%);
         }
     </style>
 </head>
 <body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
-<div class="relative flex h-screen w-full flex-col overflow-hidden dark">
-<!-- Header -->
-<header class="flex items-center justify-between border-b border-white/10 bg-background-dark/80 backdrop-blur-md px-8 py-4 z-10">
-<div class="flex items-center gap-4">
-<div class="flex items-center justify-center size-10 rounded-xl bg-primary/20 text-primary">
-<span class="material-symbols-outlined text-2xl">functions</span>
+<div class="relative flex h-screen w-full flex-col overflow-hidden"><aside class="fixed left-0 top-0 z-[60] h-full w-72 bg-obsidian border-r border-white/5 flex flex-col shrink-0">
+<div class="p-8 flex items-center gap-3">
+<div class="bg-primary p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-white text-2xl">functions</span>
 </div>
-<div>
-<h2 class="text-slate-100 text-lg font-bold leading-tight tracking-tight">Simulacija prijemnog ispita</h2>
-<p class="text-slate-400 text-xs font-medium uppercase tracking-widest">Elektrotehnički fakultet (ETF)</p>
+<h1 class="text-xl font-bold tracking-tight text-white">MathPrep <span class="text-primary">Elite</span></h1>
 </div>
-</div>
-<div class="flex items-center gap-6">
-<div class="flex items-center gap-3 px-4 py-2 bg-slate-800/50 rounded-xl border border-white/5">
-<span class="material-symbols-outlined text-primary">schedule</span>
-<div class="flex gap-1 font-mono text-xl font-bold text-slate-100">
-<span>02</span>:<span>44</span>:<span>12</span>
-</div>
-</div>
-<button class="flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-2.5 text-sm font-bold text-white transition-all hover:bg-primary/90 hover:shadow-[0_0_20px_rgba(236,91,19,0.3)]">
-<span>Završi ispit</span>
-<span class="material-symbols-outlined text-sm">exit_to_app</span>
-</button>
-</div>
-</header>
-<main class="flex flex-1 overflow-hidden bg-background-dark">
-<!-- Left Sidebar: Question Navigation -->
-<aside class="w-80 flex flex-col border-r border-white/5 bg-background-dark/50 overflow-y-auto">
-<div class="p-6">
-<h3 class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-4">Napredak testa</h3>
-<div class="grid grid-cols-1 gap-1">
-<!-- Question Items -->
-<!-- Answered -->
-<div class="flex items-center justify-between group cursor-pointer px-4 py-3 rounded-xl hover:bg-white/5 transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-emerald-500 fill-1">check_circle</span>
-<span class="text-sm font-medium text-slate-300">Zadatak 1</span>
-</div>
-<span class="text-[10px] text-emerald-500 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">+1.0</span>
-</div>
-<div class="flex items-center justify-between group cursor-pointer px-4 py-3 rounded-xl hover:bg-white/5 transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-emerald-500 fill-1">check_circle</span>
-<span class="text-sm font-medium text-slate-300">Zadatak 2</span>
-</div>
-<span class="text-[10px] text-emerald-500 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">+1.0</span>
-</div>
-<!-- Current -->
-<div class="flex items-center justify-between px-4 py-3 rounded-xl bg-primary/10 border border-primary/20 shadow-[0_0_15px_rgba(236,91,19,0.1)]">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary">radio_button_checked</span>
-<span class="text-sm font-bold text-white">Zadatak 3</span>
-</div>
-<span class="animate-pulse size-2 rounded-full bg-primary"></span>
-</div>
-<!-- Unanswered 4-20 loop simulation -->
-<div class="flex items-center justify-between group cursor-pointer px-4 py-3 rounded-xl hover:bg-white/5 transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-slate-600">radio_button_unchecked</span>
-<span class="text-sm font-medium text-slate-400">Zadatak 4</span>
+<nav class="flex-1 px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 active-sidebar-item text-primary" href="#">
+<span class="material-symbols-outlined text-primary" style="font-variant-settings: 'FILL' 1">dashboard</span>
+<span class="font-medium">Kontrolna tabla</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-medium">Kursevi</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">book_2</span>
+<span class="font-medium">Materijali</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="font-medium">Vežbe</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium">Podešavanja</span>
+</a>
+</nav>
+<div class="p-6 space-y-6">
+<div class="glass-card rounded-xl p-4 border border-primary/20">
+<p class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-2">Premium status</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">workspace_premium</span>
+<span class="text-sm font-semibold">Aktivan do 01.09.</span>
 </div>
 </div>
-<div class="flex items-center justify-between group cursor-pointer px-4 py-3 rounded-xl hover:bg-white/5 transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-slate-600">radio_button_unchecked</span>
-<span class="text-sm font-medium text-slate-400">Zadatak 5</span>
+<div class="flex items-center gap-3 pl-2 border-t border-white/5 pt-6">
+<div class="w-10 h-10 rounded-full border-2 border-primary/50 overflow-hidden shrink-0">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNcpKYxgUrnY5FSOVeFGj3pK4azlG7q8ay9FDPRQStRExH4a-2EPIV9JpKu-gfSJqQaWsE__uqEfUXR9jM9FlW8wrSr6INs6mf1qitPWSlIu928UXNxED0n_ZL2PG_bP_bWh1IFOUbdPBwxzaXTot7M15TgNZWWWf0FzJTiWFpWIiGWFe6MV5_yanYj0iCFnNr8qHRviFWXKjvsFxKKirYs0KNpQ40Klcx90uHfXSCVCXbY82o90nihfOte1GDwM5Suqskx1obGOL8"/>
 </div>
-</div>
-<!-- ... more questions ... -->
-<div class="flex items-center justify-between group cursor-pointer px-4 py-3 rounded-xl hover:bg-white/5 transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-slate-600">radio_button_unchecked</span>
-<span class="text-sm font-medium text-slate-400">Zadatak 6</span>
-</div>
-</div>
-<div class="flex items-center justify-between group cursor-pointer px-4 py-3 rounded-xl hover:bg-white/5 transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-slate-600">radio_button_unchecked</span>
-<span class="text-sm font-medium text-slate-400">Zadatak 7</span>
-</div>
-</div>
-<div class="flex items-center justify-between group cursor-pointer px-4 py-3 rounded-xl hover:bg-white/5 transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-slate-600">radio_button_unchecked</span>
-<span class="text-sm font-medium text-slate-400">Zadatak 8</span>
-</div>
-</div>
-<div class="flex items-center justify-between group cursor-pointer px-4 py-3 rounded-xl hover:bg-white/5 transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-slate-600">radio_button_unchecked</span>
-<span class="text-sm font-medium text-slate-400">Zadatak 9</span>
-</div>
-</div>
-<div class="flex items-center justify-between group cursor-pointer px-4 py-3 rounded-xl hover:bg-white/5 transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-slate-600">radio_button_unchecked</span>
-<span class="text-sm font-medium text-slate-400">Zadatak 10</span>
-</div>
-</div>
-<div class="flex items-center justify-between group cursor-pointer px-4 py-3 rounded-xl hover:bg-white/5 transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-slate-600">radio_button_unchecked</span>
-<span class="text-sm font-medium text-slate-400">Zadatak 11</span>
-</div>
-</div>
-<div class="flex items-center justify-between group cursor-pointer px-4 py-3 rounded-xl hover:bg-white/5 transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-slate-600">radio_button_unchecked</span>
-<span class="text-sm font-medium text-slate-400">Zadatak 12</span>
-</div>
-</div>
-<div class="flex items-center justify-between group cursor-pointer px-4 py-3 rounded-xl hover:bg-white/5 transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-slate-600">radio_button_unchecked</span>
-<span class="text-sm font-medium text-slate-400">Zadatak 13</span>
-</div>
-</div>
-<div class="flex items-center justify-between group cursor-pointer px-4 py-3 rounded-xl hover:bg-white/5 transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-slate-600">radio_button_unchecked</span>
-<span class="text-sm font-medium text-slate-400">Zadatak 14</span>
-</div>
-</div>
-<div class="flex items-center justify-between group cursor-pointer px-4 py-3 rounded-xl hover:bg-white/5 transition-colors">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-slate-600">radio_button_unchecked</span>
-<span class="text-sm font-medium text-slate-400">Zadatak 15</span>
-</div>
+<div class="overflow-hidden">
+<p class="text-sm font-bold truncate text-white">Nikola Petrović</p>
+<p class="text-[10px] text-slate-500 truncate">Gimnazijalac</p>
 </div>
 </div>
 </div>
 </aside>
-<!-- Main Content Area -->
-<section class="flex-1 overflow-y-auto bg-background-dark relative">
-<div class="max-w-4xl mx-auto px-12 py-16">
-<!-- Question Header -->
-<div class="flex items-center justify-between mb-10">
-<div class="space-y-1">
-<h1 class="text-3xl font-bold text-slate-100 tracking-tight">Zadatak 3</h1>
-<p class="text-primary text-sm font-medium">Analitička geometrija i Integralni račun</p>
-</div>
+<!-- Header / Top Nav -->
+<header class="flex items-center justify-between border-b border-primary/20 bg-obsidian/90 px-8 py-3 backdrop-blur-md pl-80">
+<div class="flex items-center gap-6">
 <div class="flex items-center gap-4">
-<button class="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all text-sm font-medium">
-<span class="material-symbols-outlined text-base">flag</span>
-<span>Obeleži za kasnije</span>
-</button>
+<div class="flex flex-col items-start gap-1">
+<span class="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em]">Proctor Insight</span>
+<div class="flex items-center gap-3 bg-accent-cyan/10 border border-accent-cyan/20 px-3 py-1.5 rounded-lg">
+<div class="flex items-center gap-2">
+<div class="relative flex size-2 items-center justify-center">
+<span class="absolute h-full w-full rounded-full bg-accent-cyan opacity-75 animate-ping"></span>
+<span class="relative size-1.5 rounded-full bg-accent-cyan"></span>
+</div>
+<span class="text-xs font-black text-white">88%</span>
+</div>
+<div class="h-3 w-px bg-accent-cyan/30"></div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-accent-cyan">radar</span>
+<span class="text-[10px] font-bold text-accent-cyan uppercase tracking-tighter whitespace-nowrap">+4 MIN ISPRED</span>
 </div>
 </div>
-<!-- Problem Statement Card -->
-<div class="glass p-10 rounded-2xl mb-12 shadow-2xl relative overflow-hidden group">
-<div class="absolute top-0 right-0 p-4 opacity-10">
-<span class="material-symbols-outlined text-8xl">calculate</span>
 </div>
-<p class="text-xl text-slate-200 leading-relaxed mb-8">
-                            Neka je <span class="math-font italic">f(x)</span> neprekidna funkcija takva da za svako <span class="math-font italic">x ∈ ℝ</span> važi jednakost:
-                        </p>
-<div class="flex justify-center my-12">
-<div class="text-3xl math-font text-white bg-white/5 px-12 py-8 rounded-2xl border border-white/10 shadow-inner">
-<span class="mr-2">I =</span>
-<span class="relative inline-flex flex-col items-center align-middle">
-<span class="text-sm mb-1">π/2</span>
-<span class="text-5xl -my-4">∫</span>
-<span class="text-sm mt-1">0</span>
-</span>
-<span class="ml-2 inline-flex items-center">
-<span class="flex flex-col items-center">
-<span class="border-b border-white px-2">sin³(x)</span>
-<span class="px-2">sin³(x) + cos³(x)</span>
-</span>
-<span class="ml-2">dx</span>
-</span>
+<div class="h-10 w-px bg-white/10"></div>
+<div class="flex flex-col items-start gap-1">
+<span class="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em]">Status</span>
+<div class="flex items-center gap-2 px-1">
+<span class="size-2 rounded-full bg-red-500 animate-pulse"></span>
+<span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest">PROKTOR AKTIVAN</span>
 </div>
 </div>
-<p class="text-xl text-slate-200 leading-relaxed">
-                            Vrednost određenog integrala <span class="math-font italic">I</span> iznosi:
-                        </p>
 </div>
-<!-- Answer Options -->
-<div class="grid grid-cols-1 gap-4 mb-12">
-<!-- Option A -->
-<label class="flex items-center p-5 rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 cursor-pointer transition-all group relative overflow-hidden">
-<input class="peer hidden" name="math-answer" type="radio"/>
-<div class="size-6 rounded-full border-2 border-slate-600 flex items-center justify-center peer-checked:border-primary peer-checked:bg-primary transition-all mr-6">
-<div class="size-2 rounded-full bg-white opacity-0 peer-checked:opacity-100"></div>
 </div>
-<span class="text-lg font-bold text-slate-400 mr-4 group-hover:text-primary">A)</span>
-<span class="text-lg text-slate-200 math-font peer-checked:text-white">π / 2</span>
-</label>
-<!-- Option B -->
-<label class="flex items-center p-5 rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 cursor-pointer transition-all group relative overflow-hidden">
-<input class="peer hidden" name="math-answer" type="radio"/>
-<div class="size-6 rounded-full border-2 border-slate-600 flex items-center justify-center peer-checked:border-primary peer-checked:bg-primary transition-all mr-6">
-<div class="size-2 rounded-full bg-white opacity-0 peer-checked:opacity-100"></div>
-</div>
-<span class="text-lg font-bold text-slate-400 mr-4 group-hover:text-primary">B)</span>
-<span class="text-lg text-slate-200 math-font peer-checked:text-white">π / 4</span>
-</label>
-<!-- Option C -->
-<label class="flex items-center p-5 rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 cursor-pointer transition-all group relative overflow-hidden">
-<input class="peer hidden" name="math-answer" type="radio"/>
-<div class="size-6 rounded-full border-2 border-slate-600 flex items-center justify-center peer-checked:border-primary peer-checked:bg-primary transition-all mr-6">
-<div class="size-2 rounded-full bg-white opacity-0 peer-checked:opacity-100"></div>
-</div>
-<span class="text-lg font-bold text-slate-400 mr-4 group-hover:text-primary">C)</span>
-<span class="text-lg text-slate-200 math-font peer-checked:text-white">1 / 2</span>
-</label>
-<!-- Option D -->
-<label class="flex items-center p-5 rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 cursor-pointer transition-all group relative overflow-hidden">
-<input class="peer hidden" name="math-answer" type="radio"/>
-<div class="size-6 rounded-full border-2 border-slate-600 flex items-center justify-center peer-checked:border-primary peer-checked:bg-primary transition-all mr-6">
-<div class="size-2 rounded-full bg-white opacity-0 peer-checked:opacity-100"></div>
-</div>
-<span class="text-lg font-bold text-slate-400 mr-4 group-hover:text-primary">D)</span>
-<span class="text-lg text-slate-200 math-font peer-checked:text-white">0</span>
-</label>
-<!-- Option E -->
-<label class="flex items-center p-5 rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 cursor-pointer transition-all group relative overflow-hidden">
-<input class="peer hidden" name="math-answer" type="radio"/>
-<div class="size-6 rounded-full border-2 border-slate-600 flex items-center justify-center peer-checked:border-primary peer-checked:bg-primary transition-all mr-6">
-<div class="size-2 rounded-full bg-white opacity-0 peer-checked:opacity-100"></div>
-</div>
-<span class="text-lg font-bold text-slate-400 mr-4 group-hover:text-primary">E)</span>
-<span class="text-lg text-slate-200 math-font peer-checked:text-white">1</span>
-</label>
-<!-- Option N -->
-<label class="flex items-center p-5 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 cursor-pointer transition-all group mt-4">
-<input class="peer hidden" name="math-answer" type="radio"/>
-<div class="size-6 rounded-full border-2 border-slate-600 flex items-center justify-center peer-checked:border-primary peer-checked:bg-primary transition-all mr-6">
-<div class="size-2 rounded-full bg-white opacity-0 peer-checked:opacity-100"></div>
-</div>
-<span class="text-lg font-bold text-slate-400 mr-4 group-hover:text-primary">N)</span>
-<span class="text-lg text-slate-400 italic peer-checked:text-white">Ne znam (I don't know)</span>
-</label>
-</div>
-<!-- Footer Navigation -->
-<div class="flex items-center justify-between border-t border-white/10 pt-10">
-<button class="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition-all font-bold">
-<span class="material-symbols-outlined">arrow_back</span>
-<span>Prethodni</span>
-</button>
+<div class="flex items-center gap-6">
+<div class="flex flex-col items-end">
+<span class="text-[10px] text-primary font-bold uppercase tracking-widest">Preostalo vreme</span>
 <div class="flex items-center gap-3">
-<div class="flex items-center gap-1">
-<div class="size-2 rounded-full bg-primary"></div>
-<div class="size-2 rounded-full bg-white/20"></div>
-<div class="size-2 rounded-full bg-white/20"></div>
+<div class="bg-primary/10 border border-primary/30 rounded-lg px-4 py-1 text-2xl font-mono font-black text-primary glow-orange">
+                            02:44:12
+                        </div>
 </div>
 </div>
-<button class="flex items-center gap-2 px-8 py-3 rounded-xl bg-primary text-white hover:bg-primary/90 transition-all font-bold shadow-[0_4px_15px_rgba(236,91,19,0.3)]">
-<span>Sledeći</span>
-<span class="material-symbols-outlined">arrow_forward</span>
+<div class="flex items-center gap-3 bg-white/5 border border-white/10 p-1 rounded-full">
+<button class="size-8 flex items-center justify-center rounded-full bg-primary/20 text-primary transition-all">
+<span class="material-symbols-outlined text-[18px]" style="font-variant-settings: 'FILL' 1">dark_mode</span>
+</button>
+<button class="size-8 flex items-center justify-center rounded-full text-slate-500 hover:bg-white/5 transition-all">
+<span class="material-symbols-outlined text-[18px]">light_mode</span>
 </button>
 </div>
+<div class="h-6 w-px bg-white/10 mx-2"></div><button class="px-6 py-2.5 bg-primary text-white text-[11px] font-black uppercase tracking-[0.15em] rounded-xl hover:bg-primary/90 transition-all glow-orange flex items-center justify-center gap-2 group shrink-0 shadow-[0_0_20px_rgba(236,91,19,0.4)]">
+<span>Završi Simulaciju</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">military_tech</span>
+</button>
 </div>
-<!-- Subtle Decorative Background Pattern -->
-<div class="absolute inset-0 pointer-events-none opacity-20 overflow-hidden -z-10">
-<div class="absolute -top-[20%] -right-[10%] size-[600px] bg-primary/20 blur-[150px] rounded-full"></div>
-<div class="absolute -bottom-[20%] -left-[10%] size-[600px] bg-primary/10 blur-[150px] rounded-full"></div>
+</header>
+<main class="flex flex-1 pl-72 overflow-y-auto">
+<!-- Sidebar Left: Pacing & Stress -->
+<!-- Main Workspace: Problem Area -->
+<section class="flex-1 bg-background-dark p-8 flex flex-col overflow-y-auto">
+<div class="max-w-4xl mx-auto w-full flex flex-col gap-8">
+<!-- Question Header -->
+<div class="flex justify-between items-end border-b border-white/5 pb-4">
+<div>
+<span class="text-primary font-bold text-sm tracking-widest uppercase">Zadatak 14 / 20</span>
+<h1 class="text-3xl font-black text-white mt-1">Kompleksna Integracija</h1>
+<p class="text-slate-400 text-sm mt-1">Oblast: Matematička analiza i trigonometrija (Nivo: Elite)</p>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-slate-400 uppercase tracking-wider">ETF 2024</span>
+<span class="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-bold text-primary uppercase tracking-wider">Težina: 9/10</span>
+</div>
+</div>
+<!-- LaTeX Display Area -->
+<div class="glass-panel rounded-3xl p-12 math-gradient flex flex-col items-center justify-center min-h-[300px] border border-white/5 relative overflow-hidden group">
+<!-- Decorative grid background -->
+<div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 30px 30px;"></div>
+<div class="relative z-10 text-center">
+<p class="text-slate-400 mb-8 italic text-base">Izračunati vrednost integrala duž zatvorene konture C:</p>
+<div class="text-5xl md:text-6xl text-white font-light tracking-wide py-4 select-none text-4xl md:text-5xl">
+<span class="font-serif">∮</span><sub>C</sub>
+<span class="inline-block px-2">
+<div class="inline-flex flex-col items-center align-middle">
+<span class="border-b border-white/50 pb-1">e<sup>z</sup> dz</span>
+<span class="pt-1">z<sup>2</sup> + 2z + 2</span>
+</div>
+</span>
+</div>
+<p class="text-slate-500 mt-8 text-xs">Gde je C pozitivno orijentisana kružnica |z + 1| = 2</p>
+</div>
+</div>
+<!-- Answer Choices Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Option A -->
+<button class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-primary/50 transition-all flex items-center justify-between group text-left">
+<div class="flex items-center gap-4">
+<span class="size-10 rounded-lg bg-white/5 flex items-center justify-center font-bold text-slate-400 group-hover:bg-primary group-hover:text-white transition-colors">A</span>
+<span class="text-white font-medium italic text-lg">2πi ⋅ sin(1) / e</span>
+</div>
+<div class="size-6 rounded-full border-2 border-white/20 group-hover:border-primary transition-colors"></div>
+</button>
+<!-- Option B -->
+<button class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-primary/50 transition-all flex items-center justify-between group text-left">
+<div class="flex items-center gap-4">
+<span class="size-10 rounded-lg bg-white/5 flex items-center justify-center font-bold text-slate-400 group-hover:bg-primary group-hover:text-white transition-colors">B</span>
+<span class="text-white font-medium italic text-lg">πi ⋅ cos(1) ⋅ e</span>
+</div>
+<div class="size-6 rounded-full border-2 border-white/20 group-hover:border-primary transition-colors"></div>
+</button>
+<!-- Option C -->
+<button class="glass-panel p-6 rounded-2xl border border-white/10 border-primary/40 bg-primary/5 flex items-center justify-between group text-left">
+<div class="flex items-center gap-4">
+<span class="size-10 rounded-lg bg-primary flex items-center justify-center font-bold text-white">C</span>
+<span class="text-white font-medium italic text-lg">2πi ⋅ sin(1) ⋅ e<sup>-1</sup></span>
+</div>
+<div class="size-6 rounded-full border-2 border-primary bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-white font-bold">check</span>
+</div>
+</button>
+<!-- Option D -->
+<button class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-primary/50 transition-all flex items-center justify-between group text-left">
+<div class="flex items-center gap-4">
+<span class="size-10 rounded-lg bg-white/5 flex items-center justify-center font-bold text-slate-400 group-hover:bg-primary group-hover:text-white transition-colors">D</span>
+<span class="text-white font-medium italic text-lg">-2πi / e</span>
+</div>
+<div class="size-6 rounded-full border-2 border-white/20 group-hover:border-primary transition-colors"></div>
+</button>
+<button class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-primary/50 transition-all flex items-center justify-between group text-left">
+<div class="flex items-center gap-4">
+<span class="size-10 rounded-lg bg-white/5 flex items-center justify-center font-bold text-slate-400 group-hover:bg-primary group-hover:text-white transition-colors">E</span>
+<span class="text-white font-medium italic text-lg">πi ⋅ sin(1) / 2e</span>
+</div>
+<div class="size-6 rounded-full border-2 border-white/20 group-hover:border-primary transition-colors"></div>
+</button><button class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-primary/50 transition-all flex items-center justify-between group text-left">
+<div class="flex items-center gap-4">
+<span class="size-10 rounded-lg bg-white/5 flex items-center justify-center font-bold text-slate-400 group-hover:bg-primary group-hover:text-white transition-colors">F</span>
+<span class="text-white font-medium text-lg">Ne znam</span>
+</div>
+<div class="size-6 rounded-full border-2 border-white/20 group-hover:border-primary transition-colors"></div>
+</button></div>
+<!-- Action Bar -->
+<div class="mt-4 flex justify-between items-center py-6">
+<button class="px-8 py-3 rounded-xl border border-white/10 text-slate-400 font-bold uppercase tracking-widest hover:bg-white/5 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">chevron_left</span>
+    Prethodni
+</button>
+<button class="px-8 py-3 rounded-xl border border-primary/30 text-primary font-bold uppercase tracking-widest hover:bg-primary/5 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">flag</span>
+    Označi za kasnije
+</button>
+<button class="px-10 py-3 rounded-xl bg-white text-black font-black uppercase tracking-widest hover:bg-slate-200 transition-all flex items-center gap-2 shadow-xl">
+    Sledeći zadatak
+    <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
 </div>
 </section>
+<!-- Right Sidebar: Question Grid & Progress -->
+<aside class="w-24 bg-obsidian border-l border-white/5 flex flex-col items-center py-6 gap-4 overflow-y-auto scrollbar-hide">
+<div class="text-[10px] font-bold text-slate-600 uppercase tracking-tighter mb-2">Status</div>
+<!-- Simple Question Map -->
+<div class="flex flex-col gap-3">
+<div class="size-12 rounded-xl bg-accent-cyan/20 border border-accent-cyan/50 flex items-center justify-center text-accent-cyan font-bold text-xs">01</div>
+<div class="size-12 rounded-xl bg-accent-cyan/20 border border-accent-cyan/50 flex items-center justify-center text-accent-cyan font-bold text-xs">02</div>
+<div class="size-12 rounded-xl bg-accent-cyan/20 border border-accent-cyan/50 flex items-center justify-center text-accent-cyan font-bold text-xs">03</div>
+<div class="size-12 rounded-xl bg-primary/20 border border-primary/50 flex items-center justify-center text-primary font-bold text-xs glow-orange">14</div>
+<div class="size-12 rounded-xl border border-white/10 flex items-center justify-center text-slate-600 font-bold text-xs">15</div>
+<div class="size-12 rounded-xl border border-white/10 flex items-center justify-center text-slate-600 font-bold text-xs">16</div>
+<div class="size-12 rounded-xl border border-white/10 flex items-center justify-center text-slate-600 font-bold text-xs">17</div>
+<div class="size-12 rounded-xl border border-white/10 flex items-center justify-center text-slate-600 font-bold text-xs">18</div>
+<div class="size-12 rounded-xl border border-white/10 flex items-center justify-center text-slate-600 font-bold text-xs">19</div>
+<div class="size-12 rounded-xl border border-white/10 flex items-center justify-center text-slate-600 font-bold text-xs">20</div>
+</div>
+<div class="mt-auto flex flex-col items-center gap-4 py-4">
+<div class="size-1 w-full bg-white/5 mx-auto"></div>
+<button class="size-12 rounded-full border border-primary/50 text-primary flex items-center justify-center hover:bg-primary/10 transition-all">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+</aside>
 </main>
 </div>
 </body></html>
