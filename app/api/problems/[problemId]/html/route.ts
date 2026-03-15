@@ -42,7 +42,10 @@ function extractStatementHtml(html: string): string {
     }
   }
 
-  const statementDiv = html.substring(startIdx, i);
+  let statementDiv = html.substring(startIdx, i);
+
+  // Strip "Ponudjeni odgovori:" label text (plain <p> without a specific class)
+  statementDiv = statementDiv.replace(/<p[^>]*>[^<]*(?:Ponud|Ponuđ)[^<]*odgovor[^<]*<\/p>/gi, "");
 
   const headMatch = html.match(/<head[^>]*>([\s\S]*?)<\/head>/i);
   const headContent = headMatch ? headMatch[1] : "";
@@ -58,6 +61,9 @@ ${cleanHead}
   body { padding: 10px; }
   .container { padding: 0; }
   .card { margin-bottom: 0; }
+  /* Hide answer options — shown separately by AnswerOptions component */
+  .answer-option, .answer-chip, .answer-options-row { display: none !important; }
+  .given-grid:has(.answer-option) { display: none !important; }
 </style>
 </head>
 <body>

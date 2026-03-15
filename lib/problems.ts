@@ -69,17 +69,26 @@ export function parseHtml(htmlContent: string) {
 
   const title = $("title").text().trim() || "Zadatak";
 
+  // Find correct answer — many class patterns exist across generated files.
+  // Match any element whose class contains "correct" but not "incorrect".
+  const LETTER_RE = /\(?([A-Za-zА-ЯЂЉЊЋЏа-яђљњћџ])\)/;
   let correctAnswer = "";
-  const correctChip = $(".answer-chip.correct").first().text().trim();
-  if (correctChip) {
-    const letterMatch = correctChip.match(/\(([A-Z])\)/);
-    correctAnswer = letterMatch ? letterMatch[1] : correctChip.charAt(1);
-  }
+  $("[class*=correct]").each((_, el) => {
+    if (correctAnswer) return;
+    const cls = $(el).attr("class") || "";
+    if (cls.includes("incorrect")) return;
+    const text = $(el).text().trim();
+    const letterMatch = text.match(LETTER_RE);
+    if (letterMatch) {
+      correctAnswer = letterMatch[1].toUpperCase();
+    }
+  });
+  // Fallback: look for "Tačan odgovor je (X)" text pattern
   if (!correctAnswer) {
-    const correctEl = $(".correct-answer").first().text().trim();
-    if (correctEl) {
-      const letterMatch = correctEl.match(/\(([A-Z])\)/);
-      correctAnswer = letterMatch ? letterMatch[1] : "";
+    const bodyText = $.text();
+    const tacanMatch = bodyText.match(/[Tt]a[čc]an\s+odgovor[^)]*\(?([A-Za-zА-Яа-я])\)/);
+    if (tacanMatch) {
+      correctAnswer = tacanMatch[1].toUpperCase();
     }
   }
 
