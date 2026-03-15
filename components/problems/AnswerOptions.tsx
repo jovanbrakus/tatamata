@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, XCircle } from "lucide-react";
+import { useEffect, useRef, memo } from "react";
 
 interface AnswerResult {
   isCorrect: boolean;
@@ -18,6 +18,55 @@ interface AnswerOptionsProps {
   columns?: number;
 }
 
+/**
+ * Renders HTML + LaTeX via ref so React never overwrites MathJax output.
+ * Memoized so it only re-renders when `html` actually changes.
+ */
+const MathText = memo(function MathText({
+  html,
+  className,
+}: {
+  html: string;
+  className?: string;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    ref.current.innerHTML = html;
+
+    if ((window as any).MathJax?.typesetPromise) {
+      (window as any).MathJax.typesetPromise([ref.current]).catch(() => {});
+    }
+  }, [html]);
+
+  return <span ref={ref} className={className} />;
+});
+
+/** Load MathJax globally once, then typeset a container */
+function useMathJaxLoad() {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if ((window as any).MathJax?.typesetPromise) return;
+
+    if (!(window as any).MathJax) {
+      (window as any).MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"], ["$", "$"]],
+          displayMath: [["\\[", "\\]"], ["$$", "$$"]],
+        },
+        options: {
+          skipHtmlTags: ["script", "noscript", "style", "textarea", "code"],
+        },
+      };
+      const s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
+      s.async = true;
+      document.head.appendChild(s);
+    }
+  }, []);
+}
+
 export default function AnswerOptions({
   options,
   selectedAnswer,
@@ -26,6 +75,8 @@ export default function AnswerOptions({
   mode = "practice",
   columns,
 }: AnswerOptionsProps) {
+  useMathJaxLoad();
+
   if (mode === "exam") {
     return (
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -44,7 +95,7 @@ export default function AnswerOptions({
             >
               <div className="flex items-center gap-4">
                 <span
-                  className={`flex h-10 w-10 items-center justify-center rounded-lg text-sm font-bold ${
+                  className={`flex h-10 w-10 items-center justify-center rounded-lg text-sm font-bold shrink-0 ${
                     isSelected
                       ? "bg-[#ec5b13] text-white"
                       : "bg-[var(--tint)] text-text-secondary"
@@ -52,13 +103,10 @@ export default function AnswerOptions({
                 >
                   {letter}
                 </span>
-                <span
-                  className="font-medium text-heading"
-                  dangerouslySetInnerHTML={{ __html: opt }}
-                />
+                <MathText html={opt} className="font-medium text-heading" />
               </div>
               <div
-                className={`flex h-6 w-6 items-center justify-center rounded-full border-2 ${
+                className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 ${
                   isSelected
                     ? "border-[#ec5b13] bg-[#ec5b13]"
                     : "border-white/20"
@@ -136,7 +184,7 @@ export default function AnswerOptions({
             <span className="block text-[10px] font-bold opacity-60">
               ({letter})
             </span>
-            <span className="mt-1 block text-sm font-medium">{opt}</span>
+            <MathText html={opt} className="mt-1 block text-sm font-medium" />
           </button>
         );
       })}

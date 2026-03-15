@@ -85,14 +85,18 @@ export function parseHtml(htmlContent: string) {
 
   const answerOptions: string[] = [];
   $(".answer-option[data-option]").each((_, el) => {
-    const value = $(el).find(".value").text().trim();
-    const label = $(el).attr("data-option") || "";
-    answerOptions.push(`(${label}) ${value}`);
+    const valueEl = $(el).find(".value");
+    // Use .html() to preserve LaTeX markup like \(\dfrac{...}\)
+    const value = (valueEl.html() || valueEl.text()).trim();
+    answerOptions.push(value);
   });
 
   if (answerOptions.length === 0) {
     $(".answer-chip").each((_, el) => {
-      answerOptions.push($(el).text().trim());
+      // Strip leading label like "(A) " from chip text
+      const text = $(el).text().trim();
+      const stripped = text.replace(/^\([A-Za-zА-Яа-яĐŽĆČŠđžćčš]\)\s*/, "");
+      answerOptions.push(stripped || text);
     });
   }
 
