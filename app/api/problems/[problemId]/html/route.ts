@@ -19,6 +19,27 @@ function sanitizeForIframe(html: string): string {
     .replace(/margin:\s*0\s+auto;?/gi, "");
 }
 
+/**
+ * Inject CSS to neutralize correct-answer highlighting in the problem statement
+ * (top section) while preserving it in the final answer section (bottom).
+ */
+function neutralizeAnswerHighlights(html: string): string {
+  const css = `<style>
+  .answer-option.correct,
+  .answer-chip.correct,
+  .answer-option.selected-correct,
+  .answer-option.incorrect,
+  .given-item.answer-option.correct,
+  .given-item.answer-option.incorrect {
+    border-color: #334155 !important;
+    background: rgba(96, 165, 250, 0.06) !important;
+    color: #e2e8f0 !important;
+    font-weight: normal !important;
+  }
+</style>`;
+  return html.replace(/<\/head>/i, `${css}\n</head>`);
+}
+
 function extractStatementHtml(html: string): string {
   // Match all class variations: "card problem-statement", "problem-statement", "problem-statement card"
   let markerMatch = html.match(/<div\s+class="[^"]*problem-statement[^"]*">/);
@@ -109,5 +130,5 @@ export async function GET(req: Request, { params }: { params: Promise<{ problemI
     return new NextResponse(statementHtml, { headers: HEADERS });
   }
 
-  return new NextResponse(safeHtml, { headers: HEADERS });
+  return new NextResponse(neutralizeAnswerHighlights(safeHtml), { headers: HEADERS });
 }
