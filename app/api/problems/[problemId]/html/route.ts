@@ -20,9 +20,14 @@ function sanitizeForIframe(html: string): string {
 }
 
 function extractStatementHtml(html: string): string {
-  const startMarker = '<div class="card problem-statement">';
-  const startIdx = html.indexOf(startMarker);
-  if (startIdx === -1) return "";
+  // Match all class variations: "card problem-statement", "problem-statement", "problem-statement card"
+  let markerMatch = html.match(/<div\s+class="[^"]*problem-statement[^"]*">/);
+  // Fallback: older files use the first <div class="card"> as the statement container
+  if (!markerMatch) {
+    markerMatch = html.match(/<div\s+class="card">/);
+  }
+  if (!markerMatch) return "";
+  const startIdx = html.indexOf(markerMatch[0]);
 
   let depth = 0;
   let i = startIdx;
@@ -44,8 +49,8 @@ function extractStatementHtml(html: string): string {
 
   let statementDiv = html.substring(startIdx, i);
 
-  // Strip "Ponudjeni odgovori:" label text (plain <p> without a specific class)
-  statementDiv = statementDiv.replace(/<p[^>]*>[^<]*(?:Ponud|Ponuđ)[^<]*odgovor[^<]*<\/p>/gi, "");
+  // Strip "Ponudjeni odgovori:" label text (appears as <p> or <h3> depending on the file)
+  statementDiv = statementDiv.replace(/<(p|h[1-6])[^>]*>[^<]*(?:Ponud|Ponuđ)[^<]*odgovor[^<]*<\/\1>/gi, "");
 
   const headMatch = html.match(/<head[^>]*>([\s\S]*?)<\/head>/i);
   const headContent = headMatch ? headMatch[1] : "";
