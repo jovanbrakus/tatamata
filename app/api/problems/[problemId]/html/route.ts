@@ -19,6 +19,27 @@ function sanitizeForIframe(html: string): string {
     .replace(/margin:\s*0\s+auto;?/gi, "");
 }
 
+const THEME_LINKS = `<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/solution-theme.css">`;
+
+/**
+ * Inject the shared theme stylesheet link after the last embedded <style> block
+ * so it wins the CSS cascade naturally.
+ */
+function injectThemeLink(html: string): string {
+  // Insert after the last </style> in <head> for cascade priority
+  const headEnd = html.search(/<\/head>/i);
+  if (headEnd === -1) return html;
+  const headSection = html.substring(0, headEnd);
+  const lastStyleClose = headSection.lastIndexOf("</style>");
+  if (lastStyleClose !== -1) {
+    const insertAt = lastStyleClose + "</style>".length;
+    return html.substring(0, insertAt) + "\n" + THEME_LINKS + html.substring(insertAt);
+  }
+  // Fallback: insert before </head>
+  return html.replace(/<\/head>/i, `${THEME_LINKS}\n</head>`);
+}
+
 /**
  * Inject CSS to neutralize correct-answer highlighting in the problem statement
  * (top section) while preserving it in the final answer section (bottom).
@@ -31,8 +52,8 @@ function neutralizeAnswerHighlights(html: string): string {
   .answer-option.incorrect,
   .given-item.answer-option.correct,
   .given-item.answer-option.incorrect {
-    border-color: #334155 !important;
-    background: rgba(96, 165, 250, 0.06) !important;
+    border-color: rgba(236, 91, 19, 0.12) !important;
+    background: rgba(236, 91, 19, 0.06) !important;
     color: #e2e8f0 !important;
     font-weight: normal !important;
   }
@@ -90,6 +111,7 @@ ${cleanHead}
   /* Preemptively hide answer options to prevent flash before JS removal */
   .answer-option, .answer-chip, .answer-options-row, .options-grid { display: none !important; }
 </style>
+${THEME_LINKS}
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   // Remove answer option elements entirely so they don't affect layout
@@ -130,5 +152,6 @@ export async function GET(req: Request, { params }: { params: Promise<{ problemI
     return new NextResponse(statementHtml, { headers: HEADERS });
   }
 
-  return new NextResponse(neutralizeAnswerHighlights(safeHtml), { headers: HEADERS });
+  const themed = injectThemeLink(neutralizeAnswerHighlights(safeHtml));
+  return new NextResponse(themed, { headers: HEADERS });
 }

@@ -1,0 +1,165 @@
+/* ==========================================================================
+   Solution Theme — overrides problem HTML embedded styles to match Matoteka
+   Loaded AFTER embedded <style> blocks so cascade priority is natural.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* --- Base --- */
+body {
+  background: #0a0705;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+::selection {
+  background: #ec5b13;
+  color: #fff;
+}
+
+/* --- Headings --- */
+h1 {
+  background: linear-gradient(135deg, #ec5b13, #ff7a3d);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.card h2,
+.card-title {
+  color: #ec5b13;
+}
+
+/* --- Cards --- */
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: none;
+}
+
+/* --- Problem statement --- */
+.problem-statement {
+  border-left-color: #a78bfa;
+}
+
+/* --- Given items & answer options --- */
+.given-item {
+  background: rgba(236, 91, 19, 0.06);
+  border-color: rgba(236, 91, 19, 0.12);
+}
+
+/* --- Math highlights --- */
+.highlight-box,
+.math-box,
+.math-highlight,
+.math-block {
+  background: rgba(236, 91, 19, 0.06);
+  border-color: rgba(236, 91, 19, 0.12);
+}
+
+/* --- Step badges --- */
+.step-badge,
+.badge {
+  background: linear-gradient(135deg, #ec5b13, #ff7a3d);
+}
+
+/* --- Step titles --- */
+.step-title {
+  color: #ec5b13;
+}
+
+/* --- Step container hover (gen 1) --- */
+.step-container:hover,
+.step-container.active {
+  border-left-color: #ec5b13;
+  background: rgba(236, 91, 19, 0.04);
+}
+
+/* --- Insight cards --- */
+.insight-card {
+  border-left-color: #ec5b13;
+}
+
+.key-insight {
+  background: linear-gradient(135deg, rgba(236, 91, 19, 0.08), rgba(167, 139, 250, 0.08));
+  border-color: rgba(236, 91, 19, 0.2);
+}
+
+.key-insight .card-title {
+  color: #ec5b13;
+}
+
+/* --- Pitfall cards --- */
+.pitfall-card h2 {
+  color: #f87171;
+}
+
+.pitfall-card {
+  border-left-color: #f87171;
+}
+
+/* --- Challenge cards --- */
+.challenge-card {
+  border-left-color: #a78bfa;
+}
+
+.challenge-card h2 {
+  color: #a78bfa;
+}
+
+/* --- Plan cards --- */
+.plan-card {
+  border-left-color: #a78bfa;
+}
+
+/* --- Details / collapsible --- */
+details {
+  background: rgba(167, 139, 250, 0.04);
+  border-color: rgba(167, 139, 250, 0.12);
+}
+
+/* --- Checkpoint (gen 1) --- */
+.checkpoint {
+  background: rgba(74, 222, 128, 0.04);
+  border-color: rgba(74, 222, 128, 0.15);
+}
+
+/* --- Answer chips (gen 1) --- */
+.answer-chip {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* --- Final answer (gen 2) --- */
+.final-option {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* --- Answer box (gen 1) --- */
+.answer-box {
+  border-color: #4ade80;
+  background: rgba(74, 222, 128, 0.04);
+}
+
+.final-answer-card {
+  border-color: #4ade80;
+  background: rgba(74, 222, 128, 0.04);
+}
+
+/* --- Formula list --- */
+.formula-list li {
+  background: rgba(167, 139, 250, 0.06);
+  border-left-color: #a78bfa;
+}
+
+/* --- Borders: catch remaining #334155 usages --- */
+table td,
+table th {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* --- Canvas --- */
+canvas {
+  border-color: rgba(255, 255, 255, 0.08);
+}
