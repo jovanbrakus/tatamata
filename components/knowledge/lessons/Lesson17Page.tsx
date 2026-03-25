@@ -662,17 +662,17 @@ export default function Lesson17Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Kada biras zamenu"
-            formula="x = \\ldots \\text{ ili koeficijent } \\pm 1"
+            formula={"x = \\ldots \\text{ ili koeficijent } \\pm 1"}
             note="Ako u jednacini vec imas oblik gde je jedna nepoznata lako izdvojiva, ne komplikuj: zamena je tada prirodna."
           />
           <FormulaCard
             title="Kada biras eliminaciju"
-            formula="\\text{NZS koeficijenata je pregledan}"
+            formula={"\\text{NZS koeficijenata je pregledan}"}
             note="Ako su koeficijenti mali i lepo se uskladjuju, eliminacija je cesto brza od uvrstanja razlomaka."
           />
           <FormulaCard
             title="Ne zaboravi proveru"
-            formula="(x_0, y_0) \\text{ mora zadovoljiti obe jednacine}"
+            formula={"(x_0, y_0) \\text{ mora zadovoljiti obe jednacine}"}
             note="Posebno kod prijemnog, brza provera na kraju otkriva gresku u znaku pre nego sto predas zadatak."
           />
         </div>
@@ -901,17 +901,17 @@ export default function Lesson17Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Ako je Δ ≠ 0"
-            formula="\\Delta \\neq 0 \\Longrightarrow \\text{jedinstveno resenje}"
+            formula={"\\Delta \\neq 0 \\Longrightarrow \\text{jedinstveno resenje}"}
             note="Tu je prica zavrsena: sistem ima jedinstveno resenje. Dalje mozes racunati Kramerom ili nekom drugom metodom."
           />
           <FormulaCard
             title="Ako je Δ = 0"
-            formula="\\Delta = 0 \\Longrightarrow \\text{dodatna provera}"
+            formula={"\\Delta = 0 \\Longrightarrow \\text{dodatna provera}"}
             note="Ne donosis jos zakljucak. Tada proveriavas da li su jednacine medjusobno saglasne ili protivreCne."
           />
           <FormulaCard
             title="Iste prave ili paralelne prave"
-            formula="\\frac{a_1}{a_2}=\\frac{b_1}{b_2}=\\frac{c_1}{c_2}\\ ?"
+            formula={"\\frac{a_1}{a_2}=\\frac{b_1}{b_2}=\\frac{c_1}{c_2}\\ ?"}
             note="Kada su koeficijenti proporcionalni, odlucujes prema slobodnim clanovima: ako su i oni proporcionalni, prave se poklapaju; ako nisu, prave su paralelne."
           />
         </div>
@@ -1294,7 +1294,7 @@ export default function Lesson17Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Glavni determinant (2x2)"
-            formula="\\Delta = a_1b_2 - a_2b_1"
+            formula={"\\Delta = a_1b_2 - a_2b_1"}
             note={
               <>
                 Ako je <InlineMath>{"\\Delta \\neq 0"}</InlineMath>, sistem ima
@@ -1304,7 +1304,7 @@ export default function Lesson17Page() {
           />
           <FormulaCard
             title="Kramer (2x2)"
-            formula="x=\\frac{\\Delta_x}{\\Delta},\\qquad y=\\frac{\\Delta_y}{\\Delta}"
+            formula={"x=\\frac{\\Delta_x}{\\Delta},\\qquad y=\\frac{\\Delta_y}{\\Delta}"}
             note="Dobre su kada su koeficijenti mali i kada zelis brz kriterijum."
           />
           <FormulaCard
@@ -1322,7 +1322,7 @@ export default function Lesson17Page() {
           />
           <FormulaCard
             title="Elementarne transformacije (Gaus)"
-            formula="R_i \\leftrightarrow R_j,\\qquad R_i \\leftarrow \\lambda R_i,\\qquad R_i \\leftarrow R_i + \\lambda R_j"
+            formula={"R_i \\leftrightarrow R_j,\\qquad R_i \\leftarrow \\lambda R_i,\\qquad R_i \\leftarrow R_i + \\lambda R_j"}
             note="Ovo je univerzalni metod, narocito koristan kada treba da otkrijes i nemoguc ili zavisan sistem."
           />
         </div>

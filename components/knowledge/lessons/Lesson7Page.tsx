@@ -487,32 +487,32 @@ export default function Lesson7Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Razmera — jedan odnos"
-            formula="a:b = \\frac{a}{b}"
+            formula={"a:b = \\frac{a}{b}"}
             note={<>Razmera opisuje koliko jedna veličina &bdquo;ide uz&ldquo; drugu.</>}
           />
           <FormulaCard
             title="Proporcija — jednakost odnosa"
-            formula="a:b = c:d \\Longleftrightarrow ad = bc"
+            formula={"a:b = c:d \\Longleftrightarrow ad = bc"}
             note="Unakrsno množenje je osnovni alat za rešavanje proporcije."
           />
           <FormulaCard
             title="Direktna — stalan količnik"
-            formula="y = kx \\qquad \\text{i} \\qquad \\frac{y}{x} = k"
+            formula={"y = kx \\qquad \\text{i} \\qquad \\frac{y}{x} = k"}
             note="Veličine rastu ili opadaju zajedno u istom odnosu."
           />
           <FormulaCard
             title="Obrnuta — stalan proizvod"
-            formula="y = \\frac{k}{x} \\qquad \\text{i} \\qquad xy = k"
+            formula={"y = \\frac{k}{x} \\qquad \\text{i} \\qquad xy = k"}
             note="Jedna veličina raste, druga se smanjuje tako da proizvod ostane isti."
           />
           <FormulaCard
             title="Pravilo trojno — model za nepoznatu veličinu"
-            formula="x_1:x_2 = y_1:y_2 \\quad \\text{ili} \\quad x_1 y_1 = x_2 y_2"
+            formula={"x_1:x_2 = y_1:y_2 \\quad \\text{ili} \\quad x_1 y_1 = x_2 y_2"}
             note="Obrazac biraš prema tome da li je zavisnost direktna ili obrnuta."
           />
           <FormulaCard
             title="Složeni zadaci — faktor po faktor"
-            formula="\\text{ukupan rad} = \\text{broj radnika} \\cdot \\text{sati} \\cdot \\text{dani}"
+            formula={"\\text{ukupan rad} = \\text{broj radnika} \\cdot \\text{sati} \\cdot \\text{dani}"}
             note="Kada više veličina utiče na rezultat, svakom faktoru prvo odredi smer uticaja."
           />
         </div>

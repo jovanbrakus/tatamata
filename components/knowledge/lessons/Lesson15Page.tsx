@@ -299,7 +299,7 @@ export default function Lesson15Page() {
           />
           <FormulaCard
             title="Opšti kubni polinom"
-            formula="ax^3+bx^2+cx+d=0,\\quad a\\neq 0"
+            formula={"ax^3+bx^2+cx+d=0,\\quad a\\neq 0"}
             note={
               <>
                 <MathBlock>{"x_1+x_2+x_3=-\\frac{b}{a}"}</MathBlock>
@@ -696,22 +696,22 @@ export default function Lesson15Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Veza koren-faktor"
-            formula="P(\\alpha)=0 \\iff x-\\alpha \\mid P(x)"
+            formula={"P(\\alpha)=0 \\iff x-\\alpha \\mid P(x)"}
             note="Ako znaš koren, znaš jedan faktor. Ako znaš faktor, znaš jedan koren."
           />
           <FormulaCard
             title="Kubna Vièta"
-            formula="\\sum x_i=-\\frac{b}{a},\\quad \\sum_{i<j} x_ix_j=\\frac{c}{a},\\quad x_1x_2x_3=-\\frac{d}{a}"
+            formula={"\\sum x_i=-\\frac{b}{a},\\quad \\sum_{i<j} x_ix_j=\\frac{c}{a},\\quad x_1x_2x_3=-\\frac{d}{a}"}
             note="Najčešći prijemni zadaci traže baš kombinovanje ove tri relacije sa dodatnim uslovom."
           />
           <FormulaCard
             title="Kvartična Vièta"
-            formula="\\sum x_i=-\\frac{b}{a},\\quad \\sum_{i<j}x_ix_j=\\frac{c}{a},\\quad \\sum_{i<j<k}x_ix_jx_k=-\\frac{d}{a},\\quad x_1x_2x_3x_4=\\frac{e}{a}"
+            formula={"\\sum x_i=-\\frac{b}{a},\\quad \\sum_{i<j}x_ix_j=\\frac{c}{a},\\quad \\sum_{i<j<k}x_ix_jx_k=-\\frac{d}{a},\\quad x_1x_2x_3x_4=\\frac{e}{a}"}
             note="Kod četvrtog stepena najviše grešaka nastaje upravo na znaku uz trostruke proizvode."
           />
           <FormulaCard
             title="Aritmetička progresija"
-            formula="x_1=m-d,\\quad x_2=m,\\quad x_3=m+d,\\quad x_1+x_2+x_3=3m"
+            formula={"x_1=m-d,\\quad x_2=m,\\quad x_3=m+d,\\quad x_1+x_2+x_3=3m"}
             note="Čim zadatak kaže da su korenovi u aritmetičkoj progresiji, srednji član dobijaš direktno iz zbira korenova."
           />
         </div>

@@ -861,12 +861,12 @@ export default function Lesson26Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Definicija"
-            formula="f(x)=a^x,\quad a>0,\ a\neq 1"
+            formula={"f(x)=a^x,\quad a>0,\ a\neq 1"}
             note="Promenljiva je u eksponentu, a baza mora biti pozitivna i razlicita od 1."
           />
           <FormulaCard
             title="Domen i vrednosti"
-            formula="D(f)=\mathbb{R},\qquad V(f)=(0,\infty)"
+            formula={"D(f)=\mathbb{R},\qquad V(f)=(0,\infty)"}
             note="Eksponencijalna funkcija je svuda definisana i uvek pozitivna."
           />
           <FormulaCard
@@ -876,7 +876,7 @@ export default function Lesson26Page() {
           />
           <FormulaCard
             title="Monotonost"
-            formula="a>1 \Rightarrow \text{rastuca},\qquad 0<a<1 \Rightarrow \text{opadajuca}"
+            formula={"a>1 \Rightarrow \text{rastuca},\qquad 0<a<1 \Rightarrow \text{opadajuca}"}
             note="Smer rasta odredjuje samo baza."
           />
           <FormulaCard

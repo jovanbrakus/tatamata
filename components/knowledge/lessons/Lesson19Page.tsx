@@ -609,17 +609,17 @@ export default function Lesson19Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Standardni oblik"
-            formula="f(x)=ax^2+bx+c,\qquad a\ne 0"
+            formula={"f(x)=ax^2+bx+c,\qquad a\ne 0"}
             note="Ovde odmah gledaš znak koeficijenta a i vrednost c=f(0)."
           />
           <FormulaCard
             title="Osa simetrije"
-            formula="x=-\frac{b}{2a}"
+            formula={"x=-\frac{b}{2a}"}
             note="Teme uvek leži na ovoj pravoj, a nule su simetrične u odnosu na nju."
           />
           <FormulaCard
             title="Teme"
-            formula="T\left(-\frac{b}{2a},\,f\!\left(-\frac{b}{2a}\right)\right)"
+            formula={"T\left(-\frac{b}{2a},\,f\!\left(-\frac{b}{2a}\right)\right)"}
             note="Ovo je najvažnija formula za crtanje i tumačenje kvadratne funkcije."
           />
           <FormulaCard
@@ -634,7 +634,7 @@ export default function Lesson19Page() {
           />
           <FormulaCard
             title="Diskriminanta"
-            formula="\Delta=b^2-4ac"
+            formula={"\Delta=b^2-4ac"}
             note={
               <>
                 <InlineMath>{"\\Delta>0"}</InlineMath>: dve nule,{" "}

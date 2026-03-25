@@ -795,12 +795,12 @@ export default function Lesson1_5Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Dvostruka negacija"
-            formula="\\neg(\\neg p) \\Leftrightarrow p"
+            formula={"\\neg(\\neg p) \\Leftrightarrow p"}
             note="Negacija negacije vraća originalni iskaz."
           />
           <FormulaCard
             title="De Morgan 1"
-            formula="\\neg(p \\lor q) \\Leftrightarrow (\\neg p) \\land (\\neg q)"
+            formula={"\\neg(p \\lor q) \\Leftrightarrow (\\neg p) \\land (\\neg q)"}
             note={
               <>
                 Negacija prolazi kroz zagradu i menja{" "}
@@ -811,7 +811,7 @@ export default function Lesson1_5Page() {
           />
           <FormulaCard
             title="De Morgan 2"
-            formula="\\neg(p \\land q) \\Leftrightarrow (\\neg p) \\lor (\\neg q)"
+            formula={"\\neg(p \\land q) \\Leftrightarrow (\\neg p) \\lor (\\neg q)"}
             note={
               <>
                 Negacija prolazi kroz zagradu i menja{" "}
@@ -822,7 +822,7 @@ export default function Lesson1_5Page() {
           />
           <FormulaCard
             title="Bez implikacije"
-            formula="p \\Rightarrow q \\Leftrightarrow \\neg p \\lor q"
+            formula={"p \\Rightarrow q \\Leftrightarrow \\neg p \\lor q"}
             note="Implikacija se može prevesti na jezik negacije i disjunkcije."
           />
         </div>

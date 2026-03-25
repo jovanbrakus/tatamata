@@ -183,12 +183,12 @@ export default function Lesson54Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Kanonska jednacina"
-            formula="y^2=2px,\\qquad p>0"
+            formula={"y^2=2px,\\qquad p>0"}
             note="Glavni oblik za ovu lekciju: teme je u koordinatnom pocetku, a parabola je otvorena nadesno."
           />
           <FormulaCard
             title="Fokus i direktrisa"
-            formula="F\\left(\\frac{p}{2},0\\right),\\qquad x=-\\frac{p}{2}"
+            formula={"F\\left(\\frac{p}{2},0\\right),\\qquad x=-\\frac{p}{2}"}
             note="Fokus i direktrisa su jednako udaljeni od temena, samo na suprotnim stranama."
           />
           <FormulaCard
@@ -262,7 +262,7 @@ export default function Lesson54Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Uslov dodira"
-            formula="\\boxed{p=2kl}"
+            formula={"\\boxed{p=2kl}"}
             note={
               <>
                 Ako je <InlineMath>{"p>2kl"}</InlineMath>, prava sece
@@ -273,7 +273,7 @@ export default function Lesson54Page() {
           />
           <FormulaCard
             title="Tangenta sa zadatim nagibom"
-            formula="l=\\frac{p}{2k}"
+            formula={"l=\\frac{p}{2k}"}
             note="Kada je nagib zadat, odsecak l vise nije slobodan: mora bas ovako da se namesti da bi prava postala tangenta."
           />
           <FormulaCard

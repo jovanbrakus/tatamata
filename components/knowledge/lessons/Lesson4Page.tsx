@@ -806,7 +806,7 @@ export default function Lesson4Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Funkcija"
-            formula="f:A\\to B"
+            formula={"f:A\\to B"}
             note={
               <>
                 Cita se: funkcija <InlineMath>{"f"}</InlineMath> preslikava
@@ -817,27 +817,27 @@ export default function Lesson4Page() {
           />
           <FormulaCard
             title="Razliciti ulazi ostaju razliciti"
-            formula="f(x_1)=f(x_2) \\Rightarrow x_1=x_2"
+            formula={"f(x_1)=f(x_2) \\Rightarrow x_1=x_2"}
             note="Ako se dve slike poklope, polazni ulazi moraju biti isti."
           />
           <FormulaCard
             title="Svaki element kodomena je pogodjen"
-            formula="\\forall y \\in B \\; \\exists x \\in A:\\ f(x)=y"
+            formula={"\\forall y \\in B \\; \\exists x \\in A:\\ f(x)=y"}
             note='Ne proveravas "sve realne brojeve", nego bas zadati kodomen.'
           />
           <FormulaCard
             title="Ulancavanje funkcija"
-            formula="(g\\circ f)(x)=g(f(x))"
+            formula={"(g\\circ f)(x)=g(f(x))"}
             note="Prvo se primenjuje unutrasnja funkcija, zatim spoljasnja."
           />
           <FormulaCard
             title="Povratak na ulaz"
-            formula="f^{-1}(y)=x \\Longleftrightarrow f(x)=y"
+            formula={"f^{-1}(y)=x \\Longleftrightarrow f(x)=y"}
             note="Inverzna funkcija ponistava dejstvo originalne funkcije."
           />
           <FormulaCard
             title="Najvazniji uslov"
-            formula="f \\text{ bijektivna } \\Longleftrightarrow \\forall y\\in B\\ \\exists!\\,x\\in A:\\ f(x)=y"
+            formula={"f \\text{ bijektivna } \\Longleftrightarrow \\forall y\\in B\\ \\exists!\\,x\\in A:\\ f(x)=y"}
             note={
               <>
                 Znak <InlineMath>{"\\exists!"}</InlineMath> znaci &ldquo;postoji

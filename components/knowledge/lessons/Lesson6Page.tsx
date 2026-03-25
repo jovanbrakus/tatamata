@@ -474,32 +474,32 @@ export default function Lesson6Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Osnovna definicija"
-            formula="a \\mid b \\Longleftrightarrow b = ak"
+            formula={"a \\mid b \\Longleftrightarrow b = ak"}
             note={<>Nema ostatka pri deljenju broja <InlineMath>{"b"}</InlineMath> brojem <InlineMath>{"a"}</InlineMath>.</>}
           />
           <FormulaCard
             title="Tačno dva pozitivna delioca"
-            formula="p>1,\\quad p \\text{ je prost } \\Longleftrightarrow \\text{delioci su } 1 \\text{ i } p"
+            formula={"p>1,\\quad p \\text{ je prost } \\Longleftrightarrow \\text{delioci su } 1 \\text{ i } p"}
             note={<>Broj <InlineMath>{"1"}</InlineMath> nije prost i to moraš izričito pamtiti.</>}
           />
           <FormulaCard
             title="Korak sa ostatkom"
-            formula="a = bq + r,\\qquad 0 \\le r < b"
+            formula={"a = bq + r,\\qquad 0 \\le r < b"}
             note={<>Par <InlineMath>{"(a,b)"}</InlineMath> zamenjuješ parom <InlineMath>{"(b,r)"}</InlineMath>.</>}
           />
           <FormulaCard
             title="Veza preko proizvoda"
-            formula="\\operatorname{NZD}(a,b)\\cdot \\operatorname{NZS}(a,b)=|ab|"
+            formula={"\\operatorname{NZD}(a,b)\\cdot \\operatorname{NZS}(a,b)=|ab|"}
             note="Za pozitivne brojeve ovo je najbrža veza između dve veličine."
           />
           <FormulaCard
             title="Isti ostatak"
-            formula="a \\equiv b \\pmod m \\Longleftrightarrow m \\mid (a-b)"
+            formula={"a \\equiv b \\pmod m \\Longleftrightarrow m \\mid (a-b)"}
             note={<>Kongruentni brojevi ne moraju biti jednaki, ali imaju isti ostatak modulo <InlineMath>{"m"}</InlineMath>.</>}
           />
           <FormulaCard
             title="Poseban slučaj"
-            formula="\\operatorname{NZD}(a,b)=1"
+            formula={"\\operatorname{NZD}(a,b)=1"}
             note={<>Tada brojevi nemaju zajedničke proste činioce osim <InlineMath>{"1"}</InlineMath>.</>}
           />
         </div>

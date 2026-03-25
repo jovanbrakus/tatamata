@@ -705,12 +705,12 @@ export default function Lesson23Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Zamena"
-            formula="\\begin{cases} y = mx+n \\\\ Q(x,y)=0 \\end{cases} \\Longrightarrow Q(x,mx+n)=0"
+            formula={"\\begin{cases} y = mx+n \\\\ Q(x,y)=0 \\end{cases} \\Longrightarrow Q(x,mx+n)=0"}
             note="Najcesci ulaz. Resavas kvadratnu jednacinu u jednoj promenljivoj i vracas drugu koordinatu."
           />
           <FormulaCard
             title="Izjednacavanje"
-            formula="y=f(x),\\qquad y=g(x) \\Longrightarrow f(x)=g(x)"
+            formula={"y=f(x),\\qquad y=g(x) \\Longrightarrow f(x)=g(x)"}
             note="Algebarski trazis preseke, a geometrijski gledas gde se dve krive seku."
           />
           <FormulaCard
@@ -720,17 +720,17 @@ export default function Lesson23Page() {
           />
           <FormulaCard
             title="Sabiranje i oduzimanje"
-            formula="\\begin{cases} x^2+y^2=A \\\\ x^2-y^2=B \\end{cases} \\Longrightarrow x^2=\\frac{A+B}{2},\\quad y^2=\\frac{A-B}{2}"
+            formula={"\\begin{cases} x^2+y^2=A \\\\ x^2-y^2=B \\end{cases} \\Longrightarrow x^2=\\frac{A+B}{2},\\quad y^2=\\frac{A-B}{2}"}
             note="Odmah dobijas kvadrate promenljivih, a zatim vodis racuna o oba znaka."
           />
           <FormulaCard
             title="Homogeni sistemi: odnos"
-            formula="t=\\frac{x}{y} \\quad \\text{ili} \\quad u=\\frac{y}{x}"
+            formula={"t=\\frac{x}{y} \\quad \\text{ili} \\quad u=\\frac{y}{x}"}
             note="Pre podele obavezno proveri da li su y=0 ili x=0 moguci slucajevi."
           />
           <FormulaCard
             title="Diskriminanta i grafika"
-            formula="\\Delta > 0 \\Rightarrow \\text{dva preseka},\\quad \\Delta = 0 \\Rightarrow \\text{dodir},\\quad \\Delta < 0 \\Rightarrow \\text{nema preseka}"
+            formula={"\\Delta > 0 \\Rightarrow \\text{dva preseka},\\quad \\Delta = 0 \\Rightarrow \\text{dodir},\\quad \\Delta < 0 \\Rightarrow \\text{nema preseka}"}
             note="Kada sistem svedes na kvadratnu jednacinu, diskriminanta ti odmah daje sliku o realnim resenjima."
           />
         </div>

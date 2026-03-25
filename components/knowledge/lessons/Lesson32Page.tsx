@@ -584,27 +584,27 @@ export default function Lesson32Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Direktan oblik, a > 1"
-            formula="\\log_a f(x)\\ \\square\\ c \\iff f(x)\\ \\square\\ a^c"
+            formula={"\\log_a f(x)\\ \\square\\ c \\iff f(x)\\ \\square\\ a^c"}
           />
           <FormulaCard
             title="Direktan oblik, 0 < a < 1"
-            formula="\\log_a f(x)\\ \\square\\ c \\iff f(x)\\ \\square_{\\text{obr}} a^c"
+            formula={"\\log_a f(x)\\ \\square\\ c \\iff f(x)\\ \\square_{\\text{obr}} a^c"}
           />
           <FormulaCard
             title="Dva logaritma, a > 1"
-            formula="\\log_a f(x)\\ \\square\\ \\log_a g(x) \\iff f(x)\\ \\square\\ g(x)"
+            formula={"\\log_a f(x)\\ \\square\\ \\log_a g(x) \\iff f(x)\\ \\square\\ g(x)"}
           />
           <FormulaCard
             title="Dva logaritma, 0 < a < 1"
-            formula="\\log_a f(x)\\ \\square\\ \\log_a g(x) \\iff f(x)\\ \\square_{\\text{obr}} g(x)"
+            formula={"\\log_a f(x)\\ \\square\\ \\log_a g(x) \\iff f(x)\\ \\square_{\\text{obr}} g(x)"}
           />
           <FormulaCard
             title="Obavezni domen"
-            formula="f(x)>0,\\qquad g(x)>0."
+            formula={"f(x)>0,\\qquad g(x)>0."}
           />
           <FormulaCard
             title="Konačni presek"
-            formula="S = S_{\\text{algebra}} \\cap D."
+            formula={"S = S_{\\text{algebra}} \\cap D."}
           />
         </div>
       </LessonSection>

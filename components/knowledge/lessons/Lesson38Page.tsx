@@ -180,7 +180,7 @@ export default function Lesson38Page() {
         <div className={s.formulaGrid} style={{ marginTop: 18 }}>
           <FormulaCard
             title="Sinus"
-            formula="y=\\sin x"
+            formula={"y=\\sin x"}
             note={
               <>
                 Domen: <InlineMath>{"\\mathbb{R}"}</InlineMath>. Skup
@@ -193,7 +193,7 @@ export default function Lesson38Page() {
           />
           <FormulaCard
             title="Kosinus"
-            formula="y=\\cos x"
+            formula={"y=\\cos x"}
             note={
               <>
                 Domen: <InlineMath>{"\\mathbb{R}"}</InlineMath>. Skup
@@ -206,7 +206,7 @@ export default function Lesson38Page() {
           />
           <FormulaCard
             title="Tangens"
-            formula="y=\\tan x"
+            formula={"y=\\tan x"}
             note={
               <>
                 Domen:{" "}
@@ -227,7 +227,7 @@ export default function Lesson38Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Kotangens"
-            formula="y=\\cot x"
+            formula={"y=\\cot x"}
             note={
               <>
                 Domen:{" "}
@@ -303,7 +303,7 @@ export default function Lesson38Page() {
         <div className={s.formulaGrid} style={{ marginTop: 18 }}>
           <FormulaCard
             title="Parametar A"
-            formula="y=A\\cdot \\text{(osnovna funkcija)}"
+            formula={"y=A\\cdot \\text{(osnovna funkcija)}"}
             note={
               <p>
                 Za sinus i kosinus amplituda je{" "}
@@ -317,7 +317,7 @@ export default function Lesson38Page() {
           />
           <FormulaCard
             title="Parametar B"
-            formula="T_{\\sin,\\cos}=\\frac{2\\pi}{|B|}, \\qquad T_{\\tan,\\cot}=\\frac{\\pi}{|B|}"
+            formula={"T_{\\sin,\\cos}=\\frac{2\\pi}{|B|}, \\qquad T_{\\tan,\\cot}=\\frac{\\pi}{|B|}"}
             note={
               <p>
                 Što je <InlineMath>{"|B|"}</InlineMath> veći, grafik je
@@ -329,7 +329,7 @@ export default function Lesson38Page() {
           />
           <FormulaCard
             title="Parametar C"
-            formula="Bx+C = B\\left(x+\\frac{C}{B}\\right), \\qquad x_0=-\\frac{C}{B}"
+            formula={"Bx+C = B\\left(x+\\frac{C}{B}\\right), \\qquad x_0=-\\frac{C}{B}"}
             note={
               <p>
                 Fazni pomeraj čitaš iz unutrašnjosti argumenta. Ako je{" "}
@@ -343,7 +343,7 @@ export default function Lesson38Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Parametar D"
-            formula="y=\\text{(transformisani osnovni grafik)}+D"
+            formula={"y=\\text{(transformisani osnovni grafik)}+D"}
             note={
               <p>
                 Celoj funkciji dodaješ istu visinu. Kod sinusa i kosinusa
@@ -427,7 +427,7 @@ export default function Lesson38Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Osnovne nule"
-            formula="\\sin x = 0 \\iff x=k\\pi"
+            formula={"\\sin x = 0 \\iff x=k\\pi"}
             note={
               <>
                 <MathBlock>
@@ -443,7 +443,7 @@ export default function Lesson38Page() {
           />
           <FormulaCard
             title="Osnovne asimptote"
-            formula="\\tan x \\text{ nije def. za } x=\\frac{\\pi}{2}+k\\pi"
+            formula={"\\tan x \\text{ nije def. za } x=\\frac{\\pi}{2}+k\\pi"}
             note={
               <>
                 <MathBlock>
@@ -458,7 +458,7 @@ export default function Lesson38Page() {
           />
           <FormulaCard
             title="Kada postoji pomeraj po y-osi"
-            formula="A\\sin(Bx+C)+D=0 \\iff \\sin(Bx+C)=-\\frac{D}{A}"
+            formula={"A\\sin(Bx+C)+D=0 \\iff \\sin(Bx+C)=-\\frac{D}{A}"}
             note={
               <>
                 <MathBlock>
@@ -479,7 +479,7 @@ export default function Lesson38Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Transformisane asimptote"
-            formula="\\tan(Bx+C)\\text{ ima asimptote kada } Bx+C=\\frac{\\pi}{2}+k\\pi"
+            formula={"\\tan(Bx+C)\\text{ ima asimptote kada } Bx+C=\\frac{\\pi}{2}+k\\pi"}
             note={
               <>
                 <MathBlock>
@@ -833,7 +833,7 @@ export default function Lesson38Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Amplitude i opseg"
-            formula="\\text{amplituda}=|A|,\\qquad \\text{skup vrednosti}=[D-|A|,D+|A|]"
+            formula={"\\text{amplituda}=|A|,\\qquad \\text{skup vrednosti}=[D-|A|,D+|A|]"}
             note={
               <p>
                 Važi za{" "}
@@ -844,11 +844,11 @@ export default function Lesson38Page() {
           />
           <FormulaCard
             title="Periode"
-            formula="T_{\\sin,\\cos}=\\frac{2\\pi}{|B|},\\qquad T_{\\tan,\\cot}=\\frac{\\pi}{|B|}"
+            formula={"T_{\\sin,\\cos}=\\frac{2\\pi}{|B|},\\qquad T_{\\tan,\\cot}=\\frac{\\pi}{|B|}"}
           />
           <FormulaCard
             title="Fazni pomeraj"
-            formula="x_0=-\\frac{C}{B}"
+            formula={"x_0=-\\frac{C}{B}"}
             note="Ovo je jedna od najčešćih grešaka: znak faznog pomeraja je suprotan od znaka koji vidiš pored C u argumentu."
           />
         </div>
@@ -856,11 +856,11 @@ export default function Lesson38Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Asimptote tangensa"
-            formula="\\tan(Bx+C)\\text{: asimptote kada }Bx+C=\\frac{\\pi}{2}+k\\pi"
+            formula={"\\tan(Bx+C)\\text{: asimptote kada }Bx+C=\\frac{\\pi}{2}+k\\pi"}
           />
           <FormulaCard
             title="Asimptote kotangensa"
-            formula="\\cot(Bx+C)\\text{: asimptote kada }Bx+C=k\\pi"
+            formula={"\\cot(Bx+C)\\text{: asimptote kada }Bx+C=k\\pi"}
           />
         </div>
 

@@ -645,7 +645,7 @@ export default function Lesson59Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Znak izvoda"
-            formula="f'(x)>0 \Rightarrow f \text{ raste}, \qquad f'(x)<0 \Rightarrow f \text{ opada}."
+            formula={"f'(x)>0 \Rightarrow f \text{ raste}, \qquad f'(x)<0 \Rightarrow f \text{ opada}."}
             note="Ovo važi po intervalima, ne samo u jednoj tački."
           />
           <FormulaCard
@@ -655,7 +655,7 @@ export default function Lesson59Page() {
           />
           <FormulaCard
             title="Promena znaka"
-            formula="+ \to - : \max, \qquad - \to + : \min"
+            formula={"+ \to - : \max, \qquad - \to + : \min"}
             note="Promena smera funkcije je stvarni kriterijum za lokalni ekstrem."
           />
           <FormulaCard
@@ -665,12 +665,12 @@ export default function Lesson59Page() {
           />
           <FormulaCard
             title="Apsolutni maks/min"
-            formula="\text{proveriti i kritične tačke i krajeve intervala}"
+            formula={"\text{proveriti i kritične tačke i krajeve intervala}"}
             note="Na prijemnom je ovo tipična greška kada zadatak traži najveću ili najmanju vrednost."
           />
           <FormulaCard
             title="Model pa izvod"
-            formula="\text{uslov} \Rightarrow \text{funkcija jedne promenljive} \Rightarrow f'(x)=0"
+            formula={"\text{uslov} \Rightarrow \text{funkcija jedne promenljive} \Rightarrow f'(x)=0"}
             note="Bez dobrog modela nema dobrog odgovora, pa makar račun izvoda bio tačan."
           />
         </div>

@@ -698,7 +698,7 @@ export default function Lesson1Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Tautologija"
-            formula="p \\lor \\neg p"
+            formula={"p \\lor \\neg p"}
             note={
               <>
                 Uvek je tačna. Bez obzira na to da li je{" "}
@@ -709,7 +709,7 @@ export default function Lesson1Page() {
           />
           <FormulaCard
             title="De Morgan 1"
-            formula="\\neg (p \\lor q) \\Leftrightarrow (\\neg p) \\land (\\neg q)"
+            formula={"\\neg (p \\lor q) \\Leftrightarrow (\\neg p) \\land (\\neg q)"}
             note={
               <>
                 Negacija prolazi kroz zagradu i menja &ldquo;ili&rdquo; u
@@ -719,7 +719,7 @@ export default function Lesson1Page() {
           />
           <FormulaCard
             title="De Morgan 2"
-            formula="\\neg (p \\land q) \\Leftrightarrow (\\neg p) \\lor (\\neg q)"
+            formula={"\\neg (p \\land q) \\Leftrightarrow (\\neg p) \\lor (\\neg q)"}
             note={
               <>
                 Negacija prolazi kroz zagradu i menja &ldquo;i&rdquo; u

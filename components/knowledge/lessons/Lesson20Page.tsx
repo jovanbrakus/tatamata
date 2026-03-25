@@ -309,7 +309,7 @@ export default function Lesson20Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Δ > 0"
-            formula="x_{1,2} = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}"
+            formula={"x_{1,2} = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}"}
             note={
               <>
                 Pod korenom je pozitivan broj, pa postoje dva različita realna
@@ -320,12 +320,12 @@ export default function Lesson20Page() {
           />
           <FormulaCard
             title="Δ = 0"
-            formula="x_1 = x_2 = -\\frac{b}{2a}"
+            formula={"x_1 = x_2 = -\\frac{b}{2a}"}
             note="Dobijamo jedan dvostruki koren. Parabola dodiruje x-osu."
           />
           <FormulaCard
             title="Δ < 0"
-            formula="x_{1,2} = \\frac{-b \\pm i\\sqrt{-\\Delta}}{2a}"
+            formula={"x_{1,2} = \\frac{-b \\pm i\\sqrt{-\\Delta}}{2a}"}
             note="Nad skupom realnih brojeva nema rešenja. Nad kompleksnim brojevima dobijamo konjugovano kompleksne korene."
           />
         </div>
@@ -603,34 +603,34 @@ export default function Lesson20Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Standardni oblik"
-            formula="ax^2+bx+c=0,\\qquad a\\neq0"
+            formula={"ax^2+bx+c=0,\\qquad a\\neq0"}
             note="Bez standardnog oblika nema sigurnog čitanja koeficijenata."
           />
           <FormulaCard
             title="Diskriminanta"
-            formula="\\Delta=b^2-4ac"
+            formula={"\\Delta=b^2-4ac"}
             note="Ovo je prvo što računaš kada zadatak pita za prirodu rešenja ili uslov na parametar."
           />
           <FormulaCard
             title="ABC formula"
-            formula="x_{1,2}=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}"
+            formula={"x_{1,2}=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}"}
             note="Kada je Δ=0, formula se svodi na jedan dvostruki koren."
           />
         </div>
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Δ > 0"
-            formula="\\text{Dva razli\\v{c}ita realna korena}"
+            formula={"\\text{Dva razli\\v{c}ita realna korena}"}
             note="Dva preseka parabole sa x-osom."
           />
           <FormulaCard
             title="Δ = 0"
-            formula="\\text{Jedan dvostruki koren}"
+            formula={"\\text{Jedan dvostruki koren}"}
             note="Parabola dodiruje osu u temenu."
           />
           <FormulaCard
             title="Δ < 0"
-            formula="\\text{Nema realnih korena}"
+            formula={"\\text{Nema realnih korena}"}
             note="Nad C postoje konjugovano kompleksni koreni."
           />
         </div>

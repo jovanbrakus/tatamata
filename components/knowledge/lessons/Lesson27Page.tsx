@@ -319,7 +319,7 @@ export default function Lesson27Page() {
           />
           <FormulaCard
             title="Razbijanje eksponenta"
-            formula="a^{m+n}=a^m\\cdot a^n"
+            formula={"a^{m+n}=a^m\\cdot a^n"}
             note="Ovo je osnova za izdvajanje zajedničkog faktora."
           />
           <FormulaCard

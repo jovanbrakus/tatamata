@@ -214,22 +214,22 @@ export default function Lesson35Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Sinus zbira i razlike"
-            formula="\\sin(\\alpha+\\beta)=\\sin\\alpha\\cos\\beta+\\cos\\alpha\\sin\\beta"
+            formula={"\\sin(\\alpha+\\beta)=\\sin\\alpha\\cos\\beta+\\cos\\alpha\\sin\\beta"}
             note="Sinus prati znak između uglova. Ako je unutra plus, plus je i između članova. Ako je unutra minus, minus ostaje i između članova."
           />
           <FormulaCard
             title="Kosinus zbira i razlike"
-            formula="\\cos(\\alpha+\\beta)=\\cos\\alpha\\cos\\beta-\\sin\\alpha\\sin\\beta"
+            formula={"\\cos(\\alpha+\\beta)=\\cos\\alpha\\cos\\beta-\\sin\\alpha\\sin\\beta"}
             note="Kosinus menja znak između članova. Zbog toga je najčešća greška da učenik kod kosinusa zadrži isti znak kao u zagradi."
           />
           <FormulaCard
             title="Tangens zbira i razlike"
-            formula="\\operatorname{tg}(\\alpha+\\beta)=\\frac{\\operatorname{tg}\\alpha+\\operatorname{tg}\\beta}{1-\\operatorname{tg}\\alpha\\operatorname{tg}\\beta}"
+            formula={"\\operatorname{tg}(\\alpha+\\beta)=\\frac{\\operatorname{tg}\\alpha+\\operatorname{tg}\\beta}{1-\\operatorname{tg}\\alpha\\operatorname{tg}\\beta}"}
             note="Brojnik prati znak kao kod sinusa, a imenilac ga menja. Ovo je korisno pravilo za pamćenje, ali uz obaveznu proveru da izraz ima smisla."
           />
           <FormulaCard
             title="Kako nastaje tangens"
-            formula="\\operatorname{tg}(\\alpha+\\beta)=\\frac{\\sin(\\alpha+\\beta)}{\\cos(\\alpha+\\beta)}=\\frac{\\sin\\alpha\\cos\\beta+\\cos\\alpha\\sin\\beta}{\\cos\\alpha\\cos\\beta-\\sin\\alpha\\sin\\beta}"
+            formula={"\\operatorname{tg}(\\alpha+\\beta)=\\frac{\\sin(\\alpha+\\beta)}{\\cos(\\alpha+\\beta)}=\\frac{\\sin\\alpha\\cos\\beta+\\cos\\alpha\\sin\\beta}{\\cos\\alpha\\cos\\beta-\\sin\\alpha\\sin\\beta}"}
             note="Ako podeliš brojilac i imenilac sa cos \u03B1 cos \u03B2, dobijaš standardnu formulu za tangens zbira. Zato ona nije nova magična formula, već posledica prethodnih."
           />
         </div>
@@ -498,7 +498,7 @@ export default function Lesson35Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Sinus zbira"
-            formula="\\sin\\alpha\\cos\\beta+\\cos\\alpha\\sin\\beta=\\sin(\\alpha+\\beta)"
+            formula={"\\sin\\alpha\\cos\\beta+\\cos\\alpha\\sin\\beta=\\sin(\\alpha+\\beta)"}
             note={
               <>
                 Koristi kada u zadatku vidiš &bdquo;unakrsni&ldquo; zbir sinusa
@@ -508,12 +508,12 @@ export default function Lesson35Page() {
           />
           <FormulaCard
             title="Sinus razlike"
-            formula="\\sin\\alpha\\cos\\beta-\\cos\\alpha\\sin\\beta=\\sin(\\alpha-\\beta)"
+            formula={"\\sin\\alpha\\cos\\beta-\\cos\\alpha\\sin\\beta=\\sin(\\alpha-\\beta)"}
             note="Minus se javlja između unakrsnih proizvoda. Ovo je bitan detalj kod dokazivanja identiteta."
           />
           <FormulaCard
             title="Kosinus zbira"
-            formula="\\cos\\alpha\\cos\\beta-\\sin\\alpha\\sin\\beta=\\cos(\\alpha+\\beta)"
+            formula={"\\cos\\alpha\\cos\\beta-\\sin\\alpha\\sin\\beta=\\cos(\\alpha+\\beta)"}
             note={
               <>
                 Ako vidiš &bdquo;isti sa istim&ldquo; i između njih minus, vrlo
@@ -523,7 +523,7 @@ export default function Lesson35Page() {
           />
           <FormulaCard
             title="Kosinus razlike"
-            formula="\\cos\\alpha\\cos\\beta+\\sin\\alpha\\sin\\beta=\\cos(\\alpha-\\beta)"
+            formula={"\\cos\\alpha\\cos\\beta+\\sin\\alpha\\sin\\beta=\\cos(\\alpha-\\beta)"}
             note="Ovo je standardni obrazac u prijemnim zadacima gde se dugi izrazi svode na jedan kosinus."
           />
         </div>

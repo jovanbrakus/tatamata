@@ -231,7 +231,7 @@ export default function Lesson47Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Bočno oplošje"
-            formula="M = 2\\pi rh"
+            formula={"M = 2\\pi rh"}
             note={
               <>
                 Omotač je pravougaonik širine{" "}
@@ -242,12 +242,12 @@ export default function Lesson47Page() {
           />
           <FormulaCard
             title="Ukupno oplošje"
-            formula="P = 2\\pi r^2 + 2\\pi rh = 2\\pi r(r + h)"
+            formula={"P = 2\\pi r^2 + 2\\pi rh = 2\\pi r(r + h)"}
             note="Dodaješ dve baze i omotač."
           />
           <FormulaCard
             title="Zapremina"
-            formula="V = \\pi r^2 h"
+            formula={"V = \\pi r^2 h"}
             note="Osnova je ista kao kod prizme: površina baze puta visina."
           />
         </div>
@@ -307,17 +307,17 @@ export default function Lesson47Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Bočno oplošje"
-            formula="M = \\pi rs"
+            formula={"M = \\pi rs"}
             note="Omotač je kružni isečak čiji je poluprečnik izvodnica."
           />
           <FormulaCard
             title="Ukupno oplošje"
-            formula="P = \\pi r^2 + \\pi rs = \\pi r(r + s)"
+            formula={"P = \\pi r^2 + \\pi rs = \\pi r(r + s)"}
             note="Jedna baza plus bočni omotač."
           />
           <FormulaCard
             title="Zapremina"
-            formula="V = \\frac{1}{3}\\pi r^2 h"
+            formula={"V = \\frac{1}{3}\\pi r^2 h"}
             note="Kupa ima trećinu zapremine valjka sa istom bazom i istom visinom."
           />
         </div>
@@ -373,12 +373,12 @@ export default function Lesson47Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Površina"
-            formula="P = 4\\pi r^2"
+            formula={"P = 4\\pi r^2"}
             note="Površina lopte raste sa kvadratom poluprečnika."
           />
           <FormulaCard
             title="Zapremina"
-            formula="V = \\frac{4}{3}\\pi r^3"
+            formula={"V = \\frac{4}{3}\\pi r^3"}
             note="Zapremina lopte raste sa kubom poluprečnika."
           />
           <FormulaCard
@@ -587,40 +587,40 @@ export default function Lesson47Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Valjak: oplošje"
-            formula="M = 2\\pi rh,\\quad P = 2\\pi r(r+h)"
+            formula={"M = 2\\pi rh,\\quad P = 2\\pi r(r+h)"}
           />
           <FormulaCard
             title="Valjak: zapremina"
-            formula="V = \\pi r^2 h"
+            formula={"V = \\pi r^2 h"}
           />
           <FormulaCard
             title="Kupa: oplošje"
-            formula="M = \\pi rs,\\quad P = \\pi r(r+s)"
+            formula={"M = \\pi rs,\\quad P = \\pi r(r+s)"}
           />
           <FormulaCard
             title="Kupa: zapremina"
-            formula="V = \\frac{1}{3}\\pi r^2 h"
+            formula={"V = \\frac{1}{3}\\pi r^2 h"}
           />
           <FormulaCard
             title="Kupa: izvodnica"
-            formula="s = \\sqrt{r^2 + h^2}"
+            formula={"s = \\sqrt{r^2 + h^2}"}
           />
           <FormulaCard
             title="Lopta: površina"
-            formula="P = 4\\pi r^2"
+            formula={"P = 4\\pi r^2"}
           />
           <FormulaCard
             title="Lopta: zapremina"
-            formula="V = \\frac{4}{3}\\pi r^3"
+            formula={"V = \\frac{4}{3}\\pi r^3"}
           />
           <FormulaCard
             title="Brza provera 1"
-            formula="\\text{Da li telo ima bazu?}"
+            formula={"\\text{Da li telo ima bazu?}"}
             note="Valjak i kupa imaju bazu, lopta nema. To odmah menja način razmišljanja o površini."
           />
           <FormulaCard
             title="Brza provera 2"
-            formula="h \\neq s"
+            formula={"h \\neq s"}
             note="Za kupu u zapremini ide h, a u bočnom omotaču s. Proveravaš ovo svaki put."
           />
         </div>

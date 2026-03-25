@@ -226,12 +226,12 @@ export default function Lesson14Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Osnovna tvrdnja"
-            formula="\\text{Ostatak pri deljenju } P(x) \\text{ sa } x-a \\text{ jednak je } P(a)."
+            formula={"\\text{Ostatak pri deljenju } P(x) \\text{ sa } x-a \\text{ jednak je } P(a)."}
             note="Ovo se koristi kada zadatak traži samo ostatak. Račun se tada svodi na jedno uvrštavanje."
           />
           <FormulaCard
             title="Posledica za deljivost"
-            formula="x-a \\mid P(x) \\iff P(a)=0"
+            formula={"x-a \\mid P(x) \\iff P(a)=0"}
             note={
               <>
                 Ako je ostatak nula, deljenje je tačno. Zbog toga je{" "}
@@ -613,7 +613,7 @@ export default function Lesson14Page() {
           />
           <FormulaCard
             title="Kriterijum deljivosti"
-            formula="x-a \\mid P(x) \\iff P(a)=0"
+            formula={"x-a \\mid P(x) \\iff P(a)=0"}
             note={
               <>
                 Broj <InlineMath>{"a"}</InlineMath> je nula polinoma ako i samo
@@ -623,7 +623,7 @@ export default function Lesson14Page() {
           />
           <FormulaCard
             title="Prevođenje znaka"
-            formula="x+\\beta = x-(-\\beta)"
+            formula={"x+\\beta = x-(-\\beta)"}
             note={
               <>
                 Kod delioca <InlineMath>{"x+\\beta"}</InlineMath> u polinom
@@ -633,7 +633,7 @@ export default function Lesson14Page() {
           />
           <FormulaCard
             title="Kvadratni delilac na prijemnom"
-            formula="(x-r_1)(x-r_2)\\mid P(x) \\Rightarrow P(r_1)=0,\\ P(r_2)=0"
+            formula={"(x-r_1)(x-r_2)\\mid P(x) \\Rightarrow P(r_1)=0,\\ P(r_2)=0"}
             note="Ako delilac možeš rastaviti na linearne činioce, dobijaš sistem uslova za parametre."
           />
         </div>
@@ -931,17 +931,17 @@ export default function Lesson14Page() {
           />
           <FormulaCard
             title="2. Deljivost znači nulu polinoma"
-            formula="x-a \\mid P(x) \\iff P(a)=0"
+            formula={"x-a \\mid P(x) \\iff P(a)=0"}
             note="To je glavni alat za zadatke sa parametrima i za nalaženje činilaca."
           />
           <FormulaCard
             title="3. Horner daje i količnik i ostatak"
-            formula="\\text{poslednji broj} = \\text{ostatak}"
+            formula={"\\text{poslednji broj} = \\text{ostatak}"}
             note="Koristi ga kada treba da nastaviš faktorizaciju ili pronađeš sve nule."
           />
           <FormulaCard
             title="Sledeći logičan korak"
-            formula="\\to"
+            formula={"\\to"}
             note="Sledeća lekcija prirodno nastavlja ovu temu: nule polinoma i Vièteove formule za polinome višeg stepena. Tamo ćeš koristiti upravo ono što si ovde naučio o deljivosti i faktorima."
           />
         </div>

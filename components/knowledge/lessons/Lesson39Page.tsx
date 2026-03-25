@@ -182,7 +182,7 @@ export default function Lesson39Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Sinus"
-            formula="\\sin x = a"
+            formula={"\\sin x = a"}
             note={
               <>
                 Ako je <InlineMath>{"|a| < 1"}</InlineMath>, horizontalna prava{" "}
@@ -196,7 +196,7 @@ export default function Lesson39Page() {
           />
           <FormulaCard
             title="Kosinus"
-            formula="\\cos x = a"
+            formula={"\\cos x = a"}
             note={
               <>
                 Potpuno ista logika važi, samo sada gledaš vertikalu{" "}
@@ -208,7 +208,7 @@ export default function Lesson39Page() {
           />
           <FormulaCard
             title="Tangens"
-            formula="\\tan x = a"
+            formula={"\\tan x = a"}
             note={
               <>
                 Ovde nema ograničenja kao kod sinusa i kosinusa. Za svaki realan{" "}
@@ -221,7 +221,7 @@ export default function Lesson39Page() {
           />
           <FormulaCard
             title="Kotangens"
-            formula="\\cot x = a"
+            formula={"\\cot x = a"}
             note={
               <>
                 I ovde za svaki realan <InlineMath>{"a"}</InlineMath> postoji po
@@ -235,12 +235,12 @@ export default function Lesson39Page() {
           />
           <FormulaCard
             title="Broj rešenja u jednom krugu"
-            formula="\\sin x = a,\\ \\cos x = a:\\quad \\begin{cases} 0,& |a|>1\\\\ 1,& |a|=1\\\\ 2,& |a|<1 \\end{cases}"
+            formula={"\\sin x = a,\\ \\cos x = a:\\quad \\left\\{\\begin{array}{ll} 0,& |a|>1\\\\ 1,& |a|=1\\\\ 2,& |a|<1 \\end{array}\\right."}
             note="Ovo je jedna od najkorisnijih mentalnih provera na prijemnom."
           />
           <FormulaCard
             title="Broj rešenja po periodi"
-            formula="\\tan x = a,\\ \\cot x = a \\Rightarrow \\text{po jedno rešenje na svakoj periodi } \\pi"
+            formula={"\\tan x = a,\\ \\cot x = a \\Rightarrow \\text{po jedno rešenje na svakoj periodi } \\pi"}
             note={
               <>
                 Zato kod tangensa i kotangensa ne tražiš dve grane u intervalu
@@ -367,7 +367,7 @@ export default function Lesson39Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Sinus"
-            formula="\\sin x = a,\\quad |a|\\le 1"
+            formula={"\\sin x = a,\\quad |a|\\le 1"}
             note={
               <>
                 Ako u intervalu <InlineMath>{"[0,2\\pi)"}</InlineMath> dobiješ
@@ -389,7 +389,7 @@ export default function Lesson39Page() {
           />
           <FormulaCard
             title="Kosinus"
-            formula="\\cos x = a,\\quad |a|\\le 1"
+            formula={"\\cos x = a,\\quad |a|\\le 1"}
             note={
               <>
                 Ako je <InlineMath>{"\\alpha=\\arccos a"}</InlineMath>, onda je
@@ -403,7 +403,7 @@ export default function Lesson39Page() {
           />
           <FormulaCard
             title="Tangens"
-            formula="\\tan x = a,\\qquad a\\in\\mathbb{R}"
+            formula={"\\tan x = a,\\qquad a\\in\\mathbb{R}"}
             note={
               <>
                 Ako je <InlineMath>{"\\alpha=\\arctan a"}</InlineMath>, onda je{" "}
@@ -416,7 +416,7 @@ export default function Lesson39Page() {
           />
           <FormulaCard
             title="Kotangens"
-            formula="\\cot x = a,\\qquad a\\in\\mathbb{R}"
+            formula={"\\cot x = a,\\qquad a\\in\\mathbb{R}"}
             note={
               <>
                 U školskom zapisu često se piše{" "}
@@ -433,7 +433,7 @@ export default function Lesson39Page() {
           />
           <FormulaCard
             title="Specijalni slučajevi koje treba znati napamet"
-            formula="\\sin x = 0 \\Rightarrow x=k\\pi"
+            formula={"\\sin x = 0 \\Rightarrow x=k\\pi"}
             note={
               <>
                 Slično: <InlineMath>{"\\cos x = 0 \\Rightarrow x=\\frac{\\pi}{2}+k\\pi"}</InlineMath>,{" "}
@@ -444,7 +444,7 @@ export default function Lesson39Page() {
           />
           <FormulaCard
             title="Kada ima samo jedno rešenje u krugu"
-            formula="\\sin x = 1 \\Rightarrow x=\\frac{\\pi}{2}+2k\\pi"
+            formula={"\\sin x = 1 \\Rightarrow x=\\frac{\\pi}{2}+2k\\pi"}
             note={
               <>
                 Slično:{" "}

@@ -846,7 +846,7 @@ export default function Lesson56Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Rekurzivni zapis"
-            formula="a_{n+1}=q\\cdot a_n"
+            formula={"a_{n+1}=q\\cdot a_n"}
             note="Koristis ga kada prepoznajes obrazac 'svaki sledeci clan dobija se mnozenjem prethodnog'."
           />
           <FormulaCard
@@ -861,17 +861,17 @@ export default function Lesson56Page() {
           />
           <FormulaCard
             title="Konacna suma (q razlicito od 1)"
-            formula="S_n=\\frac{a_1(1-q^n)}{1-q}"
+            formula={"S_n=\\frac{a_1(1-q^n)}{1-q}"}
             note="Najsigurniji oblik formule ako zelis da prirodno predjes na beskonacnu sumu."
           />
           <FormulaCard
             title="Poseban slucaj q = 1"
-            formula="S_n=n\\cdot a_1"
+            formula={"S_n=n\\cdot a_1"}
             note="Ne zaboravi da opsta formula tada nije dozvoljena zbog deljenja nulom."
           />
           <FormulaCard
             title="Beskonacni red"
-            formula="|q|<1,\\qquad S=\\frac{a_1}{1-q}"
+            formula={"|q|<1,\\qquad S=\\frac{a_1}{1-q}"}
             note="Prva stvar koju proveravas pre bilo kakvog racunanja beskonacne sume."
           />
           <FormulaCard

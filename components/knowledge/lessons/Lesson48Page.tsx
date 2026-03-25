@@ -495,17 +495,17 @@ export default function Lesson48Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Lopta upisana u valjak"
-            formula="r_{\\text{lopte}} = R,\\qquad H = 2R"
+            formula={"r_{\\text{lopte}} = R,\\qquad H = 2R"}
             note="Ako lopta dodiruje omotač i obe baze valjka, onda poluprečnik baze valjka mora biti jednak poluprečniku lopte, a visina valjka jednaka prečniku lopte."
           />
           <FormulaCard
             title="Lopta upisana u kupu"
-            formula="r = \\frac{P_{\\triangle}}{p_{\\triangle}} = \\frac{RH}{R+\\sqrt{R^2+H^2}}"
+            formula={"r = \\frac{P_{\\triangle}}{p_{\\triangle}} = \\frac{RH}{R+\\sqrt{R^2+H^2}}"}
             note="U osnom preseku koristiš poluprečnik upisanog kruga u jednakokraki trougao. To je tipičan prijemni most između stereometrije i planimetrije."
           />
           <FormulaCard
             title="Valjak upisan u loptu"
-            formula="r^2 + \\left(\\frac{H}{2}\\right)^2 = R^2"
+            formula={"r^2 + \\left(\\frac{H}{2}\\right)^2 = R^2"}
             note="Polovina preseka daje pravougli trougao. Najčešća greška je zaboravljanje da se u formuli koristi polovina visine valjka."
           />
         </div>
@@ -513,17 +513,17 @@ export default function Lesson48Page() {
         <div className={s.formulaGrid} style={{ marginTop: 18 }}>
           <FormulaCard
             title="Valjak upisan u kupu"
-            formula="r = R\\left(1-\\frac{h}{H}\\right)"
+            formula={"r = R\\left(1-\\frac{h}{H}\\right)"}
             note="Ako valjak stoji na bazi kupe, širina kupe opada linearno sa visinom. Zato sličnost trouglova daje direktnu formulu za poluprečnik valjka."
           />
           <FormulaCard
             title="Uslov postojanja"
-            formula="\\text{za loptu u valjku: postoji tačno kada je } H = 2R"
+            formula={"\\text{za loptu u valjku: postoji tačno kada je } H = 2R"}
             note="Na primer, lopta nije upisana u svaki valjak. Ako je valjak prenizak ili previsok, može stati neka lopta, ali ne i upisana lopta koja dodiruje sve što treba."
           />
           <FormulaCard
             title="Širi princip"
-            formula="\\text{prava formula} = \\text{formula pravog preseka}"
+            formula={"\\text{prava formula} = \\text{formula pravog preseka}"}
             note='Kada zadatak glasi drugačije, ne menjaj logiku. Samo pronađi da li se u preseku krije krug u trouglu, pravougaonik u krugu ili pravougaonik u trouglu.'
           />
         </div>

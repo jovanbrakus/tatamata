@@ -194,32 +194,32 @@ export default function Lesson40Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Pitanje 1"
-            formula="\\text{Da li svi članovi imaju isti stepen u } \\sin x \\text{ i } \\cos x?"
+            formula={"\\text{Da li svi članovi imaju isti stepen u } \\sin x \\text{ i } \\cos x?"}
             note="Ako je odgovor da, verovatno si u homogenom slučaju. To je signal da tražiš način da sve izraziš preko tan x ili cot x."
           />
           <FormulaCard
             title="Pitanje 2"
-            formula="\\text{Da li je leva strana oblika } a\\sin x+b\\cos x?"
+            formula={"\\text{Da li je leva strana oblika } a\\sin x+b\\cos x?"}
             note="Ako jeste, ne pokušavaj da pogađaš ugao. Računaj R i pomoćni ugao. To je najbrži i najčistiji put."
           />
           <FormulaCard
             title="Pitanje 3"
-            formula="\\text{Na koju baznu jednačinu ću završiti?}"
+            formula={"\\text{Na koju baznu jednačinu ću završiti?}"}
             note="Kod homogene jednačine najčešće dolazi tan x = t₀. Kod pomoćnog ugla završavaš na sin(x+φ)=m ili cos(x-δ)=m."
           />
           <FormulaCard
             title="Pitanje 4"
-            formula="\\text{Gde mogu da izgubim rešenja?}"
+            formula={"\\text{Gde mogu da izgubim rešenja?}"}
             note="Kod homogene jednačine to se dešava pri deljenju. Kod linearne jednačine to se dešava kada izračunaš R, ali zaboraviš da proveriš uslov |c| ≤ R."
           />
           <FormulaCard
             title="Radni redosled"
-            formula="\\text{prepoznaj tip} \\to \\text{svedi} \\to \\text{reši bazni oblik} \\to \\text{upiši interval}"
+            formula={"\\text{prepoznaj tip} \\to \\text{svedi} \\to \\text{reši bazni oblik} \\to \\text{upiši interval}"}
             note="Ovaj redosled je važan zato što sprečava lutanje usred zadatka i drži sve korake pod kontrolom."
           />
           <FormulaCard
             title="Prijemni savet"
-            formula="\\text{Opšte rešenje dolazi pre brojanja i sabiranja korena}"
+            formula={"\\text{Opšte rešenje dolazi pre brojanja i sabiranja korena}"}
             note="Najveća ispitna greška je da odmah ubacuješ interval i preskočiš opšti zapis. Tada lako previdiš jednu celu porodicu korena."
           />
         </div>
@@ -408,7 +408,7 @@ export default function Lesson40Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Amplituda"
-            formula="R=\\sqrt{a^2+b^2}"
+            formula={"R=\\sqrt{a^2+b^2}"}
             note={
               <>
                 Broj <InlineMath>{"R"}</InlineMath> je najveća moguća apsolutna
@@ -419,7 +419,7 @@ export default function Lesson40Page() {
           />
           <FormulaCard
             title="Pomoćni ugao"
-            formula="\\cos\\varphi=\\frac{a}{R},\\qquad \\sin\\varphi=\\frac{b}{R}"
+            formula={"\\cos\\varphi=\\frac{a}{R},\\qquad \\sin\\varphi=\\frac{b}{R}"}
             note={
               <>
                 Ugao <InlineMath>{"\\varphi"}</InlineMath> nije slučajan dodatak,
@@ -431,22 +431,22 @@ export default function Lesson40Page() {
           />
           <FormulaCard
             title="Glavna transformacija"
-            formula="a\\sin x+b\\cos x=c \\Longleftrightarrow R\\sin(x+\\varphi)=c"
+            formula={"a\\sin x+b\\cos x=c \\Longleftrightarrow R\\sin(x+\\varphi)=c"}
             note="Posle ove zamene više nema nikakve misterije: rešavaš baznu jednačinu potpuno isto kao u prethodnoj lekciji."
           />
           <FormulaCard
             title="Uslov postojanja rešenja"
-            formula="|c|\\le R"
+            formula={"|c|\\le R"}
             note="Ako je desna strana veća od amplitude, jednačina nema realna rešenja. Ovaj uslov često daje najbržu proveru na testu."
           />
           <FormulaCard
             title="Kada dobijaš jednu porodicu"
-            formula="\\sin(x+\\varphi)=1 \\quad \\text{ili} \\quad \\sin(x+\\varphi)=-1"
+            formula={"\\sin(x+\\varphi)=1 \\quad \\text{ili} \\quad \\sin(x+\\varphi)=-1"}
             note="Tada u jednom punom krugu nema dve različite grane, već samo jedna porodica rešenja sa periodom 2π."
           />
           <FormulaCard
             title="Kako radi zadatak sa intervalom"
-            formula="\\text{opšte rešenje} \\Rightarrow \\text{vrednosti }k \\Rightarrow \\text{lista korena}"
+            formula={"\\text{opšte rešenje} \\Rightarrow \\text{vrednosti }k \\Rightarrow \\text{lista korena}"}
             note='Ovaj redosled važi i za homogene i za linearne jednačine. Ne preskači ga čak ni kada ti se čini da vidiš rešenja "iz glave".'
           />
         </div>

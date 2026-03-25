@@ -292,7 +292,7 @@ export default function Lesson29Page() {
         >
           <FormulaCard
             title="Proizvod"
-            formula="\\log_a(xy) = \\log_a x + \\log_a y"
+            formula={"\\log_a(xy) = \\log_a x + \\log_a y"}
             note={
               <>
                 Na primer,{" "}
@@ -305,7 +305,7 @@ export default function Lesson29Page() {
           />
           <FormulaCard
             title="Kolicnik"
-            formula="\\log_a\\left(\\frac{x}{y}\\right) = \\log_a x - \\log_a y"
+            formula={"\\log_a\\left(\\frac{x}{y}\\right) = \\log_a x - \\log_a y"}
             note={
               <>
                 Na primer,{" "}
@@ -318,7 +318,7 @@ export default function Lesson29Page() {
           />
           <FormulaCard
             title="Stepen"
-            formula="\\log_a(x^n) = n\\log_a x"
+            formula={"\\log_a(x^n) = n\\log_a x"}
             note={
               <>
                 Zato <InlineMath>{"2\\log_3 5 = \\log_3 25"}</InlineMath>, a{" "}
@@ -328,7 +328,7 @@ export default function Lesson29Page() {
           />
           <FormulaCard
             title="Koren"
-            formula="\\log_a\\sqrt[n]{x} = \\frac{1}{n}\\log_a x"
+            formula={"\\log_a\\sqrt[n]{x} = \\frac{1}{n}\\log_a x"}
             note={
               <>
                 Ovo je direktna posledica pravila za stepen, jer je{" "}
@@ -660,27 +660,27 @@ export default function Lesson29Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Definicija"
-            formula="\\log_a b = c \\iff a^c = b"
+            formula={"\\log_a b = c \\iff a^c = b"}
           />
           <FormulaCard
             title="Uslovi"
-            formula="a > 0, \\quad a \\neq 1, \\quad b > 0"
+            formula={"a > 0, \\quad a \\neq 1, \\quad b > 0"}
           />
           <FormulaCard
             title="Inverznost"
-            formula="a^{\\log_a x} = x, \\qquad \\log_a(a^x) = x"
+            formula={"a^{\\log_a x} = x, \\qquad \\log_a(a^x) = x"}
           />
           <FormulaCard
             title="Proizvod i kolicnik"
-            formula="\\log_a(xy) = \\log_a x + \\log_a y, \\qquad \\log_a\\!\\left(\\frac{x}{y}\\right) = \\log_a x - \\log_a y"
+            formula={"\\log_a(xy) = \\log_a x + \\log_a y, \\qquad \\log_a\\!\\left(\\frac{x}{y}\\right) = \\log_a x - \\log_a y"}
           />
           <FormulaCard
             title="Stepen"
-            formula="\\log_a(x^n) = n\\log_a x"
+            formula={"\\log_a(x^n) = n\\log_a x"}
           />
           <FormulaCard
             title="Promena baze"
-            formula="\\log_a x = \\frac{\\log_b x}{\\log_b a}"
+            formula={"\\log_a x = \\frac{\\log_b x}{\\log_b a}"}
           />
         </div>
       </LessonSection>

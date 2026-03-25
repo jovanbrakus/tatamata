@@ -185,17 +185,17 @@ export default function Lesson41Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Od jednačine do nejednačine"
-            formula="\\sin x = a \\Rightarrow \\text{tačke},\\qquad \\sin x > a \\Rightarrow \\text{lukovi}"
+            formula={"\\sin x = a \\Rightarrow \\text{tačke},\\qquad \\sin x > a \\Rightarrow \\text{lukovi}"}
             note="Jednakost određuje preseke sa zadatom pravom, a nejednačina bira deo između tih preseka ili njegov komplement."
           />
           <FormulaCard
             title="Strogo ili nestrogo"
-            formula=">,\\ < \\Rightarrow \\text{otvoreni krajevi},\\qquad \\ge,\\ \\le \\Rightarrow \\text{zatvoreni krajevi}"
+            formula={">,\\ < \\Rightarrow \\text{otvoreni krajevi},\\qquad \\ge,\\ \\le \\Rightarrow \\text{zatvoreni krajevi}"}
             note="Ovo deluje sitno, ali je jedna od najčešćih formalnih grešaka na prijemnom."
           />
           <FormulaCard
             title="Sinus i kosinus"
-            formula="|\\sin x|\\le 1,\\qquad |\\cos x|\\le 1"
+            formula={"|\\sin x|\\le 1,\\qquad |\\cos x|\\le 1"}
             note={
               <>
                 Ako je desna strana van intervala{" "}
@@ -207,12 +207,12 @@ export default function Lesson41Page() {
           />
           <FormulaCard
             title="Tangens"
-            formula="\\tan x \\text{ je strogo rastuća na }\\left(-\\frac{\\pi}{2}+k\\pi,\\frac{\\pi}{2}+k\\pi\\right)"
+            formula={"\\tan x \\text{ je strogo rastuća na }\\left(-\\frac{\\pi}{2}+k\\pi,\\frac{\\pi}{2}+k\\pi\\right)"}
             note="Zato kod tangensa radiš po granama između asimptota, a ne preko cele kružnice odjednom."
           />
           <FormulaCard
             title="Skup rešenja"
-            formula="S=S_0+2k\\pi \\quad \\text{ili} \\quad S=S_0+k\\pi"
+            formula={"S=S_0+2k\\pi \\quad \\text{ili} \\quad S=S_0+k\\pi"}
             note={
               <>
                 Skup <InlineMath>{"S_0"}</InlineMath> je rešenje na jednom
@@ -223,7 +223,7 @@ export default function Lesson41Page() {
           />
           <FormulaCard
             title="Radni algoritam"
-            formula="\\text{granična jednačina} \\to \\text{test intervala} \\to \\text{svi ciklusi} \\to \\text{presek sa domenom}"
+            formula={"\\text{granična jednačina} \\to \\text{test intervala} \\to \\text{svi ciklusi} \\to \\text{presek sa domenom}"}
             note="Ovaj obrazac drži ceo postupak pod kontrolom i sprečava najčešće greške."
           />
         </div>
@@ -401,7 +401,7 @@ export default function Lesson41Page() {
         <div className={s.formulaGrid} style={{ marginTop: 18 }}>
           <FormulaCard
             title="Amplituda"
-            formula="R=\\sqrt{a^2+b^2}"
+            formula={"R=\\sqrt{a^2+b^2}"}
             note={
               <>
                 Broj <InlineMath>{"R"}</InlineMath> je maksimalna apsolutna
@@ -413,7 +413,7 @@ export default function Lesson41Page() {
           />
           <FormulaCard
             title="Pomoćni ugao"
-            formula="\\cos\\varphi=\\frac{a}{R},\\qquad \\sin\\varphi=\\frac{b}{R}"
+            formula={"\\cos\\varphi=\\frac{a}{R},\\qquad \\sin\\varphi=\\frac{b}{R}"}
             note={
               <>
                 Ugao <InlineMath>{"\\varphi"}</InlineMath> nije trik nego
@@ -424,7 +424,7 @@ export default function Lesson41Page() {
           />
           <FormulaCard
             title="Glavna transformacija"
-            formula="a\\sin x+b\\cos x\\,\\square\\,c \\Longleftrightarrow R\\sin(x+\\varphi)\\,\\square\\,c"
+            formula={"a\\sin x+b\\cos x\\,\\square\\,c \\Longleftrightarrow R\\sin(x+\\varphi)\\,\\square\\,c"}
             note={
               <>
                 Simbol <InlineMath>{"\\square"}</InlineMath> ovde predstavlja
@@ -436,17 +436,17 @@ export default function Lesson41Page() {
           />
           <FormulaCard
             title="Znaci proizvoda"
-            formula="f(x)\\cdot g(x)\\ge 0 \\Longleftrightarrow f(x)\\text{ i }g(x)\\text{ imaju isti znak}"
+            formula={"f(x)\\cdot g(x)\\ge 0 \\Longleftrightarrow f(x)\\text{ i }g(x)\\text{ imaju isti znak}"}
             note="U ovim zadacima kritične tačke su nule činilaca. Posle njihovog pronalaženja praviš tabelu znaka ili proveravaš probnim tačkama po intervalima."
           />
           <FormulaCard
             title="Količnik"
-            formula="\\frac{f(x)}{g(x)}\\ge 0 \\Rightarrow g(x)\\ne 0"
+            formula={"\\frac{f(x)}{g(x)}\\ge 0 \\Rightarrow g(x)\\ne 0"}
             note="Tačke u kojima je imenilac nula nikada ne ulaze u rešenje, čak i kada znak nejednakosti nije strog."
           />
           <FormulaCard
             title="Homogena nejednačina"
-            formula="A\\sin^2 x+B\\sin x\\cos x+C\\cos^2 x\\,\\square\\,0 \\Rightarrow At^2+Bt+C\\,\\square\\,0,\\quad t=\\tan x"
+            formula={"A\\sin^2 x+B\\sin x\\cos x+C\\cos^2 x\\,\\square\\,0 \\Rightarrow At^2+Bt+C\\,\\square\\,0,\\quad t=\\tan x"}
             note="Ovo je snažna tehnika, ali tek pošto proveriš šta se dešava kada je činilac kojim deliš jednak nuli."
           />
         </div>

@@ -308,12 +308,12 @@ export default function Lesson46Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Zapremina svake prizme"
-            formula="V = B \cdot H"
+            formula={"V = B \cdot H"}
             note="Ne zanima te da li je prizma nagnuta, nego kolika je baza i kolika je prava visina između ravni baza."
           />
           <FormulaCard
             title="Površina omotača (prava prizma)"
-            formula="M = O_b \cdot H"
+            formula={"M = O_b \cdot H"}
             note={
               <>
                 Ovo važi zato što su bočna lica pravougaonici visine{" "}
@@ -329,12 +329,12 @@ export default function Lesson46Page() {
           />
           <FormulaCard
             title="Četvorougaona prava prizma"
-            formula="B = ab,\\quad O_b = 2(a+b),\\quad S = 2ab + 2H(a+b)"
+            formula={"B = ab,\\quad O_b = 2(a+b),\\quad S = 2ab + 2H(a+b)"}
             note="Ovaj oblik je najčešći u školskim zadacima zato što sve možeš da pratiš preko pravougaonika."
           />
           <FormulaCard
             title="Kosa prizma: površina"
-            formula="M \\neq O_bH \\text{ (uopšteno)}"
+            formula={"M \\neq O_bH \\text{ (uopšteno)}"}
             note="Kod opšte kose prizme najsigurniji put je mreža: saberi površine svih bočnih paralelograma i obe baze."
           />
           <FormulaCard
@@ -437,17 +437,17 @@ export default function Lesson46Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Zapremina (svaka piramida)"
-            formula="V = \frac{B \cdot H}{3}"
+            formula={"V = \frac{B \cdot H}{3}"}
             note="Važi bez obzira na oblik baze. Jedino moraš pravilno odrediti površinu baze i pravu visinu tela."
           />
           <FormulaCard
             title="Površina omotača (pravilna piramida)"
-            formula="M = \frac{O_b \cdot s}{2}"
+            formula={"M = \frac{O_b \cdot s}{2}"}
             note="Bočna lica su podudarni trouglovi, pa ukupna površina omotača postaje zbir njihovih površina."
           />
           <FormulaCard
             title="Ukupna površina (pravilna piramida)"
-            formula="S = B + M = B + \frac{O_bs}{2}"
+            formula={"S = B + M = B + \frac{O_bs}{2}"}
             note={
               <>
                 Za razliku od prizme, ovde postoji samo jedna baza, pa se ne
@@ -457,7 +457,7 @@ export default function Lesson46Page() {
           />
           <FormulaCard
             title="Četvorougaona pravilna piramida"
-            formula="B = a^2,\\quad O_b = 4a,\\quad M = 2as,\\quad S = a^2 + 2as"
+            formula={"B = a^2,\\quad O_b = 4a,\\quad M = 2as,\\quad S = a^2 + 2as"}
             note="Ovo je najčešći oblik na prijemnom jer se bočna visina lako vidi u osnom preseku."
           />
           <FormulaCard
@@ -473,7 +473,7 @@ export default function Lesson46Page() {
           />
           <FormulaCard
             title="Zarubljena piramida: zapremina"
-            formula="V = \frac{H}{3}\left(B_1 + B_2 + \sqrt{B_1B_2}\right)"
+            formula={"V = \frac{H}{3}\left(B_1 + B_2 + \sqrt{B_1B_2}\right)"}
             note="Ovu formulu dobijaš kao razliku dve slične piramide. Na prijemnom se često javlja baš zato što proverava sličnost i rad sa presecima."
           />
         </div>
@@ -875,12 +875,12 @@ export default function Lesson46Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Prizma: zapremina"
-            formula="V = B \cdot H"
+            formula={"V = B \cdot H"}
             note="Važi za svaku prizmu, pravu i kosu."
           />
           <FormulaCard
             title="Prava prizma: omotač"
-            formula="M = O_b \cdot H"
+            formula={"M = O_b \cdot H"}
             note="Važi kada su bočna lica pravougaonici."
           />
           <FormulaCard
@@ -890,7 +890,7 @@ export default function Lesson46Page() {
           />
           <FormulaCard
             title="Piramida: zapremina"
-            formula="V = \frac{BH}{3}"
+            formula={"V = \frac{BH}{3}"}
             note={
               <>
                 Ključni faktor <InlineMath>{"\\frac{1}{3}"}</InlineMath>{" "}
@@ -900,7 +900,7 @@ export default function Lesson46Page() {
           />
           <FormulaCard
             title="Pravilna piramida: omotač"
-            formula="M = \frac{O_bs}{2}"
+            formula={"M = \frac{O_bs}{2}"}
             note={
               <>
                 Bočna visina <InlineMath>{"s"}</InlineMath> pripada trouglastim
@@ -910,12 +910,12 @@ export default function Lesson46Page() {
           />
           <FormulaCard
             title="Pravilna piramida: ukupna površina"
-            formula="S = B + \frac{O_bs}{2}"
+            formula={"S = B + \frac{O_bs}{2}"}
             note="Ovde postoji samo jedna baza."
           />
           <FormulaCard
             title="Zarubljena pravilna piramida: omotač"
-            formula="M = \frac{(O_1+O_2)s}{2}"
+            formula={"M = \frac{(O_1+O_2)s}{2}"}
             note="Bočna lica su trapezi, pa se javlja poluzbir obima baza."
           />
           <FormulaCard
@@ -925,7 +925,7 @@ export default function Lesson46Page() {
           />
           <FormulaCard
             title="Zarubljena piramida: zapremina"
-            formula="V = \frac{H}{3}\left(B_1+B_2+\sqrt{B_1B_2}\right)"
+            formula={"V = \frac{H}{3}\left(B_1+B_2+\sqrt{B_1B_2}\right)"}
             note="Formula potiče iz razlike dve slične piramide."
           />
         </div>

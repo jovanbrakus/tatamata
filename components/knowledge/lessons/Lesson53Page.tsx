@@ -728,17 +728,17 @@ export default function Lesson53Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Kanonski oblici"
-            formula="\\frac{x^2}{a^2}-\\frac{y^2}{b^2}=1 \\qquad \\frac{y^2}{a^2}-\\frac{x^2}{b^2}=1"
+            formula={"\\frac{x^2}{a^2}-\\frac{y^2}{b^2}=1 \\qquad \\frac{y^2}{a^2}-\\frac{x^2}{b^2}=1"}
             note="Prvi je horizontalna, drugi vertikalna hiperbola."
           />
           <FormulaCard
             title="Žiže i ekscentricitet"
-            formula="c^2=a^2+b^2, \\qquad e=\\frac{c}{a}>1"
+            formula={"c^2=a^2+b^2, \\qquad e=\\frac{c}{a}>1"}
             note="Ako dobiješ e < 1, sigurno si pomešao hiperbolu sa elipsom."
           />
           <FormulaCard
             title="Asimptote"
-            formula="\\frac{x^2}{a^2}-\\frac{y^2}{b^2}=1 \\Rightarrow y=\\pm\\frac{b}{a}x \\qquad \\frac{y^2}{a^2}-\\frac{x^2}{b^2}=1 \\Rightarrow y=\\pm\\frac{a}{b}x"
+            formula={"\\frac{x^2}{a^2}-\\frac{y^2}{b^2}=1 \\Rightarrow y=\\pm\\frac{b}{a}x \\qquad \\frac{y^2}{a^2}-\\frac{x^2}{b^2}=1 \\Rightarrow y=\\pm\\frac{a}{b}x"}
             note="Najbrža vizuelna provera položaja grana i mogućih nagiba tangente."
           />
           <FormulaCard
@@ -763,7 +763,7 @@ export default function Lesson53Page() {
           />
           <FormulaCard
             title="Tangenta u tački"
-            formula="\\frac{xx_0}{a^2}-\\frac{yy_0}{b^2}=1 \\qquad \\frac{yy_0}{a^2}-\\frac{xx_0}{b^2}=1"
+            formula={"\\frac{xx_0}{a^2}-\\frac{yy_0}{b^2}=1 \\qquad \\frac{yy_0}{a^2}-\\frac{xx_0}{b^2}=1"}
             note="Prva formula je za horizontalnu, a druga za vertikalnu hiperbolu kada je poznata tačka dodira."
           />
         </div>

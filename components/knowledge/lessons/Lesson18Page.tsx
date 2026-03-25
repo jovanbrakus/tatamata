@@ -137,7 +137,7 @@ export default function Lesson18Page() {
           <SectionCard title="Definicija po delovima">
             <MathBlock>
               {
-                "|t| = \\begin{cases} t, & t \\ge 0, \\\\ -t, & t < 0. \\end{cases}"
+                "|t| = \\left\\{\\begin{array}{ll} t, & t \\ge 0, \\\\ -t, & t < 0. \\end{array}\\right."
               }
             </MathBlock>
             <p>
@@ -223,7 +223,7 @@ export default function Lesson18Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Obrazac 1: |A(x)| = c"
-            formula="|A(x)| = c \\iff \\begin{cases} A(x) = c, \\\\ A(x) = -c \\end{cases} \\quad \\text{ako je } c \\ge 0."
+            formula={"|A(x)| = c \\iff \\begin{cases} A(x) = c, \\\\ A(x) = -c \\end{cases} \\quad \\text{ako je } c \\ge 0."}
             note={
               <>
                 Ako je <InlineMath>{"c < 0"}</InlineMath>, rešenja nema. Ako je{" "}
@@ -237,7 +237,7 @@ export default function Lesson18Page() {
           />
           <FormulaCard
             title="Obrazac 2: |A(x)| \u2264 c"
-            formula="|A(x)| \\le c \\iff -c \\le A(x) \\le c \\quad \\text{za } c \\ge 0."
+            formula={"|A(x)| \\le c \\iff -c \\le A(x) \\le c \\quad \\text{za } c \\ge 0."}
             note={
               <>
                 Ovde dobijaš <strong>presek</strong>, ne uniju. Izraz u zagradi
@@ -251,7 +251,7 @@ export default function Lesson18Page() {
           />
           <FormulaCard
             title="Obrazac 3: |A(x)| \u2265 c"
-            formula="|A(x)| \\ge c \\iff A(x) \\le -c \\;\\; \\text{ili} \\;\\; A(x) \\ge c \\quad \\text{za } c \\ge 0."
+            formula={"|A(x)| \\ge c \\iff A(x) \\le -c \\;\\; \\text{ili} \\;\\; A(x) \\ge c \\quad \\text{za } c \\ge 0."}
             note={
               <>
                 Ovde dobijaš <strong>uniju</strong> dva dela. Izraz mora biti
@@ -264,7 +264,7 @@ export default function Lesson18Page() {
           />
           <FormulaCard
             title="Obrazac 4: desna strana je promenljiva"
-            formula="|A(x)| = B(x) \\quad \\text{ili} \\quad |A(x)| \\le B(x)"
+            formula={"|A(x)| = B(x) \\quad \\text{ili} \\quad |A(x)| \\le B(x)"}
             note={
               <>
                 Pre bilo kakvog rastavljanja moraš proveriti da li je{" "}
@@ -355,7 +355,7 @@ export default function Lesson18Page() {
           <SectionCard title="Mini demonstracija: kako se rastavlja |x−2| + |x+1|">
             <MathBlock>
               {
-                "|x-2| + |x+1| = \\begin{cases} 1 - 2x, & x < -1, \\\\ 3, & -1 \\le x \\le 2, \\\\ 2x - 1, & x > 2. \\end{cases}"
+                "|x-2| + |x+1| = \\left\\{\\begin{array}{ll} 1 - 2x, & x < -1, \\\\ 3, & -1 \\le x \\le 2, \\\\ 2x - 1, & x > 2. \\end{array}\\right."
               }
             </MathBlock>
             <p>
@@ -630,17 +630,17 @@ export default function Lesson18Page() {
           />
           <FormulaCard
             title="Centralna zona"
-            formula="|A(x)| \\le c \\iff -c \\le A(x) \\le c \\quad (c \\ge 0)"
+            formula={"|A(x)| \\le c \\iff -c \\le A(x) \\le c \\quad (c \\ge 0)"}
             note="Tipično daje jedan interval ili prazan skup."
           />
           <FormulaCard
             title="Spoljašnja zona"
-            formula="|A(x)| \\ge c \\iff A(x) \\le -c \\;\\; \\text{ili} \\;\\; A(x) \\ge c \\quad (c \\ge 0)"
+            formula={"|A(x)| \\ge c \\iff A(x) \\le -c \\;\\; \\text{ili} \\;\\; A(x) \\ge c \\quad (c \\ge 0)"}
             note="Tipično daje uniju dva intervala ili ceo skup realnih brojeva."
           />
           <FormulaCard
             title="Desna strana mora imati smisla"
-            formula="|A(x)| = B(x) \\Rightarrow B(x) \\ge 0"
+            formula={"|A(x)| = B(x) \\Rightarrow B(x) \\ge 0"}
             note="Isti princip važi i za |A(x)| \u2264 B(x). Bez ovog uslova zadatak se rešava pogrešno od starta."
           />
         </div>

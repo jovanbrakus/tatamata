@@ -177,7 +177,7 @@ export default function Lesson43Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Osnovno pravilo"
-            formula="a \leftrightarrow \angle A,\qquad b \leftrightarrow \angle B,\qquad c \leftrightarrow \angle C"
+            formula={"a \leftrightarrow \angle A,\qquad b \leftrightarrow \angle B,\qquad c \leftrightarrow \angle C"}
             note={
               <>
                 Stranica <InlineMath>{"a"}</InlineMath> leži naspram ugla{" "}
@@ -191,12 +191,12 @@ export default function Lesson43Page() {
           />
           <FormulaCard
             title="Veći ugao, veća strana"
-            formula="A>B \Longleftrightarrow a>b"
+            formula={"A>B \Longleftrightarrow a>b"}
             note="U trouglu redosled uglova i naspramnih stranica je isti. Ovo je brz kvalitativni test razumnosti rezultata."
           />
           <FormulaCard
             title="Zbir uglova"
-            formula="A+B+C=180^\circ"
+            formula={"A+B+C=180^\circ"}
             note={
               <>
                 Sinusna i kosinusna teorema često daju samo deo slike. Treći
@@ -448,12 +448,12 @@ export default function Lesson43Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Osnovni oblik"
-            formula="\\frac{a}{\\sin A}=\\frac{b}{\\sin B}=\\frac{c}{\\sin C}"
+            formula={"\\frac{a}{\\sin A}=\\frac{b}{\\sin B}=\\frac{c}{\\sin C}"}
             note="Najčešće koristiš baš ovaj zapis. On omogućava da iz jednog poznatog para dobiješ nepoznatu stranicu ili ugao."
           />
           <FormulaCard
             title="Veza sa opisanim poluprečnikom"
-            formula="\\frac{a}{\\sin A}=2R"
+            formula={"\\frac{a}{\\sin A}=2R"}
             note={
               <>
                 Gde je <InlineMath>{"R"}</InlineMath> poluprečnik opisane
@@ -464,12 +464,12 @@ export default function Lesson43Page() {
           />
           <FormulaCard
             title="Kada je prirodna"
-            formula="\\text{ASA, AAS, SSA}"
+            formula={"\\text{ASA, AAS, SSA}"}
             note="Ako imaš jednu stranicu i dva ugla, ili poznat par strana-ugao plus još jednu stranicu, sinusna teorema je prvi kandidat."
           />
           <FormulaCard
             title="SSA upozorenje"
-            formula="\\text{A, a, b mogu dati }0,1\\text{ ili }2\\text{ trougla}"
+            formula={"\\text{A, a, b mogu dati }0,1\\text{ ili }2\\text{ trougla}"}
             note="Ovo je dvosmisleni slučaj. Zato ne smeš automatski pretpostaviti da je rešenje jedinstveno."
           />
         </div>
@@ -712,17 +712,17 @@ export default function Lesson43Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Osnovni oblik"
-            formula="a^2=b^2+c^2-2bc\cos A"
+            formula={"a^2=b^2+c^2-2bc\cos A"}
             note="Treća stranica se dobija iz dve poznate stranice i ugla između njih."
           />
           <FormulaCard
             title="Ciklični oblici"
-            formula="b^2=c^2+a^2-2ca\cos B,\qquad c^2=a^2+b^2-2ab\cos C"
+            formula={"b^2=c^2+a^2-2ca\cos B,\qquad c^2=a^2+b^2-2ab\cos C"}
             note="Ista ideja važi za svaki ugao. Samo uvek pazi da koristiš ugao između dve poznate stranice."
           />
           <FormulaCard
             title="Pitagora kao specijalan slučaj"
-            formula="A=90^\circ \Rightarrow a^2=b^2+c^2"
+            formula={"A=90^\circ \Rightarrow a^2=b^2+c^2"}
             note={
               <>
                 Kada je ugao pravi,{" "}
@@ -733,7 +733,7 @@ export default function Lesson43Page() {
           />
           <FormulaCard
             title="Obrnuti smer"
-            formula="\\cos A=\\frac{b^2+c^2-a^2}{2bc}"
+            formula={"\\cos A=\\frac{b^2+c^2-a^2}{2bc}"}
             note={
               <>
                 Kada znaš sve tri stranice, ovim dobijaš ugao{" "}
@@ -743,7 +743,7 @@ export default function Lesson43Page() {
           />
           <FormulaCard
             title="Brza klasifikacija"
-            formula="\\begin{aligned} a^2<b^2+c^2 &\\Rightarrow A<90^\\circ \\\\ a^2=b^2+c^2 &\\Rightarrow A=90^\\circ \\\\ a^2>b^2+c^2 &\\Rightarrow A>90^\\circ \\end{aligned}"
+            formula={"\\begin{aligned} a^2<b^2+c^2 &\\Rightarrow A<90^\\circ \\\\ a^2=b^2+c^2 &\\Rightarrow A=90^\\circ \\\\ a^2>b^2+c^2 &\\Rightarrow A>90^\\circ \\end{aligned}"}
             note="Ovo je moćan mentalni test: najveća strana ti često odmah otkriva tip trougla."
           />
         </div>
@@ -880,7 +880,7 @@ export default function Lesson43Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Glavna formula"
-            formula="P=\\frac12 bc\\sin A"
+            formula={"P=\\frac12 bc\\sin A"}
             note={
               <>
                 Ako znaš stranice <InlineMath>{"b"}</InlineMath> i{" "}
@@ -892,17 +892,17 @@ export default function Lesson43Page() {
           />
           <FormulaCard
             title="Ciklični oblici"
-            formula="P=\\frac12 ca\\sin B=\\frac12 ab\\sin C"
+            formula={"P=\\frac12 ca\\sin B=\\frac12 ab\\sin C"}
             note="Možeš izabrati bilo koji par stranica i ugao između njih."
           />
           <FormulaCard
             title="Odakle dolazi?"
-            formula="h_c=b\\sin A \\quad \\Rightarrow \\quad P=\\frac12 c\\cdot h_c=\\frac12 bc\\sin A"
+            formula={"h_c=b\\sin A \\quad \\Rightarrow \\quad P=\\frac12 c\\cdot h_c=\\frac12 bc\\sin A"}
             note="Formula je samo standardna površina \u00BD \u00B7 osnovica \u00B7 visina, ali je visina izražena preko sinusa."
           />
           <FormulaCard
             title="Bonus formula"
-            formula="P=\\frac{abc}{4R}"
+            formula={"P=\\frac{abc}{4R}"}
             note={
               <>
                 Ovo sledi iz sinusne teoreme i korisno je u naprednijim
@@ -1217,32 +1217,32 @@ export default function Lesson43Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Sinusna teorema"
-            formula="\\frac{a}{\\sin A}=\\frac{b}{\\sin B}=\\frac{c}{\\sin C}"
+            formula={"\\frac{a}{\\sin A}=\\frac{b}{\\sin B}=\\frac{c}{\\sin C}"}
             note={'Kada imaš jedan poznat par \u201Estratranica naspram ugao\u201C.'}
           />
           <FormulaCard
             title="Kosinusna teorema"
-            formula="a^2=b^2+c^2-2bc\\cos A"
+            formula={"a^2=b^2+c^2-2bc\\cos A"}
             note="Kada znaš dve stranice i zahvaćen ugao, ili sve tri stranice pa tražiš ugao."
           />
           <FormulaCard
             title="Površina preko ugla"
-            formula="P=\\frac12 bc\\sin A"
+            formula={"P=\\frac12 bc\\sin A"}
             note="Kada znaš dve stranice i ugao između njih."
           />
           <FormulaCard
             title="Opisani poluprečnik"
-            formula="a=2R\\sin A"
+            formula={"a=2R\\sin A"}
             note="Korisno u zadacima sa opisanim krugom ili kada treba povezati trougao i kružnicu."
           />
           <FormulaCard
             title="Klasifikacija ugla"
-            formula="\\begin{aligned} a^2<b^2+c^2 &\\Rightarrow A \\text{ oštar} \\\\ a^2=b^2+c^2 &\\Rightarrow A \\text{ prav} \\\\ a^2>b^2+c^2 &\\Rightarrow A \\text{ tup} \\end{aligned}"
+            formula={"\\begin{aligned} a^2<b^2+c^2 &\\Rightarrow A \\text{ oštar} \\\\ a^2=b^2+c^2 &\\Rightarrow A \\text{ prav} \\\\ a^2>b^2+c^2 &\\Rightarrow A \\text{ tup} \\end{aligned}"}
             note="Posebno korisno kada ne traže ceo ugao, nego tip trougla."
           />
           <FormulaCard
             title="Bonus posledica"
-            formula="P=\\frac{abc}{4R}"
+            formula={"P=\\frac{abc}{4R}"}
             note="Nije prva formula koju učiš, ali je veoma korisna u naprednijim kombinovanim zadacima."
           />
         </div>

@@ -812,7 +812,7 @@ export default function Lesson45Page() {
           />
           <FormulaCard
             title="Krug"
-            formula="K = \\{T \\mid OT \\le r\\}"
+            formula={"K = \\{T \\mid OT \\le r\\}"}
             note="Deo ravni omeđen kružnicom, zajedno sa svim unutrašnjim tačkama. Zato krug ima površinu, a kružnica samo dužinu."
           />
           <FormulaCard
@@ -822,17 +822,17 @@ export default function Lesson45Page() {
           />
           <FormulaCard
             title="Tetiva i luk"
-            formula="\\overline{AB}\\text{ je tetiva},\\quad \\widehat{AB}\\text{ je luk}"
+            formula={"\\overline{AB}\\text{ je tetiva},\\quad \\widehat{AB}\\text{ je luk}"}
             note="Tetiva spaja dve tačke kružnice pravom duži. Luk je deo kružnice između istih tih tačaka."
           />
           <FormulaCard
             title="Tangenta"
-            formula="t \\perp OA \\quad \\text{u tački dodira } A"
+            formula={"t \\perp OA \\quad \\text{u tački dodira } A"}
             note="Prava koja dodiruje kružnicu u jednoj tački. U toj tački tangenta je normalna na poluprečnik."
           />
           <FormulaCard
             title="Kružni isečak i kružni odsečak"
-            formula="\\text{isečak} = \\text{dva poluprečnika} + \\text{luk}"
+            formula={"\\text{isečak} = \\text{dva poluprečnika} + \\text{luk}"}
             note="Isečak je deo ograničen dvama poluprečnicima i lukom. Odsečak je deo ograničen tetivom i lukom."
           />
         </div>
@@ -944,32 +944,32 @@ export default function Lesson45Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Obim kruga"
-            formula="O = 2\\pi r"
+            formula={"O = 2\\pi r"}
             note="Ceo krug dužine je proporcionalan poluprečniku."
           />
           <FormulaCard
             title="Površina kruga"
-            formula="P = \\pi r^2"
+            formula={"P = \\pi r^2"}
             note="Površina raste sa kvadratom poluprečnika, pa duplo veći poluprečnik daje četiri puta veću površinu."
           />
           <FormulaCard
             title="Dužina luka u radijanima"
-            formula="l = r\\varphi"
+            formula={"l = r\\varphi"}
             note="Najkraća i najprirodnija formula kada je centralni ugao zadat u radijanima."
           />
           <FormulaCard
             title="Dužina luka u stepenima"
-            formula="l = \\frac{\\alpha}{360^\\circ}\\cdot 2\\pi r"
+            formula={"l = \\frac{\\alpha}{360^\\circ}\\cdot 2\\pi r"}
             note="Kada je ugao dat u stepenima, uzimaš odgovarajući deo punog obima."
           />
           <FormulaCard
             title="Površina kružnog isečka"
-            formula="P_{\\text{isečka}} = \\frac{r^2\\varphi}{2} = \\frac{\\alpha}{360^\\circ}\\cdot \\pi r^2"
+            formula={"P_{\\text{isečka}} = \\frac{r^2\\varphi}{2} = \\frac{\\alpha}{360^\\circ}\\cdot \\pi r^2"}
             note="Isečak zauzima isti deo površine koji njegov ugao zauzima od punog ugla."
           />
           <FormulaCard
             title="Dužina tetive"
-            formula="AB = 2r\\sin\\frac{\\varphi}{2}"
+            formula={"AB = 2r\\sin\\frac{\\varphi}{2}"}
             note="Korisna formula kada su dati poluprečnik i centralni ugao, a traži se duž između dve tačke na kružnici."
           />
         </div>
@@ -1083,17 +1083,17 @@ export default function Lesson45Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Upisan u kružnicu"
-            formula="\\text{temena } \\in \\text{ kružnica}"
+            formula={"\\text{temena } \\in \\text{ kružnica}"}
             note="Ako tekst kaže da su sva temena na kružnici ili da je četvorougao upisan u kružnicu, razmišljaj o tetivnom četvorouglu."
           />
           <FormulaCard
             title="Naspramni uglovi su suplementni"
-            formula="\\angle C = 180^\\circ - \\angle A"
+            formula={"\\angle C = 180^\\circ - \\angle A"}
             note="Ovo znači da im je zbir 180\u00B0. Jedan ugao često dobijaš odmah oduzimanjem od 180\u00B0."
           />
           <FormulaCard
             title="Oko četvorougla je upisana kružnica"
-            formula="\\text{stranice tangentne na kružnicu}"
+            formula={"\\text{stranice tangentne na kružnicu}"}
             note="Ako svaka stranica dodiruje istu kružnicu, radi se o tangentnom četvorouglu."
           />
           <FormulaCard
@@ -1108,7 +1108,7 @@ export default function Lesson45Page() {
           />
           <FormulaCard
             title="Traži skrivenu relaciju"
-            formula="\\text{upisanost} \\Rightarrow \\text{uslov}"
+            formula={"\\text{upisanost} \\Rightarrow \\text{uslov}"}
             note={'Kad zadatak izgleda \u201Ebez dovoljno podataka\u201C, proveri da li upravo upisanost ili tangentnost dodaje jedan skriven uslov.'}
           />
         </div>
@@ -1400,17 +1400,17 @@ export default function Lesson45Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Obim kruga"
-            formula="O = 2\\pi r"
+            formula={"O = 2\\pi r"}
             note="Koristi se kada tražiš dužinu cele kružnice ili kada računaš deo obima preko ugla."
           />
           <FormulaCard
             title="Površina kruga"
-            formula="P = \\pi r^2"
+            formula={"P = \\pi r^2"}
             note="Osnova za sve zadatke sa kružnim isečkom, odsečkom i obrtanjem ravnih figura."
           />
           <FormulaCard
             title="Dužina luka"
-            formula="l = r\\varphi"
+            formula={"l = r\\varphi"}
             note={
               <>
                 Važi kada je <InlineMath>{"\\varphi"}</InlineMath> izražen u
@@ -1420,12 +1420,12 @@ export default function Lesson45Page() {
           />
           <FormulaCard
             title="Površina kružnog isečka"
-            formula="P_{\\text{isečka}} = \\frac{r^2\\varphi}{2}"
+            formula={"P_{\\text{isečka}} = \\frac{r^2\\varphi}{2}"}
             note="Najlepša formula lekcije, ali opet samo za ugao u radijanima."
           />
           <FormulaCard
             title="Tetivni četvorougao"
-            formula="\\angle A + \\angle C = 180^\\circ"
+            formula={"\\angle A + \\angle C = 180^\\circ"}
             note="Naspramni uglovi su suplementni."
           />
           <FormulaCard

@@ -803,17 +803,17 @@ export default function Lesson42Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Zbir unutrašnjih uglova"
-            formula="\\alpha+\\beta+\\gamma=180^\\circ"
+            formula={"\\alpha+\\beta+\\gamma=180^\\circ"}
             note="Ovo je najbrža putanja do nepoznatog ugla kada znaš druga dva. U dokazima se koristi neprestano."
           />
           <FormulaCard
             title="Spoljašnji ugao"
-            formula="\\angle_{spol}=\\text{zbir dva nesusedna unutrašnja ugla}"
+            formula={"\\angle_{spol}=\\text{zbir dva nesusedna unutrašnja ugla}"}
             note="Ako produžiš jednu stranicu trougla, spoljašnji ugao je jednak zbiru dva udaljena unutrašnja ugla."
           />
           <FormulaCard
             title="Tipovi trougla"
-            formula="\\text{oštrougli},\\ \\text{pravougli},\\ \\text{tupougli}"
+            formula={"\\text{oštrougli},\\ \\text{pravougli},\\ \\text{tupougli}"}
             note="Položaj ortocentra i centra opisane kružnice zavisi baš od toga da li je trougao oštar, prav ili tup."
           />
         </div>
@@ -889,7 +889,7 @@ export default function Lesson42Page() {
         <div className={s.grid2}>
           <FormulaCard
             title="Osnovni oblik"
-            formula="DE \\parallel BC \\Rightarrow \\frac{AD}{AB}=\\frac{AE}{AC}=\\frac{DE}{BC}"
+            formula={"DE \\parallel BC \\Rightarrow \\frac{AD}{AB}=\\frac{AE}{AC}=\\frac{DE}{BC}"}
             note={
               <>
                 Ako su <InlineMath>{"D\\in AB"}</InlineMath> i{" "}
@@ -901,7 +901,7 @@ export default function Lesson42Page() {
           />
           <FormulaCard
             title="Podela stranica"
-            formula="\\frac{AD}{DB}=\\frac{AE}{EC}"
+            formula={"\\frac{AD}{DB}=\\frac{AE}{EC}"}
             note={'Ovaj oblik je posebno koristan kada su dati \u201Edelovi\u201C stranica, a ne cele stranice.'}
           />
         </div>
@@ -1208,32 +1208,32 @@ export default function Lesson42Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Kriterijum UU"
-            formula="\\angle A=\\angle A',\\ \\angle B=\\angle B' \\Rightarrow \\triangle ABC\\sim \\triangle A'B'C'"
+            formula={"\\angle A=\\angle A',\\ \\angle B=\\angle B' \\Rightarrow \\triangle ABC\\sim \\triangle A'B'C'"}
             note="Dva ugla su dovoljna jer je treći ugao automatski određen zbirom 180°."
           />
           <FormulaCard
             title="Kriterijum SUS"
-            formula="\\frac{AB}{A'B'}=\\frac{AC}{A'C'},\\ \\angle A=\\angle A'"
+            formula={"\\frac{AB}{A'B'}=\\frac{AC}{A'C'},\\ \\angle A=\\angle A'"}
             note="Dve proporcionalne stranice i njima zahvaćen ugao daju sličnost."
           />
           <FormulaCard
             title="Kriterijum SSS"
-            formula="\\frac{AB}{A'B'}=\\frac{BC}{B'C'}=\\frac{CA}{C'A'}"
+            formula={"\\frac{AB}{A'B'}=\\frac{BC}{B'C'}=\\frac{CA}{C'A'}"}
             note="Ako su sve tri odgovarajuće stranice proporcionalne, trouglovi su slični."
           />
           <FormulaCard
             title="Obimi"
-            formula="\\frac{O_1}{O_2}=k"
+            formula={"\\frac{O_1}{O_2}=k"}
             note="Obimi sličnih trouglova menjaju se istim koeficijentom kao i stranice."
           />
           <FormulaCard
             title="Površine"
-            formula="\\frac{P_1}{P_2}=k^2"
+            formula={"\\frac{P_1}{P_2}=k^2"}
             note="Ovo je česta ispitna zamka: površine ne rastu sa k, nego sa kvadratom koeficijenta."
           />
           <FormulaCard
             title="Granica sa podudarnosti"
-            formula="k=1 \\Rightarrow \\text{podudarnost}"
+            formula={"k=1 \\Rightarrow \\text{podudarnost}"}
             note="Ako je odnos sličnosti jedan, svi odgovarajući delovi su jednaki, pa su trouglovi podudarni."
           />
         </div>
@@ -1401,17 +1401,17 @@ export default function Lesson42Page() {
         <div className={s.formulaGrid} style={{ marginTop: 18 }}>
           <FormulaCard
             title="Položaj u oštrouglom"
-            formula="G,\\ H,\\ O,\\ I \\text{ su unutar trougla}"
+            formula={"G,\\ H,\\ O,\\ I \\text{ su unutar trougla}"}
             note="Oštrougli trougao je najmirniji slučaj: svi glavni centri ostaju u unutrašnjosti."
           />
           <FormulaCard
             title="Položaj u pravouglom"
-            formula="H \\text{ je u temenu pravog ugla},\\ O \\text{ je na hipotenuzi}"
+            formula={"H \\text{ je u temenu pravog ugla},\\ O \\text{ je na hipotenuzi}"}
             note="Ovo je omiljena ispitna činjenica, jer brzo skraćuje mnoge konstrukcije."
           />
           <FormulaCard
             title="Ojlerova prava"
-            formula="O,\\ G,\\ H \\text{ su kolinearne},\\qquad OG:GH=1:2"
+            formula={"O,\\ G,\\ H \\text{ su kolinearne},\\qquad OG:GH=1:2"}
             note="Ova relacija se uglavnom koristi u naprednijim zadacima i kao prepoznavanje dublje strukture trougla."
           />
         </div>
@@ -1600,27 +1600,27 @@ export default function Lesson42Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Uglovi trougla"
-            formula="\\alpha+\\beta+\\gamma=180^\\circ"
+            formula={"\\alpha+\\beta+\\gamma=180^\\circ"}
             note="Prva relacija koju proveravaš kada tražiš ugao."
           />
           <FormulaCard
             title="Spoljašnji ugao"
-            formula="\\angle_{spol}=\\angle_1+\\angle_2"
+            formula={"\\angle_{spol}=\\angle_1+\\angle_2"}
             note="Koristan kada se u zadatku produžuje stranica trougla."
           />
           <FormulaCard
             title="Tales"
-            formula="\\frac{AD}{AB}=\\frac{AE}{AC}=\\frac{DE}{BC}"
+            formula={"\\frac{AD}{AB}=\\frac{AE}{AC}=\\frac{DE}{BC}"}
             note="Pišeš tek kada si proverio paralelnost."
           />
           <FormulaCard
             title="Sličnost"
-            formula="\\frac{a_1}{a_2}=\\frac{b_1}{b_2}=\\frac{c_1}{c_2}=k"
+            formula={"\\frac{a_1}{a_2}=\\frac{b_1}{b_2}=\\frac{c_1}{c_2}=k"}
             note="Sve odgovarajuće dužine menjaju se istim odnosom."
           />
           <FormulaCard
             title="Površine sličnih"
-            formula="\\frac{P_1}{P_2}=k^2"
+            formula={"\\frac{P_1}{P_2}=k^2"}
             note="Vrlo česta zamka u zadacima sa površinama i zapreminama."
           />
           <FormulaCard
@@ -1640,7 +1640,7 @@ export default function Lesson42Page() {
           />
           <FormulaCard
             title="Ojlerova prava"
-            formula="O,\\ G,\\ H \\text{ su kolinearne}"
+            formula={"O,\\ G,\\ H \\text{ su kolinearne}"}
             note="Napredna ali veoma lepa relacija koja povezuje više konstrukcija u jedan obrazac."
           />
         </div>

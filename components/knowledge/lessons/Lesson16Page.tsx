@@ -234,7 +234,7 @@ export default function Lesson16Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="k određuje nagib i monotonost"
-            formula="k>0 \\Rightarrow \\text{funkcija raste}"
+            formula={"k>0 \\Rightarrow \\text{funkcija raste}"}
             note={
               <>
                 Što je apsolutna vrednost broja <InlineMath>{"k"}</InlineMath>{" "}
@@ -246,7 +246,7 @@ export default function Lesson16Page() {
           />
           <FormulaCard
             title="n je odsečak na y-osi"
-            formula="f(0)=k\\cdot 0+n=n"
+            formula={"f(0)=k\\cdot 0+n=n"}
             note={
               <>
                 Dovoljno je da staviš <InlineMath>{"x=0"}</InlineMath>. Tačka{" "}
@@ -359,7 +359,7 @@ export default function Lesson16Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Levo od nule negativna, desno pozitivna"
-            formula="x<x_0 \\Rightarrow f(x)<0,\\quad x>x_0 \\Rightarrow f(x)>0"
+            formula={"x<x_0 \\Rightarrow f(x)<0,\\quad x>x_0 \\Rightarrow f(x)>0"}
             note={
               <>
                 Važi kada je <InlineMath>{"k>0"}</InlineMath>.
@@ -368,7 +368,7 @@ export default function Lesson16Page() {
           />
           <FormulaCard
             title="Levo od nule pozitivna, desno negativna"
-            formula="x<x_0 \\Rightarrow f(x)>0,\\quad x>x_0 \\Rightarrow f(x)<0"
+            formula={"x<x_0 \\Rightarrow f(x)>0,\\quad x>x_0 \\Rightarrow f(x)<0"}
             note={
               <>
                 Važi kada je <InlineMath>{"k<0"}</InlineMath>.
@@ -692,21 +692,21 @@ export default function Lesson16Page() {
           />
           <FormulaCard
             title="Presek sa y-osom"
-            formula="y=n \\qquad (0,n)"
+            formula={"y=n \\qquad (0,n)"}
             note="Tačka preseka sa y-osom dobija se bez ikakvog računanja osim čitanja slobodnog člana."
           />
           <FormulaCard
             title="Nula funkcije"
-            formula="kx+n=0 \\qquad x_0=-\\frac{n}{k},\\; k\\neq 0"
+            formula={"kx+n=0 \\qquad x_0=-\\frac{n}{k},\\; k\\neq 0"}
             note="To je presek sa x-osom."
           />
           <FormulaCard
             title="Monotonost"
-            formula="k>0 \\Rightarrow \\text{rastuća},\\quad k<0 \\Rightarrow \\text{opadajuća},\\quad k=0 \\Rightarrow \\text{konstantna}"
+            formula={"k>0 \\Rightarrow \\text{rastuća},\\quad k<0 \\Rightarrow \\text{opadajuća},\\quad k=0 \\Rightarrow \\text{konstantna}"}
           />
           <FormulaCard
             title="Koeficijent pravca iz dve tačke"
-            formula="k=\\frac{y_2-y_1}{x_2-x_1}, \\quad x_1\\neq x_2"
+            formula={"k=\\frac{y_2-y_1}{x_2-x_1}, \\quad x_1\\neq x_2"}
             note={
               <>
                 Posle toga zapisuješ <InlineMath>{"y=kx+n"}</InlineMath> i

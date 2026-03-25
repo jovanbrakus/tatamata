@@ -342,7 +342,7 @@ export default function Lesson44Page() {
         <div className={s.grid2}>
           <FormulaCard
             title="Paralelogram"
-            formula="P = a h_a = ab\\sin\\alpha"
+            formula={"P = a h_a = ab\\sin\\alpha"}
             note={
               <>
                 Naspramne stranice su paralelne i jednake, a dijagonale seku
@@ -356,7 +356,7 @@ export default function Lesson44Page() {
           />
           <FormulaCard
             title="Pravougaonik"
-            formula="d = \\sqrt{a^2 + b^2}"
+            formula={"d = \\sqrt{a^2 + b^2}"}
             note={
               <>
                 Pravougaonik je paralelogram sa pravim uglom. Dijagonale su ne
@@ -369,7 +369,7 @@ export default function Lesson44Page() {
           />
           <FormulaCard
             title="Romb"
-            formula="P = \\frac{d_1 d_2}{2}"
+            formula={"P = \\frac{d_1 d_2}{2}"}
             note={
               <>
                 Romb je paralelogram sa jednakim stranicama. Dijagonale su
@@ -382,7 +382,7 @@ export default function Lesson44Page() {
           />
           <FormulaCard
             title="Kvadrat"
-            formula="d = a\\sqrt{2},\\qquad P = a^2"
+            formula={"d = a\\sqrt{2},\\qquad P = a^2"}
             note={
               <>
                 Kvadrat je i pravougaonik i romb. Nasleđuje sve njihove osobine:
@@ -541,7 +541,7 @@ export default function Lesson44Page() {
         <div className={s.grid2}>
           <FormulaCard
             title="Zbir unutrašnjih uglova"
-            formula="S_n = (n-2)\\cdot 180^\\circ"
+            formula={"S_n = (n-2)\\cdot 180^\\circ"}
             note={
               <>
                 Iz jednog temena konveksnog{" "}
@@ -553,12 +553,12 @@ export default function Lesson44Page() {
           />
           <FormulaCard
             title="Pravilan mnogougao"
-            formula="\\alpha = \\frac{(n-2)\\cdot 180^\\circ}{n}"
+            formula={"\\alpha = \\frac{(n-2)\\cdot 180^\\circ}{n}"}
             note="Ako su sve stranice i svi uglovi jednaki, tada svaki unutrašnji ugao dobijaš deljenjem ukupnog zbira sa n."
           />
           <FormulaCard
             title="Broj dijagonala"
-            formula="D = \\frac{n(n-3)}{2}"
+            formula={"D = \\frac{n(n-3)}{2}"}
             note={
               <>
                 Iz svakog temena možeš povući{" "}
@@ -570,7 +570,7 @@ export default function Lesson44Page() {
           />
           <FormulaCard
             title="Centralni ugao"
-            formula="\\varphi = \\frac{360^\\circ}{n}"
+            formula={"\\varphi = \\frac{360^\\circ}{n}"}
             note="U pravilnom mnogouglu centar je jednako udaljen od svih temena, pa se puni ugao oko centra deli na n jednakih delova."
           />
         </div>
@@ -812,32 +812,32 @@ export default function Lesson44Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Paralelogram"
-            formula="P = ah_a = ab\\sin\\alpha"
+            formula={"P = ah_a = ab\\sin\\alpha"}
             note="Površina preko baze i visine ili preko dve stranice i ugla između njih."
           />
           <FormulaCard
             title="Dijagonale paralelograma"
-            formula="d_{1,2}^2 = a^2 + b^2 \\pm 2ab\\cos\\alpha"
+            formula={"d_{1,2}^2 = a^2 + b^2 \\pm 2ab\\cos\\alpha"}
             note="Korisno kada su poznate dve stranice i ugao. Znak plus i minus daju dve različite dijagonale."
           />
           <FormulaCard
             title="Pravougaonik"
-            formula="d = \\sqrt{a^2 + b^2}"
+            formula={"d = \\sqrt{a^2 + b^2}"}
             note="Pitagorina teorema na trouglu određenom stranicama pravougaonika."
           />
           <FormulaCard
             title="Romb"
-            formula="P = \\frac{d_1 d_2}{2}"
+            formula={"P = \\frac{d_1 d_2}{2}"}
             note="Važi zato što se romb deli na četiri prava trougla jednakih visina i baza po poludijagonalama."
           />
           <FormulaCard
             title="Kvadrat"
-            formula="d = a\\sqrt{2}"
+            formula={"d = a\\sqrt{2}"}
             note="Najkraća formula za prelaz između stranice i dijagonale kvadrata."
           />
           <FormulaCard
             title="Trapez"
-            formula="P = \\frac{a+b}{2}\\,h = m\\,h"
+            formula={"P = \\frac{a+b}{2}\\,h = m\\,h"}
             note={
               <>
                 Srednja linija{" "}
@@ -848,12 +848,12 @@ export default function Lesson44Page() {
           />
           <FormulaCard
             title="Mnogougao"
-            formula="S_n = (n-2)\\cdot 180^\\circ"
+            formula={"S_n = (n-2)\\cdot 180^\\circ"}
             note="Broj trouglova u triangulaciji određuje zbir unutrašnjih uglova."
           />
           <FormulaCard
             title="Broj dijagonala"
-            formula="D = \\frac{n(n-3)}{2}"
+            formula={"D = \\frac{n(n-3)}{2}"}
             note={
               <>
                 Svako teme daje <InlineMath>{"n-3"}</InlineMath> dijagonale, ali

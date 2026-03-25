@@ -198,15 +198,15 @@ export default function Lesson33Page() {
         <div className={s.grid3} style={{ marginTop: 18 }}>
           <FormulaCard
             title="Najvažniji par"
-            formula="30^\\circ = \\frac{\\pi}{6}"
+            formula={"30^\\circ = \\frac{\\pi}{6}"}
           />
           <FormulaCard
             title="Najvažniji par"
-            formula="45^\\circ = \\frac{\\pi}{4}"
+            formula={"45^\\circ = \\frac{\\pi}{4}"}
           />
           <FormulaCard
             title="Najvažniji par"
-            formula="60^\\circ = \\frac{\\pi}{3}"
+            formula={"60^\\circ = \\frac{\\pi}{3}"}
           />
         </div>
 
@@ -658,21 +658,21 @@ export default function Lesson33Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Pretvaranje u radijane"
-            formula="\\alpha_{\\text{rad}} = \\alpha_{\\text{step}}\\cdot \\frac{\\pi}{180}"
+            formula={"\\alpha_{\\text{rad}} = \\alpha_{\\text{step}}\\cdot \\frac{\\pi}{180}"}
           />
           <FormulaCard
             title="Pretvaranje u stepene"
-            formula="\\alpha_{\\text{step}} = \\alpha_{\\text{rad}}\\cdot \\frac{180^\\circ}{\\pi}"
+            formula={"\\alpha_{\\text{step}} = \\alpha_{\\text{rad}}\\cdot \\frac{180^\\circ}{\\pi}"}
           />
-          <FormulaCard title="Radijan i luk" formula="s = r\\alpha" />
+          <FormulaCard title="Radijan i luk" formula={"s = r\\alpha"} />
           <FormulaCard title="Jedinična kružnica" formula="x^2+y^2=1" />
           <FormulaCard
             title="Koordinatna definicija"
-            formula="P(\\cos \\alpha,\\,\\sin \\alpha)"
+            formula={"P(\\cos \\alpha,\\,\\sin \\alpha)"}
           />
           <FormulaCard
             title="Koterminalni uglovi"
-            formula="\\alpha + 2k\\pi,\\qquad k\\in\\mathbb{Z}"
+            formula={"\\alpha + 2k\\pi,\\qquad k\\in\\mathbb{Z}"}
           />
         </div>
 
@@ -680,22 +680,22 @@ export default function Lesson33Page() {
         <div style={{ marginTop: 24 }}>
           <InsightCard title="Pet tačaka prvog kvadranta koje moraš da znaš">
             <div className={s.grid3} style={{ marginTop: 12 }}>
-              <FormulaCard title="0" formula="(1,\\,0)" />
+              <FormulaCard title="0" formula={"(1,\\,0)"} />
               <FormulaCard
                 title="\\frac{\\pi}{6}"
-                formula="\\left(\\frac{\\sqrt{3}}{2},\\,\\frac{1}{2}\\right)"
+                formula={"\\left(\\frac{\\sqrt{3}}{2},\\,\\frac{1}{2}\\right)"}
               />
               <FormulaCard
                 title="\\frac{\\pi}{4}"
-                formula="\\left(\\frac{\\sqrt{2}}{2},\\,\\frac{\\sqrt{2}}{2}\\right)"
+                formula={"\\left(\\frac{\\sqrt{2}}{2},\\,\\frac{\\sqrt{2}}{2}\\right)"}
               />
               <FormulaCard
                 title="\\frac{\\pi}{3}"
-                formula="\\left(\\frac{1}{2},\\,\\frac{\\sqrt{3}}{2}\\right)"
+                formula={"\\left(\\frac{1}{2},\\,\\frac{\\sqrt{3}}{2}\\right)"}
               />
               <FormulaCard
                 title="\\frac{\\pi}{2}"
-                formula="(0,\\,1)"
+                formula={"(0,\\,1)"}
               />
               <SectionCard title="Praktična poruka">
                 <p>

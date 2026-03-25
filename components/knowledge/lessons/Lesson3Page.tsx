@@ -557,32 +557,32 @@ export default function Lesson3Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Refleksivnost"
-            formula="\\forall a \\in A,\\; (a,a) \\in R"
+            formula={"\\forall a \\in A,\\; (a,a) \\in R"}
             note="Svi diagonalni parovi moraju postojati."
           />
           <FormulaCard
             title="Simetričnost"
-            formula="(a,b) \\in R \\Rightarrow (b,a) \\in R"
+            formula={"(a,b) \\in R \\Rightarrow (b,a) \\in R"}
             note="Svaka veza ima ogledalo preko dijagonale."
           />
           <FormulaCard
             title="Antisimetričnost"
-            formula="(a,b),(b,a) \\in R \\Rightarrow a=b"
+            formula={"(a,b),(b,a) \\in R \\Rightarrow a=b"}
             note="Dvosmerni parovi van dijagonale nisu dozvoljeni."
           />
           <FormulaCard
             title="Tranzitivnost"
-            formula="(a,b),(b,c) \\in R \\Rightarrow (a,c) \\in R"
+            formula={"(a,b),(b,c) \\in R \\Rightarrow (a,c) \\in R"}
             note="Dvokorak mora imati direktnu prečicu."
           />
           <FormulaCard
             title="Ekvivalencija"
-            formula="\\text{refleksivna + simetrična + tranzitivna}"
+            formula={"\\text{refleksivna + simetrična + tranzitivna}"}
             note="Rezultat su klase ekvivalencije i particija skupa."
           />
           <FormulaCard
             title="Parcijalni poredak"
-            formula="\\text{refleksivna + antisimetrična + tranzitivna}"
+            formula={"\\text{refleksivna + antisimetrična + tranzitivna}"}
             note="Rezultat je uređivanje, ali ne moraju svi elementi biti uporedivi."
           />
         </div>

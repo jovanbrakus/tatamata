@@ -480,22 +480,22 @@ export default function Lesson24Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Koren parnog stepena"
-            formula="\\sqrt{A(x)} \\text{ postoji samo ako } A(x)\\ge 0"
+            formula={"\\sqrt{A(x)} \\text{ postoji samo ako } A(x)\\ge 0"}
             note="Ovo je prvi zapis u svesci. Bez njega ne pocinjes resavanje."
           />
           <FormulaCard
             title="Model sqrt(A(x)) = B(x)"
-            formula="\\sqrt{A(x)}=B(x) \\iff \\begin{cases} A(x)=B(x)^2 \\\\ B(x)\\ge 0 \\end{cases}"
+            formula={"\\sqrt{A(x)}=B(x) \\iff \\begin{cases} A(x)=B(x)^2 \\\\ B(x)\\ge 0 \\end{cases}"}
             note="Ovo je najbezbedniji formalni zapis za skolsko resavanje."
           />
           <FormulaCard
             title="Izoluj pa kvadriraj"
-            formula="\\sqrt{A(x)}+\\sqrt{B(x)}=c \\quad \\Rightarrow \\quad \\sqrt{A(x)}=c-\\sqrt{B(x)}"
+            formula={"\\sqrt{A(x)}+\\sqrt{B(x)}=c \\quad \\Rightarrow \\quad \\sqrt{A(x)}=c-\\sqrt{B(x)}"}
             note="Svako kvadriranje treba da prati jasna izolacija jednog korena."
           />
           <FormulaCard
             title="Provera u originalu"
-            formula="\\text{kandidat} \\longrightarrow \\text{vrati u pocetnu jednacinu}"
+            formula={"\\text{kandidat} \\longrightarrow \\text{vrati u pocetnu jednacinu}"}
             note="Ne proveravaš u pomocnoj, nego u originalnoj jednacini."
           />
         </div>

@@ -501,32 +501,32 @@ export default function Lesson8Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Osnovna definicija"
-            formula="p\\% = \\frac{p}{100}"
+            formula={"p\\% = \\frac{p}{100}"}
             note="Svaki procenat je samo razlomak sa imeniteljem 100."
           />
           <FormulaCard
             title="Deo od baze"
-            formula="I = \\frac{p}{100}\\cdot B"
+            formula={"I = \\frac{p}{100}\\cdot B"}
             note="Ovo je formula kada tražiš koliki deo baze predstavlja dati procenat."
           />
           <FormulaCard
             title="Obrnuti smer"
-            formula="B = \\frac{I}{p/100}"
+            formula={"B = \\frac{I}{p/100}"}
             note="Koristi je kada znaš procentni deo i procenat, a ne znaš celu vrednost."
           />
           <FormulaCard
             title="Poskupljenje i pojeftinjenje"
-            formula="1 + \\frac{p}{100}, \\qquad 1 - \\frac{p}{100}"
+            formula={"1 + \\frac{p}{100}, \\qquad 1 - \\frac{p}{100}"}
             note="Ovo su najvažniji faktori za sukcesivne promene."
           />
           <FormulaCard
             title="Ukupna koncentracija"
-            formula="c = \\frac{m_1 c_1 + m_2 c_2}{m_1 + m_2}"
+            formula={"c = \\frac{m_1 c_1 + m_2 c_2}{m_1 + m_2}"}
             note={'Čita se kao "ukupna čista supstanca kroz ukupnu količinu".'}
           />
           <FormulaCard
             title="Provera rezultata"
-            formula="\\min(c_1,c_2) \\le c \\le \\max(c_1,c_2)"
+            formula={"\\min(c_1,c_2) \\le c \\le \\max(c_1,c_2)"}
             note="Konačna koncentracija mora ostati između početnih, ako samo mešaš dve komponente."
           />
         </div>

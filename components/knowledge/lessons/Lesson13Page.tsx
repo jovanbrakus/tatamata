@@ -610,7 +610,7 @@ export default function Lesson13Page() {
           />
           <FormulaCard
             title="Vodeći koeficijent i konstantni član"
-            formula="\text{vodeći član: }5x^4,\quad \text{konstantni član: }-7"
+            formula={"\text{vodeći član: }5x^4,\quad \text{konstantni član: }-7"}
             note={
               <>
                 U polinomu <InlineMath>{"5x^4-2x^2+3x-7"}</InlineMath> vodeći
@@ -621,12 +621,12 @@ export default function Lesson13Page() {
           />
           <FormulaCard
             title="Stepen polinoma"
-            formula="\deg(5x^4-2x^2+3x-7)=4"
+            formula={"\deg(5x^4-2x^2+3x-7)=4"}
             note="Stepen polinoma je najveći eksponent uz koji stoji koeficijent različit od nule."
           />
           <FormulaCard
             title="Nulti polinom"
-            formula="P(x)=0 \Rightarrow \text{ poseban slučaj}"
+            formula={"P(x)=0 \Rightarrow \text{ poseban slučaj}"}
             note="Polinom 0 nema vodeći član. U ovoj lekciji ga tretiramo kao poseban slučaj i ne koristimo mu standardan stepen."
           />
         </div>
@@ -966,12 +966,12 @@ export default function Lesson13Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Kanonski oblik"
-            formula="P(x)=a_nx^n+a_{n-1}x^{n-1}+\dots+a_1x+a_0"
+            formula={"P(x)=a_nx^n+a_{n-1}x^{n-1}+\dots+a_1x+a_0"}
             note="Tek iz sređenog polinoma čitaš stepen, vodeći koeficijent i konstantni član."
           />
           <FormulaCard
             title="Stepen"
-            formula="\deg(a_nx^n+\dots+a_0)=n,\;\text{ako je }a_n\neq 0"
+            formula={"\deg(a_nx^n+\dots+a_0)=n,\;\text{ako je }a_n\neq 0"}
             note="Za nenulti konstantni polinom stepen je 0. Nulti polinom ovde posmatramo posebno."
           />
           <FormulaCard
@@ -986,12 +986,12 @@ export default function Lesson13Page() {
           />
           <FormulaCard
             title="Stepen proizvoda"
-            formula="\deg(P\cdot Q)=\deg P+\deg Q"
+            formula={"\deg(P\cdot Q)=\deg P+\deg Q"}
             note="Brza kontrola računa: ako su oba polinoma nenulta, stepen proizvoda je zbir stepena."
           />
           <FormulaCard
             title="Deljenje sa ostatkom"
-            formula="P(x)=D(x)\cdot Q(x)+R(x),\quad \deg R<\deg D"
+            formula={"P(x)=D(x)\cdot Q(x)+R(x),\quad \deg R<\deg D"}
             note="Ostatak mora da ima manji stepen od delioca. Ako je ostatak 0, deljenje je tačno."
           />
         </div>

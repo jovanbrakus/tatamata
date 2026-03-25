@@ -286,7 +286,7 @@ export default function Lesson50Page() {
           />
           <FormulaCard
             title="Normalnost: kada se seku pod pravim uglom"
-            formula="k_1 \\cdot k_2 = -1"
+            formula={"k_1 \\cdot k_2 = -1"}
             note={
               <>
                 Ovaj zapis važi kada obe prave imaju definisan smerni
@@ -297,7 +297,7 @@ export default function Lesson50Page() {
           />
           <FormulaCard
             title="Ugao između pravih: koristi akutni ugao"
-            formula="\\tan \\varphi = \\left| \\frac{k_2 - k_1}{1 + k_1k_2} \\right|"
+            formula={"\\tan \\varphi = \\left| \\frac{k_2 - k_1}{1 + k_1k_2} \\right|"}
             note={
               <>
                 Na prijemnom se obično traži <strong>manji</strong> ugao između
@@ -541,7 +541,7 @@ export default function Lesson50Page() {
           />
           <FormulaCard
             title="Segmentni oblik"
-            formula="\\frac{x}{a} + \\frac{y}{b} = 1"
+            formula={"\\frac{x}{a} + \\frac{y}{b} = 1"}
             note={
               <>
                 <strong>Čitaš:</strong> preseci sa osama su{" "}
@@ -552,7 +552,7 @@ export default function Lesson50Page() {
           />
           <FormulaCard
             title="Nagib iz implicitnog"
-            formula="k = -\\frac{A}{B} \\qquad (B \\neq 0)"
+            formula={"k = -\\frac{A}{B} \\qquad (B \\neq 0)"}
             note={
               <>
                 <strong>Čitaš:</strong> prvo proveri da li prava nije
@@ -562,7 +562,7 @@ export default function Lesson50Page() {
           />
           <FormulaCard
             title="Ugao između pravih"
-            formula="\\tan \\varphi = \\left| \\frac{k_2 - k_1}{1 + k_1k_2} \\right|"
+            formula={"\\tan \\varphi = \\left| \\frac{k_2 - k_1}{1 + k_1k_2} \\right|"}
             note={
               <>
                 <strong>Čitaš:</strong> traži se manji, akutni ugao između
@@ -572,7 +572,7 @@ export default function Lesson50Page() {
           />
           <FormulaCard
             title="Rastojanje tačke od prave"
-            formula="d = \\frac{|Ax_0 + By_0 + C|}{\\sqrt{A^2 + B^2}}"
+            formula={"d = \\frac{|Ax_0 + By_0 + C|}{\\sqrt{A^2 + B^2}}"}
             note={
               <>
                 <strong>Čitaš:</strong> obavezna apsolutna vrednost i implicitni

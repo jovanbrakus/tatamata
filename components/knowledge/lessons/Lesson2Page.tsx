@@ -209,7 +209,7 @@ export default function Lesson2Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Unija"
-            formula="A \\cup B"
+            formula={"A \\cup B"}
             note={
               <>
                 Svi elementi koji pripadaju skupu{" "}
@@ -220,7 +220,7 @@ export default function Lesson2Page() {
           />
           <FormulaCard
             title="Presek"
-            formula="A \\cap B"
+            formula={"A \\cap B"}
             note={
               <>
                 Samo elementi koji pripadaju i skupu{" "}
@@ -231,7 +231,7 @@ export default function Lesson2Page() {
           />
           <FormulaCard
             title="Razlika"
-            formula="A \\setminus B"
+            formula={"A \\setminus B"}
             note={
               <>
                 Elementi koji su u <InlineMath>{"A"}</InlineMath>, ali nisu u{" "}
@@ -241,7 +241,7 @@ export default function Lesson2Page() {
           />
           <FormulaCard
             title="Simetricna razlika"
-            formula="A \\triangle B"
+            formula={"A \\triangle B"}
             note="Elementi koji pripadaju tacno jednom od skupova."
           />
         </div>
@@ -392,22 +392,22 @@ export default function Lesson2Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Komutativnost"
-            formula="A \\cup B = B \\cup A, \\quad A \\cap B = B \\cap A"
+            formula={"A \\cup B = B \\cup A, \\quad A \\cap B = B \\cap A"}
             note="Redosled skupova nije vazan za uniju i presek."
           />
           <FormulaCard
             title="Asocijativnost"
-            formula="(A \\cup B) \\cup C = A \\cup (B \\cup C)"
+            formula={"(A \\cup B) \\cup C = A \\cup (B \\cup C)"}
             note="Isto vazi i za presek. Grupisanje ne menja rezultat."
           />
           <FormulaCard
             title="Distributivnost"
-            formula="A \\cap (B \\cup C) = (A \\cap B) \\cup (A \\cap C)"
+            formula={"A \\cap (B \\cup C) = (A \\cap B) \\cup (A \\cap C)"}
             note="Skupovne operacije imaju jasnu paralelu sa algebarskim racunom."
           />
           <FormulaCard
             title="De Morgan za skupove"
-            formula="(A \\cup B)^c = A^c \\cap B^c"
+            formula={"(A \\cup B)^c = A^c \\cap B^c"}
             note="Negacija ili komplement menja uniju u presek i obrnuto."
           />
         </div>

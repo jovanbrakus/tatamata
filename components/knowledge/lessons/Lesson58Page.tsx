@@ -245,7 +245,7 @@ export default function Lesson58Page() {
           />
           <FormulaCard
             title="Obrnuta vrednost i koren"
-            formula="\\left(\\frac{1}{x}\\right)'=-\\frac{1}{x^2}, \\qquad (\\sqrt{x})'=\\frac{1}{2\\sqrt{x}}"
+            formula={"\\left(\\frac{1}{x}\\right)'=-\\frac{1}{x^2}, \\qquad (\\sqrt{x})'=\\frac{1}{2\\sqrt{x}}"}
             note={
               <>
                 Drugi obrazac je zapravo poseban slucaj stepena{" "}
@@ -257,7 +257,7 @@ export default function Lesson58Page() {
           />
           <FormulaCard
             title="Eksponencijalne"
-            formula="(e^x)'=e^x,\\qquad (a^x)'=a^x\\ln a"
+            formula={"(e^x)'=e^x,\\qquad (a^x)'=a^x\\ln a"}
             note={
               <>
                 Kod <InlineMath>{"e^x"}</InlineMath> funkcija je
@@ -269,7 +269,7 @@ export default function Lesson58Page() {
           />
           <FormulaCard
             title="Logaritamske"
-            formula="(\\ln x)'=\\frac{1}{x}, \\qquad (\\log_a x)'=\\frac{1}{x\\ln a}"
+            formula={"(\\ln x)'=\\frac{1}{x}, \\qquad (\\log_a x)'=\\frac{1}{x\\ln a}"}
             note={
               <>
                 Ove formule vaze za{" "}
@@ -280,7 +280,7 @@ export default function Lesson58Page() {
           />
           <FormulaCard
             title="Trigonometrijske"
-            formula="(\\sin x)'=\\cos x,\\qquad (\\cos x)'=-\\sin x,\\qquad (\\tan x)'=\\frac{1}{\\cos^2 x}"
+            formula={"(\\sin x)'=\\cos x,\\qquad (\\cos x)'=-\\sin x,\\qquad (\\tan x)'=\\frac{1}{\\cos^2 x}"}
             note="Ovde je najcesca greska znak kod kosinusa i pogresno pamcenje izvoda tangensa."
           />
         </div>
@@ -342,7 +342,7 @@ export default function Lesson58Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Linearnost"
-            formula="(cu\\pm dv)'=cu'\\pm dv'"
+            formula={"(cu\\pm dv)'=cu'\\pm dv'"}
             note={
               <>
                 Izvod razlivas preko zbira i razlike, a konstanta ostaje ispred.
@@ -357,22 +357,22 @@ export default function Lesson58Page() {
           />
           <FormulaCard
             title="Kolicnik"
-            formula="\\left(\\frac{u}{v}\\right)'=\\frac{u'v-uv'}{v^2}, \\qquad v\\ne 0"
+            formula={"\\left(\\frac{u}{v}\\right)'=\\frac{u'v-uv'}{v^2}, \\qquad v\\ne 0"}
             note="Obavezno pazi na redosled u brojniku: prvo u'v, pa minus uv'. Imenilac se kvadrira ceo."
           />
           <FormulaCard
             title="Pravilo lanca"
-            formula="(u\\circ v)'(x)=u'(v(x))\\cdot v'(x)"
+            formula={"(u\\circ v)'(x)=u'(v(x))\\cdot v'(x)"}
             note="Najvaznije pitanje glasi: sta je spolja, a sta unutra? Spolja diferenciras tako da unutrasnjost prepises, a zatim na kraju mnozis njenim izvodom."
           />
           <FormulaCard
             title="Visestruka kombinacija"
-            formula="\\text{cesto koristis vise pravila u istom zadatku}"
+            formula={"\\text{cesto koristis vise pravila u istom zadatku}"}
             note="Na prijemnom su najcesci zadaci u kojima jedno pravilo nije dovoljno. Na primer, u kolicniku brojilac moze biti slozena funkcija ili proizvod."
           />
           <FormulaCard
             title="Strategija"
-            formula="\\text{oblik} \\to \\text{pravilo} \\to \\text{tablica} \\to \\text{kontrola}"
+            formula={"\\text{oblik} \\to \\text{pravilo} \\to \\text{tablica} \\to \\text{kontrola}"}
             note="Pre nego sto krenes da racunas, zastani dve sekunde i imenuj oblik. To skracuje resenje i drasticno smanjuje broj gresaka."
           />
         </div>

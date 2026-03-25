@@ -530,11 +530,11 @@ export default function Lesson31Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Direktni oblik"
-            formula="\\log_a f(x)=c \\iff f(x)=a^c,\\quad f(x)>0."
+            formula={"\\log_a f(x)=c \\iff f(x)=a^c,\\quad f(x)>0."}
           />
           <FormulaCard
             title="Jednaki logaritmi"
-            formula="\\log_a f(x)=\\log_a g(x)\\iff f(x)=g(x),"
+            formula={"\\log_a f(x)=\\log_a g(x)\\iff f(x)=g(x),"}
             note={
               <>
                 uz <InlineMath>{"f(x)>0"}</InlineMath>,{" "}
@@ -544,19 +544,19 @@ export default function Lesson31Page() {
           />
           <FormulaCard
             title="Zbir logaritama"
-            formula="\\log_a f(x)+\\log_a g(x)=\\log_a(f(x)g(x))."
+            formula={"\\log_a f(x)+\\log_a g(x)=\\log_a(f(x)g(x))."}
           />
           <FormulaCard
             title="Razlika logaritama"
-            formula="\\log_a f(x)-\\log_a g(x)=\\log_a\\frac{f(x)}{g(x)}."
+            formula={"\\log_a f(x)-\\log_a g(x)=\\log_a\\frac{f(x)}{g(x)}."}
           />
           <FormulaCard
             title="Kvadratna smena"
-            formula="u=\\log_a f(x)\\quad \\Rightarrow \\quad u^2+Bu+C=0."
+            formula={"u=\\log_a f(x)\\quad \\Rightarrow \\quad u^2+Bu+C=0."}
           />
           <FormulaCard
             title="Konačni filter"
-            formula="S=\\{ \\text{kandidati iz algebre} \\}\\cap D."
+            formula={"S=\\{ \\text{kandidati iz algebre} \\}\\cap D."}
           />
         </div>
       </LessonSection>

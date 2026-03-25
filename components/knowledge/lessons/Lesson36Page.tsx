@@ -250,32 +250,32 @@ export default function Lesson36Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Sinus dvostrukog ugla"
-            formula="\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha"
+            formula={"\\sin 2\\alpha = 2\\sin\\alpha\\cos\\alpha"}
             note="Ovo je najdirektniji oblik. Posebno je koristan kada u izrazu vidiš proizvod sin α cos α."
           />
           <FormulaCard
             title="Kosinus dvostrukog ugla"
-            formula="\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha"
+            formula={"\\cos 2\\alpha = \\cos^2\\alpha - \\sin^2\\alpha"}
             note="Najsimetričniji oblik, ali ne uvek i najpraktičniji. Dobar je kad u zadatku već imaš i sin²α i cos²α."
           />
           <FormulaCard
             title="Prvi praktični oblik za cos 2α"
-            formula="\\cos 2\\alpha = 1 - 2\\sin^2\\alpha"
+            formula={"\\cos 2\\alpha = 1 - 2\\sin^2\\alpha"}
             note="Ovaj oblik biraš kada znaš sin α, a ne želiš da tražiš cos α. Čest je u zadacima sa snižavanjem stepena."
           />
           <FormulaCard
             title="Drugi praktični oblik za cos 2α"
-            formula="\\cos 2\\alpha = 2\\cos^2\\alpha - 1"
+            formula={"\\cos 2\\alpha = 2\\cos^2\\alpha - 1"}
             note="Ovaj oblik je zgodan kada znaš cos α. Vrlo često štedi jedan ceo korak u prijemnom zadatku."
           />
           <FormulaCard
             title="Tangens dvostrukog ugla"
-            formula="\\operatorname{tg}\\,2\\alpha = \\frac{2\\operatorname{tg}\\alpha}{1 - \\operatorname{tg}^2\\alpha}"
+            formula={"\\operatorname{tg}\\,2\\alpha = \\frac{2\\operatorname{tg}\\alpha}{1 - \\operatorname{tg}^2\\alpha}"}
             note="Veoma korisno, ali pazi na imenilac. Ako je 1 − tg²α = 0, izraz nije definisan."
           />
           <FormulaCard
             title="Kako biraš pravi oblik"
-            formula="\\sin\\alpha \\to 1 - 2\\sin^2\\alpha, \\quad \\cos\\alpha \\to 2\\cos^2\\alpha - 1"
+            formula={"\\sin\\alpha \\to 1 - 2\\sin^2\\alpha, \\quad \\cos\\alpha \\to 2\\cos^2\\alpha - 1"}
             note="Ako znaš sin α, koristi 1 − 2sin²α. Ako znaš cos α, koristi 2cos²α − 1. Ako vidiš proizvod sin α cos α, pomisli na sin 2α."
           />
         </div>
@@ -305,22 +305,22 @@ export default function Lesson36Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Kvadratne formule"
-            formula="\\sin^2\\frac{\\alpha}{2} = \\frac{1-\\cos\\alpha}{2},\\qquad \\cos^2\\frac{\\alpha}{2} = \\frac{1+\\cos\\alpha}{2}"
+            formula={"\\sin^2\\frac{\\alpha}{2} = \\frac{1-\\cos\\alpha}{2},\\qquad \\cos^2\\frac{\\alpha}{2} = \\frac{1+\\cos\\alpha}{2}"}
             note="Ovo su polazne, potpuno sigurne formule. One još ne rešavaju znak."
           />
           <FormulaCard
             title="Formula sa znakom"
-            formula="\\sin\\frac{\\alpha}{2} = \\pm\\sqrt{\\frac{1-\\cos\\alpha}{2}},\\qquad \\cos\\frac{\\alpha}{2} = \\pm\\sqrt{\\frac{1+\\cos\\alpha}{2}}"
+            formula={"\\sin\\frac{\\alpha}{2} = \\pm\\sqrt{\\frac{1-\\cos\\alpha}{2}},\\qquad \\cos\\frac{\\alpha}{2} = \\pm\\sqrt{\\frac{1+\\cos\\alpha}{2}}"}
             note="Znak ispred korena zavisi od kvadranta ugla α/2, ne od ugla α."
           />
           <FormulaCard
             title="Tangens polovine ugla"
-            formula="\\operatorname{tg}\\frac{\\alpha}{2} = \\pm\\sqrt{\\frac{1-\\cos\\alpha}{1+\\cos\\alpha}}"
+            formula={"\\operatorname{tg}\\frac{\\alpha}{2} = \\pm\\sqrt{\\frac{1-\\cos\\alpha}{1+\\cos\\alpha}}"}
             note="Ovaj oblik je koristan, ali ponekad je praktičnije koristiti racionalne varijante ispod."
           />
           <FormulaCard
             title="Praktične varijante"
-            formula="\\operatorname{tg}\\frac{\\alpha}{2} = \\frac{\\sin\\alpha}{1+\\cos\\alpha} = \\frac{1-\\cos\\alpha}{\\sin\\alpha}"
+            formula={"\\operatorname{tg}\\frac{\\alpha}{2} = \\frac{\\sin\\alpha}{1+\\cos\\alpha} = \\frac{1-\\cos\\alpha}{\\sin\\alpha}"}
             note="Ove varijante su vrlo korisne kad želiš da izbegneš koren ili kad se lepše skraćuju u izrazu."
           />
         </div>
@@ -370,7 +370,7 @@ export default function Lesson36Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Snižavanje za sinus"
-            formula="\\sin^2 x = \\frac{1-\\cos 2x}{2}"
+            formula={"\\sin^2 x = \\frac{1-\\cos 2x}{2}"}
             note={
               <>
                 Ovo dobijaš iz{" "}
@@ -381,12 +381,12 @@ export default function Lesson36Page() {
           />
           <FormulaCard
             title="Snižavanje za kosinus"
-            formula="\\cos^2 x = \\frac{1+\\cos 2x}{2}"
+            formula={"\\cos^2 x = \\frac{1+\\cos 2x}{2}"}
             note="Ovaj oblik često radi zajedno sa prethodnim, posebno kad u zadatku imaš zbir sin²x i cos²x ili razliku tih članova."
           />
           <FormulaCard
             title="Proizvod sinusa i kosinusa"
-            formula="\\sin x \\cos x = \\frac{\\sin 2x}{2}"
+            formula={"\\sin x \\cos x = \\frac{\\sin 2x}{2}"}
             note="Vrlo važna mini-formula. Čim vidiš proizvod sin x cos x, treba da ti padne na pamet sin 2x."
           />
         </div>
@@ -687,28 +687,28 @@ export default function Lesson36Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Dvostruki ugao"
-            formula="\\sin 2x = 2\\sin x\\cos x, \\quad \\cos 2x = \\cos^2 x - \\sin^2 x = 1 - 2\\sin^2 x = 2\\cos^2 x - 1"
+            formula={"\\sin 2x = 2\\sin x\\cos x, \\quad \\cos 2x = \\cos^2 x - \\sin^2 x = 1 - 2\\sin^2 x = 2\\cos^2 x - 1"}
           />
           <FormulaCard
             title="Tangens dvostrukog ugla"
-            formula="\\operatorname{tg}\\,2x = \\frac{2\\operatorname{tg}\\,x}{1 - \\operatorname{tg}^2 x}"
+            formula={"\\operatorname{tg}\\,2x = \\frac{2\\operatorname{tg}\\,x}{1 - \\operatorname{tg}^2 x}"}
             note="Koristi se kad je prirodno raditi preko tangensa, ali ne zaboravi uslov definisanosti."
           />
           <FormulaCard
             title="Polovina ugla"
-            formula="\\sin\\frac{x}{2} = \\pm\\sqrt{\\frac{1-\\cos x}{2}},\\qquad \\cos\\frac{x}{2} = \\pm\\sqrt{\\frac{1+\\cos x}{2}}"
+            formula={"\\sin\\frac{x}{2} = \\pm\\sqrt{\\frac{1-\\cos x}{2}},\\qquad \\cos\\frac{x}{2} = \\pm\\sqrt{\\frac{1+\\cos x}{2}}"}
           />
           <FormulaCard
             title="Tangens polovine ugla"
-            formula="\\operatorname{tg}\\frac{x}{2} = \\pm\\sqrt{\\frac{1-\\cos x}{1+\\cos x}} = \\frac{\\sin x}{1+\\cos x} = \\frac{1-\\cos x}{\\sin x}"
+            formula={"\\operatorname{tg}\\frac{x}{2} = \\pm\\sqrt{\\frac{1-\\cos x}{1+\\cos x}} = \\frac{\\sin x}{1+\\cos x} = \\frac{1-\\cos x}{\\sin x}"}
           />
           <FormulaCard
             title="Snižavanje stepena"
-            formula="\\sin^2 x = \\frac{1-\\cos 2x}{2},\\qquad \\cos^2 x = \\frac{1+\\cos 2x}{2}"
+            formula={"\\sin^2 x = \\frac{1-\\cos 2x}{2},\\qquad \\cos^2 x = \\frac{1+\\cos 2x}{2}"}
           />
           <FormulaCard
             title="Brzi signal u zadatku"
-            formula="\\sin x\\cos x \\to \\sin 2x, \\quad \\sin^2 x \\to \\cos 2x, \\quad \\tfrac{\\alpha}{2} \\to \\text{koren}"
+            formula={"\\sin x\\cos x \\to \\sin 2x, \\quad \\sin^2 x \\to \\cos 2x, \\quad \\tfrac{\\alpha}{2} \\to \\text{koren}"}
             note="Ako vidiš sin x cos x, pomisli na sin 2x. Ako vidiš sin²x ili cos²x, pomisli na snižavanje stepena. Ako vidiš &quot;polovinu poznatog ugla&quot;, pomisli na formule za x/2."
           />
         </div>

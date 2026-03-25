@@ -400,17 +400,17 @@ export default function Lesson57Page() {
         <div className={s.formulaGrid} style={{ marginTop: 16 }}>
           <FormulaCard
             title="0/0 i faktorizacija"
-            formula="\\lim_{x\\to 3}\\frac{x^2-9}{x-3} = \\lim_{x\\to 3}\\frac{(x-3)(x+3)}{x-3} = \\lim_{x\\to 3}(x+3) = 6"
+            formula={"\\lim_{x\\to 3}\\frac{x^2-9}{x-3} = \\lim_{x\\to 3}\\frac{(x-3)(x+3)}{x-3} = \\lim_{x\\to 3}(x+3) = 6"}
             note="Kada i brojilac i imenilac odu na nulu, često postoji zajednički faktor koji možeš izdvojiti i skratiti."
           />
           <FormulaCard
             title="∞/∞ i najveći stepen"
-            formula="\\frac{3x^2-x}{x^2+5} = \\frac{3-\\frac{1}{x}}{1+\\frac{5}{x^2}} \\to 3"
+            formula={"\\frac{3x^2-x}{x^2+5} = \\frac{3-\\frac{1}{x}}{1+\\frac{5}{x^2}} \\to 3"}
             note="Kod racionalnih izraza za x→∞ ili n→∞, podeli sve članove najvećim stepenom iz imenioca."
           />
           <FormulaCard
             title="Koren i racionalizacija"
-            formula="\\frac{\\sqrt{x+3}-2}{x-1}\\cdot\\frac{\\sqrt{x+3}+2}{\\sqrt{x+3}+2} = \\frac{1}{\\sqrt{x+3}+2}"
+            formula={"\\frac{\\sqrt{x+3}-2}{x-1}\\cdot\\frac{\\sqrt{x+3}+2}{\\sqrt{x+3}+2} = \\frac{1}{\\sqrt{x+3}+2}"}
             note="Ako vidiš izraz sa korenom i posle ubacivanja dobiješ 0/0, često pomaže množenje konjugovanim izrazom."
           />
         </div>
@@ -769,32 +769,32 @@ export default function Lesson57Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Oznaka limesa niza"
-            formula="\\lim_{n\\to\\infty} a_n = L"
+            formula={"\\lim_{n\\to\\infty} a_n = L"}
             note={'Čita se: \u201Eniz a\u2099 teži broju L kada n teži beskonačnosti\u201C.'}
           />
           <FormulaCard
             title="Oznaka limesa funkcije"
-            formula="\\lim_{x\\to a} f(x) = L"
+            formula={"\\lim_{x\\to a} f(x) = L"}
             note={'Čita se: \u201Ef(x) teži broju L kada x teži broju a\u201C.'}
           />
           <FormulaCard
             title="Račun sa limesima"
-            formula="\\lim(f \\pm g) = \\lim f \\pm \\lim g, \\qquad \\lim(fg) = (\\lim f)(\\lim g)"
+            formula={"\\lim(f \\pm g) = \\lim f \\pm \\lim g, \\qquad \\lim(fg) = (\\lim f)(\\lim g)"}
             note={'Ako limesi postoje, sabiranje, oduzimanje i množenje rade \u201Enormalno\u201C.'}
           />
           <FormulaCard
             title="Deljenje je dozvoljeno uz uslov"
-            formula="\\lim \\frac{f(x)}{g(x)} = \\frac{\\lim f(x)}{\\lim g(x)}, \\qquad \\lim g(x) \\neq 0"
+            formula={"\\lim \\frac{f(x)}{g(x)} = \\frac{\\lim f(x)}{\\lim g(x)}, \\qquad \\lim g(x) \\neq 0"}
             note="Ovo pravilo često koristiš tek posle pojednostavljenja izraza."
           />
           <FormulaCard
             title="Brzi test na beskonačnosti"
-            formula="\\deg P < \\deg Q \\Rightarrow 0,\\quad \\deg P = \\deg Q \\Rightarrow \\frac{a_m}{b_m},\\quad \\deg P > \\deg Q \\Rightarrow \\text{nema HA}"
+            formula={"\\deg P < \\deg Q \\Rightarrow 0,\\quad \\deg P = \\deg Q \\Rightarrow \\frac{a_m}{b_m},\\quad \\deg P > \\deg Q \\Rightarrow \\text{nema HA}"}
             note="Kod racionalnih funkcija limes na beskonačnosti zavisi samo od poređenja stepena u brojocu i imeniocu."
           />
           <FormulaCard
             title="Kriterijumi za asimptote"
-            formula="x=a \\text{ vert. as.} \\Leftrightarrow \\lim_{x\\to a^\\pm} f(x)=\\pm\\infty \\qquad y=L \\text{ horiz. as.} \\Leftrightarrow \\lim_{x\\to\\pm\\infty} f(x)=L"
+            formula={"x=a \\text{ vert. as.} \\Leftrightarrow \\lim_{x\\to a^\\pm} f(x)=\\pm\\infty \\qquad y=L \\text{ horiz. as.} \\Leftrightarrow \\lim_{x\\to\\pm\\infty} f(x)=L"}
             note="Ovi kriterijumi povezuju limes sa geometrijskom slikom grafa."
           />
         </div>

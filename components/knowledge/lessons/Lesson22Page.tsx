@@ -331,7 +331,7 @@ export default function Lesson22Page() {
           />
           <FormulaCard
             title="Parabola dodiruje osu odozgo"
-            formula="f(x)\\ge 0 \\text{ za svaki } x\\in\\mathbb{R},\\quad f(x)=0 \\text{ samo u } x_0"
+            formula={"f(x)\\ge 0 \\text{ za svaki } x\\in\\mathbb{R},\\quad f(x)=0 \\text{ samo u } x_0"}
             note={
               <>
                 <InlineMath>{"\\Delta=0"}</InlineMath>,{" "}
@@ -348,7 +348,7 @@ export default function Lesson22Page() {
           />
           <FormulaCard
             title="Parabola dodiruje osu odozdo"
-            formula="f(x)\\le 0 \\text{ za svaki } x\\in\\mathbb{R},\\quad f(x)=0 \\text{ samo u } x_0"
+            formula={"f(x)\\le 0 \\text{ za svaki } x\\in\\mathbb{R},\\quad f(x)=0 \\text{ samo u } x_0"}
             note={
               <>
                 <InlineMath>{"\\Delta=0"}</InlineMath>,{" "}
@@ -624,12 +624,12 @@ export default function Lesson22Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Standardni oblik"
-            formula="ax^2+bx+c \\gtrless 0, \\qquad a\\ne 0"
+            formula={"ax^2+bx+c \\gtrless 0, \\qquad a\\ne 0"}
             note="Bez ovog sređivanja ne možeš pouzdano čitati koeficijente i znak parabole."
           />
           <FormulaCard
             title="Diskriminanta"
-            formula="\\Delta=b^2-4ac"
+            formula={"\\Delta=b^2-4ac"}
             note={
               <>
                 <InlineMath>{"\\Delta>0"}</InlineMath>: dve nule,{" "}
@@ -640,17 +640,17 @@ export default function Lesson22Page() {
           />
           <FormulaCard
             title="Nule"
-            formula="x_{1,2}=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}"
+            formula={"x_{1,2}=\\frac{-b\\pm\\sqrt{\\Delta}}{2a}"}
             note="Kod nejednačina su nule prelomne tačke na brojevnoj pravoj."
           />
           <FormulaCard
             title={"Parabola naviše (a > 0)"}
-            formula="\\text{pozitivno spolja, negativno unutra}"
+            formula={"\\text{pozitivno spolja, negativno unutra}"}
             note={<>Važi kada postoje dve realne nule <InlineMath>{"x_1<x_2"}</InlineMath>.</>}
           />
           <FormulaCard
             title={"Parabola naniže (a < 0)"}
-            formula="\\text{pozitivno unutra, negativno spolja}"
+            formula={"\\text{pozitivno unutra, negativno spolja}"}
             note={<>Ovo je potpuno obrnuto od slučaja <InlineMath>{"a>0"}</InlineMath>.</>}
           />
           <FormulaCard

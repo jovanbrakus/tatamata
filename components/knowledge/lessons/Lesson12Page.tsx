@@ -782,17 +782,17 @@ export default function Lesson12Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Sabiranje i oduzimanje"
-            formula="\\frac{A}{B}\\pm \\frac{C}{D} = \\frac{AD\\pm BC}{BD}"
+            formula={"\\frac{A}{B}\\pm \\frac{C}{D} = \\frac{AD\\pm BC}{BD}"}
             note="U praksi se ovo radi preko NZS-a, ne slepo preko proizvoda, jer NZS često daje kraći izraz."
           />
           <FormulaCard
             title="Množenje"
-            formula="\\frac{A}{B}\\cdot \\frac{C}{D} = \\frac{AC}{BD}"
+            formula={"\\frac{A}{B}\\cdot \\frac{C}{D} = \\frac{AC}{BD}"}
             note="Množeš brojilac sa brojiocem, a imenilac sa imeniocem, ali pre toga proveri da li nešto može da se skrati nakon faktorisanja."
           />
           <FormulaCard
             title="Deljenje"
-            formula="\\frac{A}{B}:\\frac{C}{D} = \\frac{A}{B}\\cdot\\frac{D}{C}"
+            formula={"\\frac{A}{B}:\\frac{C}{D} = \\frac{A}{B}\\cdot\\frac{D}{C}"}
             note="Deljenje razlomkom zamenjuješ množenjem recipročnim razlomkom. Ovde dodatno moraš proveriti da drugi razlomak nije jednak nuli."
           />
         </div>
@@ -1028,39 +1028,39 @@ export default function Lesson12Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Oblik izraza"
-            formula="\\frac{P(x)}{Q(x)},\\qquad Q(x)\\neq 0"
+            formula={"\\frac{P(x)}{Q(x)},\\qquad Q(x)\\neq 0"}
           />
           <FormulaCard
             title="Domen"
-            formula="Q(x)=0 \\Longrightarrow \\text{te vrednosti isključuješ}"
+            formula={"Q(x)=0 \\Longrightarrow \\text{te vrednosti isključuješ}"}
           />
           <FormulaCard
             title="Sabiranje i oduzimanje"
-            formula="\\frac{A}{B}\\pm\\frac{C}{D} = \\frac{AD\\pm BC}{BD}"
+            formula={"\\frac{A}{B}\\pm\\frac{C}{D} = \\frac{AD\\pm BC}{BD}"}
           />
           <FormulaCard
             title="Množenje"
-            formula="\\frac{A}{B}\\cdot\\frac{C}{D} = \\frac{AC}{BD}"
+            formula={"\\frac{A}{B}\\cdot\\frac{C}{D} = \\frac{AC}{BD}"}
           />
           <FormulaCard
             title="Deljenje"
-            formula="\\frac{A}{B}:\\frac{C}{D} = \\frac{A}{B}\\cdot\\frac{D}{C}"
+            formula={"\\frac{A}{B}:\\frac{C}{D} = \\frac{A}{B}\\cdot\\frac{D}{C}"}
           />
           <FormulaCard
             title="Skraćivanje"
-            formula="\\frac{A\\cdot K}{B\\cdot K}=\\frac{A}{B},\\qquad K\\neq 0"
+            formula={"\\frac{A\\cdot K}{B\\cdot K}=\\frac{A}{B},\\qquad K\\neq 0"}
           />
           <FormulaCard
             title="NZS imenilaca"
-            formula="\\text{NZS uzima svaki faktor sa najvećim potrebnim stepenom}"
+            formula={"\\text{NZS uzima svaki faktor sa najvećim potrebnim stepenom}"}
           />
           <FormulaCard
             title="Dvojni razlomak"
-            formula="\\frac{\\frac{A}{B}}{\\frac{C}{D}}=\\frac{A}{B}\\cdot\\frac{D}{C}"
+            formula={"\\frac{\\frac{A}{B}}{\\frac{C}{D}}=\\frac{A}{B}\\cdot\\frac{D}{C}"}
           />
           <FormulaCard
             title="Red rada"
-            formula="\\text{domen} \\rightarrow \\text{faktorizacija} \\rightarrow \\text{operacija} \\rightarrow \\text{skraćivanje}"
+            formula={"\\text{domen} \\rightarrow \\text{faktorizacija} \\rightarrow \\text{operacija} \\rightarrow \\text{skraćivanje}"}
           />
         </div>
       </LessonSection>

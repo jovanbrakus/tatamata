@@ -761,7 +761,7 @@ export default function Lesson51Page() {
           />
           <FormulaCard
             title="Rastojanje centra od prave"
-            formula="\\frac{|Aa+Bb+C|}{\\sqrt{A^2+B^2}}=r"
+            formula={"\\frac{|Aa+Bb+C|}{\\sqrt{A^2+B^2}}=r"}
             note={
               <>
                 Osnovni uslov da prava{" "}
@@ -772,7 +772,7 @@ export default function Lesson51Page() {
           />
           <FormulaCard
             title="Familija pravih"
-            formula="Ax+By+\lambda=0"
+            formula={"Ax+By+\lambda=0"}
             note={
               <>
                 Ako su tangente paralelne zadatoj pravoj, koeficijenti{" "}
@@ -795,7 +795,7 @@ export default function Lesson51Page() {
           />
           <FormulaCard
             title="Diskriminanta"
-            formula="\Delta=0"
+            formula={"\Delta=0"}
             note="Kada je prava data preko nepoznatog nagiba ili parametra, zamena u jednačinu kružnice i uslov Delta=0 često daju najkraći račun."
           />
         </div>

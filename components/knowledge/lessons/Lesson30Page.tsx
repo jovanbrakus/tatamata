@@ -648,11 +648,11 @@ export default function Lesson30Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Osnovni oblik"
-            formula="y=\log_a x,\qquad a>0,\ a\ne 1,\ x>0"
+            formula={"y=\log_a x,\qquad a>0,\ a\ne 1,\ x>0"}
           />
           <FormulaCard
             title="Domen i vrednosti"
-            formula="D=(0,\infty),\qquad V=\mathbb{R}"
+            formula={"D=(0,\infty),\qquad V=\mathbb{R}"}
           />
           <FormulaCard
             title="Vertikalna asimptota"
@@ -660,15 +660,15 @@ export default function Lesson30Page() {
           />
           <FormulaCard
             title="Smer zavisi od baze"
-            formula="a>1 \Rightarrow \text{rastuca},\qquad 0<a<1 \Rightarrow \text{opadajuca}"
+            formula={"a>1 \Rightarrow \text{rastuca},\qquad 0<a<1 \Rightarrow \text{opadajuca}"}
           />
           <FormulaCard
             title="Tri najbrze tacke za skicu"
-            formula="(1,0),\quad (a,1),\quad \left(\frac{1}{a},-1\right)"
+            formula={"(1,0),\quad (a,1),\quad \left(\frac{1}{a},-1\right)"}
           />
           <FormulaCard
             title="Pomerena funkcija"
-            formula="y=\log_a(x-p)+q,\qquad x>p,\qquad x=p"
+            formula={"y=\log_a(x-p)+q,\qquad x>p,\qquad x=p"}
             note="Domen i asimptota se citaju iz argumenta."
           />
         </div>

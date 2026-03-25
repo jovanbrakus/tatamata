@@ -1066,7 +1066,7 @@ export default function Lesson52Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Elipsa u standardnom položaju"
-            formula="\\frac{x^2}{a^2}+\\frac{y^2}{b^2}=1"
+            formula={"\\frac{x^2}{a^2}+\\frac{y^2}{b^2}=1"}
             note="Iz imenilaca čitaš poluose. Veći imenilac pokazuje dužu osu."
           />
           <FormulaCard
@@ -1087,7 +1087,7 @@ export default function Lesson52Page() {
           />
           <FormulaCard
             title="Tangenta u poznatoj tački"
-            formula="\\frac{x x_0}{a^2}+\\frac{y y_0}{b^2}=1"
+            formula={"\\frac{x x_0}{a^2}+\\frac{y y_0}{b^2}=1"}
             note={
               <>
                 Najkraći način da napišeš tangentu u tački{" "}

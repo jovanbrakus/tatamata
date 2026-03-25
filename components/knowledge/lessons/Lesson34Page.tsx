@@ -251,7 +251,7 @@ export default function Lesson34Page() {
         <div className={s.grid2}>
           <FormulaCard
             title="Fundamentalni identitet"
-            formula="\\sin^2 x + \\cos^2 x = 1"
+            formula={"\\sin^2 x + \\cos^2 x = 1"}
             note={
               <>
                 Ovaj identitet dolazi iz jednacine jedinicne kruznice{" "}
@@ -264,12 +264,12 @@ export default function Lesson34Page() {
           />
           <FormulaCard
             title="Odnos tangensa i kotangensa"
-            formula="\\operatorname{tg} x = \\frac{\\sin x}{\\cos x}, \\qquad \\operatorname{ctg} x = \\frac{\\cos x}{\\sin x}"
+            formula={"\\operatorname{tg} x = \\frac{\\sin x}{\\cos x}, \\qquad \\operatorname{ctg} x = \\frac{\\cos x}{\\sin x}"}
             note="Ove relacije govore da tangens i kotangens nisu nove izolovane funkcije, vec odnosi izmedju sinusa i kosinusa."
           />
           <FormulaCard
             title="Identitet za tangens"
-            formula="1 + \\operatorname{tg}^2 x = \\frac{1}{\\cos^2 x}, \\qquad \\cos x \\ne 0"
+            formula={"1 + \\operatorname{tg}^2 x = \\frac{1}{\\cos^2 x}, \\qquad \\cos x \\ne 0"}
             note={
               <>
                 Dobija se deljenjem fundamentalnog identiteta sa{" "}
@@ -280,7 +280,7 @@ export default function Lesson34Page() {
           />
           <FormulaCard
             title="Identitet za kotangens"
-            formula="1 + \\operatorname{ctg}^2 x = \\frac{1}{\\sin^2 x}, \\qquad \\sin x \\ne 0"
+            formula={"1 + \\operatorname{ctg}^2 x = \\frac{1}{\\sin^2 x}, \\qquad \\sin x \\ne 0"}
             note={
               <>
                 Dobija se deljenjem fundamentalnog identiteta sa{" "}
@@ -295,12 +295,12 @@ export default function Lesson34Page() {
         <div className={s.grid2} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Parnost"
-            formula="\\sin(-x)=-\\sin x,\\quad \\cos(-x)=\\cos x,\\quad \\operatorname{tg}(-x)=-\\operatorname{tg}x,\\quad \\operatorname{ctg}(-x)=-\\operatorname{ctg}x"
+            formula={"\\sin(-x)=-\\sin x,\\quad \\cos(-x)=\\cos x,\\quad \\operatorname{tg}(-x)=-\\operatorname{tg}x,\\quad \\operatorname{ctg}(-x)=-\\operatorname{ctg}x"}
             note="Parnost je vazna kod negativnih uglova. Sinus, tangens i kotangens su neparne funkcije, a kosinus je parna funkcija."
           />
           <FormulaCard
             title="Periodicnost"
-            formula="\\sin(x+360^\\circ k)=\\sin x,\\; \\cos(x+360^\\circ k)=\\cos x,\\; \\operatorname{tg}(x+180^\\circ k)=\\operatorname{tg}x"
+            formula={"\\sin(x+360^\\circ k)=\\sin x,\\; \\cos(x+360^\\circ k)=\\cos x,\\; \\operatorname{tg}(x+180^\\circ k)=\\operatorname{tg}x"}
             note="Ako je ugao prevelik, prvo ga vrati u jedan puni krug ili jedan polukrug za tangens i kotangens. Ovo cesto skracuje zadatak na jednu liniju."
           />
         </div>
@@ -735,32 +735,32 @@ export default function Lesson34Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Drugi kvadrant"
-            formula="\\sin(180^\\circ-\\alpha)=\\sin\\alpha,\\quad \\cos(180^\\circ-\\alpha)=-\\cos\\alpha,\\quad \\operatorname{tg}(180^\\circ-\\alpha)=-\\operatorname{tg}\\alpha"
+            formula={"\\sin(180^\\circ-\\alpha)=\\sin\\alpha,\\quad \\cos(180^\\circ-\\alpha)=-\\cos\\alpha,\\quad \\operatorname{tg}(180^\\circ-\\alpha)=-\\operatorname{tg}\\alpha"}
             note="Funkcija ostaje ista, ali znak dolazi iz drugog kvadranta."
           />
           <FormulaCard
             title="Treci kvadrant"
-            formula="\\sin(180^\\circ+\\alpha)=-\\sin\\alpha,\\quad \\cos(180^\\circ+\\alpha)=-\\cos\\alpha,\\quad \\operatorname{tg}(180^\\circ+\\alpha)=\\operatorname{tg}\\alpha"
+            formula={"\\sin(180^\\circ+\\alpha)=-\\sin\\alpha,\\quad \\cos(180^\\circ+\\alpha)=-\\cos\\alpha,\\quad \\operatorname{tg}(180^\\circ+\\alpha)=\\operatorname{tg}\\alpha"}
             note="Ovde i sinus i kosinus dobijaju minus, dok tangens i kotangens ostaju pozitivni."
           />
           <FormulaCard
             title="Cetvrti kvadrant"
-            formula="\\sin(360^\\circ-\\alpha)=-\\sin\\alpha,\\quad \\cos(360^\\circ-\\alpha)=\\cos\\alpha,\\quad \\operatorname{tg}(360^\\circ-\\alpha)=-\\operatorname{tg}\\alpha"
+            formula={"\\sin(360^\\circ-\\alpha)=-\\sin\\alpha,\\quad \\cos(360^\\circ-\\alpha)=\\cos\\alpha,\\quad \\operatorname{tg}(360^\\circ-\\alpha)=-\\operatorname{tg}\\alpha"}
             note="Kada je ugao neposredno ispod pozitivne x-ose, kosinus ostaje pozitivan."
           />
           <FormulaCard
             title="Komplementni uglovi"
-            formula="\\sin(90^\\circ-\\alpha)=\\cos\\alpha,\\quad \\cos(90^\\circ-\\alpha)=\\sin\\alpha,\\quad \\operatorname{tg}(90^\\circ-\\alpha)=\\operatorname{ctg}\\alpha"
+            formula={"\\sin(90^\\circ-\\alpha)=\\cos\\alpha,\\quad \\cos(90^\\circ-\\alpha)=\\sin\\alpha,\\quad \\operatorname{tg}(90^\\circ-\\alpha)=\\operatorname{ctg}\\alpha"}
             note="Kofunkcije nastaju jer posmatras isti trougao iz ugla koji je dopunski do 90\u00B0."
           />
           <FormulaCard
             title="Oblik 90\u00B0 + \u03B1"
-            formula="\\sin(90^\\circ+\\alpha)=\\cos\\alpha,\\quad \\cos(90^\\circ+\\alpha)=-\\sin\\alpha,\\quad \\operatorname{tg}(90^\\circ+\\alpha)=-\\operatorname{ctg}\\alpha"
+            formula={"\\sin(90^\\circ+\\alpha)=\\cos\\alpha,\\quad \\cos(90^\\circ+\\alpha)=-\\sin\\alpha,\\quad \\operatorname{tg}(90^\\circ+\\alpha)=-\\operatorname{ctg}\\alpha"}
             note="Ovde se funkcija menja u kofunkciju, a znak uzimas iz drugog kvadranta."
           />
           <FormulaCard
             title="Oblici 270\u00B0 \u00B1 \u03B1"
-            formula="\\sin(270^\\circ-\\alpha)=-\\cos\\alpha,\\; \\cos(270^\\circ-\\alpha)=-\\sin\\alpha,\\; \\sin(270^\\circ+\\alpha)=-\\cos\\alpha,\\; \\cos(270^\\circ+\\alpha)=\\sin\\alpha"
+            formula={"\\sin(270^\\circ-\\alpha)=-\\cos\\alpha,\\; \\cos(270^\\circ-\\alpha)=-\\sin\\alpha,\\; \\sin(270^\\circ+\\alpha)=-\\cos\\alpha,\\; \\cos(270^\\circ+\\alpha)=\\sin\\alpha"}
             note="Ovi oblici deluju teze, ali se i oni resavaju istim principom: kvadrant plus kofunkcija."
           />
         </div>

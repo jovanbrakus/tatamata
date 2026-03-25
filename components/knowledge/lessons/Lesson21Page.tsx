@@ -167,7 +167,7 @@ export default function Lesson21Page() {
         <div className={s.grid2} style={{ marginTop: 16 }}>
           <FormulaCard
             title="Zbir korenova"
-            formula="x_1+x_2=-\\frac{b}{a}"
+            formula={"x_1+x_2=-\\frac{b}{a}"}
             note={
               <>
                 Koeficijent uz <InlineMath>{"x"}</InlineMath> nosi informaciju
@@ -177,7 +177,7 @@ export default function Lesson21Page() {
           />
           <FormulaCard
             title="Proizvod korenova"
-            formula="x_1x_2=\\frac{c}{a}"
+            formula={"x_1x_2=\\frac{c}{a}"}
             note="Slobodni član i vodeći koeficijent zajedno određuju proizvod korenova."
           />
         </div>
@@ -256,7 +256,7 @@ export default function Lesson21Page() {
           />
           <FormulaCard
             title="Zbir recipročnih vrednosti"
-            formula="\\frac{1}{x_1}+\\frac{1}{x_2}=\\frac{x_1+x_2}{x_1x_2}=\\frac{s}{p}, \\qquad p\\neq 0"
+            formula={"\\frac{1}{x_1}+\\frac{1}{x_2}=\\frac{x_1+x_2}{x_1x_2}=\\frac{s}{p}, \\qquad p\\neq 0"}
             note="Kad god vidiš recipročnu transformaciju, prvo proveri da proizvod nije nula. Ako je jedan koren nula, recipročna vrednost ne postoji."
           />
           <FormulaCard
@@ -629,12 +629,12 @@ export default function Lesson21Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Zbir korenova"
-            formula="x_1+x_2=-\\frac{b}{a}"
+            formula={"x_1+x_2=-\\frac{b}{a}"}
             note="Prva stvar koju računaš čim vidiš kvadratnu jednačinu."
           />
           <FormulaCard
             title="Proizvod korenova"
-            formula="x_1x_2=\\frac{c}{a}"
+            formula={"x_1x_2=\\frac{c}{a}"}
             note="Odmah ti govori mnogo i o znaku korenova."
           />
           <FormulaCard
@@ -649,7 +649,7 @@ export default function Lesson21Page() {
           />
           <FormulaCard
             title="Recipročni zbir"
-            formula="\\frac{1}{x_1}+\\frac{1}{x_2}=\\frac{s}{p}, \\qquad p\\neq 0"
+            formula={"\\frac{1}{x_1}+\\frac{1}{x_2}=\\frac{s}{p}, \\qquad p\\neq 0"}
             note="Ne koristi se ako je jedan koren nula."
           />
           <FormulaCard

@@ -295,7 +295,7 @@ export default function Lesson10Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Moivreova formula za stepene"
-            formula="\\left[r(\\cos \\varphi + i\\sin \\varphi)\\right]^n = r^n(\\cos n\\varphi + i\\sin n\\varphi)"
+            formula={"\\left[r(\\cos \\varphi + i\\sin \\varphi)\\right]^n = r^n(\\cos n\\varphi + i\\sin n\\varphi)"}
             note={
               <>
                 Modul ide na <InlineMath>{"n"}</InlineMath>-ti stepen, a ugao se
@@ -305,7 +305,7 @@ export default function Lesson10Page() {
           />
           <FormulaCard
             title="Formula za n-te korene"
-            formula="z_k = \\sqrt[n]{r}\\left(\\cos \\frac{\\varphi+2k\\pi}{n} + i\\sin \\frac{\\varphi+2k\\pi}{n}\\right), \\quad k=0,1,\\dots,n-1"
+            formula={"z_k = \\sqrt[n]{r}\\left(\\cos \\frac{\\varphi+2k\\pi}{n} + i\\sin \\frac{\\varphi+2k\\pi}{n}\\right), \\quad k=0,1,\\dots,n-1"}
             note={
               <>
                 Za nenulti broj dobijaš tačno{" "}
@@ -315,7 +315,7 @@ export default function Lesson10Page() {
           />
           <FormulaCard
             title="Geometrijski raspored korena"
-            formula="\\frac{2\\pi}{n}"
+            formula={"\\frac{2\\pi}{n}"}
             note={
               <>
                 Svi koreni imaju isti modul{" "}
@@ -509,39 +509,39 @@ export default function Lesson10Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Trigonometrijski oblik"
-            formula="z = r(\\cos \\varphi+i\\sin \\varphi)"
+            formula={"z = r(\\cos \\varphi+i\\sin \\varphi)"}
           />
           <FormulaCard
             title="Modul"
-            formula="r=|z|=\\sqrt{a^2+b^2}"
+            formula={"r=|z|=\\sqrt{a^2+b^2}"}
           />
           <FormulaCard
             title="Veza sa koordinatama"
-            formula="a=r\\cos \\varphi,\\qquad b=r\\sin \\varphi"
+            formula={"a=r\\cos \\varphi,\\qquad b=r\\sin \\varphi"}
           />
           <FormulaCard
             title="Moivreova formula"
-            formula="z^n=r^n(\\cos n\\varphi+i\\sin n\\varphi)"
+            formula={"z^n=r^n(\\cos n\\varphi+i\\sin n\\varphi)"}
           />
           <FormulaCard
             title="n-ti koreni"
-            formula="z_k=\\sqrt[n]{r}\\left(\\cos \\frac{\\varphi+2k\\pi}{n}+i\\sin \\frac{\\varphi+2k\\pi}{n}\\right)"
+            formula={"z_k=\\sqrt[n]{r}\\left(\\cos \\frac{\\varphi+2k\\pi}{n}+i\\sin \\frac{\\varphi+2k\\pi}{n}\\right)"}
           />
           <FormulaCard
             title="Razmak korena"
-            formula="\\Delta \\varphi=\\frac{2\\pi}{n}"
+            formula={"\\Delta \\varphi=\\frac{2\\pi}{n}"}
           />
           <FormulaCard
             title="Opšti argument"
-            formula="\\varphi+2k\\pi,\\qquad k\\in\\mathbb{Z}"
+            formula={"\\varphi+2k\\pi,\\qquad k\\in\\mathbb{Z}"}
           />
           <FormulaCard
             title="Jedinična kružnica"
-            formula="|z|=1 \\Longrightarrow z=\\cos \\varphi+i\\sin \\varphi"
+            formula={"|z|=1 \\Longrightarrow z=\\cos \\varphi+i\\sin \\varphi"}
           />
           <FormulaCard
             title="Poseban slučaj za realne rezultate"
-            formula="z^n \\in \\mathbb{R} \\Longleftrightarrow \\sin(n\\varphi)=0"
+            formula={"z^n \\in \\mathbb{R} \\Longleftrightarrow \\sin(n\\varphi)=0"}
             note={'Ovo je veoma korisno u zadacima sa uslovom \u201Erealan\u201C ili \u201E\u010Disto imaginaran\u201C.'}
           />
         </div>

@@ -329,17 +329,17 @@ export default function Lesson49Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Sredina duži"
-            formula="M\\left(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2}\\right)"
+            formula={"M\\left(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2}\\right)"}
             note="Pola puta po x i pola puta po y. To je prirodno: sredina je podjednako udaljena od oba kraja."
           />
           <FormulaCard
             title="Podela u razmeri m:n"
-            formula="P\\left(\\frac{nx_1+mx_2}{m+n},\\frac{ny_1+my_2}{m+n}\\right)"
+            formula={"P\\left(\\frac{nx_1+mx_2}{m+n},\\frac{ny_1+my_2}{m+n}\\right)"}
             note="Najvažnija zamka: uz A ide suprotni koeficijent n, a uz B suprotni koeficijent m."
           />
           <FormulaCard
             title="Težište trougla"
-            formula="G\\left(\\frac{x_1+x_2+x_3}{3},\\frac{y_1+y_2+y_3}{3}\\right)"
+            formula={"G\\left(\\frac{x_1+x_2+x_3}{3},\\frac{y_1+y_2+y_3}{3}\\right)"}
             note="Prosek sva tri temena, jer se težište dobija presekom medijana."
           />
         </div>
@@ -642,27 +642,27 @@ export default function Lesson49Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Rastojanje"
-            formula="d(A,B)=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}"
+            formula={"d(A,B)=\\sqrt{(x_2-x_1)^2+(y_2-y_1)^2}"}
             note="Prepoznaješ je čim treba dužina, poluprečnik ili provera jednakih rastojanja."
           />
           <FormulaCard
             title="Sredina duži"
-            formula="M\\left(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2}\\right)"
+            formula={"M\\left(\\frac{x_1+x_2}{2},\\frac{y_1+y_2}{2}\\right)"}
             note="Česta je u zadacima o simetriji, centrima i medijanama."
           />
           <FormulaCard
             title="Podela duži"
-            formula="P\\left(\\frac{nx_1+mx_2}{m+n},\\frac{ny_1+my_2}{m+n}\\right)"
+            formula={"P\\left(\\frac{nx_1+mx_2}{m+n},\\frac{ny_1+my_2}{m+n}\\right)"}
             note="Najopasnija je zamena koeficijenata. Uvek proveri kojoj tački P treba da bude bliža."
           />
           <FormulaCard
             title="Težište"
-            formula="G\\left(\\frac{x_1+x_2+x_3}{3},\\frac{y_1+y_2+y_3}{3}\\right)"
+            formula={"G\\left(\\frac{x_1+x_2+x_3}{3},\\frac{y_1+y_2+y_3}{3}\\right)"}
             note="Koristi se kada zadatak pominje medijane, ravnotežu ili centar trougla."
           />
           <FormulaCard
             title="Površina"
-            formula="S=\\frac{1}{2}\\left|x_1(y_2-y_3)+x_2(y_3-y_1)+x_3(y_1-y_2)\\right|"
+            formula={"S=\\frac{1}{2}\\left|x_1(y_2-y_3)+x_2(y_3-y_1)+x_3(y_1-y_2)\\right|"}
             note={'Naročito korisna kada baze i visine nisu \u201Ena prvi pogled\u201C vidljive.'}
           />
           <FormulaCard

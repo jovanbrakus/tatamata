@@ -149,6 +149,19 @@ export default function ComplexPlaneLab() {
     const mx = (x: number) => cx + x * scale;
     const my = (y: number) => cy - y * scale;
 
+    // Pick a nice grid step so we get ~5-10 lines per half-axis
+    const niceStep = (range: number): number => {
+      const raw = range / 6;
+      const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+      const norm = raw / mag;
+      if (norm <= 1) return mag;
+      if (norm <= 2) return 2 * mag;
+      if (norm <= 5) return 5 * mag;
+      return 10 * mag;
+    };
+    const step = niceStep(maxC);
+    const gridMax = Math.ceil(maxC / step) * step;
+
     // Background
     ctx.fillStyle = "rgba(8, 4, 2, 0.95)";
     ctx.fillRect(0, 0, width, height);
@@ -156,9 +169,10 @@ export default function ComplexPlaneLab() {
     // Grid
     ctx.strokeStyle = "rgba(255, 255, 255, 0.06)";
     ctx.lineWidth = 1;
-    for (let i = -Math.ceil(maxC); i <= Math.ceil(maxC); i++) {
-      ctx.beginPath(); ctx.moveTo(mx(i), margin * 0.55); ctx.lineTo(mx(i), height - margin * 0.55); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(margin * 0.55, my(i)); ctx.lineTo(width - margin * 0.55, my(i)); ctx.stroke();
+    for (let v = -gridMax; v <= gridMax; v += step) {
+      if (Math.abs(v) < step * 0.01) continue;
+      ctx.beginPath(); ctx.moveTo(mx(v), margin * 0.55); ctx.lineTo(mx(v), height - margin * 0.55); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(margin * 0.55, my(v)); ctx.lineTo(width - margin * 0.55, my(v)); ctx.stroke();
     }
 
     // Axes
@@ -175,10 +189,11 @@ export default function ComplexPlaneLab() {
     // Number labels
     ctx.fillStyle = "rgba(255, 255, 255, 0.32)";
     ctx.font = `500 11px ${FONT}`;
-    for (let i = -Math.ceil(maxC); i <= Math.ceil(maxC); i++) {
-      if (i === 0) continue;
-      ctx.fillText(String(i), mx(i) - 4, cy + 16);
-      ctx.fillText(String(i), cx + 8, my(i) + 4);
+    for (let v = -gridMax; v <= gridMax; v += step) {
+      if (Math.abs(v) < step * 0.01) continue;
+      const label = Number.isInteger(v) ? String(v) : v.toFixed(1);
+      ctx.fillText(label, mx(v) - 4, cy + 16);
+      ctx.fillText(label, cx + 8, my(v) + 4);
     }
 
     // Helper to draw arrows

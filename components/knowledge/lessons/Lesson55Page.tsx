@@ -690,22 +690,22 @@ export default function Lesson55Page() {
           />
           <FormulaCard
             title="Suma (kada znaš poslednji član)"
-            formula="S_n=\\frac{n(a_1+a_n)}{2}."
+            formula={"S_n=\\frac{n(a_1+a_n)}{2}."}
             note="Najpregledniji oblik kada je poslednji član poznat ili se lako dobija."
           />
           <FormulaCard
             title="Suma (preko d)"
-            formula="S_n=\\frac{n}{2}\\left(2a_1+(n-1)d\\right)."
+            formula={"S_n=\\frac{n}{2}\\left(2a_1+(n-1)d\\right)."}
             note="Odličan oblik za direktno računanje iz početnih podataka."
           />
           <FormulaCard
             title="Srednji član"
-            formula="a_k=\\frac{a_{k-1}+a_{k+1}}{2}."
+            formula={"a_k=\\frac{a_{k-1}+a_{k+1}}{2}."}
             note="Koristi za tri uzastopna člana i u zadacima sa aritmetičkim sredinama."
           />
           <FormulaCard
             title="Ubacivanje sredina"
-            formula="d=\\frac{B-A}{m+1}."
+            formula={"d=\\frac{B-A}{m+1}."}
             note="Kada između A i B umećeš m članova. Posle toga samo dodaješ d redom."
           />
         </div>

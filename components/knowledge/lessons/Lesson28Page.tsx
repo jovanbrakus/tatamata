@@ -324,17 +324,17 @@ export default function Lesson28Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="1. Ista baza: poredi eksponente"
-            formula="2^{x+1} > 2^5 \\Rightarrow x+1 > 5"
+            formula={"2^{x+1} > 2^5 \\Rightarrow x+1 > 5"}
             note="Najjednostavniji slucaj. Cela poenta je u pravilnom citanju monotonosti."
           />
           <FormulaCard
             title="2. Povezane baze: svedi na jednu osnovu"
-            formula="4^x \\ge 8^{x-1} \\Rightarrow 2^{2x} \\ge 2^{3x-3}"
+            formula={"4^x \\ge 8^{x-1} \\Rightarrow 2^{2x} \\ge 2^{3x-3}"}
             note="Najpre prevedi baze, pa tek onda uporedjuj eksponente."
           />
           <FormulaCard
             title="3. Izdvajanje faktora"
-            formula="2^{x+1}+2^x < 12 \\Rightarrow 3\\cdot 2^x < 12"
+            formula={"2^{x+1}+2^x < 12 \\Rightarrow 3\\cdot 2^x < 12"}
             note={
               <>
                 Cesto je dovoljno da iskoristis{" "}
@@ -347,7 +347,7 @@ export default function Lesson28Page() {
         <div style={{ marginTop: 16 }}>
           <FormulaCard
             title={`4. Smena: uvodis u = a^x > 0`}
-            formula="2^{2x}-5\\cdot 2^x+4 \\ge 0 \\Rightarrow u^2-5u+4 \\ge 0"
+            formula={"2^{2x}-5\\cdot 2^x+4 \\ge 0 \\Rightarrow u^2-5u+4 \\ge 0"}
             note={
               <>
                 Posle resavanja po <InlineMath>{"u"}</InlineMath> obavezno se
@@ -697,32 +697,32 @@ export default function Lesson28Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Monotonost za a > 1"
-            formula="a^{f(x)} \\square\\, a^{g(x)} \\Rightarrow f(x) \\square\\, g(x)"
+            formula={"a^{f(x)} \\square\\, a^{g(x)} \\Rightarrow f(x) \\square\\, g(x)"}
             note="Znak ostaje isti."
           />
           <FormulaCard
             title="Monotonost za 0 < a < 1"
-            formula="a^{f(x)} \\le a^{g(x)} \\Rightarrow f(x) \\ge g(x)"
+            formula={"a^{f(x)} \\le a^{g(x)} \\Rightarrow f(x) \\ge g(x)"}
             note="Znak se obrce."
           />
           <FormulaCard
             title="Povezivanje baza"
-            formula="4=2^2,\\quad 8=2^3,\\quad 9=3^2,\\quad 27=3^3"
+            formula={"4=2^2,\\quad 8=2^3,\\quad 9=3^2,\\quad 27=3^3"}
             note="Pretvori sve u isti jezik."
           />
           <FormulaCard
             title="Rastavljanje eksponenta"
-            formula="a^{x+k} = a^x \\cdot a^k"
+            formula={"a^{x+k} = a^x \\cdot a^k"}
             note="Izdvajanje zajednickog faktora."
           />
           <FormulaCard
             title="Smena"
-            formula="u = a^x, \\qquad u > 0"
+            formula={"u = a^x, \\qquad u > 0"}
             note="Nova promenljiva mora ostati pozitivna."
           />
           <FormulaCard
             title="Krajevi intervala"
-            formula=">\\,,< \\;\\text{ ne ukljucuju kraj;} \\quad \\ge\\,,\\le \\;\\text{ ukljucuju kraj.}"
+            formula={">\\,,< \\;\\text{ ne ukljucuju kraj;} \\quad \\ge\\,,\\le \\;\\text{ ukljucuju kraj.}"}
             note="Stroga i nestriktna nejednakost nisu isto."
           />
         </div>

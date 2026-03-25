@@ -299,7 +299,7 @@ export default function Lesson9Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Sabiranje i oduzimanje"
-            formula="(a + bi) \\pm (c + di) = (a \\pm c) + (b \\pm d)i"
+            formula={"(a + bi) \\pm (c + di) = (a \\pm c) + (b \\pm d)i"}
             note="Realni sa realnim, imaginarni sa imaginarnim."
           />
           <FormulaCard
@@ -314,7 +314,7 @@ export default function Lesson9Page() {
           />
           <FormulaCard
             title="Deljenje"
-            formula="\\frac{a + bi}{c + di} = \\frac{(a + bi)(c - di)}{(c + di)(c - di)} = \\frac{(ac + bd) + (bc - ad)i}{c^2 + d^2}"
+            formula={"\\frac{a + bi}{c + di} = \\frac{(a + bi)(c - di)}{(c + di)(c - di)} = \\frac{(ac + bd) + (bc - ad)i}{c^2 + d^2}"}
             note={
               <>
                 Imenilac &ldquo;racionalizuješ&rdquo; množenjem konjugovanim
@@ -333,7 +333,7 @@ export default function Lesson9Page() {
             </p>
             <MathBlock>
               {
-                "i^n = \\begin{cases} 1, & n \\equiv 0 \\pmod 4 \\\\ i, & n \\equiv 1 \\pmod 4 \\\\ -1, & n \\equiv 2 \\pmod 4 \\\\ -i, & n \\equiv 3 \\pmod 4 \\end{cases}"
+                "i^n = \\left\\{\\begin{array}{ll} 1, & n \\equiv 0 \\pmod 4 \\\\ i, & n \\equiv 1 \\pmod 4 \\\\ -1, & n \\equiv 2 \\pmod 4 \\\\ -i, & n \\equiv 3 \\pmod 4 \\end{array}\\right."
               }
             </MathBlock>
           </SectionCard>
@@ -518,27 +518,27 @@ export default function Lesson9Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Osnovni zapis"
-            formula="z = a + bi,\\qquad \\operatorname{Re}(z) = a,\\qquad \\operatorname{Im}(z) = b"
+            formula={"z = a + bi,\\qquad \\operatorname{Re}(z) = a,\\qquad \\operatorname{Im}(z) = b"}
           />
           <FormulaCard
             title="Jednakost"
-            formula="a + bi = c + di \\iff a = c \\text{ i } b = d"
+            formula={"a + bi = c + di \\iff a = c \\text{ i } b = d"}
           />
           <FormulaCard
             title="Konjugat"
-            formula="\\overline{z} = a - bi"
+            formula={"\\overline{z} = a - bi"}
           />
           <FormulaCard
             title="Modul"
-            formula="|z| = \\sqrt{a^2 + b^2}"
+            formula={"|z| = \\sqrt{a^2 + b^2}"}
           />
           <FormulaCard
             title="Veza sa konjugatom"
-            formula="z\\overline{z} = |z|^2"
+            formula={"z\\overline{z} = |z|^2"}
           />
           <FormulaCard
             title="Deljenje"
-            formula="\\frac{a + bi}{c + di} = \\frac{(ac + bd) + (bc - ad)i}{c^2 + d^2}"
+            formula={"\\frac{a + bi}{c + di} = \\frac{(ac + bd) + (bc - ad)i}{c^2 + d^2}"}
           />
           <FormulaCard
             title="Množenje"
@@ -546,11 +546,11 @@ export default function Lesson9Page() {
           />
           <FormulaCard
             title="Stepeni od i"
-            formula="i,\\ -1,\\ -i,\\ 1,\\ i,\\ -1,\\ \\dots"
+            formula={"i,\\ -1,\\ -i,\\ 1,\\ i,\\ -1,\\ \\dots"}
           />
           <FormulaCard
             title="Posebni uslovi"
-            formula="z \\in \\mathbb{R} \\iff \\operatorname{Im}(z)=0 \\qquad z \\text{ je čisto imaginaran } \\iff \\operatorname{Re}(z)=0"
+            formula={"z \\in \\mathbb{R} \\iff \\operatorname{Im}(z)=0 \\qquad z \\text{ je čisto imaginaran } \\iff \\operatorname{Re}(z)=0"}
           />
         </div>
       </LessonSection>

@@ -265,7 +265,7 @@ export default function Lesson5Page() {
           <SectionCard title="Definicija apsolutne vrednosti">
             <MathBlock>
               {
-                "|x| = \\begin{cases} x, & x\\ge 0 \\\\ -x, & x<0 \\end{cases}"
+                "|x| = \\left\\{\\begin{array}{ll} x, & x\\ge 0 \\\\ -x, & x<0 \\end{array}\\right."
               }
             </MathBlock>
             <p>
@@ -517,17 +517,17 @@ export default function Lesson5Page() {
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Mapa skupova"
-            formula="\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}"
+            formula={"\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}"}
             note="Svaki sledeći skup proširuje prethodni."
           />
           <FormulaCard
             title="Definicija preko razlomka"
-            formula="x\\in\\mathbb{Q} \\Longleftrightarrow x=\\frac{p}{q},\\ p,q\\in\\mathbb{Z},\\ q\\ne 0"
+            formula={"x\\in\\mathbb{Q} \\Longleftrightarrow x=\\frac{p}{q},\\ p,q\\in\\mathbb{Z},\\ q\\ne 0"}
             note="Ovo je glavni test za racionalnost."
           />
           <FormulaCard
             title="Komadna definicija"
-            formula="|x| = \\begin{cases} x, & x\\ge 0 \\\\ -x, & x<0 \\end{cases}"
+            formula={"|x| = \\left\\{\\begin{array}{ll} x, & x\\ge 0 \\\\ -x, & x<0 \\end{array}\\right."}
             note="Negativan broj unutar apsolutne vrednosti menja znak, ali smisao je uvek udaljenost od nule."
           />
           <FormulaCard
