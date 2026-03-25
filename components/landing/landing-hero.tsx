@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PricingSection from "./pricing-section";
 
 export default function LandingHero() {
   return (
@@ -448,62 +449,8 @@ export default function LandingHero() {
         </div>
       </section>
 
-      {/* ─── Final CTA ─── */}
-      <section className="relative py-32">
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute left-1/2 top-1/2 h-[800px] w-full -translate-x-1/2 -translate-y-1/2 bg-[#ec5b13]/20 opacity-30 blur-[150px]" />
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-          <h2 className="mb-8 text-6xl font-black text-heading md:text-7xl">
-            Tvoja{" "}
-            <span className="text-[#ec5b13]">budućnost</span>{" "}
-            počinje ovde.
-          </h2>
-          <p className="mx-auto mb-12 max-w-2xl text-xl leading-relaxed text-text-secondary">
-            Ne ostavljaj upis slučaju. Pridruži se stotinama učenika koji
-            osvajaju mesta na najboljim tehničkim fakultetima u Srbiji i regionu.
-          </p>
-
-          <div className="flex flex-col justify-center gap-6 sm:flex-row">
-            <Link
-              href="/prijava"
-              className="rounded-2xl bg-[#ec5b13] px-10 py-5 text-xl font-bold text-white shadow-[0_0_20px_rgba(236,91,19,0.2)] transition-all hover:scale-105"
-            >
-              Započni besplatnu probu
-            </Link>
-            <Link
-              href="/vezbe"
-              className="rounded-2xl border border-[var(--glass-border)] bg-[var(--tint)] px-10 py-5 text-xl font-bold text-heading transition-all hover:bg-[var(--tint-strong)]"
-            >
-              Svi paketi usluga
-            </Link>
-          </div>
-
-          <div className="mt-16 flex flex-wrap items-center justify-center gap-12 opacity-50 transition-all duration-700 grayscale hover:opacity-100 hover:grayscale-0">
-            <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-2xl">school</span>
-              <span className="font-bold">ETF</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-2xl">science</span>
-              <span className="font-bold">FON</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-2xl">settings</span>
-              <span className="font-bold">RGF</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-2xl">calculate</span>
-              <span className="font-bold">MATF</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-2xl">biotech</span>
-              <span className="font-bold">TMF</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ─── Pricing ─── */}
+      <PricingSection />
 
       {/* ─── Footer ─── */}
       <footer className="border-t border-[var(--glass-border)] bg-surface-dark py-12">
