@@ -28,7 +28,7 @@ export default function LandingHero() {
               <p className="max-w-xl text-lg leading-relaxed text-text-secondary">
                 Platforma dizajnirana za buduće inženjere. Postigni maksimalan
                 broj poena uz personalizovan plan rada, AI asistenciju i bazu od
-                preko 2000 rešenih zadataka.
+                preko 4000 rešenih zadataka.
               </p>
 
               <div className="flex flex-wrap gap-4 pt-4">
@@ -56,7 +56,7 @@ export default function LandingHero() {
                 </div>
                 <div className="h-8 w-px bg-[var(--tint-strong)]" />
                 <div className="flex items-center gap-2 text-sm text-text-secondary">
-                  <span className="text-2xl font-black text-heading">2000+</span>
+                  <span className="text-2xl font-black text-heading">4000+</span>
                   <span>rešenih zadataka</span>
                 </div>
               </div>
@@ -103,12 +103,12 @@ export default function LandingHero() {
         </div>
       </header>
 
-      {/* ─── The 2000+ Edge ─── */}
+      {/* ─── The 4000+ Edge ─── */}
       <section id="zadaci" className="relative bg-surface-dark py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mx-auto mb-20 flex max-w-3xl flex-col gap-4 text-center">
             <h2 className="text-5xl font-black text-heading">
-              The 2000+ Edge
+              The 4000+ Edge
             </h2>
             <p className="text-lg text-text-secondary">
               Najobimnija baza rešenih zadataka sa prethodnih prijemnih ispita,
@@ -276,7 +276,7 @@ export default function LandingHero() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col gap-2 rounded-2xl border border-[var(--glass-border)] bg-[var(--tint)] p-4">
                     <span className="material-symbols-outlined text-[#ec5b13]">analytics</span>
-                    <span className="text-sm font-bold text-heading">100+ lekcija</span>
+                    <span className="text-sm font-bold text-heading">50+ lekcija</span>
                   </div>
                   <div className="flex flex-col gap-2 rounded-2xl border border-[var(--glass-border)] bg-[var(--tint)] p-4">
                     <span className="material-symbols-outlined text-[#ec5b13]">description</span>
