@@ -13,13 +13,11 @@ interface LessonMeta {
 }
 
 const CATEGORY_LABELS: Record<string, string> = {
-  osnove: "Osnove",
-  brojevi: "Brojevi",
   algebra: "Algebra",
-  jednacine: "Jednacine",
-  exp_log: "Exp. i Log.",
+  jednacine: "Jednačine",
   trigonometrija: "Trigonometrija",
   geometrija: "Geometrija",
+  analiza: "Analiza",
 };
 
 export default function LessonCard({ lesson }: { lesson: LessonMeta }) {

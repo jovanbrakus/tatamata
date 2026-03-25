@@ -19,7 +19,7 @@ export default function DisciplineFilter({
   onSelect,
 }: DisciplineFilterProps) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
       {categories.map((cat) => {
         const isActive = activeCategory === cat.id;
         return (

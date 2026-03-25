@@ -46,22 +46,10 @@ export default function ZnanjePage() {
     <div className="pt-8 pb-20 px-6 lg:px-12 max-w-[1400px]">
       {/* Hero section */}
       <section className="mb-12 max-w-4xl">
-        <h1
-          className="text-5xl lg:text-6xl font-bold tracking-tight mb-4"
-          style={{
-            fontFamily: "'Space Grotesk', sans-serif",
-            background: "linear-gradient(to right, #FF6B00, #FE9D00)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-        >
-          Centar Znanja
-        </h1>
-        <p
-          className="text-[#adaaaa] text-xl max-w-2xl font-light leading-relaxed"
-          style={{ fontFamily: "'Manrope', sans-serif" }}
-        >
+        <h2 className="text-4xl font-black tracking-tight text-heading lg:text-5xl">
+          Centar <span className="text-[#ec5b13]">Znanja</span>
+        </h2>
+        <p className="mt-2 max-w-lg font-medium text-text-secondary">
           Ovladajte gradivom kroz interaktivne module. Izaberite lekciju i počnite sa istraživanjem.
         </p>
       </section>
