@@ -33,7 +33,7 @@ export default async function RootLayout({
         <link crossOrigin="" href="https://fonts.gstatic.com" rel="preconnect" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fredoka:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fredoka:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap"
         />
         <link
           rel="stylesheet"

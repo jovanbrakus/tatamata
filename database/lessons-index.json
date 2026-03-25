@@ -1,0 +1,1387 @@
+{
+  "generatedAt": "2026-03-24T17:48:23.028Z",
+  "totalLessons": 60,
+  "lessons": {
+    "1": {
+      "id": "1",
+      "lessonNumber": 1,
+      "title": "Iskazi i iskazne formule",
+      "description": "Detaljna lekcija iz matematicke logike: iskazi, iskazne formule, istinitosne tabele, De Morganovi zakoni i primena na prijemnim zadacima.",
+      "category": "osnove",
+      "topicTags": [
+        "iskazi",
+        "iskazne formule",
+        "negacija",
+        "konjunkcija",
+        "disjunkcija",
+        "implikacija",
+        "ekvivalencija",
+        "tautologija",
+        "de morganovi zakoni"
+      ],
+      "heroImage": "lesson1_iskazi_i_iskazne_formule_hero.png",
+      "sourceFile": "knowledge/lesson1.json",
+      "heroFile": "knowledge/lesson1_hero.png",
+      "readingTimeMin": 5
+    },
+    "2": {
+      "id": "2",
+      "lessonNumber": 2,
+      "title": "Teorija skupova i operacije nad skupovima",
+      "description": "Detaljna lekcija iz teorije skupova: skup, podskup, partitivni skup, unija, presek, razlika, simetricna razlika, Kartezijev proizvod i primene na intervale.",
+      "category": "osnove",
+      "topicTags": [
+        "skupovi",
+        "podskup",
+        "partitivni skup",
+        "unija",
+        "presek",
+        "razlika skupova",
+        "simetricna razlika",
+        "kartezijev proizvod",
+        "venovi dijagrami"
+      ],
+      "heroImage": "lesson2_teorija_skupova_i_operacije_nad_skupovima_hero.png",
+      "sourceFile": "knowledge/lesson2.json",
+      "heroFile": "knowledge/lesson2_hero.png",
+      "readingTimeMin": 5
+    },
+    "3": {
+      "id": "3",
+      "lessonNumber": 3,
+      "title": "Binarne relacije i njihova svojstva (ekvivalencija i poredak)",
+      "description": "Detaljna lekcija o binarnim relacijama: podskupovi Kartezijevog proizvoda, refleksivnost, simetričnost, antisimetričnost, tranzitivnost, relacije ekvivalencije, klase ekvivalencije i relacije poretka.",
+      "category": "osnove",
+      "topicTags": [
+        "binarne relacije",
+        "kartezijev proizvod",
+        "refleksivnost",
+        "simetričnost",
+        "antisimetričnost",
+        "tranzitivnost",
+        "ekvivalencija",
+        "klase ekvivalencije",
+        "parcijalni poredak",
+        "linearni poredak"
+      ],
+      "heroImage": "lesson3_binarne_relacije_i_njihova_svojstva_ekvivalencija_i_poredak_hero.png",
+      "sourceFile": "knowledge/lesson3.json",
+      "heroFile": "knowledge/lesson3_hero.png",
+      "readingTimeMin": 5
+    },
+    "4": {
+      "id": "4",
+      "lessonNumber": 4,
+      "title": "Funkcije (preslikavanja, injekcija, surjekcija, bijekcija i inverzna funkcija)",
+      "description": "Pedagoški detaljna lekcija o funkcijama: domen, kodomen, slika, injekcija, surjekcija, bijekcija, kompozicija i inverzna funkcija, uz interaktivni laboratorijum preslikavanja.",
+      "category": "osnove",
+      "topicTags": [
+        "funkcije",
+        "preslikavanje",
+        "domen",
+        "kodomen",
+        "slika funkcije",
+        "injekcija",
+        "surjekcija",
+        "bijekcija",
+        "kompozicija funkcija",
+        "inverzna funkcija"
+      ],
+      "heroImage": "lesson4_funkcije_preslikavanja_injekcija_surjekcija_bijekcija_i_inverzna_funkcija_hero.png",
+      "sourceFile": "knowledge/lesson4.json",
+      "heroFile": "knowledge/lesson4_hero.png",
+      "readingTimeMin": 5
+    },
+    "5": {
+      "id": "5",
+      "lessonNumber": 5,
+      "title": "Skupovi brojeva (N, Z, Q, R) i osnovna svojstva",
+      "description": "Pedagoški detaljna lekcija o skupovima brojeva, brojevnoj pravoj, apsolutnoj vrednosti, racionalnim i iracionalnim brojevima, kao i računanju sa razlomcima i decimalama.",
+      "category": "brojevi",
+      "topicTags": [
+        "skupovi brojeva",
+        "prirodni brojevi",
+        "celi brojevi",
+        "racionalni brojevi",
+        "iracionalni brojevi",
+        "realni brojevi",
+        "brojevna prava",
+        "apsolutna vrednost",
+        "razlomci",
+        "decimalni brojevi"
+      ],
+      "heroImage": "lesson5_skupovi_brojeva_n_z_q_r_i_osnovna_svojstva_hero.png",
+      "sourceFile": "knowledge/lesson5.json",
+      "heroFile": "knowledge/lesson5_hero.png",
+      "readingTimeMin": 5
+    },
+    "6": {
+      "id": "6",
+      "lessonNumber": 6,
+      "title": "Deljivost celih brojeva, kongruencije i Euklidov algoritam",
+      "description": "Pedagoški detaljna lekcija o deljivosti celih brojeva, prostim i složenim brojevima, NZD, NZS, kongruencijama i Euklidovom algoritmu, uz interaktivni laboratorijum.",
+      "category": "brojevi",
+      "topicTags": [
+        "deljivost",
+        "prosti brojevi",
+        "slozeni brojevi",
+        "faktorizacija",
+        "NZD",
+        "NZS",
+        "Euklidov algoritam",
+        "kongruencije",
+        "ostaci pri deljenju",
+        "poslednja cifra"
+      ],
+      "heroImage": "lesson6_deljivost_celih_brojeva_kongruencije_i_euklidov_algoritam_hero.png",
+      "sourceFile": "knowledge/lesson6.json",
+      "heroFile": "knowledge/lesson6_hero.png",
+      "readingTimeMin": 5
+    },
+    "7": {
+      "id": "7",
+      "lessonNumber": 7,
+      "title": "Razmere, proporcije i pravilo trojno",
+      "description": "Pedagoški detaljna lekcija o razmerama, proporcijama, direktnoj i obrnutoj proporcionalnosti i pravilu trojnom, uz interaktivni laboratorijum proporcionalnosti.",
+      "category": "brojevi",
+      "topicTags": [
+        "razmera",
+        "proporcija",
+        "unakrsno mnozenje",
+        "direktna proporcionalnost",
+        "obrnuta proporcionalnost",
+        "pravilo trojno",
+        "slozeno pravilo trojno",
+        "tekstualni zadaci",
+        "radnici i vreme",
+        "kapaciteti"
+      ],
+      "heroImage": "lesson7_razmere_proporcije_i_pravilo_trojno_hero.png",
+      "sourceFile": "knowledge/lesson7.json",
+      "heroFile": "knowledge/lesson7_hero.png",
+      "readingTimeMin": 5
+    },
+    "8": {
+      "id": "8",
+      "lessonNumber": 8,
+      "title": "Procentni račun, račun smesa i legura",
+      "description": "Pedagoški detaljna lekcija o procentnom računu, sukcesivnim procentualnim promenama, računima smesa i legura, uz interaktivni laboratorijum.",
+      "category": "brojevi",
+      "topicTags": [
+        "procentni racun",
+        "baza procenta",
+        "procentni iznos",
+        "sukcesivna promena",
+        "poskupljenje i pojeftinjenje",
+        "faktor promene",
+        "racun smesa",
+        "legure",
+        "koncentracija",
+        "tekstualni zadaci"
+      ],
+      "heroImage": "lesson8_procentni_racun_racun_smesa_i_legura_hero.png",
+      "sourceFile": "knowledge/lesson8.json",
+      "heroFile": "knowledge/lesson8_hero.png",
+      "readingTimeMin": 5
+    },
+    "9": {
+      "id": "9",
+      "lessonNumber": 9,
+      "title": "Kompleksni brojevi - algebarski oblik i osnovne operacije",
+      "description": "Pedagoški detaljna lekcija o kompleksnim brojevima: imaginarna jedinica, algebarski oblik, sabiranje, oduzimanje, množenje, deljenje, konjugovani broj, modul i periodičnost stepena od i.",
+      "category": "brojevi",
+      "topicTags": [
+        "kompleksni brojevi",
+        "imaginarna jedinica",
+        "algebarski oblik",
+        "sabiranje kompleksnih brojeva",
+        "mnozenje kompleksnih brojeva",
+        "deljenje konjugovanim brojem",
+        "konjugovani broj",
+        "modul kompleksnog broja",
+        "gaussova ravan",
+        "stepeni od i"
+      ],
+      "heroImage": "lesson9_kompleksni_brojevi_algebarski_oblik_i_osnovne_operacije_hero.png",
+      "sourceFile": "knowledge/lesson9.json",
+      "heroFile": "knowledge/lesson9_hero.png",
+      "readingTimeMin": 5
+    },
+    "10": {
+      "id": "10",
+      "lessonNumber": 10,
+      "title": "Trigonometrijski oblik kompleksnog broja i Moivreova formula",
+      "description": "Pedagoški detaljna lekcija o trigonometrijskom obliku kompleksnog broja, modulu i argumentu, Moivreovoj formuli za stepene i formuli za n-te korene kompleksnog broja.",
+      "category": "brojevi",
+      "topicTags": [
+        "trigonometrijski oblik kompleksnog broja",
+        "modul i argument",
+        "moivreova formula",
+        "moavrova formula",
+        "stepenovanje kompleksnih brojeva",
+        "n-ti koreni kompleksnog broja",
+        "gaussova ravan",
+        "polarni zapis",
+        "prijemni zadaci",
+        "prelaz u algebarski oblik"
+      ],
+      "heroImage": "lesson10_trigonometrijski_oblik_kompleksnog_broja_i_moivreova_formula_hero.png",
+      "sourceFile": "knowledge/lesson10.json",
+      "heroFile": "knowledge/lesson10_hero.png",
+      "readingTimeMin": 5
+    },
+    "11": {
+      "id": "11",
+      "lessonNumber": 11,
+      "title": "Transformacije algebarskih izraza i rastavljanje na faktore",
+      "description": "Pedagoški detaljna lekcija o transformacijama algebarskih izraza i rastavljanju na faktore: zajednički faktor, kvadrat i kub binoma, razlika kvadrata, zbir i razlika kubova i metod grupisanja.",
+      "category": "algebra",
+      "topicTags": [
+        "rastavljanje na faktore",
+        "transformacije algebarskih izraza",
+        "zajednicki faktor",
+        "kvadrat binoma",
+        "kub binoma",
+        "razlika kvadrata",
+        "zbir kubova",
+        "razlika kubova",
+        "grupisanje",
+        "prijemni zadaci"
+      ],
+      "heroImage": "lesson11_transformacije_algebarskih_izraza_i_rastavljanje_na_faktore_hero.png",
+      "sourceFile": "knowledge/lesson11.json",
+      "heroFile": "knowledge/lesson11_hero.png",
+      "readingTimeMin": 5
+    },
+    "12": {
+      "id": "12",
+      "lessonNumber": 12,
+      "title": "Racionalni algebarski izrazi i operacije sa razlomcima",
+      "description": "Pedagoški detaljna lekcija o racionalnim algebarskim izrazima: domen, skraćivanje, NZS imenilaca, sabiranje, oduzimanje, množenje, deljenje i dvojni razlomci.",
+      "category": "algebra",
+      "topicTags": [
+        "racionalni algebarski izrazi",
+        "algebarski razlomci",
+        "domen",
+        "nzs imenilaca",
+        "sabiranje algebarskih razlomaka",
+        "oduzimanje algebarskih razlomaka",
+        "mnozenje algebarskih razlomaka",
+        "deljenje algebarskih razlomaka",
+        "dvojni razlomci",
+        "prijemni zadaci"
+      ],
+      "heroImage": "lesson12_racionalni_algebarski_izrazi_i_operacije_sa_razlomcima_hero.png",
+      "sourceFile": "knowledge/lesson12.json",
+      "heroFile": "knowledge/lesson12_hero.png",
+      "readingTimeMin": 5
+    },
+    "13": {
+      "id": "13",
+      "lessonNumber": 13,
+      "title": "Polinomi jedne promenljive i osnovne operacije",
+      "description": "Pedagoški detaljna lekcija o polinomima jedne promenljive: kanonski oblik, stepen polinoma, sabiranje, oduzimanje, množenje, deljenje polinoma i teorem o deljenju sa ostatkom.",
+      "category": "algebra",
+      "topicTags": [
+        "polinomi",
+        "kanonski oblik",
+        "stepen polinoma",
+        "vodeci koeficijent",
+        "sabiranje polinoma",
+        "oduzimanje polinoma",
+        "mnozenje polinoma",
+        "deljenje polinoma",
+        "teorem o deljenju sa ostatkom",
+        "prijemni zadaci"
+      ],
+      "heroImage": "lesson13_polinomi_jedne_promenljive_i_osnovne_operacije_hero.png",
+      "sourceFile": "knowledge/lesson13.json",
+      "heroFile": "knowledge/lesson13_hero.png",
+      "readingTimeMin": 5
+    },
+    "14": {
+      "id": "14",
+      "lessonNumber": 14,
+      "title": "Bezoutov stav (Bezuova teorema) i Hornerova šema",
+      "description": "Detaljna lekcija za prijemni ispit: Bezoutov stav, deljivost polinoma, ostatak pri deljenju i Hornerova šema sa mnogo primera, čestim greškama i interaktivnom laboratorijom.",
+      "category": "algebra",
+      "topicTags": [
+        "bezoutov stav",
+        "bezuova teorema",
+        "hornerova sema",
+        "ostatak pri deljenju",
+        "deljivost polinoma",
+        "nule polinoma",
+        "sinteticko deljenje",
+        "zadaci sa parametrima",
+        "prijemni zadaci"
+      ],
+      "heroImage": "lesson14_bezoutov_stav_bezuova_teorema_i_hornerova_sema_hero.png",
+      "sourceFile": "knowledge/lesson14.json",
+      "heroFile": "knowledge/lesson14_hero.png",
+      "readingTimeMin": 5
+    },
+    "15": {
+      "id": "15",
+      "lessonNumber": 15,
+      "title": "Nule polinoma i Viètove formule za polinome višeg stepena",
+      "description": "Detaljna lekcija za prijemni ispit: nule polinoma, osnovni stav algebre i Viètove formule za kubne i jednačine četvrtog stepena, sa vođenim primerima, čestim greškama i interaktivnom Viète laboratorijom.",
+      "category": "algebra",
+      "topicTags": [
+        "nule polinoma",
+        "osnovni stav algebre",
+        "vietove formule",
+        "kubna jednacina",
+        "jednacina cetvrtog stepena",
+        "simetricne sume",
+        "aritmeticka progresija korenova",
+        "konstrukcija polinoma",
+        "prijemni zadaci"
+      ],
+      "heroImage": "lesson15_nule_polinoma_i_vietove_formule_za_polinome_viseg_stepena_hero.png",
+      "sourceFile": "knowledge/lesson15.json",
+      "heroFile": "knowledge/lesson15_hero.png",
+      "readingTimeMin": 6
+    },
+    "16": {
+      "id": "16",
+      "lessonNumber": 16,
+      "title": "Linearna funkcija i njen grafik",
+      "description": "Detaljna lekcija za prijemni ispit: linearna funkcija y = kx + n, koeficijent pravca, odsečak na y-osi, nula funkcije, znak, monotonost i crtanje grafa, uz interaktivnu laboratoriju i vođene primere.",
+      "category": "jednacine",
+      "topicTags": [
+        "linearna funkcija",
+        "grafik funkcije",
+        "koeficijent pravca",
+        "slobodan clan",
+        "nula funkcije",
+        "znak funkcije",
+        "monotonost",
+        "presek sa osama",
+        "prijemni zadaci"
+      ],
+      "heroImage": "lesson16_linearna_funkcija_i_njen_grafik_hero.png",
+      "sourceFile": "knowledge/lesson16.json",
+      "heroFile": "knowledge/lesson16_hero.png",
+      "readingTimeMin": 5
+    },
+    "17": {
+      "id": "17",
+      "lessonNumber": 17,
+      "title": "Sistemi linearnih jednačina (Kramerovo pravilo i Gausov algoritam)",
+      "description": "Detaljna lekcija za prijemni ispit: sistemi linearnih jednačina 2x2 i 3x3, metode zamene i suprotnih koeficijenata, Kramerovo pravilo, Gausov algoritam, diskusija rešenja sa parametrom, vođeni primeri i interaktivna laboratorija.",
+      "category": "jednacine",
+      "topicTags": [
+        "sistemi linearnih jednacina",
+        "metoda zamene",
+        "suprotni koeficijenti",
+        "kramerovo pravilo",
+        "gausov algoritam",
+        "determinanta treceg reda",
+        "diskusija sa parametrom",
+        "broj resenja sistema",
+        "prijemni zadaci"
+      ],
+      "heroImage": "lesson17_sistemi_linearnih_jednacina_kramerovo_pravilo_i_gausov_algoritam_hero.png",
+      "sourceFile": "knowledge/lesson17.json",
+      "heroFile": "knowledge/lesson17_hero.png",
+      "readingTimeMin": 7
+    },
+    "18": {
+      "id": "18",
+      "lessonNumber": 18,
+      "title": "Linearne jednačine i nejednačine sa apsolutnom vrednošću",
+      "description": "Detaljna lekcija za prijemni ispit: linearne jednačine i nejednačine sa apsolutnom vrednošću, standardni obrasci, uslov na desnu stranu, intervalna dekompozicija, vođeni primeri, interaktivna laboratorija i zadaci za vežbu.",
+      "category": "jednacine",
+      "topicTags": [
+        "apsolutna vrednost",
+        "linearna jednačina",
+        "linearna nejednačina",
+        "intervalna metoda",
+        "brojevna prava",
+        "rastojanje",
+        "više apsolutnih zagrada",
+        "prijemni zadaci"
+      ],
+      "heroImage": "lesson18_linearne_jednacine_i_nejednacine_sa_apsolutnom_vrednoscu_hero.png",
+      "sourceFile": "knowledge/lesson18.json",
+      "heroFile": "knowledge/lesson18_hero.png",
+      "readingTimeMin": 6
+    },
+    "19": {
+      "id": "19",
+      "lessonNumber": 19,
+      "title": "Kvadratna funkcija (teme, nule, znak i grafik)",
+      "description": "Detaljna lekcija za prijemni ispit: kvadratna funkcija, parabola, teme, osa simetrije, nule, znak funkcije i crtanje grafa uz interaktivnu laboratoriju, vođene primere i vežbe sa rešenjima.",
+      "category": "jednacine",
+      "topicTags": [
+        "kvadratna funkcija",
+        "parabola",
+        "teme parabole",
+        "osa simetrije",
+        "nule funkcije",
+        "znak funkcije",
+        "grafik funkcije",
+        "ekstremna vrednost",
+        "prijemni zadaci"
+      ],
+      "heroImage": "lesson19_kvadratna_funkcija_teme_nule_znak_i_grafik_hero.png",
+      "sourceFile": "knowledge/lesson19.json",
+      "heroFile": "knowledge/lesson19_hero.png",
+      "readingTimeMin": 6
+    },
+    "20": {
+      "id": "20",
+      "lessonNumber": 20,
+      "title": "Kvadratne jednačine i priroda rešenja (diskriminanta)",
+      "description": "Detaljna lekcija za prijemni ispit: kvadratne jednačine, abc formula, diskriminanta, priroda rešenja, geometrijsko tumačenje, vođeni primeri, interaktivna laboratorija i vežbe sa rešenjima.",
+      "category": "jednacine",
+      "topicTags": [
+        "kvadratna jednačina",
+        "abc formula",
+        "diskriminanta",
+        "priroda rešenja",
+        "realni koreni",
+        "kompleksni koreni",
+        "parabola",
+        "parametarski zadaci",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson20_kvadratne_jednacine_i_priroda_resenja_diskriminanta_hero.png",
+      "sourceFile": "knowledge/lesson20.json",
+      "heroFile": "knowledge/lesson20_hero.png",
+      "readingTimeMin": 5
+    },
+    "21": {
+      "id": "21",
+      "lessonNumber": 21,
+      "title": "Viètove formule za kvadratnu jednačinu i primene",
+      "description": "Detaljna lekcija za prijemni ispit: Viètove formule za kvadratnu jednačinu, simetrični izrazi sa korenima, formiranje novih jednačina, parametarski zadaci, interaktivna laboratorija i vežbe sa rešenjima.",
+      "category": "jednacine",
+      "topicTags": [
+        "vietove formule",
+        "kvadratna jednacina",
+        "zbir korenova",
+        "proizvod korenova",
+        "simetricni izrazi",
+        "nova jednacina",
+        "transformacija korenova",
+        "diskriminanta",
+        "parametarski zadaci",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson21_vietove_formule_za_kvadratnu_jednacinu_i_primene_hero.png",
+      "sourceFile": "knowledge/lesson21.json",
+      "heroFile": "knowledge/lesson21_hero.png",
+      "readingTimeMin": 5
+    },
+    "22": {
+      "id": "22",
+      "lessonNumber": 22,
+      "title": "Kvadratne nejednačine",
+      "description": "Detaljna lekcija za prijemni ispit: kvadratne nejednačine, metoda intervala, znak parabole, parametarski uslovi, interaktivna laboratorija, vođeni primeri i vežbe sa rešenjima.",
+      "category": "jednacine",
+      "topicTags": [
+        "kvadratne nejednačine",
+        "znak kvadratnog trinoma",
+        "parabola",
+        "diskriminanta",
+        "metoda intervala",
+        "parametarski zadaci",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson22_kvadratne_nejednacine_hero.png",
+      "sourceFile": "knowledge/lesson22.json",
+      "heroFile": "knowledge/lesson22_hero.png",
+      "readingTimeMin": 6
+    },
+    "23": {
+      "id": "23",
+      "lessonNumber": 23,
+      "title": "Sistemi kvadratnih jednačina",
+      "description": "Detaljna lekcija za prijemni ispit: sistemi kvadratnih jednačina, metoda zamene, preseci krivih, sistemi sa dve kvadratne jednačine, homogeni sistemi, interaktivna canvas laboratorija, vođeni primeri i vežbe sa rešenjima.",
+      "category": "jednacine",
+      "topicTags": [
+        "sistemi kvadratnih jednačina",
+        "metoda zamene",
+        "parabola i prava",
+        "simetrični sistemi",
+        "homogeni sistemi",
+        "presek krivih",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson23_sistemi_kvadratnih_jednacina_hero.png",
+      "sourceFile": "knowledge/lesson23.json",
+      "heroFile": "knowledge/lesson23_hero.png",
+      "readingTimeMin": 7
+    },
+    "24": {
+      "id": "24",
+      "lessonNumber": 24,
+      "title": "Iracionalne jednačine",
+      "description": "Detaljna lekcija za prijemni ispit: iracionalne jednačine, domen, uslov kvadriranja, lažna rešenja, vođeni primeri, interaktivna canvas laboratorija i vežbe sa rešenjima.",
+      "category": "jednacine",
+      "topicTags": [
+        "iracionalne jednačine",
+        "kvadratni koren",
+        "domena",
+        "uslov kvadriranja",
+        "lažna rešenja",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson24_iracionalne_jednacine_hero.png",
+      "sourceFile": "knowledge/lesson24.json",
+      "heroFile": "knowledge/lesson24_hero.png",
+      "readingTimeMin": 6
+    },
+    "25": {
+      "id": "25",
+      "lessonNumber": 25,
+      "title": "Iracionalne nejednačine",
+      "description": "Detaljna lekcija za prijemni ispit: iracionalne nejednačine, razdvajanje na logičke slučajeve, domen, kvadriranje samo u dozvoljenoj grani, vođeni primeri, interaktivna canvas laboratorija i vežbe sa rešenjima.",
+      "category": "jednacine",
+      "topicTags": [
+        "iracionalne nejednačine",
+        "kvadratni koren",
+        "domena",
+        "logičke grane",
+        "kvadriranje",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson25_iracionalne_nejednacine_hero.png",
+      "sourceFile": "knowledge/lesson25.json",
+      "heroFile": "knowledge/lesson25_hero.png",
+      "readingTimeMin": 7
+    },
+    "26": {
+      "id": "26",
+      "lessonNumber": 26,
+      "title": "Eksponencijalna funkcija i njen grafik",
+      "description": "Detaljna lekcija za prijemni ispit: eksponencijalna funkcija, domen, skup vrednosti, rast i pad, horizontalna asimptota, grafici sa pomerajima, interaktivna canvas laboratorija, vođeni primeri i vežbe sa rešenjima.",
+      "category": "exp_log",
+      "topicTags": [
+        "eksponencijalna funkcija",
+        "grafik funkcije",
+        "domen",
+        "skup vrednosti",
+        "asimptota",
+        "rastuća funkcija",
+        "opadajuća funkcija",
+        "pomeraj grafa",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson26_eksponencijalna_funkcija_i_njen_grafik_hero.png",
+      "sourceFile": "knowledge/lesson26.json",
+      "heroFile": "knowledge/lesson26_hero.png",
+      "readingTimeMin": 6
+    },
+    "27": {
+      "id": "27",
+      "lessonNumber": 27,
+      "title": "Eksponencijalne jednačine",
+      "description": "Detaljna lekcija za prijemni ispit: eksponencijalne jednačine, svođenje na istu osnovu, izdvajanje zajedničkog faktora, smena u=a^x, odbacivanje negativnih vrednosti, interaktivna canvas laboratorija, vođeni primeri i vežbe sa rešenjima.",
+      "category": "exp_log",
+      "topicTags": [
+        "eksponencijalne jednačine",
+        "svođenje na istu osnovu",
+        "zajednički faktor",
+        "smena u = a^x",
+        "kvadratna jednačina",
+        "odbacivanje negativnih vrednosti",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson27_eksponencijalne_jednacine_hero.png",
+      "sourceFile": "knowledge/lesson27.json",
+      "heroFile": "knowledge/lesson27_hero.png",
+      "readingTimeMin": 5
+    },
+    "28": {
+      "id": "28",
+      "lessonNumber": 28,
+      "title": "Eksponencijalne nejednačine",
+      "description": "Detaljna lekcija za prijemni ispit: eksponencijalne nejednačine, monotonost eksponencijalne funkcije, promena smera znaka kod baza između nule i jedan, svođenje na istu bazu, smena u=a^x i vežbe sa rešenjima.",
+      "category": "exp_log",
+      "topicTags": [
+        "eksponencijalne nejednačine",
+        "monotonost eksponencijalne funkcije",
+        "promena smera znaka",
+        "svođenje na istu bazu",
+        "smena u = a^x",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson28_eksponencijalne_nejednacine_hero.png",
+      "sourceFile": "knowledge/lesson28.json",
+      "heroFile": "knowledge/lesson28_hero.png",
+      "readingTimeMin": 6
+    },
+    "29": {
+      "id": "29",
+      "lessonNumber": 29,
+      "title": "Pojam logaritma i pravila logaritmovanja",
+      "description": "Detaljna lekcija za prijemni ispit: pojam logaritma, uslovi definisanosti, veza sa eksponencijalnim zapisom, pravila logaritmovanja, promena baze, vođeni primeri, canvas laboratorija i vežbe sa rešenjima.",
+      "category": "exp_log",
+      "topicTags": [
+        "pojam logaritma",
+        "pravila logaritmovanja",
+        "proizvod logaritama",
+        "količnik logaritama",
+        "pravilo stepena",
+        "promena baze",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson29_pojam_logaritma_i_pravila_logaritmovanja_hero.png",
+      "sourceFile": "knowledge/lesson29.json",
+      "heroFile": "knowledge/lesson29_hero.png",
+      "readingTimeMin": 6
+    },
+    "30": {
+      "id": "30",
+      "lessonNumber": 30,
+      "title": "Logaritamska funkcija i njen grafik",
+      "description": "Detaljna lekcija za prijemni ispit: logaritamska funkcija, njen grafik, domen, skup vrednosti, vertikalna asimptota, rast i pad, pomeraji, interaktivni canvas laboratorijum, vođeni primeri i vežbe sa rešenjima.",
+      "category": "exp_log",
+      "topicTags": [
+        "logaritamska funkcija",
+        "grafik logaritamske funkcije",
+        "vertikalna asimptota",
+        "domen funkcije",
+        "inverzna funkcija",
+        "pomeraji grafa",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson30_logaritamska_funkcija_i_njen_grafik_hero.png",
+      "sourceFile": "knowledge/lesson30.json",
+      "heroFile": "knowledge/lesson30_hero.png",
+      "readingTimeMin": 6
+    },
+    "31": {
+      "id": "31",
+      "lessonNumber": 31,
+      "title": "Logaritamske jednačine",
+      "description": "Detaljna lekcija za prijemni ispit: logaritamske jednačine, domen, uslovi definisanosti, svođenje na istu bazu, kvadratna smena, vođeni primeri, canvas laboratorija i vežbe sa rešenjima.",
+      "category": "exp_log",
+      "topicTags": [
+        "logaritamske jednačine",
+        "domen",
+        "uslovi definisanosti",
+        "svođenje na istu bazu",
+        "kvadratna smena",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson31_logaritamske_jednacine_hero.png",
+      "sourceFile": "knowledge/lesson31.json",
+      "heroFile": "knowledge/lesson31_hero.png",
+      "readingTimeMin": 5
+    },
+    "32": {
+      "id": "32",
+      "lessonNumber": 32,
+      "title": "Logaritamske nejednačine",
+      "description": "Detaljna lekcija za prijemni ispit: logaritamske nejednačine, domen, monotonost logaritamske funkcije, promena smera znaka za baze između nule i jedan, vođeni primeri, canvas laboratorija i vežbe sa rešenjima.",
+      "category": "exp_log",
+      "topicTags": [
+        "logaritamske nejednačine",
+        "domen",
+        "monotonost logaritamske funkcije",
+        "promena smera znaka",
+        "intervali rešenja",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson32_logaritamske_nejednacine_hero.png",
+      "sourceFile": "knowledge/lesson32.json",
+      "heroFile": "knowledge/lesson32_hero.png",
+      "readingTimeMin": 5
+    },
+    "33": {
+      "id": "33",
+      "lessonNumber": 33,
+      "title": "Mere ugla (radijani) i trigonometrijska kružnica",
+      "description": "Detaljna lekcija za prijemni ispit: radijani, pretvaranje stepeni u radijane, trigonometrijska kružnica, sinus i kosinus kao koordinate, tangent i kotangens, standardni uglovi, canvas laboratorija i vežbe sa rešenjima.",
+      "category": "trigonometrija",
+      "topicTags": [
+        "radijani",
+        "pretvaranje stepeni i radijana",
+        "trigonometrijska kružnica",
+        "sinus i kosinus",
+        "standardni uglovi",
+        "koterminalni uglovi",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson33_mere_ugla_radijani_i_trigonometrijska_kruznica_hero.png",
+      "sourceFile": "knowledge/lesson33.json",
+      "heroFile": "knowledge/lesson33_hero.png",
+      "readingTimeMin": 5
+    },
+    "34": {
+      "id": "34",
+      "lessonNumber": 34,
+      "title": "Osnovni trigonometrijski identiteti i svođenje na prvi kvadrant",
+      "description": "Detaljna lekcija za prijemni ispit: osnovni trigonometrijski identiteti, znak funkcija po kvadrantima, periodičnost, parnost, svođenje na prvi kvadrant, kofunkcije, interaktivna canvas laboratorija i vežbe sa rešenjima.",
+      "category": "trigonometrija",
+      "topicTags": [
+        "trigonometrijski identiteti",
+        "fundamentalni identitet",
+        "znak po kvadrantima",
+        "referentni ugao",
+        "svodjenje na prvi kvadrant",
+        "kofunkcije",
+        "periodicnost",
+        "parnost",
+        "standardni uglovi",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson34_osnovni_trigonometrijski_identiteti_i_svodjenje_na_prvi_kvadrant_hero.png",
+      "sourceFile": "knowledge/lesson34.json",
+      "heroFile": "knowledge/lesson34_hero.png",
+      "readingTimeMin": 6
+    },
+    "35": {
+      "id": "35",
+      "lessonNumber": 35,
+      "title": "Adicioni teoremi",
+      "description": "Detaljna lekcija za prijemni ispit: adicioni teoremi za sinus, kosinus i tangens, zbir i razlika uglova, prepoznavanje obrazaca, izračunavanje specijalnih vrednosti, interaktivna canvas laboratorija i vežbe sa rešenjima.",
+      "category": "trigonometrija",
+      "topicTags": [
+        "adicioni teoremi",
+        "sinus zbira i razlike",
+        "kosinus zbira i razlike",
+        "tangens zbira i razlike",
+        "specijalne vrednosti",
+        "prepoznavanje obrazaca",
+        "dokaz identiteta",
+        "trigonometrija",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson35_adicioni_teoremi_hero.png",
+      "sourceFile": "knowledge/lesson35.json",
+      "heroFile": "knowledge/lesson35_hero.png",
+      "readingTimeMin": 5
+    },
+    "36": {
+      "id": "36",
+      "lessonNumber": 36,
+      "title": "Trigonometrijske funkcije dvostrukog ugla i polovine ugla",
+      "description": "Detaljna lekcija za prijemni ispit: formule dvostrukog ugla, polovine ugla i snižavanja stepena, izvođenje iz adicionih teorema, pažljivo određivanje znaka, interaktivna canvas laboratorija i vežbe sa rešenjima.",
+      "category": "trigonometrija",
+      "topicTags": [
+        "dvostruki ugao",
+        "polovina ugla",
+        "snizavanje stepena",
+        "sin 2x",
+        "cos 2x",
+        "tg 2x",
+        "sin x/2",
+        "cos x/2",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson36_trigonometrijske_funkcije_dvostrukog_ugla_i_polovine_ugla_hero.png",
+      "sourceFile": "knowledge/lesson36.json",
+      "heroFile": "knowledge/lesson36_hero.png",
+      "readingTimeMin": 6
+    },
+    "37": {
+      "id": "37",
+      "lessonNumber": 37,
+      "title": "Transformacije zbira u proizvod i obrnuto",
+      "description": "Detaljna lekcija za prijemni ispit: transformacije zbira u proizvod i proizvoda u zbir, srednji ugao i polurazlika, faktorizacija trigonometrijskih izraza, interaktivna canvas laboratorija i vežbe sa rešenjima.",
+      "category": "trigonometrija",
+      "topicTags": [
+        "transformacije zbira u proizvod",
+        "transformacije proizvoda u zbir",
+        "zbir sinusa",
+        "razlika sinusa",
+        "zbir kosinusa",
+        "razlika kosinusa",
+        "faktorizacija",
+        "trigonometrijske jednacine",
+        "trigonometrija",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson37_transformacije_zbira_u_proizvod_i_obrnuto_hero.png",
+      "sourceFile": "knowledge/lesson37.json",
+      "heroFile": "knowledge/lesson37_hero.png",
+      "readingTimeMin": 6
+    },
+    "38": {
+      "id": "38",
+      "lessonNumber": 38,
+      "title": "Grafici i svojstva trigonometrijskih funkcija (periodičnost, nule, asimptote)",
+      "description": "Detaljna lekcija za prijemni ispit: grafici sinusa, kosinusa, tangensa i kotangensa, periodičnost, nule, asimptote i uticaj parametara A, B, C, D na oblik grafa, uz interaktivnu canvas laboratoriju i vežbe sa rešenjima.",
+      "category": "trigonometrija",
+      "topicTags": [
+        "grafici trigonometrijskih funkcija",
+        "sinus i kosinus",
+        "tangens i kotangens",
+        "periodicnost",
+        "nule funkcije",
+        "vertikalne asimptote",
+        "amplituda",
+        "fazni pomeraj",
+        "parametri A B C D",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson38_grafici_i_svojstva_trigonometrijskih_funkcija_periodicnost_nule_asimptote_hero.png",
+      "sourceFile": "knowledge/lesson38.json",
+      "heroFile": "knowledge/lesson38_hero.png",
+      "readingTimeMin": 6
+    },
+    "39": {
+      "id": "39",
+      "lessonNumber": 39,
+      "title": "Osnovne trigonometrijske jednačine",
+      "description": "Detaljna lekcija za prijemni ispit: osnovne trigonometrijske jednačine sin x = a, cos x = a, tan x = a i cot x = a, opšta rešenja, periodičnost, vođeni primeri, interaktivna canvas laboratorija i vežbe sa rešenjima.",
+      "category": "trigonometrija",
+      "topicTags": [
+        "osnovne trigonometrijske jednačine",
+        "sin x = a",
+        "cos x = a",
+        "tan x = a",
+        "cot x = a",
+        "opšte rešenje",
+        "periodičnost",
+        "brojanje rešenja u intervalu",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson39_osnovne_trigonometrijske_jednacine_hero.png",
+      "sourceFile": "knowledge/lesson39.json",
+      "heroFile": "knowledge/lesson39_hero.png",
+      "readingTimeMin": 6
+    },
+    "40": {
+      "id": "40",
+      "lessonNumber": 40,
+      "title": "Složenije trigonometrijske jednačine (homogene, linearne, uvođenje pomoćnog ugla)",
+      "description": "Detaljna lekcija za prijemni ispit: homogene i linearne trigonometrijske jednačine, uvođenje pomoćnog ugla, svođenje na tangens, brojanje i zbir rešenja na intervalu, vođeni primeri i interaktivna canvas laboratorija.",
+      "category": "trigonometrija",
+      "topicTags": [
+        "složenije trigonometrijske jednačine",
+        "homogene trigonometrijske jednačine",
+        "linearna trigonometrijska jednačina",
+        "uvođenje pomoćnog ugla",
+        "redukcija na tan x",
+        "brojanje rešenja na intervalu",
+        "zbir korena",
+        "opšte rešenje",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson40_slozenije_trigonometrijske_jednacine_homogene_linearne_uvodjenje_pomocnog_ugla_hero.png",
+      "sourceFile": "knowledge/lesson40.json",
+      "heroFile": "knowledge/lesson40_hero.png",
+      "readingTimeMin": 7
+    },
+    "41": {
+      "id": "41",
+      "lessonNumber": 41,
+      "title": "Trigonometrijske nejednačine",
+      "description": "Detaljna lekcija za prijemni ispit: trigonometrijske nejednačine za sinus, kosinus, tangens i složenije oblike, rešavanje preko kružnice i grafika, intervali rešenja, pomoćni ugao, vođeni primeri i interaktivna canvas laboratorija.",
+      "category": "trigonometrija",
+      "topicTags": [
+        "trigonometrijske nejednačine",
+        "sinusne nejednačine",
+        "kosinusne nejednačine",
+        "tangens nejednačine",
+        "pomoćni ugao",
+        "intervali rešenja",
+        "jedinična kružnica",
+        "znak funkcije",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson41_trigonometrijske_nejednacine_hero.png",
+      "sourceFile": "knowledge/lesson41.json",
+      "heroFile": "knowledge/lesson41_hero.png",
+      "readingTimeMin": 8
+    },
+    "42": {
+      "id": "42",
+      "lessonNumber": 42,
+      "title": "Uglovi i trouglovi (podudarnost, sličnost, značajne tačke trougla)",
+      "description": "Detaljna lekcija za prijemni ispit: uglovi i trouglovi, Talesova teorema, podudarnost i sličnost trouglova, težište, ortocentar, centar opisane i upisane kružnice, vođeni primeri, interaktivna canvas laboratorija i vežbe sa rešenjima.",
+      "category": "geometrija",
+      "topicTags": [
+        "uglovi u trouglu",
+        "Talesova teorema",
+        "podudarnost trouglova",
+        "sličnost trouglova",
+        "težište",
+        "ortocentar",
+        "centar opisane kružnice",
+        "centar upisane kružnice",
+        "Ojlerova prava",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson42_uglovi_i_trouglovi_podudarnost_slicnost_znacajne_tacke_trougla_hero.png",
+      "sourceFile": "knowledge/lesson42.json",
+      "heroFile": "knowledge/lesson42_hero.png",
+      "readingTimeMin": 7
+    },
+    "43": {
+      "id": "43",
+      "lessonNumber": 43,
+      "title": "Primena trigonometrije u planimetriji (Sinusna i Kosinusna teorema)",
+      "description": "Detaljna lekcija za prijemni ispit: sinusna teorema, kosinusna teorema, rešavanje kosouglih trouglova, formula za površinu trougla, SSA zamka, vođeni primeri, canvas laboratorija i vežbe sa rešenjima.",
+      "category": "geometrija",
+      "topicTags": [
+        "sinusna teorema",
+        "kosinusna teorema",
+        "kosougli trougao",
+        "površina trougla",
+        "opisani poluprečnik",
+        "SSA slučaj",
+        "planimetrija",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson43_primena_trigonometrije_u_planimetriji_sinusna_i_kosinusna_teorema_hero.png",
+      "sourceFile": "knowledge/lesson43.json",
+      "heroFile": "knowledge/lesson43_hero.png",
+      "readingTimeMin": 7
+    },
+    "44": {
+      "id": "44",
+      "lessonNumber": 44,
+      "title": "Četvorouglovi i mnogouglovi (Planimetrija)",
+      "description": "Detaljna lekcija za prijemni ispit: paralelogram, pravougaonik, romb, kvadrat, trapezi i mnogouglovi, sa fokusom na uglove, dijagonale, simetrije, formule, vođene primere, canvas laboratoriju i vežbe sa rešenjima.",
+      "category": "geometrija",
+      "topicTags": [
+        "četvorouglovi",
+        "paralelogram",
+        "pravougaonik",
+        "romb",
+        "kvadrat",
+        "trapez",
+        "mnogouglovi",
+        "dijagonale",
+        "simetrija",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson44_cetvorouglovi_i_mnogouglovi_planimetrija_hero.png",
+      "sourceFile": "knowledge/lesson44.json",
+      "heroFile": "knowledge/lesson44_hero.png",
+      "readingTimeMin": 7
+    },
+    "45": {
+      "id": "45",
+      "lessonNumber": 45,
+      "title": "Krug i delovi kruga | Matoteka znanje",
+      "description": "Detaljna lekcija o krugu, luku, tetivi, tangenti, kružnom isečku, radijanima i četvorouglovima vezanim za krug, sa fokusom na prijemne ispite.",
+      "category": "osnove",
+      "topicTags": [],
+      "heroImage": "",
+      "sourceFile": "knowledge/lesson45.json",
+      "heroFile": "knowledge/lesson45_hero.png",
+      "readingTimeMin": 6
+    },
+    "46": {
+      "id": "46",
+      "lessonNumber": 46,
+      "title": "Poliedri: prizma i piramida (površina i zapremina)",
+      "description": "Detaljna lekcija iz stereometrije za pripremu prijemnog ispita: prizme, piramide i zarubljene piramide, mreže poliedara, površina, zapremina, vođeni primeri i interaktivni canvas laboratorijum.",
+      "category": "geometrija",
+      "topicTags": [
+        "poliedri",
+        "prizma",
+        "prava prizma",
+        "kosa prizma",
+        "pravilna piramida",
+        "zarubljena piramida",
+        "površina",
+        "zapremina",
+        "mreža poliedra",
+        "stereometrija",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson46_poliedri_prizma_i_piramida_povrsina_i_zapremina_hero.png",
+      "sourceFile": "knowledge/lesson46.json",
+      "heroFile": "knowledge/lesson46_hero.png",
+      "readingTimeMin": 7
+    },
+    "47": {
+      "id": "47",
+      "lessonNumber": 47,
+      "title": "Obrtna tela: valjak, kupa i lopta | Matoteka znanje",
+      "description": "Detaljna lekcija za prijemni ispit o obrtnim telima: valjak, kupa i lopta. Intuicija nastanka rotacijom, elementi tela, formule za oplošje i zapreminu, interaktivna canvas laboratorija, vođeni primeri i vežbe sa rešenjima.",
+      "category": "osnove",
+      "topicTags": [],
+      "heroImage": "",
+      "sourceFile": "knowledge/lesson47.json",
+      "heroFile": "knowledge/lesson47_hero.png",
+      "readingTimeMin": 5
+    },
+    "48": {
+      "id": "48",
+      "lessonNumber": 48,
+      "title": "Upisana i opisana geometrijska tela | Matoteka znanje",
+      "description": "Detaljna lekcija iz stereometrije za pripremu prijemnog ispita: upisana i opisana geometrijska tela, osni preseci, lopta u kupi i valjku, valjak u lopti i kupi, vođeni primeri, česte greške i interaktivna canvas laboratorija.",
+      "category": "osnove",
+      "topicTags": [],
+      "heroImage": "",
+      "sourceFile": "knowledge/lesson48.json",
+      "heroFile": "knowledge/lesson48_hero.png",
+      "readingTimeMin": 6
+    },
+    "49": {
+      "id": "49",
+      "lessonNumber": 49,
+      "title": "Tačka, udaljenost dve tačke i površina trougla preko koordinata",
+      "description": "Detaljna lekcija iz analitičke geometrije: tačka u koordinatnom sistemu, rastojanje između dve tačke, sredina i podela duži, težište trougla i površina trougla preko koordinata.",
+      "category": "analiticka",
+      "topicTags": [
+        "tačka",
+        "koordinate",
+        "udaljenost dve tačke",
+        "sredina duži",
+        "podela duži u razmeri",
+        "težište trougla",
+        "površina trougla",
+        "determinanta",
+        "kolinearnost",
+        "prijemni zadaci"
+      ],
+      "heroImage": "lesson49_tacka_udaljenost_dve_tacke_i_povrsina_trougla_preko_koordinata_hero.png",
+      "sourceFile": "knowledge/lesson49.json",
+      "heroFile": "knowledge/lesson49_hero.png",
+      "readingTimeMin": 6
+    },
+    "50": {
+      "id": "50",
+      "lessonNumber": 50,
+      "title": "Prava (oblici jednačine, ugao između pravih, udaljenost tačke od prave)",
+      "description": "Detaljna lekcija iz analitičke geometrije za pripremu prijemnog ispita: oblici jednačine prave, smerni koeficijent, ugao između pravih, paralelnost, normalnost, udaljenost tačke od prave, vođeni primeri, česte greške i interaktivna canvas laboratorija.",
+      "category": "analiticka",
+      "topicTags": [
+        "prava",
+        "jednačina prave",
+        "analitička geometrija",
+        "ugao između pravih",
+        "udaljenost tačke od prave"
+      ],
+      "heroImage": "lesson50_prava_oblici_jednacine_ugao_izmedju_pravih_udaljenost_tacke_od_prave_hero.png",
+      "sourceFile": "knowledge/lesson50.json",
+      "heroFile": "knowledge/lesson50_hero.png",
+      "readingTimeMin": 6
+    },
+    "51": {
+      "id": "51",
+      "lessonNumber": 51,
+      "title": "Kružnica i uslov dodira prave i kružnice",
+      "description": "Detaljna lekcija iz analitičke geometrije za pripremu prijemnog ispita: centralna i opšta jednačina kružnice, uslov dodira prave i kružnice, konstrukcija kružnice iz uslova, vođeni primeri, česte greške i interaktivna canvas laboratorija.",
+      "category": "analiticka",
+      "topicTags": [
+        "kružnica",
+        "uslov dodira",
+        "tangenta",
+        "analitička geometrija",
+        "konusni preseci"
+      ],
+      "heroImage": "lesson51_kruznica_i_uslov_dodira_prave_i_kruznice_hero.png",
+      "sourceFile": "knowledge/lesson51.json",
+      "heroFile": "knowledge/lesson51_hero.png",
+      "readingTimeMin": 6
+    },
+    "52": {
+      "id": "52",
+      "lessonNumber": 52,
+      "title": "Elipsa i uslov dodira",
+      "description": "Detaljna lekcija iz analitičke geometrije za pripremu prijemnog ispita: elipsa, poluose, žiže, ekscentricitet, tangenta, uslov dodira, tangente kroz spoljašnju tačku, vođeni primeri, česte greške i interaktivna canvas laboratorija.",
+      "category": "analiticka",
+      "topicTags": [
+        "elipsa",
+        "uslov dodira",
+        "tangenta",
+        "žiže",
+        "analitička geometrija"
+      ],
+      "heroImage": "lesson52_elipsa_i_uslov_dodira_hero.png",
+      "sourceFile": "knowledge/lesson52.json",
+      "heroFile": "knowledge/lesson52_hero.png",
+      "readingTimeMin": 6
+    },
+    "53": {
+      "id": "53",
+      "lessonNumber": 53,
+      "title": "Hiperbola i uslov dodira",
+      "description": "Detaljna lekcija iz analitičke geometrije za pripremu prijemnog ispita: hiperbola, žiže, ekscentricitet, asimptote, tangenta, uslov dodira i vođeni primeri sa interaktivnom canvas laboratorijom.",
+      "category": "analiticka",
+      "topicTags": [
+        "hiperbola",
+        "uslov dodira",
+        "asimptote",
+        "tangenta",
+        "analitička geometrija"
+      ],
+      "heroImage": "lesson53_hiperbola_i_uslov_dodira_hero.png",
+      "sourceFile": "knowledge/lesson53.json",
+      "heroFile": "knowledge/lesson53_hero.png",
+      "readingTimeMin": 6
+    },
+    "54": {
+      "id": "54",
+      "lessonNumber": 54,
+      "title": "Parabola i uslov dodira",
+      "description": "Detaljna lekcija iz analitičke geometrije za pripremu prijemnog ispita: parabola, fokus, direktrisa, tangentna jednačina, uslov dodira i minimalne distance uz interaktivnu canvas laboratoriju.",
+      "category": "analiticka",
+      "topicTags": [
+        "parabola",
+        "uslov dodira",
+        "tangenta",
+        "fokus",
+        "direktrisa",
+        "minimalna distanca",
+        "analitička geometrija",
+        "prijemni zadaci"
+      ],
+      "heroImage": "lesson54_parabola_i_uslov_dodira_hero.png",
+      "sourceFile": "knowledge/lesson54.json",
+      "heroFile": "knowledge/lesson54_hero.png",
+      "readingTimeMin": 5
+    },
+    "55": {
+      "id": "55",
+      "lessonNumber": 55,
+      "title": "Aritmetički niz (progresija)",
+      "description": "Detaljna lekcija za prijemni ispit: aritmetički niz, opšti član, suma prvih n članova, svojstvo srednjeg člana, linearni sistemi uslova, vođeni primeri, interaktivna canvas laboratorija i vežbe sa rešenjima.",
+      "category": "analiza",
+      "topicTags": [
+        "aritmetički niz",
+        "progresija",
+        "opšti član",
+        "suma prvih n članova",
+        "aritmetička sredina",
+        "srednji član",
+        "linearni sistem",
+        "prijemni zadaci"
+      ],
+      "heroImage": "lesson55_aritmeticki_niz_progresija_hero_1.png",
+      "sourceFile": "knowledge/lesson55.json",
+      "heroFile": "",
+      "readingTimeMin": 5
+    },
+    "56": {
+      "id": "56",
+      "lessonNumber": 56,
+      "title": "Geometrijski niz i beskonačni geometrijski red",
+      "description": "Detaljna lekcija za pripremu prijemnog ispita: geometrijski niz, količnik q, opšti član, suma prvih n članova, beskonačni geometrijski red, konvergencija, vođeni primeri i interaktivna canvas laboratorija.",
+      "category": "analiza",
+      "topicTags": [
+        "geometrijski niz",
+        "beskonačni geometrijski red",
+        "parcijalne sume",
+        "konvergencija",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson56_geometrijski_niz_i_beskonacni_geometrijski_red_hero.png",
+      "sourceFile": "knowledge/lesson56.json",
+      "heroFile": "knowledge/lesson56_hero.png",
+      "readingTimeMin": 6
+    },
+    "57": {
+      "id": "57",
+      "lessonNumber": 57,
+      "title": "Granična vrednost (limes) niza i funkcije",
+      "description": "Detaljna lekcija za prijemni ispit o limesu niza i funkcije: intuitivno razumevanje, formalna notacija, tehnike za 0/0 i inf/inf, asimptote, interaktivna canvas laboratorija, vođeni primeri i vežbe sa rešenjima.",
+      "category": "analiza",
+      "topicTags": [
+        "limes niza",
+        "limes funkcije",
+        "neodređeni oblik 0/0",
+        "neodređeni oblik inf/inf",
+        "faktorizacija",
+        "izdvajanje najvećeg stepena",
+        "racionalizacija",
+        "asimptote",
+        "vertikalna asimptota",
+        "horizontalna asimptota",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson57_granicna_vrednost_limes_niza_i_funkcije_hero.png",
+      "sourceFile": "knowledge/lesson57.json",
+      "heroFile": "knowledge/lesson57_hero.png",
+      "readingTimeMin": 7
+    },
+    "58": {
+      "id": "58",
+      "lessonNumber": 58,
+      "title": "Diferencijalni račun (tablica izvoda i pravila diferenciranja)",
+      "description": "Detaljna lekcija za prijemni ispit: tablica osnovnih izvoda, pravila diferenciranja, lančano pravilo, vođeni primeri, tipične greške i interaktivna laboratorija sa tangentom.",
+      "category": "analiza",
+      "topicTags": [
+        "izvod funkcije",
+        "tablica izvoda",
+        "pravilo proizvoda",
+        "pravilo količnika",
+        "pravilo lanca",
+        "složena funkcija",
+        "tangenta",
+        "matematička analiza",
+        "prijemni ispit"
+      ],
+      "heroImage": "lesson58_diferencijalni_racun_tablica_izvoda_i_pravila_diferenciranja_hero.png",
+      "sourceFile": "knowledge/lesson58.json",
+      "heroFile": "knowledge/lesson58_hero.png",
+      "readingTimeMin": 6
+    },
+    "59": {
+      "id": "59",
+      "lessonNumber": 59,
+      "title": "Primena izvoda (monotonost, ekstremne vrednosti, tangente)",
+      "description": "Detaljna lekcija za prijemni ispit: kako se prvi izvod koristi za monotonost, lokalne ekstreme, jednačinu tangente i optimizacione zadatke, uz vođene primere, česte greške i interaktivnu canvas laboratoriju.",
+      "category": "analiza",
+      "topicTags": [
+        "izvod",
+        "prvi izvod",
+        "monotonost",
+        "lokalni maksimum",
+        "lokalni minimum",
+        "tangenta",
+        "optimizacija"
+      ],
+      "heroImage": "lesson59_primena_izvoda_monotonost_ekstremne_vrednosti_tangente_hero.png",
+      "sourceFile": "knowledge/lesson59.json",
+      "heroFile": "knowledge/lesson59_hero.png",
+      "readingTimeMin": 7
+    },
+    "1.5": {
+      "id": "1.5",
+      "lessonNumber": 1.5,
+      "title": "Tautologije i logicke ekvivalencije",
+      "description": "Detaljna lekcija iz matematicke logike: tautologije, kontradikcije, logicke ekvivalencije, De Morganovi zakoni i primena na prijemnim zadacima.",
+      "category": "osnove",
+      "topicTags": [
+        "tautologije",
+        "kontradikcije",
+        "logicke ekvivalencije",
+        "de morganovi zakoni",
+        "kontrapozicija",
+        "implikacija"
+      ],
+      "heroImage": "lesson2_tautologije_i_logicke_ekvivalencije_hero.png",
+      "sourceFile": "knowledge/lesson1.5.json",
+      "heroFile": "knowledge/lesson1.5_hero.png",
+      "readingTimeMin": 5
+    }
+  },
+  "categories": [
+    {
+      "id": "osnove",
+      "name": "Osnove i skupovi",
+      "icon": "functions",
+      "lessonIds": [
+        "1",
+        "1.5",
+        "2",
+        "3",
+        "4",
+        "45",
+        "47",
+        "48"
+      ]
+    },
+    {
+      "id": "brojevi",
+      "name": "Brojevi",
+      "icon": "calculate",
+      "lessonIds": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ]
+    },
+    {
+      "id": "algebra",
+      "name": "Algebra",
+      "icon": "check_box_outline_blank",
+      "lessonIds": [
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ]
+    },
+    {
+      "id": "jednacine",
+      "name": "Jednacine i funkcije",
+      "icon": "show_chart",
+      "lessonIds": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25"
+      ]
+    },
+    {
+      "id": "exp_log",
+      "name": "Eksponencijalne i logaritamske",
+      "icon": "trending_up",
+      "lessonIds": [
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32"
+      ]
+    },
+    {
+      "id": "trigonometrija",
+      "name": "Trigonometrija",
+      "icon": "change_history",
+      "lessonIds": [
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41"
+      ]
+    },
+    {
+      "id": "geometrija",
+      "name": "Geometrija",
+      "icon": "pentagon",
+      "lessonIds": [
+        "42",
+        "43",
+        "44",
+        "46"
+      ]
+    },
+    {
+      "id": "analiticka",
+      "name": "Analiticka geometrija",
+      "icon": "scatter_plot",
+      "lessonIds": [
+        "49",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54"
+      ]
+    },
+    {
+      "id": "analiza",
+      "name": "Matematicka analiza",
+      "icon": "insights",
+      "lessonIds": [
+        "55",
+        "56",
+        "57",
+        "58",
+        "59"
+      ]
+    }
+  ]
+}

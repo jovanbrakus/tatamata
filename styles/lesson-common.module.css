@@ -1,0 +1,344 @@
+/* Shared styles for all knowledge lessons — CSS Module version.
+   Ported from prijemni/knowledge/common.css. */
+
+/* ── CSS Custom Properties (global, not module-scoped) ── */
+:root {
+  --lesson-bg: #090403;
+  --lesson-bg-soft: #140906;
+  --lesson-panel: rgba(30, 15, 9, 0.92);
+  --lesson-panel-soft: rgba(19, 9, 6, 0.84);
+  --lesson-panel-strong: rgba(42, 21, 12, 0.96);
+  --lesson-text: #f6eee9;
+  --lesson-muted: #d8c6ba;
+  --lesson-muted-strong: #f1e2d7;
+  --lesson-primary: #ec5b13;
+  --lesson-primary-soft: #ff9c6d;
+  --lesson-accent: #ffd8bb;
+  --lesson-success: #79dfb8;
+  --lesson-warning: #ffc57f;
+  --lesson-danger: #ff9b8f;
+  --lesson-sky: #8fd7ff;
+  --lesson-violet: #cfb7ff;
+  --lesson-border: rgba(236, 91, 19, 0.16);
+  --lesson-border-strong: rgba(255, 156, 109, 0.30);
+  --lesson-shadow: 0 28px 84px rgba(0, 0, 0, 0.36);
+  --lesson-radius-xl: 34px;
+  --lesson-radius-lg: 24px;
+  --lesson-radius-md: 18px;
+  --lesson-radius-sm: 12px;
+  --lesson-max-width: 1180px;
+}
+
+/* ── Lesson Root ── */
+.lessonRoot {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(236, 91, 19, 0.16), transparent 34%),
+    radial-gradient(circle at 82% 16%, rgba(255, 154, 106, 0.10), transparent 28%),
+    linear-gradient(180deg, #110705 0%, #090403 32%, #070302 100%);
+  color: var(--lesson-text);
+  font-family: "Public Sans", system-ui, -apple-system, sans-serif;
+  line-height: 1.7;
+  padding: 28px 18px 80px;
+}
+
+.lessonRoot a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.lessonRoot summary {
+  cursor: pointer;
+}
+
+.lessonRoot ::selection {
+  background: rgba(236, 91, 19, 0.28);
+}
+
+.lessonRoot section[id] {
+  scroll-margin-top: 88px;
+}
+
+/* ── Typography System ── */
+
+.tHero {
+  font-size: clamp(1.8rem, 4.2vw, 3.4rem);
+  line-height: 0.92;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  margin-bottom: 18px;
+}
+
+.tHeroAccent {
+  display: block;
+  background: linear-gradient(135deg, var(--lesson-primary) 0%, var(--lesson-primary-soft) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tSection {
+  font-size: clamp(1.26rem, 2.8vw, 1.9rem);
+  line-height: 1.02;
+  font-weight: 850;
+  letter-spacing: -0.03em;
+}
+
+.tCardTitle {
+  font-size: 1.12rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.tLead {
+  font-size: 1.05rem;
+  color: var(--lesson-muted);
+  max-width: 720px;
+  margin-bottom: 24px;
+}
+
+.tKicker {
+  color: var(--lesson-primary-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  font-size: 0.76rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.tLabel {
+  color: var(--lesson-primary-soft);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.tMuted {
+  color: var(--lesson-muted);
+}
+
+.tMutedStrong {
+  color: var(--lesson-muted-strong);
+}
+
+.tSmall {
+  font-size: 0.92rem;
+  color: var(--lesson-muted);
+}
+
+/* ── Components ── */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--lesson-border);
+  background: rgba(236, 91, 19, 0.10);
+  color: var(--lesson-primary-soft);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.miniCard {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 22px;
+  padding: 18px;
+}
+
+.miniCard p {
+  color: var(--lesson-muted);
+  font-size: 0.96rem;
+}
+
+.miniCard small {
+  display: block;
+  color: var(--lesson-primary-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.74rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+/* ── Layout ── */
+
+.page {
+  max-width: var(--lesson-max-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.ambientOrb {
+  position: fixed;
+  border-radius: 999px;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ambientOrbOne {
+  width: 280px;
+  height: 280px;
+  background: rgba(236, 91, 19, 0.18);
+  top: -70px;
+  left: -50px;
+}
+
+.ambientOrbTwo {
+  width: 320px;
+  height: 320px;
+  background: rgba(143, 215, 255, 0.08);
+  right: -120px;
+  top: 22vh;
+}
+
+.ambientOrbThree {
+  width: 220px;
+  height: 220px;
+  background: rgba(207, 183, 255, 0.08);
+  left: -90px;
+  bottom: 18vh;
+}
+
+.statRow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.statCard {
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(25, 12, 8, 0.72);
+  border: 1px solid var(--lesson-border);
+}
+
+.statCard strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.98rem;
+  color: var(--lesson-text);
+}
+
+.statCard span,
+.statCard p {
+  color: var(--lesson-muted);
+  font-size: 0.92rem;
+}
+
+.navPanel {
+  padding: 22px;
+  margin-bottom: 22px;
+}
+
+.presetRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footerNote {
+  margin-top: 18px;
+  color: var(--lesson-muted);
+  font-size: 0.95rem;
+}
+
+.twoCol {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* ── Hero Image Container ── */
+
+.heroVisual {
+  border-radius: 34px;
+  overflow: hidden;
+  position: relative;
+  min-height: 100%;
+}
+
+.heroImageWrap {
+  position: relative;
+  min-height: 100%;
+  isolation: isolate;
+}
+
+.heroImageWrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(9, 4, 3, 0.10), rgba(9, 4, 3, 0.76)),
+    linear-gradient(135deg, rgba(236, 91, 19, 0.24), rgba(255, 154, 106, 0.06));
+  z-index: 1;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0.35) saturate(0.75) contrast(0.96);
+}
+
+/* ── Animation ── */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeUp {
+  animation: fadeUp 0.7s ease both;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 860px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .statRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .twoCol {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .lessonRoot {
+    padding: 16px 12px 60px;
+  }
+
+  .statRow {
+    grid-template-columns: 1fr;
+  }
+}

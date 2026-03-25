@@ -77,6 +77,12 @@ body {
   font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
+/* ── Lesson content container ── */
+.lesson-content {
+  position: relative;
+  isolation: isolate;
+}
+
 /* ── Material Symbols filled variant ── */
 .fill-1 {
   font-variation-settings: 'FILL' 1;
@@ -154,3 +160,8 @@ html.light .glass-panel {
 .problem-content p { margin-bottom: 0.75rem; }
 .problem-content .MathJax { font-size: 1.1em; }
 .problem-content script { display: none; }
+
+/* ── Inline MathJax in lesson content ── */
+mjx-container[jax="SVG"][display="true"] { display: block; margin: 0.5em 0; }
+mjx-container[jax="SVG"]:not([display="true"]) { display: inline !important; vertical-align: baseline; }
+mjx-container[jax="SVG"]:not([display="true"]) > svg { display: inline !important; vertical-align: middle; }
