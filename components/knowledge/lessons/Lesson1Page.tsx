@@ -13,6 +13,7 @@ import FormulaCard from "@/components/knowledge/FormulaCard";
 import MicroCheck from "@/components/knowledge/MicroCheck";
 import SectionCard from "@/components/knowledge/SectionCard";
 import TruthTableLab from "./TruthTableLab";
+import EquivalenceLab from "./EquivalenceLab";
 
 import cs from "@/styles/lesson-common.module.css";
 import s from "@/styles/lesson-layout.module.css";
@@ -23,6 +24,10 @@ const NAV_LINKS = [
   { href: "#laboratorija", label: "Interaktivni laboratorij" },
   { href: "#primeri", label: "Vođeni primeri" },
   { href: "#zakoni", label: "Zakoni i obrasci" },
+  { href: "#tautologije", label: "Tautologije i ekvivalencija" },
+  { href: "#klasicne", label: "Klasične ekvivalencije" },
+  { href: "#ekviv-lab", label: "Laboratorija ekvivalencije" },
+  { href: "#dokazi", label: "Dokazi korak po korak" },
   { href: "#zamke", label: "Česte greške" },
   { href: "#ispit", label: "Veza sa prijemnim" },
   { href: "#vezba", label: "Mini vežba" },
@@ -41,7 +46,7 @@ export default function Lesson1Page() {
             <span className={cs.tHeroAccent}>iskazne formule</span>
           </>
         }
-        description="Ovo je prvi ozbiljan korak u matematičkom formalizmu. Ako razumeš šta je iskaz, kako radi implikacija i kada su dve transformacije zaista ekvivalentne, kasnije ćeš mnogo sigurnije rešavati jednačine, nejednačine i zadatke sa uslovima domena."
+        description="Ovo je prvi ozbiljan korak u matematičkom formalizmu. Ako razumeš šta je iskaz, kako radi implikacija, kada je formula uvek tačna (tautologija) i kada su dve različite formule zapravo ekvivalentne, kasnije ćeš mnogo sigurnije rešavati jednačine, nejednačine i zadatke sa uslovima domena."
         heroImageSrc="/api/lessons/1/hero"
         heroImageAlt="Apstraktna matematička tabla sa geometrijskim i simboličkim zapisima"
         cards={[
@@ -64,7 +69,7 @@ export default function Lesson1Page() {
         stats={[
           {
             label: "Trajanje",
-            description: "25 do 35 minuta pažljivog rada",
+            description: "50 do 60 minuta pažljivog rada",
           },
           {
             label: "Predznanje",
@@ -74,12 +79,12 @@ export default function Lesson1Page() {
           {
             label: "Glavna veština",
             description:
-              "prevođenje rečenice u logički oblik i pravilno čitanje uslova",
+              "prevođenje rečenice u logički oblik, pravilno čitanje uslova, tautologije i logičke ekvivalencije",
           },
           {
             label: "Interaktivno",
             description:
-              "canvas laboratorija istinitosnih tabela sa objašnjenjem po redovima",
+              "canvas laboratorija istinitosnih tabela i laboratorija ekvivalencije sa objašnjenjem po redovima",
           },
         ]}
       />
@@ -766,10 +771,283 @@ export default function Lesson1Page() {
         />
       </LessonSection>
 
-      {/* ═══════════ 6. ČESTE GREŠKE ═══════════ */}
+      {/* ═══════════ 6. TAUTOLOGIJE, KONTRADIKCIJE I LOGIČKA EKVIVALENCIJA ═══════════ */}
+      <LessonSection
+        id="tautologije"
+        eyebrow="6. Formalne definicije"
+        title="Tautologija, kontradikcija i logička ekvivalencija"
+        description="Pre nego što počneš da pamtiš zakone, važno je da razumeš tri reči koje organizuju celu temu."
+      >
+        <div className={s.grid2}>
+          <SectionCard title="Tautologija">
+            <p style={{ fontSize: "0.82rem", textTransform: "uppercase", letterSpacing: "0.04em", color: "var(--lesson-primary-soft)", fontWeight: 700, marginBottom: 8 }}>
+              Definicija 1
+            </p>
+            <p>
+              Formula koja je tačna za svaku moguću raspodelu istinitosnih vrednosti
+              svojih sastavnih iskaza.
+            </p>
+            <MathBlock>{"p \\lor \\neg p"}</MathBlock>
+            <p>
+              Bez obzira na to da li je <InlineMath>{"p"}</InlineMath> tačno ili
+              netačno, ova formula ispada tačna.
+            </p>
+          </SectionCard>
+
+          <SectionCard title="Kontradikcija">
+            <p style={{ fontSize: "0.82rem", textTransform: "uppercase", letterSpacing: "0.04em", color: "var(--lesson-primary-soft)", fontWeight: 700, marginBottom: 8 }}>
+              Definicija 2
+            </p>
+            <p>Formula koja je netačna u svakom mogućem slučaju.</p>
+            <MathBlock>{"p \\land \\neg p"}</MathBlock>
+            <p>
+              Nijedan iskaz ne može istovremeno biti i tačan i netačan.
+            </p>
+          </SectionCard>
+        </div>
+
+        <div className={s.grid2} style={{ marginTop: 18 }}>
+          <SectionCard title="Kontingentna formula">
+            <p style={{ fontSize: "0.82rem", textTransform: "uppercase", letterSpacing: "0.04em", color: "var(--lesson-primary-soft)", fontWeight: 700, marginBottom: 8 }}>
+              Definicija 3
+            </p>
+            <p>Formula koja je u nekim redovima tačna, a u nekim netačna.</p>
+            <MathBlock>{"p \\land q"}</MathBlock>
+            <p>
+              Ovde rezultat zavisi od vrednosti iskaza{" "}
+              <InlineMath>{"p"}</InlineMath> i <InlineMath>{"q"}</InlineMath>.
+              Dakle nije ni tautologija ni kontradikcija.
+            </p>
+          </SectionCard>
+
+          <SectionCard title="Logička ekvivalencija">
+            <p style={{ fontSize: "0.82rem", textTransform: "uppercase", letterSpacing: "0.04em", color: "var(--lesson-primary-soft)", fontWeight: 700, marginBottom: 8 }}>
+              Definicija 4
+            </p>
+            <p>
+              Dve formule su logički ekvivalentne kada imaju istu vrednost u svakom
+              redu istinitosne tabele.
+            </p>
+            <MathBlock>{"A \\Leftrightarrow B"}</MathBlock>
+            <p>
+              Praktično: njihove poslednje kolone su identične, pa jednu možeš
+              zameniti drugom.
+            </p>
+          </SectionCard>
+        </div>
+
+        <MicroCheck
+          question="Proveri sebe: da li je dovoljno da formula bude tačna u jednom redu da bi bila tautologija?"
+          answer={
+            <p>
+              Ne. Tautologija mora da bude tačna u svakom mogućem redu, bez izuzetka.
+            </p>
+          }
+        />
+      </LessonSection>
+
+      {/* ═══════════ 7. KLASIČNE EKVIVALENCIJE ═══════════ */}
+      <LessonSection
+        id="klasicne"
+        eyebrow="7. Klasične ekvivalencije"
+        title="Obrasci koje vredi imati odmah u glavi"
+        description="Ne treba slepo pamtiti liste, ali nekoliko standardnih ekvivalencija drastično ubrzava rad."
+      >
+        <div className={s.formulaGrid}>
+          <FormulaCard
+            title="Dvostruka negacija"
+            formula={"\\neg(\\neg p) \\Leftrightarrow p"}
+            note="Negacija negacije vraća originalni iskaz."
+          />
+          <FormulaCard
+            title="Bez implikacije"
+            formula={"p \\Rightarrow q \\Leftrightarrow \\neg p \\lor q"}
+            note="Implikacija se može prevesti na jezik negacije i disjunkcije."
+          />
+        </div>
+
+        <div className={s.grid2} style={{ marginTop: 16 }}>
+          <SectionCard title="Kontrapozicija">
+            <MathBlock>
+              {"p \\Rightarrow q \\Leftrightarrow \\neg q \\Rightarrow \\neg p"}
+            </MathBlock>
+            <p>
+              Ovo je jedna od najvažnijih ekvivalencija u dokazivanju i proveri
+              uslova.
+            </p>
+          </SectionCard>
+          <SectionCard title="Komutativnost">
+            <MathBlock>
+              {
+                "p \\lor q \\Leftrightarrow q \\lor p, \\qquad p \\land q \\Leftrightarrow q \\land p"
+              }
+            </MathBlock>
+            <p>
+              Redosled članova se ne menja za disjunkciju i konjunkciju.
+            </p>
+          </SectionCard>
+        </div>
+
+        <InsightCard title="Praktično pravilo">
+          <p>
+            Kad god sumnjaš da su dve formule ekvivalentne, ne oslanjaj se na utisak.
+            Napravi tabelu i proveri da li su poslednje kolone identične.
+          </p>
+        </InsightCard>
+      </LessonSection>
+
+      {/* ═══════════ 8. LABORATORIJA EKVIVALENCIJE ═══════════ */}
+      <LessonSection
+        id="ekviv-lab"
+        eyebrow="8. Laboratorija ekvivalencije"
+        title="Proveri da li je formula tautologija i da li su dve formule ekvivalentne"
+        description="Izaberi scenario. U nekim scenarijima posmatraš jednu formulu i proveravaš da li je svuda tačna. U drugim scenarijima posmatraš dve formule i proveravaš da li im se poslednje kolone potpuno poklapaju."
+      >
+        <EquivalenceLab />
+
+        <InsightCard title="Kako da koristiš ovu laboratoriju">
+          <p>
+            Izaberi scenario i klikni red po red. U režimu jedne formule gledaš da
+            li je poslednja kolona svuda T (tautologija). U režimu dve formule gledaš
+            da li se poslednje dve kolone poklapaju u svakom redu (ekvivalencija).
+          </p>
+        </InsightCard>
+      </LessonSection>
+
+      {/* ═══════════ 9. DOKAZI KORAK PO KORAK ═══════════ */}
+      <LessonSection
+        id="dokazi"
+        eyebrow="9. Dokazi korak po korak"
+        title="Kako se tautologije i ekvivalencije proveravaju"
+        description="Ovde nije cilj mehanički prepis. Cilj je da navikneš oko da prepozna obrazac i da razumeš zašto je tabela takva kakva jeste."
+      >
+        <div className={s.walkthrough}>
+          {/* Dokaz 1: tautologija p v ~p */}
+          <WalkStep
+            number={1}
+            title={
+              <>
+                Pokažimo da je <InlineMath>{"p \\lor \\neg p"}</InlineMath>{" "}
+                tautologija
+              </>
+            }
+          >
+            <p>
+              Imamo samo jedan osnovni iskaz <InlineMath>{"p"}</InlineMath>, pa su
+              moguća samo dva reda:{" "}
+              <InlineMath>{"p = T"}</InlineMath> i{" "}
+              <InlineMath>{"p = N"}</InlineMath>.
+            </p>
+            <MathBlock>
+              {
+                "\\begin{array}{c|c|c} p & \\neg p & p \\lor \\neg p \\\\ \\hline T & N & T \\\\ N & T & T \\end{array}"
+              }
+            </MathBlock>
+            <p>
+              Poslednja kolona je svuda <InlineMath>{"T"}</InlineMath>. To je baš
+              definicija tautologije.
+            </p>
+          </WalkStep>
+
+          <MicroCheck
+            question="Mikro-provera: da li je p ∧ ¬p tautologija?"
+            answer={
+              <p>
+                Ne. Naprotiv, to je kontradikcija, jer je u svim redovima netačna.
+              </p>
+            }
+          />
+
+          {/* Dokaz 2: De Morgan */}
+          <WalkStep
+            number={2}
+            title="Pokažimo De Morganov zakon"
+          >
+            <p>
+              Želimo da proverimo da li su formule{" "}
+              <InlineMath>{"\\neg(p \\lor q)"}</InlineMath> i{" "}
+              <InlineMath>{"(\\neg p) \\land (\\neg q)"}</InlineMath>{" "}
+              ekvivalentne.
+            </p>
+            <MathBlock>
+              {"\\neg(p \\lor q) \\Leftrightarrow (\\neg p) \\land (\\neg q)"}
+            </MathBlock>
+            <p>Popunimo obe poslednje kolone i uporedimo ih red po red.</p>
+            <MathBlock>
+              {
+                "\\begin{array}{c|c|c|c} p & q & \\neg(p \\lor q) & (\\neg p) \\land (\\neg q) \\\\ \\hline T & T & N & N \\\\ T & N & N & N \\\\ N & T & N & N \\\\ N & N & T & T \\end{array}"
+              }
+            </MathBlock>
+            <p>
+              Kolone su iste, pa su formule logički ekvivalentne.
+            </p>
+          </WalkStep>
+
+          {/* Dokaz 3: uklanjanje implikacije */}
+          <WalkStep
+            number={3}
+            title="Uklanjanje implikacije"
+          >
+            <p>
+              Formula <InlineMath>{"p \\Rightarrow q"}</InlineMath> se veoma često
+              zamenjuje formulom <InlineMath>{"\\neg p \\lor q"}</InlineMath>. To nije
+              zgodna pretpostavka nego prava ekvivalencija.
+            </p>
+            <MathBlock>
+              {"p \\Rightarrow q \\Leftrightarrow \\neg p \\lor q"}
+            </MathBlock>
+            <p>
+              Zašto? Zato što su netačne u istom i samo u istom slučaju: kada je{" "}
+              <InlineMath>{"p = T"}</InlineMath>, a{" "}
+              <InlineMath>{"q = N"}</InlineMath>.
+            </p>
+            <p>
+              Ovaj prelaz je izuzetno koristan kad želiš da logički izraz prebaciš na
+              jezik negacije, konjunkcije i disjunkcije.
+            </p>
+          </WalkStep>
+
+          <MicroCheck
+            question="Mikro-provera: da li iz p ⇒ q sledi da je q ⇒ p?"
+            answer={
+              <p>
+                Ne. To je konverzija implikacije i uglavnom nije tačna. Tačna
+                ekvivalentna forma je kontrapozicija:{" "}
+                <InlineMath>
+                  {"p \\Rightarrow q \\Leftrightarrow \\neg q \\Rightarrow \\neg p"}
+                </InlineMath>
+                .
+              </p>
+            }
+          />
+
+          {/* Dokaz 4: formule koje nisu ekvivalentne */}
+          <WalkStep
+            number={4}
+            title="Primer kada formule nisu ekvivalentne"
+          >
+            <p>
+              Uzmimo formule <InlineMath>{"p \\lor q"}</InlineMath> i{" "}
+              <InlineMath>{"p \\land q"}</InlineMath>. One zvuče povezano, ali nisu
+              iste.
+            </p>
+            <MathBlock>
+              {
+                "\\begin{array}{c|c|c|c} p & q & p \\lor q & p \\land q \\\\ \\hline T & T & T & T \\\\ T & N & T & N \\\\ N & T & T & N \\\\ N & N & N & N \\end{array}"
+              }
+            </MathBlock>
+            <p>
+              Već u drugom redu kolone se razlikuju. Dakle ove formule nisu logički
+              ekvivalentne.
+            </p>
+          </WalkStep>
+        </div>
+      </LessonSection>
+
+      {/* ═══════════ 10. ČESTE GREŠKE ═══════════ */}
       <LessonSection
         id="zamke"
-        eyebrow="6. Česte greške"
+        eyebrow="10. Česte greške"
         title="Gde učenici najčešće gube kontrolu"
         description="Skoro svaka greška iz ove lekcije kasnije postaje mnogo skuplja. Ovde izgleda mala, a kasnije obara ceo zadatak."
       >
@@ -816,13 +1094,31 @@ export default function Lesson1Page() {
               , što je netačno. Operacija mora da se promeni.
             </p>
           </article>
+          <article className={s.tipCard}>
+            <h3 className={cs.tCardTitle}>
+              &ldquo;Tačno u jednom redu&rdquo; nije isto što i tautologija
+            </h3>
+            <p>
+              Formula koja je tačna samo ponekad nije tautologija. Tautologija mora da
+              bude svuda tačna.
+            </p>
+          </article>
+          <article className={s.tipCard}>
+            <h3 className={cs.tCardTitle}>
+              Ignorisanje samo jednog spornog reda
+            </h3>
+            <p>
+              Dovoljan je jedan red u kome se kolone razlikuju da formule ne budu
+              ekvivalentne.
+            </p>
+          </article>
         </div>
       </LessonSection>
 
-      {/* ═══════════ 7. VEZA SA PRIJEMNIM ═══════════ */}
+      {/* ═══════════ 11. VEZA SA PRIJEMNIM ═══════════ */}
       <LessonSection
         id="ispit"
-        eyebrow="7. Veza sa prijemnim zadacima"
+        eyebrow="11. Veza sa prijemnim zadacima"
         title="Zašto logika direktno utiče na tačnost algebarskog rešenja"
         description={'Na prijemnom te retko pitaju "šta je implikacija" kao usamljenu teoriju. Ali stalno proveravaju da li umeš da čuvaš logičku korektnost dok rešavaš zadatak.'}
       >
@@ -854,6 +1150,32 @@ export default function Lesson1Page() {
           </SectionCard>
         </div>
 
+        <div className={s.grid2} style={{ marginTop: 16 }}>
+          <SectionCard title="Negacija uslova domena">
+            <p>Ako znaš da mora da važi</p>
+            <MathBlock>{"x \\ge 1 \\land x \\ne 3"}</MathBlock>
+            <p>onda se negacija ne piše napamet, nego preko zakona:</p>
+            <MathBlock>
+              {
+                "\\neg(x \\ge 1 \\land x \\ne 3) \\Leftrightarrow (x < 1) \\lor (x = 3)"
+              }
+            </MathBlock>
+          </SectionCard>
+          <SectionCard title="Bezbedno pojednostavljivanje uslova">
+            <p>
+              Ako neki uslov možeš da zameniš njegovim ekvivalentnim oblikom, skup
+              rešenja se ne menja. Upravo zato su ekvivalencije dragocene: čuvaju
+              smisao zadatka.
+            </p>
+            <MathBlock>
+              {"p \\Rightarrow q \\Leftrightarrow \\neg p \\lor q"}
+            </MathBlock>
+            <p>
+              Ovakve zamene su legitimne jer ne menjaju nijedan red tabele.
+            </p>
+          </SectionCard>
+        </div>
+
         <InsightCard title="Prijemni mentalni model">
           <p>
             Kada pišeš novi red rešenja, pitaj sebe: &ldquo;Da li sam dobio
@@ -863,10 +1185,10 @@ export default function Lesson1Page() {
         </InsightCard>
       </LessonSection>
 
-      {/* ═══════════ 8. MINI VEŽBA ═══════════ */}
+      {/* ═══════════ 12. MINI VEŽBA ═══════════ */}
       <LessonSection
         id="vezba"
-        eyebrow="8. Mini vežba"
+        eyebrow="12. Mini vežba"
         title="Kratka provera razumevanja"
         description="Probaj prvo samostalno, pa tek onda otvori rešenje. Cilj nije brzina, nego tačno logičko čitanje."
       >
@@ -931,6 +1253,67 @@ export default function Lesson1Page() {
               </MathBlock>
             }
           />
+          <ExerciseCard
+            title="Zadatak 5: Tautologija ili ne?"
+            problem={
+              <p>
+                Odredi da li je{" "}
+                <InlineMath>{"p \\lor \\neg p"}</InlineMath> tautologija.
+              </p>
+            }
+            solution={
+              <p>
+                Jeste. U oba moguća reda poslednja kolona je{" "}
+                <InlineMath>{"T"}</InlineMath>.
+              </p>
+            }
+          />
+          <ExerciseCard
+            title="Zadatak 6: Kontradikcija ili ne?"
+            problem={
+              <p>
+                Odredi da li je{" "}
+                <InlineMath>{"p \\land \\neg p"}</InlineMath> kontradikcija.
+              </p>
+            }
+            solution={
+              <p>Jeste. U svim redovima formula je netačna.</p>
+            }
+          />
+          <ExerciseCard
+            title="Zadatak 7: Proveri ekvivalenciju"
+            problem={
+              <p>
+                Da li važi{" "}
+                <InlineMath>
+                  {"p \\Rightarrow q \\Leftrightarrow \\neg p \\lor q"}
+                </InlineMath>
+                ?
+              </p>
+            }
+            solution={
+              <p>
+                Da. Poslednje kolone se poklapaju u svim redovima, pa su formule
+                ekvivalentne.
+              </p>
+            }
+          />
+          <ExerciseCard
+            title="Zadatak 8: Negacija formule"
+            problem={
+              <p>
+                Preoblikuj{" "}
+                <InlineMath>{"\\neg(p \\land q)"}</InlineMath>.
+              </p>
+            }
+            solution={
+              <MathBlock>
+                {
+                  "\\neg(p \\land q) \\Leftrightarrow (\\neg p) \\lor (\\neg q)"
+                }
+              </MathBlock>
+            }
+          />
         </div>
       </LessonSection>
 
@@ -945,6 +1328,11 @@ export default function Lesson1Page() {
             "\\text{ispravno razmišljanje} = \\text{tačna formulacija} + \\text{tačan logički prelaz}"
           }
         </MathBlock>
+        <MathBlock>
+          {
+            "\\text{tautologija} = \\text{poslednja kolona svuda } T, \\qquad A \\Leftrightarrow B = \\text{iste poslednje kolone}"
+          }
+        </MathBlock>
         <p>
           Kada razlikuješ iskaz, implikaciju i ekvivalenciju, mnogo lakše vidiš
           da li je transformacija dozvoljena i da li dobijeno rešenje zaista
@@ -952,12 +1340,12 @@ export default function Lesson1Page() {
         </p>
       </InsightCard>
 
-      {/* ═══════════ 9. ZAVRŠNI REZIME ═══════════ */}
+      {/* ═══════════ 13. ZAVRŠNI REZIME ═══════════ */}
       <LessonSection
         id="rezime"
-        eyebrow="9. Završni rezime"
+        eyebrow="13. Završni rezime"
         title="Šta moraš da zapamtiš posle ove lekcije"
-        description="Ako sledećih šest stavki umeš da izgovoriš bez dvoumljenja, ova lekcija je uradila svoj posao."
+        description="Ako sledećih stavki umeš da izgovoriš bez dvoumljenja, ova lekcija je uradila svoj posao."
       >
         <div className={s.summaryGrid}>
           <article className={s.summaryCard}>
@@ -990,8 +1378,34 @@ export default function Lesson1Page() {
             </p>
           </article>
           <article className={s.summaryCard}>
+            <h3 className={cs.tCardTitle}>Tautologija</h3>
+            <p>
+              Formula koja je tačna u svakom mogućem redu tabele.
+            </p>
+          </article>
+          <article className={s.summaryCard}>
+            <h3 className={cs.tCardTitle}>Kontradikcija</h3>
+            <p>
+              Formula koja je netačna u svakom mogućem redu.
+            </p>
+          </article>
+          <article className={s.summaryCard}>
+            <h3 className={cs.tCardTitle}>Logička ekvivalencija</h3>
+            <p>
+              Dve formule su logički ekvivalentne ako imaju iste poslednje kolone.
+            </p>
+          </article>
+          <article className={s.summaryCard}>
+            <h3 className={cs.tCardTitle}>Implikacija bez strelice</h3>
+            <p>
+              Može se prevesti u oblik{" "}
+              <InlineMath>{"\\neg p \\lor q"}</InlineMath>.
+            </p>
+          </article>
+          <article className={s.summaryCard}>
             <p>
               Na prijemnom logika čuva domenu, uslove i proveru dobijenih
+              rešenja. Ekvivalencija čuva tačnost transformacija i sprečava lažna
               rešenja.
             </p>
           </article>

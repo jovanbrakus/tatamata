@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 
 const Lesson1Page = dynamic(() => import("@/components/knowledge/lessons/Lesson1Page"));
-const Lesson1_5Page = dynamic(() => import("@/components/knowledge/lessons/Lesson1_5Page"));
 const Lesson2Page = dynamic(() => import("@/components/knowledge/lessons/Lesson2Page"));
 const Lesson3Page = dynamic(() => import("@/components/knowledge/lessons/Lesson3Page"));
 const Lesson4Page = dynamic(() => import("@/components/knowledge/lessons/Lesson4Page"));
@@ -70,7 +69,6 @@ interface Props {
 
 const LESSON_COMPONENTS: Record<string, React.ComponentType> = {
   "1": Lesson1Page,
-  "1.5": Lesson1_5Page,
   "2": Lesson2Page,
   "3": Lesson3Page,
   "4": Lesson4Page,
