@@ -518,6 +518,11 @@ export default function Lesson13Page() {
         ]}
         stats={[
           {
+            label: "Trajanje",
+            description:
+              "55 do 70 minuta sa primerima i vežbama.",
+          },
+          {
             label: "Predznanje",
             description:
               "Algebarski izrazi i sređivanje. Posebno rad sa sličnim članovima i distributivnost.",

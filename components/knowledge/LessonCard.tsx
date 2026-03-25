@@ -92,7 +92,7 @@ export default function LessonCard({ lesson }: { lesson: LessonMeta }) {
           <span className="bg-[#FF6B00] text-black px-6 py-3 rounded-lg font-bold uppercase tracking-widest text-xs transition-all group-hover:bg-[#ff7524] shadow-lg shadow-[#FF6B00]/10"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
-            Istrazi
+            Otvori
           </span>
         </div>
       </div>

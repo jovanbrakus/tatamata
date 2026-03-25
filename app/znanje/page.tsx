@@ -62,8 +62,7 @@ export default function ZnanjePage() {
           className="text-[#adaaaa] text-xl max-w-2xl font-light leading-relaxed"
           style={{ fontFamily: "'Manrope', sans-serif" }}
         >
-          Ovladajte gradivom kroz interaktivne module. Izaberite disciplinu i
-          pocnite sa istrazivanjem.
+          Ovladajte gradivom kroz interaktivne module. Izaberite lekciju i počnite sa istraživanjem.
         </p>
       </section>
 
