@@ -29,6 +29,22 @@
   --lesson-max-width: 1180px;
 }
 
+/* ── Light Theme Variable Overrides ── */
+:global(html.light) {
+  --lesson-bg: #faf8f6;
+  --lesson-bg-soft: #f2edeb;
+  --lesson-panel: rgba(255, 255, 255, 0.85);
+  --lesson-panel-soft: rgba(245, 240, 235, 0.90);
+  --lesson-panel-strong: rgba(230, 220, 210, 0.95);
+  --lesson-text: #2a2420;
+  --lesson-muted: #7a6f68;
+  --lesson-muted-strong: #5a5248;
+  --lesson-primary-soft: #d94e0a;
+  --lesson-border: rgba(236, 91, 19, 0.12);
+  --lesson-border-strong: rgba(255, 156, 109, 0.20);
+  --lesson-shadow: 0 28px 84px rgba(0, 0, 0, 0.06);
+}
+
 /* ── Lesson Root ── */
 .lessonRoot {
   min-height: 100vh;
@@ -57,6 +73,42 @@
 
 .lessonRoot section[id] {
   scroll-margin-top: 88px;
+}
+
+/* ── Light Theme Component Overrides ── */
+
+:global(html.light) .lessonRoot {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(236, 91, 19, 0.08), transparent 34%),
+    radial-gradient(circle at 82% 16%, rgba(255, 154, 106, 0.06), transparent 28%),
+    linear-gradient(180deg, #fef9f5 0%, #faf8f6 32%, #f8f6f4 100%);
+}
+
+:global(html.light) .lessonRoot ::selection {
+  background: rgba(236, 91, 19, 0.15);
+}
+
+:global(html.light) .ambientOrbOne { background: rgba(236, 91, 19, 0.08); }
+:global(html.light) .ambientOrbTwo { background: rgba(143, 215, 255, 0.05); }
+:global(html.light) .ambientOrbThree { background: rgba(207, 183, 255, 0.05); }
+
+:global(html.light) .miniCard {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+:global(html.light) .statCard {
+  background: rgba(240, 235, 230, 0.8);
+}
+
+:global(html.light) .heroImageWrap::before {
+  background:
+    linear-gradient(180deg, rgba(250, 248, 246, 0.15), rgba(250, 248, 246, 0.55)),
+    linear-gradient(135deg, rgba(236, 91, 19, 0.12), rgba(255, 154, 106, 0.04));
+}
+
+:global(html.light) .heroImage {
+  filter: grayscale(0.15) saturate(0.85) contrast(0.98);
 }
 
 /* ── Typography System ── */
