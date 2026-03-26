@@ -46,6 +46,12 @@ interface StrengthWeakness {
   percent: number;
 }
 
+interface CategoryGroup {
+  id: string;
+  name: string;
+  categories: string[];
+}
+
 interface Analytics {
   accuracyPercent: number;
   avgSolveTimeSec: number;
@@ -113,8 +119,10 @@ export default function AnalytikaPage() {
   const { data: session, status: sessionStatus } = useSession();
   const router = useRouter();
   const [analytics, setAnalytics] = useState<Analytics | null>(null);
+  const [categoryGroups, setCategoryGroups] = useState<CategoryGroup[]>([]);
   const [recentExams, setRecentExams] = useState<RecentExam[]>([]);
   const [loading, setLoading] = useState(true);
+  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const [recalculating, setRecalculating] = useState(false);
 
   useEffect(() => {
@@ -128,6 +136,7 @@ export default function AnalytikaPage() {
       .then((r) => r.json())
       .then((data) => {
         setAnalytics(data.analytics);
+        setCategoryGroups(data.categoryGroups ?? []);
         setRecentExams(data.recentExams ?? []);
       })
       .catch(console.error)
@@ -159,27 +168,14 @@ export default function AnalytikaPage() {
       score: point.avgScore,
     })) ?? [];
 
-  /* ─── category list (sorted desc) ─── */
-  const categories = analytics?.categoryBreakdown
-    ? Object.entries(analytics.categoryBreakdown)
-        .map(([id, data]) => ({ id, ...data }))
-        .sort((a, b) => b.percent - a.percent)
-    : [];
-
-  /* ─── percentile label ─── */
-  const percentileLabel = analytics
-    ? `Top ${Math.max(1, Math.round(100 - analytics.percentileRank))}%`
-    : "—";
 
   /* ─── loading ─── */
   if (loading || sessionStatus === "loading") {
     return (
       <div className="mx-auto max-w-[1400px] px-4 py-8 sm:px-8">
         <div className="mb-6 h-8 w-64 animate-pulse rounded-lg bg-card" />
-        <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="h-32 animate-pulse rounded-2xl bg-card" />
-          ))}
+        <div className="mb-8">
+          <div className="h-32 animate-pulse rounded-2xl bg-card" />
         </div>
         <div className="mb-8 grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className="h-80 animate-pulse rounded-3xl bg-card lg:col-span-2" />
@@ -221,12 +217,11 @@ export default function AnalytikaPage() {
       </div>
 
       {/* Top Metrics Row */}
-      <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {/* Accuracy */}
+      <div className="mb-8">
         <div className="glass-panel relative overflow-hidden rounded-2xl p-6">
           <div className="relative z-10">
             <p className="text-sm font-semibold text-text-secondary">
-              Prosecna Preciznost
+              Prosečna preciznost
             </p>
             <h3 className="mt-1 text-3xl font-black text-text">
               {hasData ? `${analytics.accuracyPercent.toFixed(1)}%` : "—"}
@@ -235,81 +230,11 @@ export default function AnalytikaPage() {
               <div className="mt-2 flex items-center gap-1 text-xs font-bold text-emerald-500">
                 <TrendingUp size={14} />
                 {analytics.problemsSolved} od {analytics.problemsAttempted}{" "}
-                tacno
+                tačno
               </div>
             )}
           </div>
           <Target
-            size={40}
-            className="absolute right-4 top-4 text-[#ec5b13]/20"
-          />
-        </div>
-
-        {/* Avg Solve Time */}
-        <div className="glass-panel relative overflow-hidden rounded-2xl p-6">
-          <div className="relative z-10">
-            <p className="text-sm font-semibold text-text-secondary">
-              Brzina resavanja
-            </p>
-            <h3 className="mt-1 text-3xl font-black text-text">
-              {hasData && analytics.avgSolveTimeSec
-                ? formatTime(analytics.avgSolveTimeSec)
-                : "—"}
-            </h3>
-            {hasData && analytics.avgSolveTimeSec > 0 && (
-              <div className="mt-2 flex items-center gap-1 text-xs font-bold text-orange-500">
-                <Timer size={14} />
-                po zadatku
-              </div>
-            )}
-          </div>
-          <Timer
-            size={40}
-            className="absolute right-4 top-4 text-[#ec5b13]/20"
-          />
-        </div>
-
-        {/* Percentile Rank */}
-        <div className="glass-panel relative overflow-hidden rounded-2xl p-6">
-          <div className="relative z-10">
-            <p className="text-sm font-semibold text-text-secondary">
-              Percentilni rang
-            </p>
-            <h3 className="mt-1 text-3xl font-black text-text">
-              {hasData && analytics.problemsAttempted >= 10
-                ? percentileLabel
-                : "—"}
-            </h3>
-            {hasData && analytics.problemsAttempted >= 10 && (
-              <div className="mt-2 flex items-center gap-1 text-xs font-bold text-emerald-500">
-                <Users size={14} />
-                Medju svim korisnicima
-              </div>
-            )}
-          </div>
-          <Users
-            size={40}
-            className="absolute right-4 top-4 text-[#ec5b13]/20"
-          />
-        </div>
-
-        {/* Total Simulations */}
-        <div className="glass-panel relative overflow-hidden rounded-2xl p-6">
-          <div className="relative z-10">
-            <p className="text-sm font-semibold text-text-secondary">
-              Zavrsene simulacije
-            </p>
-            <h3 className="mt-1 text-3xl font-black text-text">
-              {hasData ? analytics.totalSimulations : "0"}
-            </h3>
-            {hasData && (
-              <div className="mt-2 flex items-center gap-1 text-xs font-bold text-text-secondary">
-                <ClipboardCheck size={14} />
-                zavrsen{analytics.totalSimulations === 1 ? "a" : "o"}
-              </div>
-            )}
-          </div>
-          <ClipboardCheck
             size={40}
             className="absolute right-4 top-4 text-[#ec5b13]/20"
           />
@@ -420,41 +345,83 @@ export default function AnalytikaPage() {
           )}
         </div>
 
-        {/* Category Breakdown */}
+        {/* Category Breakdown — grouped */}
         <div className="glass-panel rounded-3xl p-6 sm:p-8">
           <h4 className="mb-6 text-lg font-bold text-text">
             Uspeh po kategorijama
           </h4>
-          {categories.length > 0 ? (
-            <div className="space-y-6">
-              {categories.map((cat) => (
-                <div key={cat.id} className="space-y-2">
-                  <div className="flex justify-between text-xs font-bold uppercase tracking-wider">
-                    <span className="text-text-secondary">{cat.name}</span>
-                    <span className="text-[#ec5b13]">{cat.percent}%</span>
-                  </div>
-                  <div className="h-2 w-full overflow-hidden rounded-full bg-card">
-                    <div
-                      className="h-full rounded-full bg-[#ec5b13] shadow-[0_0_10px_rgba(236,91,19,0.3)] transition-all duration-700"
-                      style={{ width: `${cat.percent}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
-              {categories.length > 0 && (
-                <div className="mt-8 rounded-xl border border-[#ec5b13]/10 bg-[#ec5b13]/5 p-4">
-                  <p className="text-xs italic text-text-secondary">
-                    {analytics?.weaknesses && analytics.weaknesses.length > 0 ? (
-                      <>
-                        Vas fokus bi trebalo da ostane na{" "}
-                        <span className="font-bold text-[#ec5b13]">
-                          {analytics.weaknesses[0].name}
-                        </span>{" "}
-                        gde je primecen blagi pad preciznosti.
-                      </>
-                    ) : (
-                      "Odlicno! Sve kategorije su na visokom nivou."
+          {categoryGroups.length > 0 && analytics?.categoryBreakdown ? (
+            <div className="space-y-4">
+              {categoryGroups.map((group) => {
+                const childCats = group.categories
+                  .map((id) => ({ id, ...(analytics.categoryBreakdown[id] || { name: id, correct: 0, total: 0, percent: 0 }) }))
+                  .filter(Boolean);
+                const totalCorrect = childCats.reduce((s, c) => s + (c.correct || 0), 0);
+                const totalAll = childCats.reduce((s, c) => s + (c.total || 0), 0);
+                const groupPercent = totalAll > 0 ? Math.round((totalCorrect / totalAll) * 100) : 0;
+                const isExpanded = expandedGroups.has(group.id);
+
+                return (
+                  <div key={group.id} className="rounded-xl border border-[var(--glass-border)] bg-[var(--tint)] overflow-hidden">
+                    <button
+                      onClick={() => setExpandedGroups((prev) => {
+                        const next = new Set(prev);
+                        if (next.has(group.id)) next.delete(group.id);
+                        else next.add(group.id);
+                        return next;
+                      })}
+                      className="flex w-full items-center gap-3 p-4 text-left transition-colors hover:bg-[var(--tint-strong)]"
+                    >
+                      <span
+                        className="material-symbols-outlined text-sm text-muted transition-transform"
+                        style={{ transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)" }}
+                      >
+                        chevron_right
+                      </span>
+                      <div className="flex-grow">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-bold text-heading">{group.name}</span>
+                          <span className="text-sm font-bold text-[#ec5b13]">{groupPercent}%</span>
+                        </div>
+                        <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-card">
+                          <div
+                            className="h-full rounded-full bg-[#ec5b13] transition-all duration-700"
+                            style={{ width: `${groupPercent}%` }}
+                          />
+                        </div>
+                      </div>
+                    </button>
+
+                    {isExpanded && (
+                      <div className="space-y-3 border-t border-[var(--glass-border)] px-4 py-3 pl-11">
+                        {childCats.map((cat) => (
+                          <div key={cat.id} className="space-y-1">
+                            <div className="flex justify-between text-xs">
+                              <span className="text-text-secondary">{cat.name}</span>
+                              <span className="font-semibold text-text-secondary">{cat.percent ?? 0}%</span>
+                            </div>
+                            <div className="h-1 w-full overflow-hidden rounded-full bg-card">
+                              <div
+                                className="h-full rounded-full bg-[#ec5b13]/60 transition-all duration-700"
+                                style={{ width: `${cat.percent ?? 0}%` }}
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     )}
+                  </div>
+                );
+              })}
+
+              {analytics.weaknesses && analytics.weaknesses.length > 0 && (
+                <div className="mt-4 rounded-xl border border-[#ec5b13]/10 bg-[#ec5b13]/5 p-4">
+                  <p className="text-xs italic text-text-secondary">
+                    Vaš fokus bi trebalo da ostane na{" "}
+                    <span className="font-bold text-[#ec5b13]">
+                      {analytics.weaknesses[0].name}
+                    </span>{" "}
+                    gde je primećen blagi pad preciznosti.
                   </p>
                 </div>
               )}
@@ -462,7 +429,7 @@ export default function AnalytikaPage() {
           ) : (
             <div className="flex h-48 items-center justify-center">
               <p className="text-sm text-text-secondary">
-                Resavajte zadatke da vidite statistiku.
+                Rešavajte zadatke da vidite statistiku.
               </p>
             </div>
           )}

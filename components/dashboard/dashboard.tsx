@@ -358,10 +358,7 @@ export default function Dashboard({ user }: DashboardProps) {
                           {style.icon}
                         </span>
                       </div>
-                      <h4 className="mb-1 text-sm font-bold">{group.name}</h4>
-                      <p className="mb-3 text-[10px] text-muted">
-                        {group.total} zadataka
-                      </p>
+                      <h4 className="mb-3 text-sm font-bold">{group.name}</h4>
                       <div className="mb-4 h-1 w-full overflow-hidden rounded-full bg-[var(--tint)]">
                         <div
                           className="h-full rounded-full transition-all duration-700"
@@ -468,14 +465,6 @@ export default function Dashboard({ user }: DashboardProps) {
                   <span className="text-xs text-text-secondary">Prosecan skor</span>
                   <span className="font-bold text-[#0ea5e9]">
                     {rank?.avgScore ? `${parseFloat(rank.avgScore).toFixed(0)}%` : "--"}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between rounded-xl bg-[var(--tint)] p-3">
-                  <span className="text-xs text-text-secondary">Rang lista</span>
-                  <span className="font-bold">
-                    {rank?.position
-                      ? `#${rank.position} / ${rank.totalParticipants >= 1000 ? `${(rank.totalParticipants / 1000).toFixed(1)}k` : rank.totalParticipants}`
-                      : "--"}
                   </span>
                 </div>
               </div>

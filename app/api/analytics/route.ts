@@ -3,6 +3,35 @@ import { db } from "@/lib/db";
 import { userAnalytics, mockExams, faculties } from "@/drizzle/schema";
 import { eq, desc, and } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import fs from "fs";
+import path from "path";
+
+function getAllCategories(): { id: string; name: string }[] {
+  const filePath = path.join(process.cwd(), "database", "categories.json");
+  const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  return data.map((c: any) => ({ id: c.id, name: c.sr || c.en }));
+}
+
+function getCategoryGroups(): { id: string; name: string; categories: string[] }[] {
+  const filePath = path.join(process.cwd(), "database", "category_groups.json");
+  const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  return data.map((g: any) => ({ id: g.id, name: g.sr || g.en, categories: g.categories }));
+}
+
+function fillCategoryBreakdown(
+  breakdown: Record<string, any> | null | undefined,
+  allCategories: { id: string; name: string }[]
+): Record<string, any> {
+  const filled: Record<string, any> = {};
+  for (const cat of allCategories) {
+    if (breakdown && breakdown[cat.id]) {
+      filled[cat.id] = breakdown[cat.id];
+    } else {
+      filled[cat.id] = { name: cat.name, correct: 0, total: 0, percent: 0 };
+    }
+  }
+  return filled;
+}
 
 export async function GET() {
   const session = await auth();
@@ -41,6 +70,9 @@ export async function GET() {
     .orderBy(desc(mockExams.finishedAt))
     .limit(5);
 
+  const allCategories = getAllCategories();
+  const categoryGroups = getCategoryGroups();
+
   return NextResponse.json({
     analytics: analytics
       ? {
@@ -50,13 +82,14 @@ export async function GET() {
           totalSimulations: analytics.totalSimulations,
           problemsSolved: analytics.problemsSolved,
           problemsAttempted: analytics.problemsAttempted,
-          categoryBreakdown: analytics.categoryBreakdown,
+          categoryBreakdown: fillCategoryBreakdown(analytics.categoryBreakdown as Record<string, any>, allCategories),
           strengths: analytics.strengths,
           weaknesses: analytics.weaknesses,
           trendData: analytics.trendData,
           updatedAt: analytics.updatedAt,
         }
       : null,
+    categoryGroups,
     recentExams: recentExams.map((e) => ({
       id: e.id,
       facultyId: e.facultyId,
