@@ -400,12 +400,12 @@ function Step({
     <div
       className={`flex cursor-pointer gap-4 rounded-xl border-l-[3px] p-4 transition-all ${
         active
-          ? "border-l-success bg-[var(--tint)]"
-          : "border-l-transparent hover:border-l-success hover:bg-[var(--tint)]"
+          ? "border-l-primary bg-[var(--tint)]"
+          : "border-l-transparent hover:border-l-primary hover:bg-[var(--tint)]"
       }`}
       onClick={() => setActive(!active)}
     >
-      <div className="mt-0.5 flex h-8 w-8 min-w-[2rem] items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent2 text-sm font-bold text-white">
+      <div className="mt-0.5 flex h-8 w-8 min-w-[2rem] items-center justify-center rounded-full bg-primary text-sm font-bold text-white">
         {num}
       </div>
       <div className="flex-1">
@@ -427,11 +427,11 @@ function Checkpoint({
   answer: React.ReactNode;
 }) {
   return (
-    <details className="my-4 rounded-xl border border-accent2/20 bg-accent2/[0.08] p-4">
-      <summary className="cursor-pointer text-[0.95rem] font-semibold text-accent2 select-none">
+    <details className="my-4 rounded-xl border border-primary/20 bg-primary/[0.06] p-4">
+      <summary className="cursor-pointer text-[0.95rem] font-semibold text-primary select-none">
         {question}
       </summary>
-      <div className="pt-3 font-semibold text-success">{answer}</div>
+      <div className="pt-3 font-semibold text-primary">{answer}</div>
     </details>
   );
 }
@@ -539,7 +539,7 @@ export default function PrimerPage() {
         {/* Theory refresher */}
         <section className="glass-card mb-6 rounded-2xl p-6">
           <details>
-            <summary className="cursor-pointer text-lg font-semibold text-accent2 select-none hover:text-accent2/80">
+            <summary className="cursor-pointer text-lg font-semibold text-primary select-none hover:text-primary/80">
               Ključne formule i teoreme
             </summary>
             <div className="pt-4">
@@ -713,8 +713,8 @@ export default function PrimerPage() {
             </section>
 
             {/* Key insight */}
-            <section className="rounded-2xl border border-accent2/30 bg-gradient-to-br from-accent/10 to-accent2/10 p-6 text-center">
-              <h2 className="mb-3 text-xl font-bold text-accent2">
+            <section className="rounded-2xl glass-card border border-[var(--glass-border)] p-6 text-center">
+              <h2 className="mb-3 text-xl font-bold text-primary">
                 Ključni uvid
               </h2>
               <p className="mb-3 leading-relaxed text-text-secondary">
@@ -723,7 +723,7 @@ export default function PrimerPage() {
                 &mdash; i to na onom kraju koji je{" "}
                 <strong className="text-heading">udaljeniji</strong> od temena.
               </p>
-              <div className="text-xl font-bold text-success">
+              <div className="text-xl font-bold text-primary">
                 <MBlock>
                   {"f_{\\max} + f_{\\min} = 14 + 10 = 24"}
                 </MBlock>
@@ -731,11 +731,11 @@ export default function PrimerPage() {
             </section>
 
             {/* Final answer */}
-            <section className="rounded-2xl border-2 border-success/30 bg-gradient-to-br from-success/[0.08] to-success/[0.12] p-7 text-center">
-              <h2 className="mb-4 text-2xl font-bold text-success">
+            <section className="rounded-2xl glass-card border border-[var(--glass-border)] p-7 text-center">
+              <h2 className="mb-4 text-2xl font-bold text-primary">
                 Konačan odgovor
               </h2>
-              <div className="my-4 text-4xl font-black text-success">
+              <div className="my-4 text-4xl font-black text-primary">
                 <M>{"24"}</M>
               </div>
               <div className="flex flex-wrap justify-center gap-3">
@@ -750,7 +750,7 @@ export default function PrimerPage() {
                     key={opt.label}
                     className={`rounded-xl border px-5 py-2.5 text-base ${
                       opt.correct
-                        ? "border-success bg-success/15 font-bold text-success"
+                        ? "border-primary bg-primary/15 font-bold text-primary"
                         : "border-[var(--glass-border)] bg-[var(--tint)] text-muted"
                     }`}
                   >
@@ -758,7 +758,7 @@ export default function PrimerPage() {
                   </div>
                 ))}
               </div>
-              <div className="mt-4 rounded-xl border border-success/15 bg-success/[0.06] p-4 text-left text-sm text-text-secondary">
+              <div className="mt-4 rounded-xl border border-[var(--glass-border)] bg-[var(--tint)] p-4 text-left text-sm text-text-secondary">
                 <strong>Verifikacija:</strong> Rezultat ima smisla jer je zbir
                 jedne vrednosti blizu 14 (maksimum) i jedne blizu 10
                 (minimum), što daje 24. Dodatno,{" "}
@@ -769,12 +769,12 @@ export default function PrimerPage() {
             </section>
 
             {/* Common pitfalls */}
-            <section className="rounded-2xl border border-warning/20 bg-warning/[0.06] p-6">
-              <h2 className="mb-3 text-xl font-bold text-warning">
+            <section className="rounded-2xl glass-card border border-[var(--glass-border)] p-6">
+              <h2 className="mb-3 text-xl font-bold text-primary">
                 Česte greške
               </h2>
               <ul className="space-y-2">
-                <li className="relative pl-5 text-text-secondary before:absolute before:left-0 before:font-bold before:text-warning before:content-['!']">
+                <li className="relative pl-5 text-text-secondary before:absolute before:left-0 before:font-bold before:text-primary before:content-['!']">
                   <strong>Sabiranje vrednosti na krajevima umesto
                   ekstrema:</strong>{" "}
                   Mnogi studenti saberu{" "}
@@ -782,7 +782,7 @@ export default function PrimerPage() {
                   provere vrednost u temenu parabole. Zato je ponuđen i
                   odgovor (C) 23 kao zamka.
                 </li>
-                <li className="relative pl-5 text-text-secondary before:absolute before:left-0 before:font-bold before:text-warning before:content-['!']">
+                <li className="relative pl-5 text-text-secondary before:absolute before:left-0 before:font-bold before:text-primary before:content-['!']">
                   <strong>Zaboravljanje da se proveri da li teme pripada
                   segmentu:</strong>{" "}
                   Da je teme bilo van segmenta <M>{"[2, 5]"}</M>, oba
@@ -804,7 +804,7 @@ export default function PrimerPage() {
                 <M>{"[k,\\, 5]"}</M> jednak <M>{"25"}</M>?
               </p>
               <details>
-                <summary className="cursor-pointer font-semibold text-accent2 select-none hover:text-accent2/80">
+                <summary className="cursor-pointer font-semibold text-primary select-none hover:text-primary/80">
                   Pogledaj nagoveštaj
                 </summary>
                 <div className="pt-3 text-text-secondary">
