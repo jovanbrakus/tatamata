@@ -1,13 +1,70 @@
 /* ==========================================================================
    Solution Theme — overrides problem HTML embedded styles to match Matoteka
    Loaded AFTER embedded <style> blocks so cascade priority is natural.
+   Supports both dark and light themes via CSS custom properties.
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
+/* --- Theme variables --- */
+html, html.dark {
+  --sol-bg: #0a0705;
+  --sol-text: #e2e8f0;
+  --sol-text-secondary: #94a3b8;
+  --sol-card-bg: rgba(255, 255, 255, 0.03);
+  --sol-card-border: rgba(255, 255, 255, 0.08);
+  --sol-card-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  --sol-tint: rgba(255, 255, 255, 0.03);
+  --sol-tint-border: rgba(255, 255, 255, 0.08);
+  --sol-accent-tint: rgba(236, 91, 19, 0.06);
+  --sol-accent-border: rgba(236, 91, 19, 0.12);
+  --sol-accent-hover: rgba(236, 91, 19, 0.04);
+  --sol-purple-tint: rgba(167, 139, 250, 0.04);
+  --sol-purple-border: rgba(167, 139, 250, 0.12);
+  --sol-purple-list-bg: rgba(167, 139, 250, 0.06);
+  --sol-green-tint: rgba(74, 222, 128, 0.04);
+  --sol-green-border: rgba(74, 222, 128, 0.15);
+  --sol-key-insight-border: rgba(236, 91, 19, 0.2);
+  --sol-detail-bg: rgba(167, 139, 250, 0.04);
+  --sol-detail-border: rgba(167, 139, 250, 0.12);
+  --sol-highlight-bg: rgba(236, 91, 19, 0.06);
+  --sol-highlight-border: rgba(236, 91, 19, 0.12);
+  --sol-given-bg: rgba(236, 91, 19, 0.06);
+  --sol-given-border: rgba(236, 91, 19, 0.12);
+  --sol-value-color: #e2e8f0;
+}
+
+html.light {
+  --sol-bg: #f8f6f4;
+  --sol-text: #334155;
+  --sol-text-secondary: #64748b;
+  --sol-card-bg: #ffffff;
+  --sol-card-border: rgba(0, 0, 0, 0.08);
+  --sol-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --sol-tint: rgba(0, 0, 0, 0.02);
+  --sol-tint-border: rgba(0, 0, 0, 0.08);
+  --sol-accent-tint: rgba(236, 91, 19, 0.06);
+  --sol-accent-border: rgba(236, 91, 19, 0.15);
+  --sol-accent-hover: rgba(236, 91, 19, 0.06);
+  --sol-purple-tint: rgba(167, 139, 250, 0.06);
+  --sol-purple-border: rgba(167, 139, 250, 0.18);
+  --sol-purple-list-bg: rgba(167, 139, 250, 0.08);
+  --sol-green-tint: rgba(74, 222, 128, 0.06);
+  --sol-green-border: rgba(74, 222, 128, 0.2);
+  --sol-key-insight-border: rgba(236, 91, 19, 0.25);
+  --sol-detail-bg: rgba(167, 139, 250, 0.05);
+  --sol-detail-border: rgba(167, 139, 250, 0.18);
+  --sol-highlight-bg: rgba(236, 91, 19, 0.06);
+  --sol-highlight-border: rgba(236, 91, 19, 0.18);
+  --sol-given-bg: rgba(236, 91, 19, 0.05);
+  --sol-given-border: rgba(236, 91, 19, 0.15);
+  --sol-value-color: #1e293b;
+}
+
 /* --- Base --- */
 body {
-  background: #0a0705;
+  background: var(--sol-bg);
+  color: var(--sol-text);
   font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
@@ -30,11 +87,20 @@ h1 {
 
 /* --- Cards --- */
 .card {
-  background: rgba(255, 255, 255, 0.03);
-  border-color: rgba(255, 255, 255, 0.08);
+  background: var(--sol-card-bg);
+  border-color: var(--sol-card-border);
+  box-shadow: var(--sol-card-shadow);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  box-shadow: none;
+}
+
+.card h3 {
+  color: #a78bfa;
+}
+
+/* --- Subtitle --- */
+.subtitle {
+  color: var(--sol-text-secondary);
 }
 
 /* --- Problem statement --- */
@@ -44,8 +110,22 @@ h1 {
 
 /* --- Given items & answer options --- */
 .given-item {
-  background: rgba(236, 91, 19, 0.06);
-  border-color: rgba(236, 91, 19, 0.12);
+  background: var(--sol-given-bg);
+  border-color: var(--sol-given-border);
+}
+
+.given-item.answer-option {
+  background: var(--sol-given-bg);
+  border-color: var(--sol-given-border);
+  color: var(--sol-text);
+}
+
+.given-item .label {
+  color: var(--sol-text-secondary);
+}
+
+.given-item .value {
+  color: var(--sol-value-color);
 }
 
 /* --- Math highlights --- */
@@ -53,8 +133,8 @@ h1 {
 .math-box,
 .math-highlight,
 .math-block {
-  background: rgba(236, 91, 19, 0.06);
-  border-color: rgba(236, 91, 19, 0.12);
+  background: var(--sol-highlight-bg);
+  border-color: var(--sol-highlight-border);
 }
 
 /* --- Step badges --- */
@@ -72,7 +152,7 @@ h1 {
 .step-container:hover,
 .step-container.active {
   border-left-color: #ec5b13;
-  background: rgba(236, 91, 19, 0.04);
+  background: var(--sol-accent-hover);
 }
 
 /* --- Insight cards --- */
@@ -81,8 +161,8 @@ h1 {
 }
 
 .key-insight {
-  background: linear-gradient(135deg, rgba(236, 91, 19, 0.08), rgba(167, 139, 250, 0.08));
-  border-color: rgba(236, 91, 19, 0.2);
+  background: linear-gradient(135deg, var(--sol-accent-tint), var(--sol-purple-tint));
+  border-color: var(--sol-key-insight-border);
 }
 
 .key-insight .card-title {
@@ -114,52 +194,123 @@ h1 {
 
 /* --- Details / collapsible --- */
 details {
-  background: rgba(167, 139, 250, 0.04);
-  border-color: rgba(167, 139, 250, 0.12);
+  background: var(--sol-detail-bg);
+  border-color: var(--sol-detail-border);
+}
+
+details summary {
+  color: #a78bfa;
+}
+
+details .detail-content {
+  background: var(--sol-detail-bg);
+  border-left-color: #a78bfa;
+  color: var(--sol-text);
+}
+
+details .detail-content li {
+  border-bottom-color: var(--sol-tint-border);
+  color: var(--sol-text);
+}
+
+.checkpoint details .detail-content,
+.checkpoint .detail-content {
+  border-left-color: #4ade80;
+}
+
+.challenge-box details .detail-content,
+.check-yourself details .detail-content {
+  background: var(--sol-detail-bg);
+  color: var(--sol-text);
 }
 
 /* --- Checkpoint (gen 1) --- */
 .checkpoint {
-  background: rgba(74, 222, 128, 0.04);
-  border-color: rgba(74, 222, 128, 0.15);
+  background: var(--sol-green-tint);
+  border-color: var(--sol-green-border);
 }
 
 /* --- Answer chips (gen 1) --- */
 .answer-chip {
-  border-color: rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--sol-tint-border);
+  background: var(--sol-tint);
 }
 
 /* --- Final answer (gen 2) --- */
 .final-option {
-  border-color: rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--sol-tint-border);
+  background: var(--sol-tint);
 }
 
 /* --- Answer box (gen 1) --- */
 .answer-box {
   border-color: #4ade80;
-  background: rgba(74, 222, 128, 0.04);
+  background: var(--sol-green-tint);
 }
 
 .final-answer-card {
   border-color: #4ade80;
-  background: rgba(74, 222, 128, 0.04);
+  background: var(--sol-green-tint);
 }
 
 /* --- Formula list --- */
 .formula-list li {
-  background: rgba(167, 139, 250, 0.06);
+  background: var(--sol-purple-list-bg);
   border-left-color: #a78bfa;
 }
 
 /* --- Borders: catch remaining #334155 usages --- */
 table td,
 table th {
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--sol-tint-border);
+}
+
+/* --- Text color overrides ---
+   Problem HTML inline <style> blocks set text to light colors (#e2e8f0, #94a3b8, #cbd5e1)
+   designed for dark backgrounds. These must be overridden via CSS variables so that
+   light theme gets dark, readable text. In dark mode the variables resolve to the
+   same values as the originals, so there is no visual change. */
+
+/* Primary text (was #e2e8f0 or #cbd5e1 in problem HTML) */
+.step-text,
+.step-content,
+.step-content p,
+.step-content h3,
+.step-explanation,
+.theory-card li,
+.pitfall-list li,
+.pitfall-text,
+.quiz-btn,
+.answer-option .option-label {
+  color: var(--sol-text);
+}
+
+/* Secondary / muted text (was #94a3b8 in problem HTML) */
+.verification,
+.verification-note,
+.canvas-caption,
+.challenge-text,
+.data-item .data-label,
+.final-answer .label,
+.final-answer-box .answer-label,
+.muted,
+.note,
+.plan-text,
+.sign-table .undef,
+.tri-val .label,
+.option-card,
+.final-option,
+.answer-chip {
+  color: var(--sol-text-secondary);
+}
+
+/* Override inline style="color: #e2e8f0" on lists/paragraphs in some problem files */
+html.light [style*="color: #e2e8f0"],
+html.light [style*="color:#e2e8f0"] {
+  color: var(--sol-text) !important;
 }
 
 /* --- Canvas --- */
 canvas {
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--sol-tint-border);
 }

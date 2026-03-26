@@ -41,6 +41,21 @@ function injectThemeLink(html: string): string {
 }
 
 /**
+ * Set the theme class on the <html> element so solution-theme.css variables apply.
+ */
+function injectThemeClass(html: string, theme: string): string {
+  const themeClass = theme === "light" ? "light" : "dark";
+  // Handle <html> with existing attributes but no class
+  return html.replace(/<html([^>]*)>/i, (match, attrs: string) => {
+    if (/class\s*=/.test(attrs)) {
+      // Replace existing class value
+      return `<html${attrs.replace(/class\s*=\s*["'][^"']*["']/, `class="${themeClass}"`)}>`;
+    }
+    return `<html${attrs} class="${themeClass}">`;
+  });
+}
+
+/**
  * Inject CSS to neutralize correct-answer highlighting in the problem statement
  * (top section) while preserving it in the final answer section (bottom).
  */
@@ -52,16 +67,16 @@ function neutralizeAnswerHighlights(html: string): string {
   .answer-option.incorrect,
   .given-item.answer-option.correct,
   .given-item.answer-option.incorrect {
-    border-color: rgba(236, 91, 19, 0.12) !important;
-    background: rgba(236, 91, 19, 0.06) !important;
-    color: #e2e8f0 !important;
+    border-color: var(--sol-accent-border) !important;
+    background: var(--sol-accent-tint) !important;
+    color: var(--sol-text) !important;
     font-weight: normal !important;
   }
 </style>`;
   return html.replace(/<\/head>/i, `${css}\n</head>`);
 }
 
-function extractStatementHtml(html: string): string {
+function extractStatementHtml(html: string, theme: string): string {
   // Match all class variations: "card problem-statement", "problem-statement", "problem-statement card"
   let markerMatch = html.match(/<div\s+class="[^"]*problem-statement[^"]*">/);
   // Fallback: older files use the first <div class="card"> as the statement container
@@ -98,8 +113,10 @@ function extractStatementHtml(html: string): string {
   const headContent = headMatch ? headMatch[1] : "";
   const cleanHead = headContent.replace(/<script[^>]*id="logic-scratchpad"[^>]*>[\s\S]*?<\/script>/i, "");
 
+  const themeClass = theme === "light" ? "light" : "dark";
+
   return `<!DOCTYPE html>
-<html lang="sr">
+<html lang="sr" class="${themeClass}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -135,6 +152,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ problemI
   const { problemId } = await params;
   const url = new URL(req.url);
   const section = url.searchParams.get("section");
+  const theme = url.searchParams.get("theme") || "dark";
 
   const html = getProblemHtml(problemId);
 
@@ -145,13 +163,13 @@ export async function GET(req: Request, { params }: { params: Promise<{ problemI
   const safeHtml = sanitizeForIframe(html);
 
   if (section === "statement") {
-    const statementHtml = extractStatementHtml(safeHtml);
+    const statementHtml = extractStatementHtml(safeHtml, theme);
     if (!statementHtml) {
       return new NextResponse("Statement not found", { status: 404 });
     }
     return new NextResponse(statementHtml, { headers: HEADERS });
   }
 
-  const themed = injectThemeLink(neutralizeAnswerHighlights(safeHtml));
+  const themed = injectThemeClass(injectThemeLink(neutralizeAnswerHighlights(safeHtml)), theme);
   return new NextResponse(themed, { headers: HEADERS });
 }

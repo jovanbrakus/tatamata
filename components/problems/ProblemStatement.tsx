@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 interface ProblemStatementProps {
   problemId: string;
   /** "statement" shows only the problem text, "full" shows everything */
@@ -12,13 +14,47 @@ export default function ProblemStatement({
   section = "statement",
   minHeight = "150px",
 }: ProblemStatementProps) {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    // Read initial theme
+    const stored = localStorage.getItem("theme") as string | null;
+    setTheme(stored || "dark");
+
+    // Watch for theme changes on the parent <html> element
+    const observer = new MutationObserver(() => {
+      const isLight = document.documentElement.classList.contains("light");
+      const newTheme = isLight ? "light" : "dark";
+      setTheme(newTheme);
+
+      // Sync to iframe without reload
+      try {
+        const doc = iframeRef.current?.contentDocument;
+        if (doc) {
+          doc.documentElement.className = newTheme;
+        }
+      } catch {
+        // cross-origin access denied — ignore
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const src =
     section === "statement"
-      ? `/api/problems/${problemId}/html?section=statement`
-      : `/api/problems/${problemId}/html`;
+      ? `/api/problems/${problemId}/html?section=statement&theme=${theme}`
+      : `/api/problems/${problemId}/html?theme=${theme}`;
 
   return (
     <iframe
+      ref={iframeRef}
       src={src}
       sandbox="allow-scripts allow-same-origin"
       className="w-full border-none"
@@ -29,6 +65,10 @@ export default function ProblemStatement({
         try {
           const doc = iframe.contentDocument || iframe.contentWindow?.document;
           if (doc) {
+            // Sync theme class on load in case it changed between URL construction and load
+            const isLight = document.documentElement.classList.contains("light");
+            doc.documentElement.className = isLight ? "light" : "dark";
+
             const updateHeight = () => {
               const bodyStyle = doc.defaultView?.getComputedStyle(doc.body);
               const marginTop = parseInt(bodyStyle?.marginTop || "0", 10);
