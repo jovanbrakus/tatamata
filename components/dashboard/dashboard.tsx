@@ -349,7 +349,7 @@ export default function Dashboard({ user }: DashboardProps) {
                   Vidi sve
                 </Link>
               </div>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5">
                 {categoryGroups.map((group) => {
                   const pct = group.percent ?? 0;
                   const style = getGroupStyle(group.id);
@@ -359,7 +359,7 @@ export default function Dashboard({ user }: DashboardProps) {
                       key={group.id}
                       className={`glass-card flex flex-col rounded-2xl p-5 transition-all ${style.hoverBorder}`}
                     >
-                      <div className="mb-3 flex items-center gap-3">
+                      <div className="mb-3 flex items-start gap-3">
                         <div
                           className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${style.bgClass}`}
                         >
@@ -367,8 +367,10 @@ export default function Dashboard({ user }: DashboardProps) {
                             {style.icon}
                           </span>
                         </div>
-                        <h4 className="flex-grow text-sm font-bold">{group.name}</h4>
-                        <span className="shrink-0 text-sm font-bold" style={{ color: style.barColor }}>{pct}%</span>
+                        <div className="min-w-0 flex-grow">
+                          <h4 className="text-sm font-bold leading-tight">{group.name}</h4>
+                          <span className="text-xs font-bold" style={{ color: style.barColor }}>{pct}%</span>
+                        </div>
                       </div>
                       <div className="mb-4 h-1.5 w-full overflow-hidden rounded-full bg-[var(--tint)]">
                         <div

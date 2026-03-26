@@ -38,3 +38,45 @@ const { neon } = require("@neondatabase/serverless");
 - Manually export needed env vars (don't `source .env.local` — it has `&` chars that break shell parsing)
 - Use `node -e` with `require()` — `npx tsx -e` has issues with top-level await in CJS mode
 - Only require packages that are in `node_modules` (e.g. `bcryptjs`, `@neondatabase/serverless`)
+
+## Taking Screenshots (Playwright)
+
+Playwright is installed in the local venv at `.venv` (managed by `uv`). To take screenshots:
+
+```bash
+.venv/bin/python -c "
+from playwright.sync_api import sync_playwright
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True)
+    page = browser.new_page(viewport={'width': 1280, 'height': 900})
+    # ... navigate and screenshot ...
+    browser.close()
+"
+```
+
+**For authenticated pages** (behind auth wall), login first:
+
+```python
+page.goto('http://dev.local.matoteka.com:3000/prijava', wait_until='networkidle', timeout=30000)
+page.wait_for_timeout(2000)
+page.fill('input[placeholder*="email"]', 'jovan.brakus@gmail.com')
+page.fill('input[type="password"]', 'admin123456')
+page.click('button:has-text("Prijavi")')
+page.wait_for_timeout(4000)
+# Now navigate to the target page
+page.goto('http://dev.local.matoteka.com:3000/TARGET_PAGE', ...)
+```
+
+**For public pages** (`/`, `/prijava`, `/about`, `/terms`, `/privacy`, `/primer`), no login needed.
+
+**Theme switching** in screenshots:
+```python
+# Switch to light
+page.evaluate('localStorage.setItem("theme", "light"); document.documentElement.classList.remove("dark"); document.documentElement.classList.add("light")')
+# Switch to dark
+page.evaluate('localStorage.setItem("theme", "dark"); document.documentElement.classList.remove("light"); document.documentElement.classList.add("dark")')
+```
+
+**Scrollable content**: The main content area uses `overflow-y: auto` on `<main>`. Use `element.scroll_into_view_if_needed()` on a locator rather than `window.scrollTo()`.
+
+**MathJax pages**: Wait at least 8-10 seconds after navigation for MathJax to render (`page.wait_for_timeout(10000)`).
