@@ -20,7 +20,7 @@ interface SidebarProps {
 
 const NAV_ITEMS = [
   { href: "/", label: "Kontrolna tabla", shortLabel: "Početna", icon: "dashboard" },
-  { href: "/vezbe", label: "Slobodna vežba", shortLabel: "Vežba", icon: "menu_book" },
+  { href: "/vezba", label: "Slobodna vežba", shortLabel: "Vežba", icon: "menu_book" },
   { href: "/simulacija", label: "Simulacija testa", shortLabel: "Simulacija", icon: "quiz" },
   { href: "/znanje", label: "Centar znanja", shortLabel: "Znanje", icon: "auto_stories" },
   { href: "/analitika", label: "Analitika uspeha", shortLabel: "Analitika", icon: "analytics" },

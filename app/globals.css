@@ -20,12 +20,18 @@
   /* Brand & accents */
   --color-primary: #ec5b13;
   --color-primary-glow: #ff7a3d;
+  --color-secondary: #fe9d00;
   --color-accent: #0ea5e9;
   --color-accent2: #a78bfa;
   --color-banana: #ccff00;
   --color-success: #4ade80;
   --color-warning: #fbbf24;
   --color-error: #f87171;
+
+  /* Font families */
+  --font-headline: 'Space Grotesk', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --font-label: 'Inter', sans-serif;
 }
 
 /* ── Dark theme (default) ── */

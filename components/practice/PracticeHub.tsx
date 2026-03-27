@@ -2,50 +2,40 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
 import ProblemView from "@/components/problems/ProblemView";
 
 /* ─── Types ─── */
 
-interface CategoryStat {
+interface SubcategoryStat {
   id: string;
   name: string;
   total: number;
   solved: number;
-  attempted: number;
-  percent: number;
 }
 
 interface CategoryGroup {
   id: string;
   name: string;
-  topicIds: string[];
   totalProblems: number;
   solvedCorrectly: number;
-  attempted: number;
   progressPercent: number;
+  categories: SubcategoryStat[];
 }
 
-/* ─── Styling (same as dashboard) ─── */
+/* ─── Styling ─── */
 
-const GROUP_STYLES: Record<
-  string,
-  { color: string; barColor: string; icon: string; bgClass: string }
-> = {
-  algebra: { color: "text-[#ec5b13]", barColor: "#ec5b13", icon: "square_foot", bgClass: "bg-orange-500/10" },
-  trigonometry: { color: "text-rose-500", barColor: "#f43f5e", icon: "change_history", bgClass: "bg-rose-500/10" },
-  geometry: { color: "text-[#0ea5e9]", barColor: "#0ea5e9", icon: "category", bgClass: "bg-sky-500/10" },
-  analysis: { color: "text-cyan-500", barColor: "#06b6d4", icon: "trending_up", bgClass: "bg-cyan-500/10" },
-  combinatorics_and_probability: { color: "text-emerald-500", barColor: "#10b981", icon: "casino", bgClass: "bg-emerald-500/10" },
+const GROUP_META: Record<string, { icon: string; description?: string }> = {
+  algebra: {
+    icon: "variables",
+    description: "Srce matematike. Od osnova proporcije do kompleksnih logaritamskih struktura.",
+  },
+  trigonometry: { icon: "change_history" },
+  geometry: { icon: "category" },
+  analysis: { icon: "insights" },
+  combinatorics_and_probability: { icon: "casino" },
 };
 
-const DEFAULT_STYLE = { color: "text-purple-500", barColor: "#a855f7", icon: "functions", bgClass: "bg-purple-500/10" };
-
-function getStyle(id: string) {
-  return GROUP_STYLES[id] ?? DEFAULT_STYLE;
-}
-
-/* ─── Category topic mapping (for individual category practice) ─── */
+/* ─── Category topic mapping (for practice mode header) ─── */
 
 const CATEGORY_NAMES: Record<string, string> = {
   percent_proportion: "Procenti i proporcija",
@@ -71,13 +61,58 @@ const CATEGORY_NAMES: Record<string, string> = {
   binomial_formula: "Binomna formula",
 };
 
+/* ─── Subcategory Row ─── */
+
+function SubcategoryRow({
+  sub,
+  onPlay,
+}: {
+  sub: SubcategoryStat;
+  onPlay: () => void;
+}) {
+  const pct = sub.total > 0 ? Math.round((sub.solved / sub.total) * 100) : 0;
+  const isComplete = pct === 100;
+
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex justify-between items-center cursor-pointer group/sub">
+        <span
+          className="text-sm font-medium text-text-secondary hover:text-primary transition-colors"
+          onClick={onPlay}
+        >
+          {sub.name}
+        </span>
+        <div className="flex items-center gap-3">
+          <span className="text-[10px] font-bold text-muted">{pct}%</span>
+          <button
+            onClick={onPlay}
+            className="w-6 h-6 rounded flex items-center justify-center bg-[var(--tint-strong)] hover:bg-primary hover:text-white transition-all active:scale-90"
+          >
+            <span
+              className="material-symbols-outlined text-xs"
+              style={isComplete ? { fontVariationSettings: "'FILL' 1" } : undefined}
+            >
+              {isComplete ? "check" : "play_arrow"}
+            </span>
+          </button>
+        </div>
+      </div>
+      <div className="h-[2px] w-full bg-[var(--tint-strong)] rounded-full overflow-hidden">
+        <div
+          className="h-full bg-primary rounded-full transition-all duration-700"
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
 /* ─── Component ─── */
 
 export default function PracticeHub() {
   const { status: sessionStatus } = useSession();
   const [groups, setGroups] = useState<CategoryGroup[]>([]);
   const [loading, setLoading] = useState(true);
-  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
 
   // Practice mode state
   const [practiceMode, setPracticeMode] = useState(false);
@@ -120,13 +155,13 @@ export default function PracticeHub() {
   const startGroupPractice = (group: CategoryGroup) => {
     setPracticeMode(true);
     setPracticeLabel(group.name);
-    setPracticeTopics(group.topicIds);
+    setPracticeTopics(group.categories.map((c) => c.id));
     setSessionScore({ correct: 0, total: 0 });
-    fetchRandom(group.topicIds);
+    fetchRandom(group.categories.map((c) => c.id));
   };
 
   // Start practice for a single category
-  const startCategoryPractice = (categoryId: string, groupName: string) => {
+  const startCategoryPractice = (categoryId: string) => {
     setPracticeMode(true);
     setPracticeLabel(CATEGORY_NAMES[categoryId] || categoryId);
     setPracticeTopics([categoryId]);
@@ -154,15 +189,6 @@ export default function PracticeHub() {
     fetch("/api/practice/categories")
       .then((r) => r.json())
       .then((data) => setGroups(data.categories ?? []));
-  };
-
-  const toggleGroup = (id: string) => {
-    setExpandedGroups((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
   };
 
   /* ─── Practice Mode ─── */
@@ -236,123 +262,150 @@ export default function PracticeHub() {
     );
   }
 
-  /* ─── Selection Mode ─── */
+  /* ─── Loading State ─── */
   if (loading || sessionStatus === "loading") {
     return (
-      <div className="mx-auto max-w-[1000px] px-4 py-8">
-        <div className="mb-6 h-10 w-48 animate-pulse rounded-lg bg-card" />
-        <div className="space-y-4">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className="h-24 animate-pulse rounded-2xl bg-card" />
-          ))}
+      <div className="max-w-7xl mx-auto px-8 py-8">
+        <div className="mb-12">
+          <div className="h-3 w-32 animate-pulse rounded bg-[var(--tint-strong)] mb-4" />
+          <div className="h-10 w-96 animate-pulse rounded-lg bg-[var(--tint-strong)]" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="md:col-span-2 h-80 animate-pulse rounded-xl bg-[var(--tint)]" />
+          <div className="h-64 animate-pulse rounded-xl bg-[var(--tint)]" />
+          <div className="h-64 animate-pulse rounded-xl bg-[var(--tint)]" />
+          <div className="h-64 animate-pulse rounded-xl bg-[var(--tint)]" />
+          <div className="h-64 animate-pulse rounded-xl bg-[var(--tint)]" />
         </div>
       </div>
     );
   }
 
+  /* ─── Selection Mode (Bento Grid) ─── */
   return (
-    <div className="mx-auto max-w-[1000px] px-4 py-8">
-      {/* Header */}
-      <div className="mb-10">
+    <div className="max-w-7xl mx-auto px-8 pb-12 pt-6">
+      {/* Page Intro */}
+      <div className="mb-12">
         <h2 className="text-4xl font-black tracking-tight text-heading lg:text-5xl">
-          <span className="text-primary">Vežba</span>
+          Slobodna <span className="text-primary">Vežba</span>
         </h2>
         <p className="mt-2 max-w-lg font-medium text-text-secondary">
-          Izaberi oblast i počni sa vežbanjem. Zadaci se biraju nasumično.
+          Izaberi oblast ili pojedinačnu temu i vežbaj zadatke uz praćenje napretka po kategorijama.
         </p>
       </div>
 
-      {/* Category group cards */}
-      <div className="space-y-4">
-        {groups.map((group) => {
-          const style = getStyle(group.id);
-          const isExpanded = expandedGroups.has(group.id);
-          const pct = group.totalProblems > 0
-            ? Math.round((group.solvedCorrectly / group.totalProblems) * 100)
-            : 0;
+      {/* Bento Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {groups.map((group, index) => {
+          const meta = GROUP_META[group.id] ?? { icon: "functions" };
+          const isHero = index === 0; // Algebra is first
 
-          return (
-            <div
-              key={group.id}
-              className="glass-card overflow-hidden rounded-2xl border border-[var(--glass-border)]"
-            >
-              {/* Group header */}
-              <div className="flex items-center gap-4 p-5">
-                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${style.bgClass}`}>
-                  <span className={`material-symbols-outlined text-2xl ${style.color}`}>
-                    {style.icon}
-                  </span>
-                </div>
+          if (isHero) {
+            return (
+              <section
+                key={group.id}
+                className="md:col-span-2 glass-panel rounded-xl overflow-hidden flex flex-col relative border border-[var(--glass-border)]"
+              >
+                {/* Decorative blur blob */}
+                <div className="absolute -right-20 -top-20 w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
 
-                <div className="flex-grow">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-base font-bold text-heading">{group.name}</h3>
-                    <span className="text-sm font-bold" style={{ color: style.barColor }}>{pct}%</span>
+                <div className="p-8 flex-1 flex flex-col relative">
+                  {/* Header */}
+                  <div className="flex justify-between items-start mb-10">
+                    <div>
+                      <div className="flex items-center gap-3 mb-1">
+                        <span className="material-symbols-outlined text-primary text-3xl">
+                          {meta.icon}
+                        </span>
+                        <h4 className="font-headline text-3xl font-black text-heading">
+                          {group.name}
+                        </h4>
+                      </div>
+                      {meta.description && (
+                        <p className="text-text-secondary text-sm max-w-xl">
+                          {meta.description}
+                        </p>
+                      )}
+                    </div>
+                    <div className="text-right">
+                      <div className="text-3xl font-headline font-black text-primary">
+                        {group.progressPercent}%
+                      </div>
+                      <div className="text-[10px] text-muted uppercase tracking-widest font-bold">
+                        Ukupni progres
+                      </div>
+                    </div>
                   </div>
-                  <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-[var(--tint)]">
-                    <div
-                      className="h-full rounded-full transition-all duration-700"
-                      style={{ width: `${pct}%`, backgroundColor: style.barColor }}
-                    />
-                  </div>
-                  <p className="mt-1 text-[11px] text-muted">
-                    {group.solvedCorrectly} od {group.totalProblems} rešeno
-                  </p>
-                </div>
 
-                <div className="flex shrink-0 items-center gap-2">
-                  <button
-                    onClick={() => toggleGroup(group.id)}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--glass-border)] bg-[var(--tint)] text-muted transition-colors hover:text-heading"
-                  >
-                    <span
-                      className="material-symbols-outlined transition-transform"
-                      style={{ fontSize: 18, transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)" }}
-                    >
-                      expand_more
-                    </span>
-                  </button>
+                  {/* Subcategories grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-10 mb-10">
+                    {group.categories.map((sub) => (
+                      <SubcategoryRow
+                        key={sub.id}
+                        sub={sub}
+                        onPlay={() => startCategoryPractice(sub.id)}
+                      />
+                    ))}
+                  </div>
+
+                  {/* CTA Button */}
                   <button
                     onClick={() => startGroupPractice(group)}
-                    className="rounded-lg px-5 py-2 text-xs font-bold text-white transition-all hover:scale-105"
-                    style={{ backgroundColor: style.barColor }}
+                    className="w-full py-4 rounded-lg bg-primary text-white font-black uppercase tracking-widest text-sm flex items-center justify-center gap-3 transition-transform active:scale-[0.98]"
                   >
-                    VEŽBAJ
+                    <span className="material-symbols-outlined font-black">rocket_launch</span>
+                    Pokreni vežbu
                   </button>
+                </div>
+              </section>
+            );
+          }
+
+          /* Standard category card */
+          return (
+            <section
+              key={group.id}
+              className="glass-panel rounded-xl p-8 flex flex-col relative overflow-hidden border border-[var(--glass-border)]"
+            >
+              {/* Header */}
+              <div className="flex justify-between items-start mb-6">
+                <div className="flex items-center gap-3">
+                  <span className="material-symbols-outlined text-primary text-2xl">
+                    {meta.icon}
+                  </span>
+                  <h4 className="font-headline text-2xl font-black text-heading">
+                    {group.name}
+                  </h4>
+                </div>
+                <div className="text-2xl font-headline font-black text-primary">
+                  {group.progressPercent}%
                 </div>
               </div>
 
-              {/* Expanded categories */}
-              {isExpanded && (
-                <div className="border-t border-[var(--glass-border)] px-5 py-3">
-                  <div className="space-y-1">
-                    {group.topicIds.map((topicId) => {
-                      const catName = CATEGORY_NAMES[topicId] || topicId;
-                      return (
-                        <button
-                          key={topicId}
-                          onClick={() => startCategoryPractice(topicId, group.name)}
-                          className="flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-left transition-colors hover:bg-[var(--tint)]"
-                        >
-                          <span className="text-sm text-text-secondary">{catName}</span>
-                          <div className="flex items-center gap-3">
-                            <span
-                              className="material-symbols-outlined text-base"
-                              style={{ color: style.barColor }}
-                            >
-                              play_arrow
-                            </span>
-                          </div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-            </div>
+              {/* Subcategories */}
+              <div className="flex-1 space-y-5 mb-8">
+                {group.categories.map((sub) => (
+                  <SubcategoryRow
+                    key={sub.id}
+                    sub={sub}
+                    onPlay={() => startCategoryPractice(sub.id)}
+                  />
+                ))}
+              </div>
+
+              {/* CTA Button */}
+              <button
+                onClick={() => startGroupPractice(group)}
+                className="w-full py-4 rounded-lg bg-[var(--tint-strong)] text-primary font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-[var(--glass-border)] transition-colors"
+              >
+                <span className="material-symbols-outlined text-sm">rocket_launch</span>
+                Pokreni vežbu
+              </button>
+            </section>
           );
         })}
       </div>
+
     </div>
   );
 }
