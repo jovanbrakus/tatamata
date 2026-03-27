@@ -259,10 +259,64 @@ details .detail-content li {
   border-left-color: #a78bfa;
 }
 
-/* --- Borders: catch remaining #334155 usages --- */
+/* --- Option variants (answer cards in various problem generations) --- */
+.option {
+  background: var(--sol-tint);
+  border-color: var(--sol-tint-border);
+  color: var(--sol-text);
+}
+
+.option-card {
+  background: var(--sol-tint);
+  border-color: var(--sol-tint-border);
+}
+
+.final-answer .option-card {
+  background: var(--sol-tint);
+  border-color: var(--sol-tint-border);
+}
+
+.option-btn {
+  background: var(--sol-tint);
+  border-color: var(--sol-tint-border);
+  color: var(--sol-text);
+}
+
+.option-box {
+  background: var(--sol-tint);
+  border-color: var(--sol-tint-border);
+}
+
+.option-card .opt-value,
+.option-box .opt-value {
+  color: var(--sol-text);
+}
+
+.option-card .opt-label,
+.option-card .opt-letter {
+  color: var(--sol-text-secondary);
+}
+
+/* --- Tables --- */
 table td,
 table th {
   border-color: var(--sol-tint-border);
+}
+
+.table-wrap th {
+  background: var(--sol-tint);
+  color: var(--sol-text);
+  border-color: var(--sol-tint-border);
+}
+
+.table-wrap td {
+  background: var(--sol-card-bg);
+  border-color: var(--sol-tint-border);
+}
+
+/* --- Pitfall items --- */
+.pitfall-item {
+  border-bottom-color: var(--sol-tint-border);
 }
 
 /* --- Text color overrides ---
