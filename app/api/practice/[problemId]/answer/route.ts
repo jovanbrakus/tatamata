@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { problemProgress } from "@/drizzle/schema";
-import { sql } from "drizzle-orm";
+import { sql, and, eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { getProblemFull } from "@/lib/problems";
 import { updateStreakOnCorrectSolve } from "@/lib/streak";
@@ -31,6 +31,41 @@ export async function POST(
   }
 
   const isCorrect = answer === problem.correctAnswer;
+
+  // Duplicate detection: check existing state before writing
+  const existing = await db
+    .select({
+      status: problemProgress.status,
+      lastAnswer: problemProgress.lastAnswer,
+    })
+    .from(problemProgress)
+    .where(
+      and(
+        eq(problemProgress.userId, userId),
+        eq(problemProgress.problemId, problemId)
+      )
+    )
+    .limit(1);
+
+  if (existing.length > 0) {
+    // Rule 1: Same answer re-submission (page refresh) — ignore
+    if (existing[0].lastAnswer === answer) {
+      return NextResponse.json({
+        isCorrect,
+        correctAnswer: problem.correctAnswer,
+        status: existing[0].status,
+      });
+    }
+    // Rule 3: Already solved — don't allow downgrade
+    if (existing[0].status === "solved") {
+      return NextResponse.json({
+        isCorrect: true,
+        correctAnswer: problem.correctAnswer,
+        status: "solved",
+      });
+    }
+  }
+
   const status = isCorrect ? "solved" : "attempted";
 
   await db

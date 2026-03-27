@@ -11,7 +11,9 @@
     "db:studio": "drizzle-kit studio",
     "seed:faculties": "tsx scripts/seed-faculties.ts",
     "seed:admin": "tsx scripts/seed-admin.ts",
-    "sync:index": "tsx scripts/sync-and-index.ts"
+    "sync:index": "tsx scripts/sync-and-index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.78.0",
@@ -44,6 +46,7 @@
     "drizzle-kit": "^0.31.9",
     "eslint": "^9.39.3",
     "eslint-config-next": "^16.1.6",
-    "tsx": "^4.21.0"
+    "tsx": "^4.21.0",
+    "vitest": "^3.2.4"
   }
 }

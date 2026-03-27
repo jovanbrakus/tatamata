@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import { sql } from "drizzle-orm";
 import { getAllMeta, getCategories } from "@/lib/problems";
+import { calculateReadinessScore } from "@/lib/scoring";
 
 /**
  * Recalculates all analytics for a given user and upserts into user_analytics.
@@ -71,7 +72,7 @@ export async function recalculateAnalytics(userId: string): Promise<void> {
 
   // 4. Category breakdown from problem_progress + filesystem index
   const progressResult = await db.execute(sql`
-    SELECT problem_id, is_correct
+    SELECT problem_id, is_correct, updated_at
     FROM problem_progress
     WHERE user_id = ${userId} AND status != 'unseen'
   `);
@@ -145,12 +146,16 @@ export async function recalculateAnalytics(userId: string): Promise<void> {
     examCount: Number(row.exam_count),
   }));
 
-  // 7. Upsert into user_analytics
+  // 7. Readiness score (uses shared progress rows)
+  const readiness = await calculateReadinessScore(userId, progressResult.rows as any);
+
+  // 8. Upsert into user_analytics
   await db.execute(sql`
     INSERT INTO user_analytics (
       user_id, accuracy_percent, avg_solve_time_sec, percentile_rank,
       total_simulations, problems_solved, problems_attempted,
-      category_breakdown, strengths, weaknesses, trend_data, updated_at
+      category_breakdown, strengths, weaknesses, trend_data,
+      readiness_score, readiness_breakdown, updated_at
     )
     VALUES (
       ${userId},
@@ -164,6 +169,8 @@ export async function recalculateAnalytics(userId: string): Promise<void> {
       ${JSON.stringify(strengths)}::jsonb,
       ${JSON.stringify(weaknesses)}::jsonb,
       ${JSON.stringify(trendData)}::jsonb,
+      ${readiness.finalScore.toFixed(2)},
+      ${JSON.stringify(readiness)}::jsonb,
       NOW()
     )
     ON CONFLICT (user_id)
@@ -178,6 +185,8 @@ export async function recalculateAnalytics(userId: string): Promise<void> {
       strengths = EXCLUDED.strengths,
       weaknesses = EXCLUDED.weaknesses,
       trend_data = EXCLUDED.trend_data,
+      readiness_score = EXCLUDED.readiness_score,
+      readiness_breakdown = EXCLUDED.readiness_breakdown,
       updated_at = NOW()
   `);
 }

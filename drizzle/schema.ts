@@ -213,5 +213,7 @@ export const userAnalytics = pgTable("user_analytics", {
   strengths: jsonb("strengths").default([]),
   weaknesses: jsonb("weaknesses").default([]),
   trendData: jsonb("trend_data").default([]),
+  readinessScore: numeric("readiness_score", { precision: 5, scale: 2 }).default("0"),
+  readinessBreakdown: jsonb("readiness_breakdown").default({}),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
 });

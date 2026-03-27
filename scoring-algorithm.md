@@ -28,21 +28,28 @@ Each of the 21 subcategories gets its own score based on the student's **last 10
 
 ```
 recent   = last min(10, total_attempts) problems in this subcategory
-accuracy = correct_in_recent / len(recent) × 100
+accuracy = Σ(difficulty × is_correct) / Σ(difficulty) × 100    (difficulty-weighted)
 confidence = min(1, len(recent) / 3)
 
-subcategory_score = accuracy × confidence
+uncapped_score = accuracy × confidence
+difficulty_ceiling = 100 if any correct problem has difficulty > 7, else 80
+subcategory_score = min(uncapped_score, difficulty_ceiling)
 ```
+
+**Difficulty-weighted accuracy** — harder problems count more. A correct answer on a difficulty-10 problem contributes 10× more than a difficulty-1 problem. Problems with unknown difficulty default to 5.
+
+**Difficulty ceiling** — the score is capped at **80** unless the student has correctly solved at least one problem with difficulty > 7 in the window. This prevents reaching 100 on easy problems alone, without penalizing easy practice.
 
 **Confidence factor** prevents a single lucky answer from inflating the score. With `MIN_ATTEMPTS = 3`:
 
-| Attempts | Correct | Accuracy | Confidence | Score |
-|----------|---------|----------|------------|-------|
-| 0        | —       | —        | 0          | **0** |
-| 1        | 1/1     | 100%     | 0.33       | **33** |
-| 2        | 2/2     | 100%     | 0.67       | **67** |
-| 3        | 3/3     | 100%     | 1.00       | **100** |
-| 10       | 8/10    | 80%      | 1.00       | **80** |
+| Scenario | Weighted Accuracy | Confidence | Ceiling | Score |
+|----------|-------------------|------------|---------|-------|
+| 0 attempts | — | 0 | — | **0** |
+| 3/3 correct (all diff 2) | 100% | 1.00 | 80 | **80** |
+| 3/3 correct (all diff 8) | 100% | 1.00 | 100 | **100** |
+| 8/10 correct (mixed diff) | varies | 1.00 | depends | **varies** |
+| 5 easy correct + 5 hard wrong | ~11% | 1.00 | 80 | **11** |
+| 5 easy wrong + 5 hard correct | ~89% | 1.00 | 100 | **89** |
 
 **Sliding window** — only the last 10 attempts matter. If a student bombed 10 problems last week but then solved 10 new problems correctly, the old mistakes are fully pushed out.
 

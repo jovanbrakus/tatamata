@@ -86,6 +86,8 @@ export async function GET() {
           strengths: analytics.strengths,
           weaknesses: analytics.weaknesses,
           trendData: analytics.trendData,
+          readinessScore: Number(analytics.readinessScore),
+          readinessBreakdown: analytics.readinessBreakdown,
           updatedAt: analytics.updatedAt,
         }
       : null,
