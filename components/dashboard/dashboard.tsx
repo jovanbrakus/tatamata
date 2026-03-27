@@ -274,7 +274,7 @@ export default function Dashboard({ user }: DashboardProps) {
                       <span className="text-lg text-muted">/{progress.dailyGoal}</span>
                     </span>
                     <span className="text-sm font-bold text-[#ec5b13]">
-                      {dailyPercent}% Reseno
+                      {dailyPercent}% Rešeno
                     </span>
                   </div>
                   <p className="mb-6 text-sm text-text-secondary">Zadataka do dnevne kvote</p>
@@ -325,7 +325,7 @@ export default function Dashboard({ user }: DashboardProps) {
                       <span className="material-symbols-outlined mb-2 text-4xl text-slate-600">
                         quiz
                       </span>
-                      <p className="text-sm text-text-secondary">Nemas zavrsenih testova</p>
+                      <p className="text-sm text-text-secondary">Nemaš završenih testova</p>
                       <Link
                         href="/simulacija"
                         className="mt-2 text-xs font-bold text-[#0ea5e9] hover:underline"
@@ -452,12 +452,12 @@ export default function Dashboard({ user }: DashboardProps) {
                   <div className="text-3xl font-black text-[#ec5b13]/40">01</div>
                   <div>
                     <h4 className="font-bold text-heading">
-                      Uvezba{weakest ? `: ${weakest.name}` : "j zadatke"}
+                      Uvežbaj{weakest ? `: ${weakest.name}` : " zadatke"}
                     </h4>
                     <p className="text-xs text-text-secondary">
                       {weakest
-                        ? `Tvoj procenat tacnosti ovde je ${weakestPct}%. Potrebno dodatno vezbanje.`
-                        : "Nastavi da resavas zadatke i prati svoj napredak."}
+                        ? `Tvoj procenat tačnosti ovde je ${weakestPct}%. Potrebno dodatno vežbanje.`
+                        : "Nastavi da rešavaš zadatke i prati svoj napredak."}
                     </p>
                   </div>
                 </div>
@@ -514,13 +514,13 @@ export default function Dashboard({ user }: DashboardProps) {
               </div>
               <div className="space-y-3">
                 <div className="flex items-center justify-between rounded-xl bg-[var(--tint)] p-3">
-                  <span className="text-xs text-text-secondary">Ukupno reseno</span>
+                  <span className="text-xs text-text-secondary">Ukupno rešeno</span>
                   <span className="font-bold">
                     {(progress.solved ?? 0).toLocaleString("sr")}
                   </span>
                 </div>
                 <div className="flex items-center justify-between rounded-xl bg-[var(--tint)] p-3">
-                  <span className="text-xs text-text-secondary">Prosecan skor</span>
+                  <span className="text-xs text-text-secondary">Prosečan skor</span>
                   <span className="font-bold text-[#0ea5e9]">
                     {rank?.avgScore ? `${parseFloat(rank.avgScore).toFixed(0)}%` : "--"}
                   </span>

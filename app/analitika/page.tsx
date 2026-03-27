@@ -202,8 +202,8 @@ export default function AnalytikaPage() {
           </h1>
           <p className="mt-1 text-sm text-text-secondary">
             {hasData
-              ? `Dobrodosli nazad, ${userName}. Vas napredak je konstantan.`
-              : `${userName}, pocnite sa vezbanjem da biste videli analitiku.`}
+              ? `Dobrodošli nazad, ${userName}. Vaš napredak je konstantan.`
+              : `${userName}, počnite sa vežbanjem da biste videli analitiku.`}
           </p>
         </div>
         <button
@@ -212,7 +212,7 @@ export default function AnalytikaPage() {
           className="flex items-center gap-2 self-start rounded-xl border border-[#ec5b13]/30 bg-[#ec5b13]/10 px-4 py-2 text-sm font-semibold text-[#ec5b13] transition hover:bg-[#ec5b13]/20 disabled:opacity-50"
         >
           <RefreshCw size={16} className={recalculating ? "animate-spin" : ""} />
-          {recalculating ? "Preracunavanje..." : "Preracunaj"}
+          {recalculating ? "Preračunavanje..." : "Preračunaj"}
         </button>
       </div>
 
@@ -338,7 +338,7 @@ export default function AnalytikaPage() {
               <div className="text-center">
                 <BarChart3 size={48} className="mx-auto mb-3 text-border" />
                 <p className="text-sm text-text-secondary">
-                  Zavrseni ispiti ce se prikazati ovde.
+                  Završeni ispiti će se prikazati ovde.
                 </p>
               </div>
             </div>
@@ -510,13 +510,13 @@ export default function AnalytikaPage() {
                 className="mb-3 text-border"
               />
               <p className="text-sm text-text-secondary">
-                Nemate zavrsenih simulacija.
+                Nemate završenih simulacija.
               </p>
               <button
                 onClick={() => router.push("/simulacija")}
                 className="mt-3 text-sm font-semibold text-[#ec5b13] hover:underline"
               >
-                Zapocnite prvu simulaciju
+                Započnite prvu simulaciju
               </button>
             </div>
           )}
@@ -546,7 +546,7 @@ export default function AnalytikaPage() {
                   ))
                 ) : (
                   <p className="text-xs text-text-secondary">
-                    Resavajte vise zadataka da otkrijete vase snage.
+                    Rešavajte više zadataka da otkrijete vaše snage.
                   </p>
                 )}
               </div>
@@ -570,8 +570,8 @@ export default function AnalytikaPage() {
                 ) : (
                   <p className="text-xs text-text-secondary">
                     {analytics?.strengths && analytics.strengths.length > 0
-                      ? "Odlicno! Nema oblasti koje zahtevaju posebnu paznju."
-                      : "Resavajte vise zadataka da identifikujemo slabosti."}
+                      ? "Odlično! Nema oblasti koje zahtevaju posebnu pažnju."
+                      : "Rešavajte više zadataka da identifikujemo slabosti."}
                   </p>
                 )}
               </div>
@@ -586,11 +586,11 @@ export default function AnalytikaPage() {
               </div>
               <div>
                 <p className="text-xs font-bold text-text">
-                  Sledeci preporuceni korak
+                  Sledeći preporučeni korak
                 </p>
                 <p className="text-[11px] text-text-secondary">
                   {analytics?.weaknesses && analytics.weaknesses.length > 0
-                    ? `Vezbajte: ${analytics.weaknesses[0].name}`
+                    ? `Vežbajte: ${analytics.weaknesses[0].name}`
                     : "Pokrenite novu simulaciju"}
                 </p>
               </div>
@@ -599,7 +599,7 @@ export default function AnalytikaPage() {
               onClick={() => router.push("/simulacija")}
               className="w-full rounded-xl bg-[#ec5b13] py-3 text-sm font-bold text-white shadow-lg shadow-[#ec5b13]/20 transition-all hover:bg-orange-600"
             >
-              Zapocni vezbu
+              Započni vežbu
             </button>
           </div>
         </div>

@@ -194,7 +194,7 @@ export default function ProblemView({ problemId, onAnswered }: ProblemViewProps)
             ) : (
               <Bookmark size={16} />
             )}
-            {bookmarked ? "Sacuvano" : "Sacuvaj"}
+            {bookmarked ? "Sačuvano" : "Sačuvaj"}
           </button>
         </div>
       </div>
@@ -234,8 +234,8 @@ export default function ProblemView({ problemId, onAnswered }: ProblemViewProps)
                   }`}
                 >
                   {answerResult.isCorrect
-                    ? "Odlicno, tacan odgovor!"
-                    : `Netacno. Tacan odgovor je (${answerResult.correctAnswer}).`}
+                    ? "Odlično, tačan odgovor!"
+                    : `Netačno. Tačan odgovor je (${answerResult.correctAnswer}).`}
                 </p>
               </div>
             </div>
@@ -323,7 +323,7 @@ export default function ProblemView({ problemId, onAnswered }: ProblemViewProps)
           <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-[var(--glass-border)] p-6 glass-card">
             <div>
               <p className="text-sm text-text-secondary">
-                Spreman za sledeci?
+                Spreman za sledeći?
               </p>
               {nextProblem && (
                 <p className="mt-1 text-xs text-muted line-clamp-1">

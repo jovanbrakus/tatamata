@@ -242,7 +242,7 @@ export default function PracticePage() {
   if (sessionStatus !== "authenticated") {
     return (
       <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4">
-        <p className="text-text-secondary">Moras biti prijavljen da bi vezbao.</p>
+        <p className="text-text-secondary">Moraš biti prijavljen da bi vežbao.</p>
         <Link href="/prijava" className="rounded-xl bg-[#ec5b13] px-6 py-3 font-bold text-white">
           Prijavi se
         </Link>
