@@ -1,6 +1,6 @@
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { userAnalytics, mockExams, faculties } from "@/drizzle/schema";
+import { userAnalytics, mockExams, faculties, users } from "@/drizzle/schema";
 import { eq, desc, and } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import fs from "fs";
@@ -73,6 +73,36 @@ export async function GET() {
   const allCategories = getAllCategories();
   const categoryGroups = getCategoryGroups();
 
+  // Recompute inactivity penalty at read time so it's always fresh
+  let readinessScore = analytics ? Number(analytics.readinessScore) : 0;
+  let readinessBreakdown = analytics?.readinessBreakdown as any;
+  if (analytics && readinessBreakdown?.rawScore != null) {
+    const userRow = await db
+      .select({ lastActiveDate: users.lastActiveDate })
+      .from(users)
+      .where(eq(users.id, userId))
+      .limit(1);
+
+    let freshPenalty = 0;
+    let daysInactive = 0;
+    if (userRow.length > 0 && userRow[0].lastActiveDate) {
+      const lastActive = new Date(userRow[0].lastActiveDate);
+      const today = new Date();
+      const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      const lastDate = new Date(lastActive.getFullYear(), lastActive.getMonth(), lastActive.getDate());
+      daysInactive = Math.floor((todayDate.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24));
+      freshPenalty = Math.min(20, Math.max(0, (daysInactive - 2) * 2));
+    }
+
+    readinessScore = Math.max(0, Math.round(readinessBreakdown.rawScore - freshPenalty));
+    readinessBreakdown = {
+      ...readinessBreakdown,
+      finalScore: readinessScore,
+      inactivityPenalty: freshPenalty,
+      daysInactive,
+    };
+  }
+
   return NextResponse.json({
     analytics: analytics
       ? {
@@ -86,8 +116,8 @@ export async function GET() {
           strengths: analytics.strengths,
           weaknesses: analytics.weaknesses,
           trendData: analytics.trendData,
-          readinessScore: Number(analytics.readinessScore),
-          readinessBreakdown: analytics.readinessBreakdown,
+          readinessScore,
+          readinessBreakdown,
           updatedAt: analytics.updatedAt,
         }
       : null,
