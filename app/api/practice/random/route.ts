@@ -21,6 +21,12 @@ export async function GET(req: Request) {
 
   const topicList = topics.split(",").filter(Boolean);
 
+  // Difficulty tiers: easy (≤3), medium (3-6), hard (>6)
+  const diffParam = url.searchParams.get("diff");
+  const enabledTiers = new Set(
+    diffParam ? diffParam.split(",").filter(Boolean) : ["easy", "medium", "hard"]
+  );
+
   // Get solved problem IDs for this user
   const solvedRows = await db
     .select({ problemId: problemProgress.problemId })
@@ -31,11 +37,21 @@ export async function GET(req: Request) {
   const solvedIds = new Set(solvedRows.map((r) => r.problemId));
 
   // Get all problems matching the topics
-  const { problems: allProblems } = queryProblems({
+  let { problems: allProblems } = queryProblems({
     categories: topicList,
     limit: 10000,
     page: 1,
   });
+
+  // Filter by difficulty tiers
+  if (enabledTiers.size < 3) {
+    allProblems = allProblems.filter((p) => {
+      const d = p.difficulty ?? 5;
+      if (d <= 3) return enabledTiers.has("easy");
+      if (d <= 6) return enabledTiers.has("medium");
+      return enabledTiers.has("hard");
+    });
+  }
 
   // Prefer unsolved problems
   const unsolved = allProblems.filter((p) => !solvedIds.has(p.id));

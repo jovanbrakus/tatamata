@@ -87,12 +87,30 @@ export default function PracticeSolver() {
     router.push("/vezba");
   }, [sessionStatus, searchParams, router]);
 
+  // Difficulty filter (initialized from URL, togglable in header)
+  const [enabledDiffs, setEnabledDiffs] = useState<Set<string>>(() => {
+    const raw = searchParams.get("diff");
+    return new Set(raw ? raw.split(",").filter(Boolean) : ["easy", "medium", "hard"]);
+  });
+  const diffRef = useRef([...enabledDiffs].join(","));
+  diffRef.current = [...enabledDiffs].join(",");
+
+  const toggleDiff = (id: string) => {
+    setEnabledDiffs((prev) => {
+      if (prev.has(id) && prev.size === 1) return prev;
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
   // Fetch a random problem
   const fetchRandom = useCallback(async (t: string[]) => {
     if (t.length === 0) return;
     setLoadingProblem(true);
     try {
-      const res = await fetch(`/api/practice/random?topics=${t.join(",")}`);
+      const res = await fetch(`/api/practice/random?topics=${t.join(",")}&diff=${diffRef.current}`);
       const data = await res.json();
       setCurrentProblemId(data.problemId || null);
     } catch {
@@ -143,6 +161,29 @@ export default function PracticeSolver() {
         </div>
 
         <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1 rounded-lg border border-[var(--glass-border)] bg-[var(--tint)] p-1">
+            {([
+              { id: "easy", label: "Lako", icon: "sentiment_satisfied" },
+              { id: "medium", label: "Srednje", icon: "pace" },
+              { id: "hard", label: "Teško", icon: "local_fire_department" },
+            ] as const).map((tier) => {
+              const active = enabledDiffs.has(tier.id);
+              return (
+                <button
+                  key={tier.id}
+                  onClick={() => toggleDiff(tier.id)}
+                  className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-bold transition-all ${
+                    active
+                      ? "bg-primary text-white shadow-sm"
+                      : "text-muted hover:text-text-secondary"
+                  }`}
+                >
+                  <span className="material-symbols-outlined text-sm">{tier.icon}</span>
+                  {tier.label}
+                </button>
+              );
+            })}
+          </div>
           {sessionScore.total > 0 && (
             <div className="flex items-center gap-2 rounded-full border border-[var(--glass-border)] bg-[var(--tint)] px-4 py-2">
               <span className="material-symbols-outlined text-base text-primary">check_circle</span>
