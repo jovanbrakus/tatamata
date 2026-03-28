@@ -73,6 +73,7 @@ interface DashboardData {
     shortName: string;
     examDate: string | null;
   }>;
+  readinessScore: number;
   season: { name: string; examPeriodStart: string } | null;
 }
 
@@ -473,6 +474,59 @@ export default function Dashboard({ user }: DashboardProps) {
 
           {/* ─── RIGHT COLUMN (3 cols) ─── */}
           <div className="col-span-12 space-y-6 lg:col-span-3">
+            {/* Readiness Score */}
+            {(() => {
+              const score = data?.readinessScore ?? 0;
+              const color =
+                score >= 80
+                  ? "#10b981"
+                  : score >= 60
+                    ? "#f59e0b"
+                    : score >= 40
+                      ? "#f97316"
+                      : "#ef4444";
+              const label =
+                score >= 80
+                  ? "Odlična pripremljenost"
+                  : score >= 60
+                    ? "Dobra pripremljenost"
+                    : score >= 40
+                      ? "Potrebno još vežbanja"
+                      : "Tek na početku";
+              return (
+                <div className="glass-card relative overflow-hidden rounded-2xl p-6">
+                  <div
+                    className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full blur-3xl"
+                    style={{ backgroundColor: `${color}15` }}
+                  />
+                  <div className="relative z-10">
+                    <h3 className="mb-4 text-center text-xs font-bold uppercase tracking-widest text-text-secondary">
+                      Spremnost za ispit
+                    </h3>
+                    <div className="mb-3 flex justify-center">
+                      <div
+                        className="flex h-28 w-28 items-center justify-center rounded-full border-4"
+                        style={{ borderColor: `${color}40` }}
+                      >
+                        <span className="text-4xl font-black" style={{ color }}>
+                          {score}
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-center text-sm font-bold" style={{ color }}>
+                      {label}
+                    </p>
+                    <div className="mt-4 h-2 w-full overflow-hidden rounded-full bg-[var(--tint)]">
+                      <div
+                        className="h-full rounded-full transition-all duration-700"
+                        style={{ width: `${score}%`, backgroundColor: color }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
             {/* Countdown Widget */}
             <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#ec5b13] to-[#ff8c00] p-6 text-white shadow-2xl">
               <div className="pointer-events-none absolute -bottom-10 -right-10 opacity-20">
@@ -513,6 +567,13 @@ export default function Dashboard({ user }: DashboardProps) {
                 </div>
               </div>
               <div className="space-y-3">
+                <div className="flex items-center justify-between rounded-xl bg-[var(--tint)] p-3">
+                  <span className="text-xs text-text-secondary">Današnji cilj</span>
+                  <span className={`font-bold ${progress.solvedToday >= progress.dailyGoal ? "text-emerald-500" : "text-[#ec5b13]"}`}>
+                    {progress.solvedToday}
+                    <span className="text-muted">/{progress.dailyGoal}</span>
+                  </span>
+                </div>
                 <div className="flex items-center justify-between rounded-xl bg-[var(--tint)] p-3">
                   <span className="text-xs text-text-secondary">Ukupno rešeno</span>
                   <span className="font-bold">

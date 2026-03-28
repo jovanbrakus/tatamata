@@ -24,15 +24,16 @@ interface CategoryGroup {
 
 /* ─── Styling ─── */
 
-const GROUP_META: Record<string, { icon: string; description?: string }> = {
+const GROUP_META: Record<string, { icon: string; description?: string; image: string }> = {
   algebra: {
     icon: "variables",
     description: "Srce matematike. Od osnova proporcije do kompleksnih logaritamskih struktura.",
+    image: "/images/categories/algebra.png",
   },
-  trigonometry: { icon: "change_history" },
-  geometry: { icon: "category" },
-  analysis: { icon: "insights" },
-  combinatorics_and_probability: { icon: "casino" },
+  trigonometry: { icon: "change_history", image: "/images/categories/trigonometry.png" },
+  geometry: { icon: "category", image: "/images/categories/geometry.png" },
+  analysis: { icon: "insights", image: "/images/categories/analysis.png" },
+  combinatorics_and_probability: { icon: "casino", image: "/images/categories/combinatorics_and_probability.png" },
 };
 
 /* ─── Category topic mapping (for practice mode header) ─── */
@@ -306,26 +307,27 @@ export default function PracticeHub() {
                 key={group.id}
                 className="md:col-span-2 glass-panel rounded-xl overflow-hidden flex flex-col relative border border-[var(--glass-border)]"
               >
-                {/* Decorative blur blob */}
-                <div className="absolute -right-20 -top-20 w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none" />
-
                 <div className="p-8 flex-1 flex flex-col relative">
                   {/* Header */}
                   <div className="flex justify-between items-start mb-10">
-                    <div>
-                      <div className="flex items-center gap-3 mb-1">
-                        <span className="material-symbols-outlined text-primary text-3xl">
-                          {meta.icon}
-                        </span>
-                        <h4 className="font-headline text-3xl font-black text-heading">
+                    <div className="flex items-start gap-4">
+                      {meta.image && (
+                        <img
+                          src={meta.image}
+                          alt={group.name}
+                          className="h-16 w-24 shrink-0 rounded-lg object-cover"
+                        />
+                      )}
+                      <div>
+                        <h4 className="font-headline text-3xl font-black text-heading mb-1">
                           {group.name}
                         </h4>
+                        {meta.description && (
+                          <p className="text-text-secondary text-sm max-w-xl">
+                            {meta.description}
+                          </p>
+                        )}
                       </div>
-                      {meta.description && (
-                        <p className="text-text-secondary text-sm max-w-xl">
-                          {meta.description}
-                        </p>
-                      )}
                     </div>
                     <div className="text-right">
                       <div className="text-3xl font-headline font-black text-primary">
@@ -365,14 +367,18 @@ export default function PracticeHub() {
           return (
             <section
               key={group.id}
-              className="glass-panel rounded-xl p-8 flex flex-col relative overflow-hidden border border-[var(--glass-border)]"
+              className="glass-panel rounded-xl p-8 flex flex-col border border-[var(--glass-border)]"
             >
               {/* Header */}
               <div className="flex justify-between items-start mb-6">
                 <div className="flex items-center gap-3">
-                  <span className="material-symbols-outlined text-primary text-2xl">
-                    {meta.icon}
-                  </span>
+                  {meta.image && (
+                    <img
+                      src={meta.image}
+                      alt={group.name}
+                      className="h-12 w-18 shrink-0 rounded-lg object-cover"
+                    />
+                  )}
                   <h4 className="font-headline text-2xl font-black text-heading">
                     {group.name}
                   </h4>

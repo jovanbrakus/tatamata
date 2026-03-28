@@ -160,13 +160,30 @@ export async function GET() {
   const solvedIds = new Set(solvedIdsResult.map((r) => r.problemId));
   const categoryGroupsRaw = getCategoryGroupsWithCounts(solvedIds);
 
-  // Fetch accuracy data from analytics
+  // Fetch accuracy + readiness data from analytics
   const analyticsRows = await db
-    .select({ categoryBreakdown: userAnalytics.categoryBreakdown })
+    .select({
+      categoryBreakdown: userAnalytics.categoryBreakdown,
+      readinessScore: userAnalytics.readinessScore,
+      readinessBreakdown: userAnalytics.readinessBreakdown,
+    })
     .from(userAnalytics)
     .where(eq(userAnalytics.userId, userId))
     .limit(1);
   const breakdown = (analyticsRows[0]?.categoryBreakdown as Record<string, any>) || {};
+
+  // Recompute inactivity penalty at read time
+  const storedBreakdown = analyticsRows[0]?.readinessBreakdown as any;
+  let readinessScore = Number(analyticsRows[0]?.readinessScore ?? 0);
+  if (storedBreakdown?.rawScore != null && user?.lastActiveDate) {
+    const lastActive = new Date(user.lastActiveDate);
+    const today = new Date();
+    const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const lastDate = new Date(lastActive.getFullYear(), lastActive.getMonth(), lastActive.getDate());
+    const daysInactive = Math.floor((todayDate.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24));
+    const freshPenalty = Math.min(20, Math.max(0, (daysInactive - 2) * 2));
+    readinessScore = Math.max(0, Math.round(storedBreakdown.rawScore - freshPenalty));
+  }
 
   // Merge accuracy into category groups
   const categoryGroups = categoryGroupsRaw.map((group) => ({
@@ -210,6 +227,7 @@ export async function GET() {
       problemsSolved: myScoreResult[0]?.problemsSolved ?? 0,
       avgScore: myScoreResult[0]?.avgExamPercent ?? "0",
     },
+    readinessScore,
     facultyExamDates,
     season: seasonResult[0] ?? null,
   });
