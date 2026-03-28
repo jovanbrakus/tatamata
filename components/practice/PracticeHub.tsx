@@ -26,16 +26,17 @@ interface CategoryGroup {
 
 /* ─── Styling ─── */
 
-const GROUP_META: Record<string, { icon: string; description?: string; image: string }> = {
+const GROUP_META: Record<string, { icon: string; description?: string; image: string; imageLight: string }> = {
   algebra: {
     icon: "variables",
     description: "Srce matematike. Od osnova proporcije do kompleksnih logaritamskih struktura.",
     image: "/images/categories/algebra.png",
+    imageLight: "/images/categories/light/algebra.png",
   },
-  trigonometry: { icon: "change_history", image: "/images/categories/trigonometry.png" },
-  geometry: { icon: "category", image: "/images/categories/geometry.png" },
-  analysis: { icon: "insights", image: "/images/categories/analysis.png" },
-  combinatorics_and_probability: { icon: "casino", image: "/images/categories/combinatorics_and_probability.png" },
+  trigonometry: { icon: "change_history", image: "/images/categories/trigonometry.png", imageLight: "/images/categories/light/trigonometry.png" },
+  geometry: { icon: "category", image: "/images/categories/geometry.png", imageLight: "/images/categories/light/geometry.png" },
+  analysis: { icon: "insights", image: "/images/categories/analysis.png", imageLight: "/images/categories/light/analysis.png" },
+  combinatorics_and_probability: { icon: "casino", image: "/images/categories/combinatorics_and_probability.png", imageLight: "/images/categories/light/combinatorics_and_probability.png" },
 };
 
 /* ─── Category topic mapping (for practice mode header) ─── */
@@ -356,13 +357,10 @@ export default function PracticeHub() {
                   {/* Header */}
                   <div className="flex justify-between items-start mb-10">
                     <div className="flex items-start gap-4">
-                      {meta.image && (
-                        <img
-                          src={meta.image}
-                          alt={group.name}
-                          className="h-16 w-24 shrink-0 rounded-lg object-cover"
-                        />
-                      )}
+                      {meta.image && (<>
+                        <img src={meta.image} alt={group.name} className="h-16 w-24 shrink-0 rounded-lg object-cover dark-only" />
+                        <img src={meta.imageLight} alt={group.name} className="h-16 w-24 shrink-0 rounded-lg object-cover light-only" />
+                      </>)}
                       <div>
                         <h4 className="font-headline text-3xl font-black text-heading mb-1">
                           {group.name}
@@ -410,13 +408,10 @@ export default function PracticeHub() {
               {/* Header */}
               <div className="flex justify-between items-start mb-6">
                 <div className="flex items-center gap-3">
-                  {meta.image && (
-                    <img
-                      src={meta.image}
-                      alt={group.name}
-                      className="h-12 w-18 shrink-0 rounded-lg object-cover"
-                    />
-                  )}
+                  {meta.image && (<>
+                    <img src={meta.image} alt={group.name} className="h-12 w-18 shrink-0 rounded-lg object-cover dark-only" />
+                    <img src={meta.imageLight} alt={group.name} className="h-12 w-18 shrink-0 rounded-lg object-cover light-only" />
+                  </>)}
                   <h4 className="font-headline text-2xl font-black text-heading">
                     {group.name}
                   </h4>

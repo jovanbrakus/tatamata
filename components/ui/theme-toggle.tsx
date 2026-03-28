@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 
 export function ThemeToggle({ collapsed = false }: { collapsed?: boolean }) {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme, setTheme] = useState<"dark" | "light">("light");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     const stored = localStorage.getItem("theme") as "dark" | "light" | null;
-    const initial = stored || "dark";
+    const initial = stored || "light";
     setTheme(initial);
     applyTheme(initial);
   }, []);

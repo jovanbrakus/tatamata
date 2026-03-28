@@ -52,6 +52,22 @@ interface CategoryGroup {
   categories: string[];
 }
 
+interface ReadinessBreakdown {
+  finalScore: number;
+  rawScore: number;
+  groupScores: Record<string, {
+    score: number;
+    weight: number;
+    subcategories: Record<string, {
+      score: number;
+      accuracy: number;
+      confidence: number;
+      recentCorrect: number;
+      recentTotal: number;
+    }>;
+  }>;
+}
+
 interface Analytics {
   accuracyPercent: number;
   avgSolveTimeSec: number;
@@ -63,6 +79,8 @@ interface Analytics {
   strengths: StrengthWeakness[];
   weaknesses: StrengthWeakness[];
   trendData: TrendPoint[];
+  readinessScore: number;
+  readinessBreakdown: ReadinessBreakdown | null;
   updatedAt: string;
 }
 
@@ -345,21 +363,22 @@ export default function AnalytikaPage() {
           )}
         </div>
 
-        {/* Category Breakdown — grouped */}
+        {/* Category Breakdown — grouped by readiness score */}
         <div className="glass-panel rounded-3xl p-6 sm:p-8">
           <h4 className="mb-6 text-lg font-bold text-text">
             Uspeh po kategorijama
           </h4>
-          {categoryGroups.length > 0 && analytics?.categoryBreakdown ? (
+          {categoryGroups.length > 0 && analytics?.readinessBreakdown ? (
             <div className="space-y-4">
               {categoryGroups.map((group) => {
-                const childCats = group.categories
-                  .map((id) => ({ id, ...(analytics.categoryBreakdown[id] || { name: id, correct: 0, total: 0, percent: 0 }) }))
-                  .filter(Boolean);
-                const groupPercent = childCats.length > 0
-                  ? Math.round(childCats.reduce((s, c) => s + (c.percent || 0), 0) / childCats.length)
-                  : 0;
+                const gs = analytics.readinessBreakdown?.groupScores?.[group.id];
+                const groupScore = Math.round(gs?.score ?? 0);
                 const isExpanded = expandedGroups.has(group.id);
+                const childCats = group.categories.map((id) => ({
+                  id,
+                  name: analytics.categoryBreakdown[id]?.name ?? id,
+                  score: Math.round(gs?.subcategories?.[id]?.score ?? 0),
+                }));
 
                 return (
                   <div key={group.id} className="rounded-xl border border-[var(--glass-border)] bg-[var(--tint)] overflow-hidden">
@@ -381,12 +400,12 @@ export default function AnalytikaPage() {
                       <div className="flex-grow">
                         <div className="flex items-center justify-between">
                           <span className="text-sm font-bold text-heading">{group.name}</span>
-                          <span className="text-sm font-bold text-[#ec5b13]">{groupPercent}%</span>
+                          <span className="text-sm font-bold text-[#ec5b13]">{groupScore}</span>
                         </div>
                         <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-card">
                           <div
                             className="h-full rounded-full bg-[#ec5b13] transition-all duration-700"
-                            style={{ width: `${groupPercent}%` }}
+                            style={{ width: `${groupScore}%` }}
                           />
                         </div>
                       </div>
@@ -398,12 +417,12 @@ export default function AnalytikaPage() {
                           <div key={cat.id} className="space-y-1">
                             <div className="flex justify-between text-xs">
                               <span className="text-text-secondary">{cat.name}</span>
-                              <span className="font-semibold text-text-secondary">{cat.percent ?? 0}%</span>
+                              <span className="font-semibold text-text-secondary">{cat.score}</span>
                             </div>
                             <div className="h-1 w-full overflow-hidden rounded-full bg-card">
                               <div
                                 className="h-full rounded-full bg-[#ec5b13]/60 transition-all duration-700"
-                                style={{ width: `${cat.percent ?? 0}%` }}
+                                style={{ width: `${cat.score}%` }}
                               />
                             </div>
                           </div>

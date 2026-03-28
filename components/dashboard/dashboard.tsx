@@ -294,8 +294,8 @@ export default function Dashboard({ user }: DashboardProps) {
                       href="/vezba"
                       className="glass-card flex flex-col rounded-2xl p-5 transition-all hover:border-[#ec5b13]/30"
                     >
-                      <div className="mb-4 flex items-center justify-between">
-                        <div className="flex items-center gap-3">
+                      <div className="mb-4">
+                        <div className="flex items-center justify-between">
                           {image && (
                             <img
                               src={image}
@@ -303,17 +303,17 @@ export default function Dashboard({ user }: DashboardProps) {
                               className="h-10 w-14 shrink-0 rounded-lg object-cover"
                             />
                           )}
-                          <h4 className="text-sm font-bold leading-tight">{group.name}</h4>
+                          <div className="relative shrink-0" style={{ width: sz, height: sz }}>
+                            <svg width={sz} height={sz} className="-rotate-90">
+                              <circle cx={sz/2} cy={sz/2} r={r} fill="none" stroke="#ec5b13" strokeWidth={sw} opacity={0.15} />
+                              <circle cx={sz/2} cy={sz/2} r={r} fill="none" stroke="#ec5b13" strokeWidth={sw} strokeDasharray={circ} strokeDashoffset={circ - filled} strokeLinecap="round" className="transition-all duration-700" />
+                            </svg>
+                            <span className="absolute inset-0 flex items-center justify-center text-sm font-black text-primary">
+                              {score}
+                            </span>
+                          </div>
                         </div>
-                        <div className="relative shrink-0" style={{ width: sz, height: sz }}>
-                          <svg width={sz} height={sz} className="-rotate-90">
-                            <circle cx={sz/2} cy={sz/2} r={r} fill="none" stroke="#ec5b13" strokeWidth={sw} opacity={0.15} />
-                            <circle cx={sz/2} cy={sz/2} r={r} fill="none" stroke="#ec5b13" strokeWidth={sw} strokeDasharray={circ} strokeDashoffset={circ - filled} strokeLinecap="round" className="transition-all duration-700" />
-                          </svg>
-                          <span className="absolute inset-0 flex items-center justify-center text-sm font-black text-primary">
-                            {score}
-                          </span>
-                        </div>
+                        <h4 className="mt-2 text-sm font-bold leading-tight">{group.name}</h4>
                       </div>
                       {/* 3 weakest subcategories */}
                       {(() => {
