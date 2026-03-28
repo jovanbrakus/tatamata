@@ -6,6 +6,12 @@ import { getProblemFull, queryProblems } from "@/lib/problems";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
+  // Admin-only: this endpoint exposes the full problem catalog
+  const session = await auth();
+  if (!session?.user || (session.user as any).role !== "admin") {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
   const url = new URL(req.url);
   const faculty = url.searchParams.get("faculty") || undefined;
   const year = url.searchParams.get("year");
