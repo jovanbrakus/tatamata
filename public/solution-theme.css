@@ -7,7 +7,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 /* --- Theme variables --- */
-html, html.dark {
+html.dark {
   --sol-bg: #0a0705;
   --sol-text: #e2e8f0;
   --sol-text-secondary: #94a3b8;
@@ -34,7 +34,7 @@ html, html.dark {
   --sol-value-color: #e2e8f0;
 }
 
-html.light {
+html, html.light {
   --sol-bg: #f8f6f4;
   --sol-text: #334155;
   --sol-text-secondary: #64748b;
@@ -361,6 +361,21 @@ table th {
 /* Override inline style="color: #e2e8f0" on lists/paragraphs in some problem files */
 html.light [style*="color: #e2e8f0"],
 html.light [style*="color:#e2e8f0"] {
+  color: var(--sol-text) !important;
+}
+
+/* --- MathJax --- */
+html.light mjx-container,
+html.light mjx-math,
+html.light mjx-mi,
+html.light mjx-mo,
+html.light mjx-mn,
+html.light mjx-mfrac,
+html.light mjx-msup,
+html.light mjx-msub,
+html.light mjx-mrow,
+html.light mjx-mtext,
+html.light mjx-msqrt {
   color: var(--sol-text) !important;
 }
 

@@ -26,7 +26,7 @@ function sanitizeForIframe(html: string): string {
 }
 
 const THEME_LINKS = `<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/solution-theme.css">`;
+<link rel="stylesheet" href="/solution-theme.css?v=2">`;
 
 /**
  * Inject the shared theme stylesheet link after the last embedded <style> block
@@ -121,6 +121,16 @@ function extractStatementHtml(html: string, theme: string): string {
 
   const themeClass = theme === "light" ? "light" : "dark";
 
+  const lightOverrides = theme === "light" ? `<style>
+  /* Force MathJax text to dark color in light theme */
+  html.light mjx-container, html.light mjx-math, html.light mjx-mi,
+  html.light mjx-mo, html.light mjx-mn, html.light mjx-mfrac,
+  html.light mjx-msup, html.light mjx-msub, html.light mjx-mrow,
+  html.light mjx-mtext, html.light mjx-msqrt {
+    color: #334155 !important;
+  }
+</style>` : "";
+
   return `<!DOCTYPE html>
 <html lang="sr" class="${themeClass}">
 <head>
@@ -135,6 +145,7 @@ ${cleanHead}
   .answer-option, .answer-chip, .answer-options-row, .options-grid { display: none !important; }
 </style>
 ${THEME_LINKS}
+${lightOverrides}
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   // Remove answer option elements entirely so they don't affect layout
@@ -158,7 +169,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ problemI
   const { problemId } = await params;
   const url = new URL(req.url);
   const section = url.searchParams.get("section");
-  const theme = url.searchParams.get("theme") || "dark";
+  const theme = url.searchParams.get("theme") || "light";
 
   const html = getProblemHtml(problemId);
 

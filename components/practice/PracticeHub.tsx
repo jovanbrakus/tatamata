@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import ProblemView from "@/components/problems/ProblemView";
+import Link from "next/link";
 
 /* ─── Types ─── */
 
@@ -39,31 +39,6 @@ const GROUP_META: Record<string, { icon: string; description?: string; image: st
   combinatorics_and_probability: { icon: "casino", image: "/images/categories/combinatorics_and_probability.png", imageLight: "/images/categories/light/combinatorics_and_probability.png" },
 };
 
-/* ─── Category topic mapping (for practice mode header) ─── */
-
-const CATEGORY_NAMES: Record<string, string> = {
-  percent_proportion: "Procenti i proporcija",
-  real_numbers: "Realni brojevi",
-  algebraic_expressions: "Algebarski izrazi",
-  linear_equations: "Linearne jednačine",
-  complex_numbers: "Kompleksni brojevi",
-  polynomials: "Polinomi",
-  quadratic_equations: "Kvadratne jednačine",
-  quadratic_function: "Kvadratna funkcija",
-  irrational_equations: "Iracionalne jednačine",
-  exponential_equations: "Eksponencijalne jednačine",
-  logarithm: "Logaritam",
-  trigonometric_expressions: "Trigonometrijski izrazi",
-  trigonometric_equations: "Trigonometrijske jednačine",
-  planimetry: "Planimetrija",
-  stereometry: "Stereometrija",
-  analytic_geometry: "Analitička geometrija",
-  function_properties: "Osobine funkcije",
-  sequences: "Nizovi",
-  derivatives: "Izvod funkcije",
-  combinatorics: "Kombinatorika",
-  binomial_formula: "Binomna formula",
-};
 
 /* ─── Circular Score Indicator ─── */
 
@@ -110,29 +85,23 @@ function ScoreCircle({ score, size = 64 }: { score: number; size?: number }) {
 
 /* ─── Subcategory Row ─── */
 
-function SubcategoryRow({
-  sub,
-  onPlay,
-}: {
-  sub: SubcategoryStat;
-  onPlay: () => void;
-}) {
+function SubcategoryRow({ sub }: { sub: SubcategoryStat }) {
   const pct = sub.readinessScore;
   const isComplete = pct === 100;
 
   return (
     <div className="flex flex-col gap-2">
       <div className="flex justify-between items-center cursor-pointer group/sub">
-        <span
+        <Link
+          href={`/zadaci?topic=${sub.id}`}
           className="text-sm font-medium text-text-secondary hover:text-primary transition-colors"
-          onClick={onPlay}
         >
           {sub.name}
-        </span>
+        </Link>
         <div className="flex items-center gap-3">
           <span className="text-[10px] font-bold text-muted">{pct}</span>
-          <button
-            onClick={onPlay}
+          <Link
+            href={`/zadaci?topic=${sub.id}`}
             className="w-6 h-6 rounded flex items-center justify-center bg-[var(--tint-strong)] hover:bg-primary hover:text-white transition-all active:scale-90"
           >
             <span
@@ -141,7 +110,7 @@ function SubcategoryRow({
             >
               {isComplete ? "check" : "play_arrow"}
             </span>
-          </button>
+          </Link>
         </div>
       </div>
       <div className="h-[2px] w-full bg-[var(--tint-strong)] rounded-full overflow-hidden">
@@ -161,15 +130,6 @@ export default function PracticeHub() {
   const [groups, setGroups] = useState<CategoryGroup[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Practice mode state
-  const [practiceMode, setPracticeMode] = useState(false);
-  const [practiceLabel, setPracticeLabel] = useState("");
-  const [practiceTopics, setPracticeTopics] = useState<string[]>([]);
-  const [currentProblemId, setCurrentProblemId] = useState<string | null>(null);
-  const [loadingProblem, setLoadingProblem] = useState(false);
-  const [sessionScore, setSessionScore] = useState({ correct: 0, total: 0 });
-
-  // Fetch category data
   useEffect(() => {
     if (sessionStatus !== "authenticated") return;
     fetch("/api/practice/categories")
@@ -180,134 +140,6 @@ export default function PracticeHub() {
       })
       .catch(() => setLoading(false));
   }, [sessionStatus]);
-
-  // Fetch a random problem
-  const fetchRandom = useCallback(async (topics: string[]) => {
-    setLoadingProblem(true);
-    try {
-      const res = await fetch(`/api/practice/random?topics=${topics.join(",")}`);
-      const data = await res.json();
-      if (data.problemId) {
-        setCurrentProblemId(data.problemId);
-      } else {
-        setCurrentProblemId(null);
-      }
-    } catch {
-      setCurrentProblemId(null);
-    }
-    setLoadingProblem(false);
-  }, []);
-
-  // Start practice for a group
-  const startGroupPractice = (group: CategoryGroup) => {
-    setPracticeMode(true);
-    setPracticeLabel(group.name);
-    setPracticeTopics(group.categories.map((c) => c.id));
-    setSessionScore({ correct: 0, total: 0 });
-    fetchRandom(group.categories.map((c) => c.id));
-  };
-
-  // Start practice for a single category
-  const startCategoryPractice = (categoryId: string) => {
-    setPracticeMode(true);
-    setPracticeLabel(CATEGORY_NAMES[categoryId] || categoryId);
-    setPracticeTopics([categoryId]);
-    setSessionScore({ correct: 0, total: 0 });
-    fetchRandom([categoryId]);
-  };
-
-  // Handle answer result (called after user answers)
-  const handleNext = useCallback((wasCorrect?: boolean) => {
-    if (wasCorrect !== undefined) {
-      setSessionScore((prev) => ({
-        correct: prev.correct + (wasCorrect ? 1 : 0),
-        total: prev.total + 1,
-      }));
-    }
-    fetchRandom(practiceTopics);
-  }, [fetchRandom, practiceTopics]);
-
-  // Exit practice mode
-  const exitPractice = () => {
-    setPracticeMode(false);
-    setCurrentProblemId(null);
-    setPracticeTopics([]);
-    // Refresh categories to get updated scores
-    fetch("/api/practice/categories")
-      .then((r) => r.json())
-      .then((data) => setGroups(data.categories ?? []));
-  };
-
-  /* ─── Practice Mode ─── */
-  if (practiceMode) {
-    return (
-      <div className="mx-auto max-w-[1000px] px-4 py-6">
-        {/* Practice header */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <button
-              onClick={exitPractice}
-              className="flex items-center gap-2 rounded-lg border border-[var(--glass-border)] bg-[var(--tint)] px-4 py-2 text-sm font-semibold text-text-secondary transition-colors hover:text-heading"
-            >
-              <span className="material-symbols-outlined text-base">arrow_back</span>
-              Nazad
-            </button>
-            <div>
-              <h2 className="text-lg font-bold text-heading">{practiceLabel}</h2>
-              <p className="text-xs text-muted">Vežbanje u toku</p>
-            </div>
-          </div>
-
-          {/* Session score */}
-          <div className="flex items-center gap-3">
-            {sessionScore.total > 0 && (
-              <div className="flex items-center gap-2 rounded-full border border-[var(--glass-border)] bg-[var(--tint)] px-4 py-2">
-                <span className="material-symbols-outlined text-base text-primary">check_circle</span>
-                <span className="text-sm font-bold text-heading">
-                  {sessionScore.correct}/{sessionScore.total}
-                </span>
-                <span className="text-xs text-muted">tačno</span>
-              </div>
-            )}
-            <button
-              onClick={() => handleNext()}
-              className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-primary-glow"
-            >
-              Sledeći
-              <span className="material-symbols-outlined text-base">arrow_forward</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Problem display */}
-        {loadingProblem ? (
-          <div className="flex h-96 items-center justify-center">
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-          </div>
-        ) : currentProblemId ? (
-          <ProblemView
-            problemId={currentProblemId}
-            key={currentProblemId}
-            onAnswered={handleNext}
-          />
-        ) : (
-          <div className="flex h-96 flex-col items-center justify-center gap-4 text-center">
-            <span className="material-symbols-outlined text-5xl text-muted">celebration</span>
-            <h3 className="text-xl font-bold text-heading">Sve rešeno!</h3>
-            <p className="text-text-secondary">
-              Nema više nerešenih zadataka u ovoj kategoriji.
-            </p>
-            <button
-              onClick={exitPractice}
-              className="mt-4 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-white"
-            >
-              Vrati se na izbor
-            </button>
-          </div>
-        )}
-      </div>
-    );
-  }
 
   /* ─── Loading State ─── */
   if (loading || sessionStatus === "loading") {
@@ -381,19 +213,18 @@ export default function PracticeHub() {
                       <SubcategoryRow
                         key={sub.id}
                         sub={sub}
-                        onPlay={() => startCategoryPractice(sub.id)}
                       />
                     ))}
                   </div>
 
                   {/* CTA Button */}
-                  <button
-                    onClick={() => startGroupPractice(group)}
+                  <Link
+                    href={`/zadaci?group=${group.id}`}
                     className="w-full py-4 rounded-lg bg-primary text-white font-black uppercase tracking-widest text-sm flex items-center justify-center gap-3 transition-transform active:scale-[0.98]"
                   >
                     <span className="material-symbols-outlined font-black">rocket_launch</span>
                     Pokreni vežbu
-                  </button>
+                  </Link>
                 </div>
               </section>
             );
@@ -425,19 +256,18 @@ export default function PracticeHub() {
                   <SubcategoryRow
                     key={sub.id}
                     sub={sub}
-                    onPlay={() => startCategoryPractice(sub.id)}
                   />
                 ))}
               </div>
 
               {/* CTA Button */}
-              <button
-                onClick={() => startGroupPractice(group)}
+              <Link
+                href={`/zadaci?group=${group.id}`}
                 className="w-full py-4 rounded-lg bg-[var(--tint-strong)] text-primary font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-[var(--glass-border)] transition-colors"
               >
                 <span className="material-symbols-outlined text-sm">rocket_launch</span>
                 Pokreni vežbu
-              </button>
+              </Link>
             </section>
           );
         })}

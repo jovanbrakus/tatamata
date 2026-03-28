@@ -15,7 +15,7 @@ export default function ProblemStatement({
   minHeight = "150px",
 }: ProblemStatementProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     // Read initial theme
