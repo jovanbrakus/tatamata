@@ -12,6 +12,7 @@ import {
 import { eq, sql, gt, desc, and } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { getProblemsCount, getCategoryGroupsWithCounts } from "@/lib/problems";
+import { generateRecommendations } from "@/lib/recommendations";
 
 export async function GET() {
   const session = await auth();
@@ -212,6 +213,17 @@ export async function GET() {
     };
   });
 
+  // Generate daily recommendations
+  const recommendations = generateRecommendations({
+    categoryGroups: categoryGroups.map((g) => ({
+      id: g.id,
+      name: g.name,
+      readinessScore: g.readinessScore ?? 0,
+    })),
+    readinessScore,
+    examCount: examHistoryResult.length,
+  });
+
   return NextResponse.json({
     user: {
       displayName: user?.displayName ?? "Korisnik",
@@ -251,5 +263,6 @@ export async function GET() {
     })),
     facultyExamDates,
     season: seasonResult[0] ?? null,
+    recommendations,
   });
 }

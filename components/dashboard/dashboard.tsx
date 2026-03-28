@@ -74,6 +74,14 @@ interface DashboardData {
     examDate: string | null;
   }>;
   readinessScore: number;
+  recommendations: Array<{
+    type: "practice" | "simulation" | "lesson";
+    title: string;
+    subtitle: string;
+    href: string;
+    icon: string;
+    badge: string;
+  }>;
   recentExams: Array<{
     id: string;
     facultyName: string;
@@ -141,12 +149,12 @@ const FACULTY_ICONS: Record<string, string> = {
 
 /* ─── category images ─── */
 
-const CATEGORY_IMAGES: Record<string, string> = {
-  algebra: "/images/categories/algebra.png",
-  trigonometry: "/images/categories/trigonometry.png",
-  geometry: "/images/categories/geometry.png",
-  analysis: "/images/categories/analysis.png",
-  combinatorics_and_probability: "/images/categories/combinatorics_and_probability.png",
+const CATEGORY_IMAGES: Record<string, { dark: string; light: string }> = {
+  algebra: { dark: "/images/categories/algebra.png", light: "/images/categories/light/algebra.png" },
+  trigonometry: { dark: "/images/categories/trigonometry.png", light: "/images/categories/light/trigonometry.png" },
+  geometry: { dark: "/images/categories/geometry.png", light: "/images/categories/light/geometry.png" },
+  analysis: { dark: "/images/categories/analysis.png", light: "/images/categories/light/analysis.png" },
+  combinatorics_and_probability: { dark: "/images/categories/combinatorics_and_probability.png", light: "/images/categories/light/combinatorics_and_probability.png" },
 };
 
 /* ─── helpers ─── */
@@ -226,17 +234,7 @@ export default function Dashboard({ user }: DashboardProps) {
   const streak = data?.user?.streakCurrent ?? 0;
   const categoryGroups = data?.categoryGroups ?? [];
 
-  // Find weakest group for AI recommendation
-  const weakest = [...categoryGroups]
-    .filter((g) => g.total > 0)
-    .sort(
-      (a, b) =>
-        a.solved / Math.max(a.total, 1) -
-        b.solved / Math.max(b.total, 1)
-    )[0];
-  const weakestPct = weakest
-    ? Math.round((weakest.solved / Math.max(weakest.total, 1)) * 100)
-    : 0;
+  const recommendations = data?.recommendations ?? [];
 
   return (
     <div className="relative p-8">
@@ -251,32 +249,33 @@ export default function Dashboard({ user }: DashboardProps) {
         <div className="grid grid-cols-12 gap-6">
           {/* ─── LEFT COLUMN (9 cols) ─── */}
           <div className="col-span-12 space-y-6 lg:col-span-9">
-            {/* AI Recommendation */}
+            {/* AI Recommendations */}
             <div className="glass-card rounded-2xl border-l-4 border-[#ec5b13] p-6">
               <div className="mb-4 flex items-center gap-3">
                 <Sparkles size={22} className="text-[#ec5b13]" />
                 <h3 className="text-lg font-bold">Preporuka za danas</h3>
               </div>
-              <div className="flex items-center justify-between rounded-xl border border-[var(--glass-border)] bg-[var(--tint)] p-4">
-                <div className="flex items-center gap-4">
-                  <div className="text-3xl font-black text-[#ec5b13]/40">01</div>
-                  <div>
-                    <h4 className="font-bold text-heading">
-                      Uvežbaj{weakest ? `: ${weakest.name}` : " zadatke"}
-                    </h4>
-                    <p className="text-xs text-text-secondary">
-                      {weakest
-                        ? `Tvoj procenat tačnosti ovde je ${weakestPct}%. Potrebno dodatno vežbanje.`
-                        : "Nastavi da rešavaš zadatke i prati svoj napredak."}
-                    </p>
+              <div className="space-y-3">
+                {recommendations.map((rec) => (
+                  <div key={rec.badge} className="flex items-center justify-between rounded-xl border border-[var(--glass-border)] bg-[var(--tint)] p-4">
+                    <div className="flex items-center gap-4">
+                      <div className="relative text-3xl font-black text-[#ec5b13]/40">
+                        {rec.badge}
+                        <span className="material-symbols-outlined absolute -bottom-1 -right-1 text-xs text-[#ec5b13]/60">{rec.icon}</span>
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-heading">{rec.title}</h4>
+                        <p className="text-xs text-text-secondary">{rec.subtitle}</p>
+                      </div>
+                    </div>
+                    <Link
+                      href={rec.href}
+                      className="flex-shrink-0 rounded-xl bg-[#ec5b13] px-5 py-2.5 text-sm font-bold text-white shadow-[0_0_15px_rgba(236,91,19,0.2)] transition-transform hover:scale-105"
+                    >
+                      KRENI
+                    </Link>
                   </div>
-                </div>
-                <Link
-                  href="/vezbe"
-                  className="flex-shrink-0 rounded-xl bg-[#ec5b13] px-5 py-2.5 text-sm font-bold text-white shadow-[0_0_15px_rgba(236,91,19,0.2)] transition-transform hover:scale-105"
-                >
-                  KRENI
-                </Link>
+                ))}
               </div>
             </div>
 
@@ -295,17 +294,16 @@ export default function Dashboard({ user }: DashboardProps) {
                   return (
                     <Link
                       key={group.id}
-                      href="/vezba"
+                      href={`/zadaci?group=${group.id}`}
                       className="glass-card flex flex-col rounded-2xl p-5 transition-all hover:border-[#ec5b13]/30"
                     >
                       <div className="mb-4">
                         <div className="flex items-center justify-between">
                           {image && (
-                            <img
-                              src={image}
-                              alt={group.name}
-                              className="h-10 w-14 shrink-0 rounded-lg object-cover"
-                            />
+                            <>
+                              <img src={image.dark} alt={group.name} className="h-10 w-14 shrink-0 rounded-lg object-cover dark-only" />
+                              <img src={image.light} alt={group.name} className="h-10 w-14 shrink-0 rounded-lg object-cover light-only" />
+                            </>
                           )}
                           <div className="relative shrink-0" style={{ width: sz, height: sz }}>
                             <svg width={sz} height={sz} className="-rotate-90">
