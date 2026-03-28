@@ -26,6 +26,10 @@ const NAV_ITEMS = [
   { href: "/znanje", label: "Centar znanja", shortLabel: "Znanje", icon: "auto_stories" },
 ];
 
+const ADMIN_ITEMS = [
+  { href: "/admin", label: "Admin panel", shortLabel: "Admin", icon: "admin_panel_settings" },
+];
+
 const BOTTOM_ITEMS = [
   { href: "/profil", label: "Profil", shortLabel: "Profil", icon: "person" },
 ];
@@ -38,6 +42,7 @@ function getFacultyShort(id: string): string | null {
 export default function Sidebar({ user, collapsed, onToggle, onNavigate }: SidebarProps) {
   const pathname = usePathname();
   const { data: session } = useSession();
+  const userRole = (session?.user as any)?.role as string | undefined;
   const targetFaculties = ((session?.user as any)?.targetFaculties as string[]) || [];
   const facultyShorts = targetFaculties
     .map(getFacultyShort)
@@ -151,6 +156,59 @@ export default function Sidebar({ user, collapsed, onToggle, onNavigate }: Sideb
             </Link>
           );
         })}
+
+        {/* Admin navigation */}
+        {userRole === "admin" && (
+          <>
+            <hr className="my-2 border-[var(--glass-border)]" />
+            {ADMIN_ITEMS.map(({ href, label, shortLabel, icon }) => {
+              const active = isActive(href);
+
+              if (collapsed) {
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={onNavigate}
+                    className={`flex flex-col items-center gap-1 rounded-xl px-1 py-3 transition-all ${
+                      active
+                        ? "text-[#ec5b13]"
+                        : "text-muted hover:text-[#ec5b13]"
+                    }`}
+                    title={label}
+                  >
+                    <span className={`material-symbols-outlined text-[22px] ${active ? "fill-1" : ""}`}>
+                      {icon}
+                    </span>
+                    <span className="text-[9px] font-bold uppercase tracking-tight text-center leading-tight">
+                      {shortLabel}
+                    </span>
+                  </Link>
+                );
+              }
+
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={onNavigate}
+                  className={`flex items-center gap-3 rounded-xl px-4 py-3 transition-all ${
+                    active
+                      ? "bg-[#ec5b13]/10 border border-[#ec5b13]/20 text-[#ec5b13]"
+                      : "text-text-secondary hover:bg-[var(--tint)] hover:text-heading"
+                  }`}
+                >
+                  <span className={`material-symbols-outlined text-xl ${active ? "fill-1" : ""}`}>
+                    {icon}
+                  </span>
+                  <span className={`text-sm whitespace-nowrap ${active ? "font-semibold" : "font-medium"}`}>
+                    {label}
+                  </span>
+                </Link>
+              );
+            })}
+          </>
+        )}
       </nav>
 
       {/* Bottom section */}
