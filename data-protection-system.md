@@ -7,7 +7,7 @@ Specification for protecting Matoteka's 4000+ math problem solutions from bulk s
 | # | Vulnerability | Impact |
 |---|---|---|
 | 1 | `/api/problems/[problemId]/html` has zero authentication | Anyone can curl every solution |
-| 2 | Problem IDs are predictable (`etf-2003-1` ... `etf-2025-20`) | Entire corpus enumerable in minutes |
+| 2 | Problem IDs are 8-digit hashes (e.g. `10307566`) — not sequential but enumerable via `/api/problems` list endpoint | Corpus discoverable by paginating the list API |
 | 3 | HTML served as plain `text/html` with no cache headers | Browser/CDN caches persist solutions |
 | 4 | iframe uses `sandbox="allow-scripts allow-same-origin"` | Parent JS / extensions can read `contentDocument` |
 | 5 | No view tracking or rate limiting on solutions | No visibility into abuse |
