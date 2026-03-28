@@ -53,7 +53,7 @@ export async function GET() {
         )
       ),
 
-    // Exam history (last 5)
+    // Exam history (last 5 for lastExam + recent 3 for table)
     db
       .select({
         id: mockExams.id,
@@ -64,6 +64,9 @@ export async function GET() {
         numCorrect: mockExams.numCorrect,
         numWrong: mockExams.numWrong,
         numBlank: mockExams.numBlank,
+        timeSpent: mockExams.timeSpent,
+        durationLimit: mockExams.durationLimit,
+        testSize: mockExams.testSize,
         startedAt: mockExams.startedAt,
       })
       .from(mockExams)
@@ -234,6 +237,18 @@ export async function GET() {
       avgScore: myScoreResult[0]?.avgExamPercent ?? "0",
     },
     readinessScore,
+    recentExams: examHistoryResult.slice(0, 3).map((e) => ({
+      id: e.id,
+      facultyName: e.facultyName,
+      scorePercent: e.scorePercent,
+      numCorrect: e.numCorrect,
+      numWrong: e.numWrong,
+      numBlank: e.numBlank,
+      timeSpent: e.timeSpent,
+      durationLimit: e.durationLimit,
+      testSize: e.testSize,
+      startedAt: e.startedAt,
+    })),
     facultyExamDates,
     season: seasonResult[0] ?? null,
   });
