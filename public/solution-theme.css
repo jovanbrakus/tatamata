@@ -105,6 +105,8 @@ h1 {
 
 /* --- Problem statement --- */
 .problem-statement {
+  background: var(--sol-card-bg);
+  border-color: var(--sol-card-border);
   border-left-color: #a78bfa;
 }
 
