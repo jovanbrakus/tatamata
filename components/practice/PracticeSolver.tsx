@@ -124,13 +124,14 @@ export default function PracticeSolver() {
     if (topics.length > 0) fetchRandom(topics);
   }, [topics, fetchRandom]);
 
-  const handleNext = useCallback((wasCorrect?: boolean) => {
-    if (wasCorrect !== undefined) {
-      setSessionScore((prev) => ({
-        correct: prev.correct + (wasCorrect ? 1 : 0),
-        total: prev.total + 1,
-      }));
-    }
+  const handleAnswered = useCallback((wasCorrect: boolean) => {
+    setSessionScore((prev) => ({
+      correct: prev.correct + (wasCorrect ? 1 : 0),
+      total: prev.total + 1,
+    }));
+  }, []);
+
+  const handleNext = useCallback(() => {
     fetchRandom(topics);
   }, [fetchRandom, topics]);
 
@@ -212,7 +213,8 @@ export default function PracticeSolver() {
         <ProblemView
           problemId={currentProblemId}
           key={currentProblemId}
-          onAnswered={handleNext}
+          onAnswered={handleAnswered}
+          onNext={handleNext}
         />
       ) : (
         <div className="flex h-96 flex-col items-center justify-center gap-4 text-center">

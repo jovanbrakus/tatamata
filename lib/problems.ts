@@ -142,7 +142,15 @@ export function parseHtml(htmlContent: string) {
   }
 
   // Map correct answer from original label (e.g. "G") to index-based letter (e.g. "D")
-  // since AnswerOptions component uses sequential A, B, C, D, E labels
+  // since AnswerOptions component uses sequential A, B, C, D, E labels.
+  // Some HTML files use Cyrillic letters (А, Б, В, Г, Д) — normalize to Latin first.
+  const CYRILLIC_TO_LATIN: Record<string, string> = {
+    "А": "A", "Б": "B", "В": "V", "Г": "G", "Д": "D",
+    "Ђ": "DJ", "Е": "E", "Ж": "ZH", "З": "Z",
+  };
+  if (correctAnswer && CYRILLIC_TO_LATIN[correctAnswer]) {
+    correctAnswer = CYRILLIC_TO_LATIN[correctAnswer];
+  }
   if (correctAnswer && originalLabels.length > 0) {
     const idx = originalLabels.indexOf(correctAnswer);
     if (idx !== -1) {

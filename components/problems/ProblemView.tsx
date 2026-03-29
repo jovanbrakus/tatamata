@@ -37,9 +37,10 @@ interface NextProblemInfo {
 interface ProblemViewProps {
   problemId: string;
   onAnswered?: (wasCorrect: boolean) => void;
+  onNext?: () => void;
 }
 
-export default function ProblemView({ problemId, onAnswered }: ProblemViewProps) {
+export default function ProblemView({ problemId, onAnswered, onNext }: ProblemViewProps) {
   const { status: sessionStatus } = useSession();
 
   const [problem, setProblem] = useState<ProblemDetail | null>(null);
@@ -288,7 +289,15 @@ export default function ProblemView({ problemId, onAnswered }: ProblemViewProps)
                   Vidi resenje
                   <ArrowRight size={16} />
                 </button>
-                {nextProblem && (
+                {onNext ? (
+                  <button
+                    onClick={onNext}
+                    className="flex items-center gap-2 rounded-xl border border-[#ec5b13]/30 bg-[#ec5b13]/10 px-6 py-3 text-sm font-bold text-[#ec5b13] transition-all hover:bg-[#ec5b13]/20"
+                  >
+                    Sledeci zadatak
+                    <ArrowRight size={16} />
+                  </button>
+                ) : nextProblem ? (
                   <Link
                     href={`/vezbe/${nextProblem.id}`}
                     className="flex items-center gap-2 rounded-xl border border-[#ec5b13]/30 bg-[#ec5b13]/10 px-6 py-3 text-sm font-bold text-[#ec5b13] transition-all hover:bg-[#ec5b13]/20"
@@ -296,7 +305,7 @@ export default function ProblemView({ problemId, onAnswered }: ProblemViewProps)
                     Sledeci zadatak
                     <ArrowRight size={16} />
                   </Link>
-                )}
+                ) : null}
               </>
             )}
           </div>
@@ -325,20 +334,30 @@ export default function ProblemView({ problemId, onAnswered }: ProblemViewProps)
               <p className="text-sm text-text-secondary">
                 Spreman za sledeći?
               </p>
-              {nextProblem && (
+              {!onNext && nextProblem && (
                 <p className="mt-1 text-xs text-muted line-clamp-1">
                   {nextProblem.title}
                 </p>
               )}
             </div>
             <div className="flex gap-3">
-              <Link
-                href="/vezbe"
-                className="rounded-xl border border-[var(--glass-border)] px-6 py-3 text-sm text-text-secondary transition-colors hover:text-heading"
-              >
-                Nazad na listu
-              </Link>
-              {nextProblem && (
+              {!onNext && (
+                <Link
+                  href="/vezbe"
+                  className="rounded-xl border border-[var(--glass-border)] px-6 py-3 text-sm text-text-secondary transition-colors hover:text-heading"
+                >
+                  Nazad na listu
+                </Link>
+              )}
+              {onNext ? (
+                <button
+                  onClick={onNext}
+                  className="flex items-center gap-2 rounded-xl bg-[#ec5b13] px-8 py-3 text-sm font-bold text-white shadow-lg shadow-[#ec5b13]/20 transition-all hover:scale-105"
+                >
+                  Sledeci zadatak
+                  <ArrowRight size={16} />
+                </button>
+              ) : nextProblem ? (
                 <Link
                   href={`/vezbe/${nextProblem.id}`}
                   className="flex items-center gap-2 rounded-xl bg-[#ec5b13] px-8 py-3 text-sm font-bold text-white shadow-lg shadow-[#ec5b13]/20 transition-all hover:scale-105"
@@ -346,7 +365,7 @@ export default function ProblemView({ problemId, onAnswered }: ProblemViewProps)
                   Sledeci zadatak
                   <ArrowRight size={16} />
                 </Link>
-              )}
+              ) : null}
             </div>
           </div>
         </>
