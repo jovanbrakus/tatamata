@@ -54,8 +54,7 @@ export async function GET(
       answer: row.answer,
       isCorrect: row.isCorrect,
       isFlagged: row.isFlagged,
-      id: row.problemId,
-      title: problem?.title ?? row.problemId,
+      title: problem?.title ?? `Zadatak ${row.position}`,
       correctAnswer: problem?.correctAnswer ?? "A",
     };
   });
