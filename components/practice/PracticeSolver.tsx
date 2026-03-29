@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import ProblemView from "@/components/problems/ProblemView";
+import ScoreCircle from "./ScoreCircle";
 
 const CATEGORY_NAMES: Record<string, string> = {
   percent_proportion: "Procenti i proporcija",
@@ -41,7 +42,8 @@ const GROUP_NAMES: Record<string, string> = {
 interface CategoryGroup {
   id: string;
   name: string;
-  categories: { id: string; name: string }[];
+  readinessScore?: number;
+  categories: { id: string; name: string; readinessScore?: number }[];
 }
 
 export default function PracticeSolver() {
@@ -53,6 +55,7 @@ export default function PracticeSolver() {
   const [sessionScore, setSessionScore] = useState({ correct: 0, total: 0 });
   const [topics, setTopics] = useState<string[]>([]);
   const [label, setLabel] = useState("");
+  const [readinessScore, setReadinessScore] = useState<number | null>(null);
   const initialized = useRef(false);
 
   // Resolve topics from URL params
@@ -63,23 +66,34 @@ export default function PracticeSolver() {
     const groupId = searchParams.get("group");
     const topicId = searchParams.get("topic");
 
+    // Fetch categories for readiness scores and (if group) subcategory IDs
+    const fetchCategories = () =>
+      fetch("/api/practice/categories").then((r) => r.json());
+
     if (topicId) {
       setLabel(CATEGORY_NAMES[topicId] || topicId);
       setTopics([topicId]);
+      fetchCategories().then((data) => {
+        for (const group of (data.categories as CategoryGroup[]) ?? []) {
+          const cat = group.categories.find((c: any) => c.id === topicId);
+          if (cat) {
+            setReadinessScore(cat.readinessScore ?? 0);
+            break;
+          }
+        }
+      });
       return;
     }
 
     if (groupId) {
       setLabel(GROUP_NAMES[groupId] || groupId);
-      // Fetch categories to get subcategory IDs for this group
-      fetch("/api/practice/categories")
-        .then((r) => r.json())
-        .then((data) => {
-          const group = (data.categories as CategoryGroup[])?.find((g) => g.id === groupId);
-          if (group) {
-            setTopics(group.categories.map((c) => c.id));
-          }
-        });
+      fetchCategories().then((data) => {
+        const group = (data.categories as CategoryGroup[])?.find((g) => g.id === groupId);
+        if (group) {
+          setTopics(group.categories.map((c) => c.id));
+          setReadinessScore(group.readinessScore ?? 0);
+        }
+      });
       return;
     }
 
@@ -155,6 +169,7 @@ export default function PracticeSolver() {
             <span className="material-symbols-outlined text-base">arrow_back</span>
             Nazad
           </Link>
+          {readinessScore !== null && <ScoreCircle score={readinessScore} size={36} />}
           <div>
             <h2 className="text-lg font-bold text-heading">{label}</h2>
             <p className="text-xs text-muted">Vežbanje u toku</p>
