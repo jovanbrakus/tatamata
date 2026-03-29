@@ -53,7 +53,13 @@ function sanitizeForIframe(html: string): string {
   const cleaned = html
     .replace(/min-height:\s*100vh;?/gi, "")
     .replace(/max-width:\s*\d+px;?/gi, "")
-    .replace(/margin:\s*0\s+auto;?/gi, "");
+    .replace(/margin:\s*0\s+auto;?/gi, "")
+    // Replace hardcoded dark-theme text colors with CSS variables.
+    // In dark mode the variables resolve to the same values, so no visual change.
+    // In light mode they resolve to dark, readable text.
+    .replace(/color:\s*#e2e8f0/gi, "color: var(--sol-text)")
+    .replace(/color:\s*#cbd5e1/gi, "color: var(--sol-text)")
+    .replace(/color:\s*#94a3b8/gi, "color: var(--sol-text-secondary)");
 
   // Inject a script early in <head> to block resize listeners before any problem scripts run.
   // Canvas draw functions re-read DPR-scaled canvas.width on resize and scale again,
