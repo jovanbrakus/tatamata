@@ -83,7 +83,12 @@ export const problemProgress = pgTable(
     solvedAt: timestamp("solved_at", { withTimezone: true }),
     updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
   },
-  (table) => [primaryKey({ columns: [table.userId, table.problemId] })]
+  (table) => [
+    primaryKey({ columns: [table.userId, table.problemId] }),
+    index("idx_progress_user_status").on(table.userId, table.status),
+    index("idx_progress_user_solved").on(table.userId, table.solvedAt),
+    index("idx_progress_problem").on(table.problemId),
+  ]
 );
 
 export const mockExams = pgTable(
@@ -114,6 +119,7 @@ export const mockExams = pgTable(
     index("idx_mock_exams_user").on(table.userId),
     index("idx_mock_exams_faculty").on(table.facultyId),
     index("idx_mock_exams_status").on(table.status),
+    index("idx_mock_exams_status_finished").on(table.status, table.finishedAt),
   ]
 );
 
