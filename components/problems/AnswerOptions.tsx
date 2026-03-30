@@ -33,7 +33,11 @@ const MathText = memo(function MathText({
 
   useEffect(() => {
     if (!ref.current) return;
-    ref.current.innerHTML = html;
+    // Sanitize: strip script tags and event handler attributes
+    const clean = html
+      .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
+      .replace(/\bon\w+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]*)/gi, "");
+    ref.current.innerHTML = clean;
 
     if ((window as any).MathJax?.typesetPromise) {
       (window as any).MathJax.typesetPromise([ref.current]).catch(() => {});
