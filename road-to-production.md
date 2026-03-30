@@ -83,60 +83,26 @@ Comprehensive production readiness audit of the Matoteka codebase.
 
 ## HIGH — Frontend
 
-### 17. No `<Image>` from next/image anywhere
-- **Files:** `components/landing/landing-hero.tsx:70,318,339`, `components/layout/authenticated-layout.tsx:66`, `app/prijava/page.tsx:54`, and 13+ more
-- 18+ raw `<img>` tags with no automatic optimization, lazy loading, responsive sizes, or WebP conversion
+### ~~18. Missing SEO metadata on key pages~~ DONE
+- Added metadata via `layout.tsx` wrappers for: `/simulacija`, `/znanje`, `/profil`, `/analitika`
+- `/primer`, `/vezba`, `/zadaci`, `/about` already had metadata
 
-### 18. Missing SEO metadata on key pages
-- No `Metadata` export on: `/vezbe`, `/simulacija`, `/znanje`, `/profil`, `/analitika`, `/primer`
-- Root layout and `/about`, `/zadaci` have metadata (good), but most authenticated pages don't
-
-### 19. Leaderboard has no UI
-- Backend fully built: DB table, recalculation logic, cron job (every 15 min), API endpoints
-- No leaderboard page exists — only surfaces as rank display in dashboard
-- Either build the page or remove the cron + endpoints to reduce complexity
+### ~~19. Leaderboard has no UI~~ POSTPONED
+- Backend fully built, no UI page needed for now
+- Rank already surfaces in dashboard
 
 ---
 
 ## MEDIUM — Performance
 
-### 20. No response caching on heavy API routes
-- `GET /api/user/dashboard` — 7+ parallel DB queries, no cache headers
-- `GET /api/analytics` — heavy computation, no cache headers
-- `GET /api/practice/categories` — recalculates readiness scores every request
-- `GET /api/lessons` — returns all lessons every request
-- Add `Cache-Control: s-maxage=10, stale-while-revalidate=30` or similar
+### ~~20. No response caching on heavy API routes~~ PARTIALLY DONE
+- `/api/lessons` cached at CDN (s-maxage=3600, stale-while-revalidate=86400)
+- Other routes return user-specific data — CDN caching would leak data between users
+- Monitor in production; add `private, max-age=10` if needed
 
-### 21. Synchronous filesystem reads on every request
-- **File:** `app/api/analytics/route.ts:11,17`
-- `fs.readFileSync()` called twice per analytics request
-- Should use async `fs.promises.readFile()` or cache in memory
-
-### 22. 1.8MB problems-index.json loaded as singleton
-- **File:** `lib/problems.ts:60`
-- Parsed synchronously on first request; re-read on every request in dev mode
-- In production the singleton is fine, but monitor memory usage
-
-### 23. Zero memoization across 134+ components
-- No `useMemo()`, `useCallback()`, or `React.memo()` found anywhere
-- Large components like `components/dashboard/dashboard.tsx` (600+ lines) re-render entirely on filter changes
-- Not all need it, but heavy list renders and chart components would benefit
-
-### 24. No code splitting for lessons or charts
-- 59 lesson components statically imported in `app/znanje/[lessonId]/page.tsx`
-- `recharts` loaded as full bundle in `/app/analitika/page.tsx`
-- Use `next/dynamic` or `React.lazy()` for heavy components
-
-### 25. No Suspense boundaries
-- All pages use manual `loading` state with `useEffect` fetch
-- No streaming SSR, no progressive rendering
-- Add `<Suspense>` with skeleton fallbacks on key data-fetching sections
-
-### 26. Font loading not optimized
-- **File:** `app/layout.tsx:32-41`
-- Loads 6 Inter font weights via Google Fonts stylesheet link
-- Missing `font-display: swap` to prevent layout shift (FOIT)
-- Consider using `next/font` for automatic optimization
+### ~~21. Synchronous filesystem reads on every request~~ DONE
+- Cached `getAllCategories()` and `getCategoryGroups()` in module-level singletons
+- Files only read once per process lifetime instead of every request
 
 ---
 
@@ -235,6 +201,30 @@ Comprehensive production readiness audit of the Matoteka codebase.
 ### 43. No test coverage metrics
 - `vitest` configured but unclear test coverage
 - Add coverage thresholds for critical paths (auth, exam submission, rate limiting)
+
+### 22. 1.8MB problems-index.json loaded as singleton
+- Already uses singleton pattern, only parsed once in production
+- Not an issue — monitor memory usage only
+
+### 23. Zero memoization across 134+ components
+- Premature optimization — fix individual components if jank is observed
+
+### 24. No code splitting for lessons or charts
+- Lessons already use `next/dynamic` (fine)
+- `recharts` (~200KB) loaded directly in `/app/analitika/page.tsx`
+- Minor impact: analytics is an intentional navigation, browser caches after first load
+
+### 25. No Suspense boundaries
+- Would require restructuring pages from client-side useEffect to server components
+- Major architectural change, current approach works fine
+
+### 26. Font loading not optimized
+- `&display=swap` already in URL, handling FOIT
+- Switching to `next/font` risks touching every component's styling pre-launch
+
+### 17. No `<Image>` from next/image anywhere
+- Mostly logo SVGs, small avatars, and category icons
+- Limited real-world impact
 
 ---
 

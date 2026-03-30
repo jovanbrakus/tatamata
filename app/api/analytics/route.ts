@@ -6,16 +6,25 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
+let _categories: { id: string; name: string }[] | null = null;
+let _categoryGroups: { id: string; name: string; categories: string[] }[] | null = null;
+
 function getAllCategories(): { id: string; name: string }[] {
-  const filePath = path.join(process.cwd(), "database", "categories.json");
-  const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-  return data.map((c: any) => ({ id: c.id, name: c.sr || c.en }));
+  if (!_categories) {
+    const filePath = path.join(process.cwd(), "database", "categories.json");
+    const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    _categories = data.map((c: any) => ({ id: c.id, name: c.sr || c.en }));
+  }
+  return _categories!;
 }
 
 function getCategoryGroups(): { id: string; name: string; categories: string[] }[] {
-  const filePath = path.join(process.cwd(), "database", "category_groups.json");
-  const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-  return data.map((g: any) => ({ id: g.id, name: g.sr || g.en, categories: g.categories }));
+  if (!_categoryGroups) {
+    const filePath = path.join(process.cwd(), "database", "category_groups.json");
+    const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    _categoryGroups = data.map((g: any) => ({ id: g.id, name: g.sr || g.en, categories: g.categories }));
+  }
+  return _categoryGroups!;
 }
 
 function fillCategoryBreakdown(
