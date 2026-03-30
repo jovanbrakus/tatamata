@@ -12,5 +12,7 @@ export async function GET(req: Request) {
     totalLessons: getTotalLessons(),
     categories,
     lessons,
+  }, {
+    headers: { "Cache-Control": "s-maxage=3600, stale-while-revalidate=86400" },
   });
 }
