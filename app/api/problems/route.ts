@@ -8,7 +8,7 @@ import { NextResponse } from "next/server";
 export async function GET(req: Request) {
   // Admin-only: this endpoint exposes the full problem catalog
   const session = await auth();
-  if (!session?.user || (session.user as any).role !== "admin") {
+  if (!session?.user || session.user.role !== "admin") {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
@@ -29,8 +29,7 @@ export async function GET(req: Request) {
   let bookmarkedIds: Set<string> | null = null;
 
   if (status && status !== "all") {
-    const session = await auth();
-    const userId = (session?.user as any)?.id;
+    const userId = session.user.id;
     if (!userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

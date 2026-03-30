@@ -8,7 +8,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ problem
   const session = await auth();
   if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const userId = (session.user as any).id;
+  const userId = session.user.id;
   const { problemId } = await params;
 
   const existing = await db

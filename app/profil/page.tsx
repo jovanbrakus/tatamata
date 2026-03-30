@@ -9,7 +9,7 @@ const MAX_FACULTIES = 3;
 
 export default function ProfilePage() {
   const { data: session, update: updateSession } = useSession();
-  const user = session?.user as any;
+  const user = session?.user;
 
   const [targetFaculties, setTargetFaculties] = useState<string[]>([]);
   const [facultyLoaded, setFacultyLoaded] = useState(false);

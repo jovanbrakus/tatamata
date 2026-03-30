@@ -42,7 +42,7 @@ interface ProblemViewProps {
 
 export default function ProblemView({ problemId, onAnswered, onNext }: ProblemViewProps) {
   const { data: session, status: sessionStatus } = useSession();
-  const isAdmin = (session?.user as any)?.role === "admin";
+  const isAdmin = session?.user?.role === "admin";
 
   const [problem, setProblem] = useState<ProblemDetail | null>(null);
   const [loading, setLoading] = useState(true);

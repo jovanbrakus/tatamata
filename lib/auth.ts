@@ -35,6 +35,10 @@ const providers = [
           email: user.email,
           name: user.displayName,
           image: user.avatarUrl,
+          displayName: user.displayName,
+          role: user.role,
+          targetFaculties: (user.targetFaculties as string[]) || [],
+          needsOnboarding: user.displayName === user.email?.split("@")[0],
         };
       },
   }),
@@ -130,11 +134,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     async session({ session, token }) {
       if (session.user) {
-        (session.user as any).id = token.userId as string;
-        (session.user as any).displayName = token.displayName as string;
-        (session.user as any).role = token.role as string;
-        (session.user as any).targetFaculties = token.targetFaculties as string[];
-        (session.user as any).needsOnboarding = token.needsOnboarding as boolean;
+        session.user.id = token.userId as string;
+        session.user.displayName = token.displayName as string;
+        session.user.role = token.role as string;
+        session.user.targetFaculties = token.targetFaculties as string[];
+        session.user.needsOnboarding = token.needsOnboarding as boolean;
       }
       return session;
     },

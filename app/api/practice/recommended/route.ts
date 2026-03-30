@@ -10,7 +10,7 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const userId = (session.user as any).id;
+  const userId = session.user.id;
   const categoryGroups = getCategoryGroups();
 
   // Step 1: Get all user progress from DB

@@ -19,7 +19,7 @@ export default async function RootLayout({
 }) {
   const session = await auth();
   const isAuthenticated = !!session?.user;
-  const user = isAuthenticated ? (session.user as any) : null;
+  const user = isAuthenticated ? session.user : null;
 
   return (
     <html lang="sr" className="dark" suppressHydrationWarning>

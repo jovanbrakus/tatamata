@@ -269,8 +269,8 @@ export async function GET(req: Request, { params }: { params: Promise<{ problemI
     return new NextResponse(injectPostMessageScript(statementHtml), { headers: HEADERS });
   }
 
-  const userId = (session.user as any).id;
-  const role = (session.user as any).role;
+  const userId = session.user.id;
+  const role = session.user.role;
 
   // Rate limit full solutions (admins bypass)
   if (role !== "admin") {

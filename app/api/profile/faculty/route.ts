@@ -8,7 +8,7 @@ export async function PATCH(req: Request) {
   const session = await auth();
   if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const userId = (session.user as any).id;
+  const userId = session.user.id;
   const { targetFaculties } = await req.json();
 
   if (!Array.isArray(targetFaculties) || targetFaculties.length === 0 || targetFaculties.length > 4) {
@@ -27,7 +27,7 @@ export async function GET() {
   const session = await auth();
   if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const userId = (session.user as any).id;
+  const userId = session.user.id;
   const [user] = await db.select({ targetFaculties: users.targetFaculties }).from(users).where(eq(users.id, userId)).limit(1);
 
   return NextResponse.json({ targetFaculties: user?.targetFaculties || [] });

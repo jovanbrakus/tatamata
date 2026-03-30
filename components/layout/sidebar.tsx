@@ -42,8 +42,8 @@ function getFacultyShort(id: string): string | null {
 export default function Sidebar({ user, collapsed, onToggle, onNavigate }: SidebarProps) {
   const pathname = usePathname();
   const { data: session } = useSession();
-  const userRole = (session?.user as any)?.role as string | undefined;
-  const targetFaculties = ((session?.user as any)?.targetFaculties as string[]) || [];
+  const userRole = session?.user?.role as string | undefined;
+  const targetFaculties = (session?.user?.targetFaculties as string[]) || [];
   const facultyShorts = targetFaculties
     .map(getFacultyShort)
     .filter((s): s is string => s !== null);

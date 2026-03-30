@@ -22,7 +22,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Izaberi 1-3 fakulteta." }, { status: 400 });
   }
 
-  const userId = (session.user as any).id;
+  const userId = session.user.id;
 
   const existing = await db.select().from(users).where(eq(users.displayName, displayName)).limit(1);
   if (existing.length > 0 && existing[0].id !== userId) {
