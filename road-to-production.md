@@ -60,30 +60,24 @@ Comprehensive production readiness audit of the Matoteka codebase.
 
 ## HIGH — Database
 
-### 13. Missing database indexes
-- **File:** `drizzle/schema.ts`
-- `problem_progress(userId, status)` — heavily filtered in dashboard queries
-- `problem_progress(userId, solvedAt)` — time-based queries in dashboard
-- `problem_progress(problemId)` — join candidate, no index
-- `mockExams(status, finishedAt)` — filtered in leaderboard and analytics
-- `users.googleId` — queried on every OAuth login
+### ~~13. Missing database indexes~~ DONE
+- Added indexes: `problem_progress(userId, status)`, `problem_progress(userId, solvedAt)`,
+  `problem_progress(problemId)`, `mockExams(status, finishedAt)`
+- `users.googleId` and `users.email` already indexed via UNIQUE constraints
+- Run `db:push` to apply
 
-### 14. No migration history
-- **Dir:** `drizzle/migrations/` is empty
-- Only `db:push` is used for schema sync
-- Cannot rollback schema changes or track schema evolution
-- Generate and commit Drizzle migrations; use `db:migrate` instead of `db:push`
+### ~~14. No migration history~~ DONE
+- Generated initial migration (0000) from current schema
+- Added `db:generate` and `db:migrate` scripts to package.json
 
-### 15. Race condition in rate limiting
-- **File:** `lib/utils/rate-limit.ts`
-- Check-then-increment pattern without atomicity
-- Two concurrent requests can both pass the check before either increments
-- Use a single atomic upsert with a RETURNING clause or database-level constraint
+### ~~15. Race condition in rate limiting~~ DONE
+- Replaced check+increment with atomic `checkAndIncrementAiUsage` using
+  upsert with RETURNING clause; rolls back increment if limit exceeded
 
-### 16. Pagination parameters unbounded
-- **Files:** `app/api/leaderboard/route.ts:8`, `app/api/simulation/history/route.ts:14-15`, `app/api/problems/route.ts:24-25`
-- No upper bound on `limit` parameter — `?limit=999999` causes expensive queries
-- Add `Math.min(limit, 100)` or similar cap
+### ~~16. Pagination parameters unbounded~~ DONE
+- Leaderboard: limit capped at 100
+- Simulation history: page min 1, perPage capped at 50
+- Problems list: page min 1, limit capped at 100
 
 ---
 
