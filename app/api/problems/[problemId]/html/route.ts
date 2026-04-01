@@ -1,5 +1,5 @@
 import { auth } from "@/lib/auth";
-import { getProblemHtml } from "@/lib/problems";
+import { getProblemHtml, getProblemMeta } from "@/lib/problems";
 import { checkSolutionRateLimit, recordSolutionView } from "@/lib/utils/solution-rate-limit";
 import { injectWatermark } from "@/lib/utils/watermark";
 import { NextResponse } from "next/server";
@@ -25,7 +25,7 @@ const UNAUTHORIZED_HTML = `<!DOCTYPE html>
 </style></head>
 <body><div class="msg">
   <h2>Potrebna prijava</h2>
-  <p>Prijavi se da bi video resenje.</p>
+  <p>Prijavi se da bi video rešenje.</p>
 </div></body></html>`;
 
 function rateLimitHtml(used: number, limit: number): string {
@@ -78,6 +78,101 @@ const SOLUTION_THEME_CSS = fs.readFileSync(
   "utf-8"
 );
 const THEME_LINKS = `<style>${SOLUTION_THEME_CSS}</style>`;
+
+// v2 fragment CSS (loaded once at startup)
+const SOLUTION_V2_CSS_PATH = path.join(process.cwd(), "public", "solution-v2.css");
+const SOLUTION_V2_CSS = fs.existsSync(SOLUTION_V2_CSS_PATH)
+  ? fs.readFileSync(SOLUTION_V2_CSS_PATH, "utf-8")
+  : "";
+
+function stripRedundantV2Cards(fragment: string): string {
+  // Remove title and subtitle (already shown above the solution)
+  let result = fragment
+    .replace(/<h1\s+data-card="problem-title"[^>]*>[\s\S]*?<\/h1>/, '')
+    .replace(/<p\s+data-card="problem-subtitle"[^>]*>[\s\S]*?<\/p>/, '');
+
+  // Remove problem-statement card (nested divs — use depth tracking)
+  const marker = result.match(/<div\s+data-card="problem-statement"/);
+  if (marker && marker.index !== undefined) {
+    const startIdx = marker.index;
+    let depth = 0;
+    let i = startIdx;
+    while (i < result.length) {
+      if (result.startsWith("<div", i)) { depth++; i += 4; }
+      else if (result.startsWith("</div>", i)) { depth--; if (depth === 0) { i += 6; break; } i += 6; }
+      else { i++; }
+    }
+    result = result.substring(0, startIdx) + result.substring(i);
+  }
+
+  return result;
+}
+
+function wrapV2Fragment(fragment: string, theme: string): string {
+  const themeClass = theme === "light" ? "light" : "dark";
+  const solutionOnly = stripRedundantV2Cards(fragment);
+  return `<!DOCTYPE html>
+<html lang="sr" class="${themeClass}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>MathJax={tex:{inlineMath:[['\\\\(','\\\\)'],['$','$']],displayMath:[['\\\\[','\\\\]']]},svg:{fontCache:'global'}};</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>${SOLUTION_V2_CSS}</style>
+${ANTI_COPY_CSS}
+</head>
+<body>
+<div class="solution-container">
+${solutionOnly}
+</div>
+${POST_MESSAGE_SCRIPT}
+${ANTI_COPY_SCRIPT}
+</body>
+</html>`;
+}
+
+function extractV2StatementHtml(fragment: string, theme: string): string {
+  const themeClass = theme === "light" ? "light" : "dark";
+  // Extract the problem-statement card using depth tracking (nested divs)
+  const marker = fragment.match(/<div\s+data-card="problem-statement"/);
+  if (!marker || marker.index === undefined) return "";
+  const startIdx = marker.index;
+  let depth = 0;
+  let i = startIdx;
+  while (i < fragment.length) {
+    if (fragment.startsWith("<div", i)) { depth++; i += 4; }
+    else if (fragment.startsWith("</div>", i)) { depth--; if (depth === 0) { i += 6; break; } i += 6; }
+    else { i++; }
+  }
+  const statementDiv = fragment.substring(startIdx, i);
+  if (!statementDiv) return "";
+
+  return `<!DOCTYPE html>
+<html lang="sr" class="${themeClass}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>MathJax={tex:{inlineMath:[['\\\\(','\\\\)'],['$','$']],displayMath:[['\\\\[','\\\\]']]},svg:{fontCache:'global'}};</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<style>${SOLUTION_V2_CSS}</style>
+<style>
+  body { padding: 10px; margin: 0; }
+  .answer-option, .answer-grid { display: none !important; }
+</style>
+</head>
+<body>
+<div class="solution-container">
+  ${statementDiv}
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.answer-option, .answer-grid').forEach(function(el) { el.remove(); });
+});
+</script>
+${POST_MESSAGE_SCRIPT}
+</body>
+</html>`;
+}
 
 /** postMessage-based resize reporting + theme listener (replaces contentDocument access) */
 const POST_MESSAGE_SCRIPT = `<script>(function(){
@@ -268,6 +363,40 @@ export async function GET(req: Request, { params }: { params: Promise<{ problemI
     return new NextResponse("Not found", { status: 404 });
   }
 
+  // Detect v2 format
+  const meta = getProblemMeta(problemId);
+  const isV2 = meta?.format === "v2";
+
+  if (isV2) {
+    // --- v2 fragment path ---
+    if (section === "statement") {
+      const statementHtml = extractV2StatementHtml(html, theme);
+      if (!statementHtml) {
+        return new NextResponse("Statement not found", { status: 404 });
+      }
+      return new NextResponse(statementHtml, { headers: HEADERS });
+    }
+
+    const userId = session.user.id;
+    const role = session.user.role;
+
+    if (role !== "admin") {
+      const { allowed, used, limit } = await checkSolutionRateLimit(userId);
+      if (!allowed) {
+        return new NextResponse(rateLimitHtml(used, limit), { status: 429, headers: HEADERS });
+      }
+    }
+
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
+    const ua = req.headers.get("user-agent");
+    await recordSolutionView(userId, problemId, ip, ua);
+
+    const wrapped = wrapV2Fragment(html, theme);
+    const watermarked = injectWatermark(wrapped, userId, problemId);
+    return new NextResponse(watermarked, { headers: HEADERS });
+  }
+
+  // --- v1 full-HTML path ---
   const safeHtml = sanitizeForIframe(html);
 
   if (section === "statement") {

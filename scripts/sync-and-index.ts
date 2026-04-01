@@ -13,7 +13,7 @@ const FACULTY_MAP: Record<string, string> = {
   fizicki_fakultet: "ff",
 };
 
-interface ProblemMeta {
+interface ProblemRaw {
   id: string;
   document: string;
   order: number;
@@ -33,8 +33,9 @@ interface DocumentMeta {
 function main() {
   const rootDir = path.resolve(__dirname, "..");
   const dbDir = path.join(rootDir, "database");
+  const dbV2Dir = path.join(rootDir, "database_v2");
 
-  const problemsMeta: ProblemMeta[] = JSON.parse(
+  const v1Problems: ProblemRaw[] = JSON.parse(
     fs.readFileSync(path.join(dbDir, "problems.json"), "utf-8")
   );
   const documents: DocumentMeta[] = JSON.parse(
@@ -46,6 +47,18 @@ function main() {
   const categoryGroups = JSON.parse(
     fs.readFileSync(path.join(dbDir, "category_groups.json"), "utf-8")
   );
+
+  // Load v2 problems if available
+  const v2Path = path.join(dbV2Dir, "problems.json");
+  const v2Problems: ProblemRaw[] = fs.existsSync(v2Path)
+    ? JSON.parse(fs.readFileSync(v2Path, "utf-8"))
+    : [];
+
+  // Build v2 lookup by document+order for preference matching
+  const v2Lookup = new Map<string, ProblemRaw>();
+  for (const p of v2Problems) {
+    v2Lookup.set(`${p.document}:${p.order}`, p);
+  }
 
   const docLookup = new Map<string, DocumentMeta>();
   for (const doc of documents) {
@@ -60,8 +73,9 @@ function main() {
   let processed = 0;
   let errors = 0;
   let skipped = 0;
+  let v2Count = 0;
 
-  for (const meta of problemsMeta) {
+  for (const meta of v1Problems) {
     const doc = docLookup.get(meta.document);
     if (!doc) {
       console.error(`  Missing document: ${meta.document}`);
@@ -85,13 +99,24 @@ function main() {
       continue;
     }
 
+    // Prefer v2 if available
+    const v2Key = `${meta.document}:${meta.order}`;
+    const v2Entry = v2Lookup.get(v2Key);
+    const useV2 = !!v2Entry;
+
+    const solutionPath = useV2 ? v2Entry!.solution_path : meta.solution_path;
+    const category = useV2 ? (v2Entry!.category ?? meta.category) : meta.category;
+    const difficulty = useV2 ? (v2Entry!.difficulty ?? meta.difficulty) : meta.difficulty;
+
     // Verify HTML file exists
-    const htmlPath = path.join(rootDir, meta.solution_path);
+    const htmlPath = path.join(rootDir, solutionPath);
     if (!fs.existsSync(htmlPath)) {
-      console.error(`  Missing HTML: ${meta.solution_path}`);
+      console.error(`  Missing HTML: ${solutionPath}`);
       errors++;
       continue;
     }
+
+    if (useV2) v2Count++;
 
     problemsMap[meta.id] = {
       id: meta.id,
@@ -99,17 +124,18 @@ function main() {
       year,
       problemNumber: meta.order,
       extra: doc.extra || null,
-      category: meta.category,
-      difficulty: meta.difficulty,
-      solutionPath: meta.solution_path,
+      category,
+      difficulty,
+      solutionPath,
+      format: useV2 ? "v2" : "v1",
     };
 
     if (!byFaculty[facultyId]) byFaculty[facultyId] = [];
     byFaculty[facultyId].push(meta.id);
 
-    if (meta.category) {
-      if (!byCategory[meta.category]) byCategory[meta.category] = [];
-      byCategory[meta.category].push(meta.id);
+    if (category) {
+      if (!byCategory[category]) byCategory[category] = [];
+      byCategory[category].push(meta.id);
     }
 
     const yearKey = `${facultyId}-${doc.year}`;
@@ -127,6 +153,7 @@ function main() {
   const index = {
     generatedAt: new Date().toISOString(),
     totalProblems: processed,
+    v2Problems: v2Count,
     problems: problemsMap,
     byFaculty,
     byCategory,
@@ -140,7 +167,7 @@ function main() {
 
   const fileSizeKB = Math.round(fs.statSync(outputPath).size / 1024);
   console.log(`\nDone!`);
-  console.log(`  Processed: ${processed}`);
+  console.log(`  Processed: ${processed} (${v2Count} v2, ${processed - v2Count} v1)`);
   console.log(`  Skipped: ${skipped} (no year)`);
   console.log(`  Errors: ${errors}`);
   console.log(`  Index size: ${fileSizeKB} KB`);

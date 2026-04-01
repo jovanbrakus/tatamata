@@ -13,6 +13,7 @@ export interface ProblemMeta {
   category: string | null;
   difficulty: number | null;
   solutionPath: string;
+  format: "v1" | "v2";
 }
 
 export interface CategoryGroup {
@@ -67,7 +68,9 @@ function getIndex(): ProblemsIndex {
 export function parseHtml(htmlContent: string) {
   const $ = cheerio.load(htmlContent);
 
-  const title = $("title").text().trim() || "Zadatak";
+  const title = $('[data-card="problem-title"]').text().trim()
+    || $("title").text().trim()
+    || "Zadatak";
 
   // Find correct answer — many class patterns exist across generated files.
   // Match any element whose class contains "correct" but not "incorrect".
@@ -96,9 +99,13 @@ export function parseHtml(htmlContent: string) {
   const originalLabels: string[] = []; // track original labels (A, B, V, G, D, etc.)
   const LABEL_STRIP_RE = /^\(?([A-Za-zА-ЯЂЉЊЋЏа-яђљњћџ])\)\s*/;
 
-  $(".answer-option[data-option]").each((_, el) => {
-    const valueEl = $(el).find(".value");
-    // Fall back to element's own content when .value div is missing or empty
+  // Scope to problem-statement card for v2, or any .answer-option for v1
+  const answerOptionSelector = $('[data-card="problem-statement"]').length > 0
+    ? '[data-card="problem-statement"] .answer-option[data-option]'
+    : '.answer-option[data-option]';
+  $(answerOptionSelector).each((_, el) => {
+    const valueEl = $(el).find(".value, .answer-value").first();
+    // Fall back to element's own content when .value/.answer-value div is missing or empty
     const value = (valueEl.html() || valueEl.text() || "").trim();
     if (value) {
       answerOptions.push(value);
@@ -232,6 +239,7 @@ export interface QueryOptions {
   diffMin?: number;
   diffMax?: number;
   search?: string;
+  format?: "v1" | "v2";
   page?: number;
   limit?: number;
 }
@@ -289,6 +297,11 @@ export function queryProblems(opts: QueryOptions): { problems: ProblemMeta[]; to
       const d = p.difficulty ?? 5;
       return d >= min && d <= max;
     });
+  }
+
+  // Format filter
+  if (opts.format) {
+    results = results.filter((p) => p.format === opts.format);
   }
 
   // Search by id or faculty

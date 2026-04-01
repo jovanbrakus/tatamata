@@ -29,5 +29,6 @@ export async function GET(
     numOptions: problem.numOptions,
     difficulty: problem.difficulty,
     category: problem.category,
+    format: problem.format,
   });
 }

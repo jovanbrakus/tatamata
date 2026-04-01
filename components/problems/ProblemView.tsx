@@ -27,6 +27,7 @@ interface ProblemDetail {
   numOptions: number;
   difficulty: string | null;
   category: string | null;
+  format: "v1" | "v2";
 }
 
 interface NextProblemInfo {
@@ -174,7 +175,9 @@ export default function ProblemView({ problemId, onAnswered, onNext, autoShowSol
             Zadatak #{problem.problemNumber}
           </span>
           {isAdmin && (
-            <span className="font-mono text-xs text-muted">{problem.id} | {problem.correctAnswer}</span>
+            <span className="font-mono text-xs text-muted">
+              {problem.id} | {problem.correctAnswer} | {problem.format.toUpperCase()} | <a href={`/vezbe/${problem.id}`} className="underline hover:text-[#ec5b13]">link</a>
+            </span>
           )}
           <div className="ml-auto flex items-center gap-1">
             <Star size={12} className="text-[#ec5b13]" />
@@ -214,8 +217,7 @@ export default function ProblemView({ problemId, onAnswered, onNext, autoShowSol
       </div>
 
       {/* Answer Section */}
-      {(!showSolution || (autoShowSolution && answerResult)) && (
-        <div className="mb-8 rounded-2xl border border-[var(--glass-border)] p-6 glass-card">
+      <div className="mb-8 rounded-2xl border border-[var(--glass-border)] p-6 glass-card">
           <div className="mb-4 flex items-center gap-2">
             <Lightbulb size={18} className="text-[#ec5b13]" />
             <h3 className="text-lg font-bold text-heading">Tvoj odgovor</h3>
@@ -318,7 +320,6 @@ export default function ProblemView({ problemId, onAnswered, onNext, autoShowSol
             )}
           </div>}
         </div>
-      )}
 
       {/* Full Solution */}
       {showSolution && (
