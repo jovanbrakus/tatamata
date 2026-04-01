@@ -402,7 +402,7 @@ function draw(
 
   const sign = relationSymbol(relation);
   ctx.fillText(
-    `Nejednacina: ${fmt(a)}x\u00B2 ${b >= 0 ? "+" : "\u2212"} ${fmt(Math.abs(b))}x ${c >= 0 ? "+" : "\u2212"} ${fmt(Math.abs(c))} ${sign} 0`,
+    `Nejednačina: ${fmt(a)}x\u00B2 ${b >= 0 ? "+" : "\u2212"} ${fmt(Math.abs(b))}x ${c >= 0 ? "+" : "\u2212"} ${fmt(Math.abs(c))} ${sign} 0`,
     plotLeft,
     plotTop + 14
   );
@@ -458,7 +458,7 @@ export default function QuadraticInequalityLab() {
         <div>
           <article className={s.interactiveCard} style={{ padding: 22 }}>
             <div className={cs.tLabel}>Pode\u0161avanje modela</div>
-            <h3 className={cs.tCardTitle}>Trenutna nejednacina</h3>
+            <h3 className={cs.tCardTitle}>Trenutna nejednačina</h3>
 
             <div className={s.mathBlock} style={{ textAlign: "center" }}>
               <MathJax dynamic>{`\\(${fmt(a)}x^2 ${bVal >= 0 ? "+" : "-"} ${fmt(Math.abs(bVal))}x ${cVal >= 0 ? "+" : "-"} ${fmt(Math.abs(cVal))} ${rel === "gt" ? ">" : rel === "ge" ? "\\ge" : rel === "lt" ? "<" : "\\le"} 0\\)`}</MathJax>
@@ -539,17 +539,17 @@ export default function QuadraticInequalityLab() {
             className={s.interactiveCard}
             style={{ padding: 22, marginTop: 18 }}
           >
-            <div className={cs.tLabel}>Kako da citas laboratoriju</div>
-            <h3 className={cs.tCardTitle}>Sta vidis na slici</h3>
+            <div className={cs.tLabel}>Kako da čitaš laboratoriju</div>
+            <h3 className={cs.tCardTitle}>Šta vidiš na slici</h3>
             <ul style={{ paddingLeft: 18, marginTop: 8 }}>
               <li style={{ color: "var(--lesson-muted)" }}>
-                Narandzasta kriva je parabola y = ax{"\u00B2"} + bx + c.
+                Narandžasta kriva je parabola y = ax{"\u00B2"} + bx + c.
               </li>
               <li style={{ color: "var(--lesson-muted)" }}>
-                Plave tacke su realne nule, a zuta tacka je teme parabole.
+                Plave tačke su realne nule, a žuta tačka je teme parabole.
               </li>
               <li style={{ color: "var(--lesson-muted)" }}>
-                Narandzasti pojas pri dnu canvasa pokazuje gde je nejednacina
+                Narandžasti pojas pri dnu canvasa pokazuje gde je nejednačina
                 ispunjena na brojevnoj pravoj.
               </li>
             </ul>
@@ -565,14 +565,14 @@ export default function QuadraticInequalityLab() {
             </h3>
             <p style={{ color: "var(--lesson-muted)", marginBottom: 12 }}>
               Za dobru intuiciju gledaj istovremeno gde je parabola u odnosu na
-              x-osu i koje delove brojevne prave boji narandzasti pojas.
+              x-osu i koje delove brojevne prave boji narandžasti pojas.
             </p>
             <div className={s.canvasWrap}>
               <canvas
                 ref={canvasRef}
                 className={s.polarCanvas}
                 style={{ aspectRatio: "16 / 10", minHeight: 400 }}
-                aria-label="Interaktivni prikaz kvadratne nejednacine"
+                aria-label="Interaktivni prikaz kvadratne nejednačine"
               />
             </div>
             <p
@@ -582,8 +582,8 @@ export default function QuadraticInequalityLab() {
                 marginTop: 10,
               }}
             >
-              Prazan narandzasti pojas znaci da nejednacina nema resenja.
-              Popunjen pojas od ivice do ivice znaci da je resenje ceo R.
+              Prazan narandžasti pojas znači da nejednačina nema rešenja.
+              Popunjen pojas od ivice do ivice znači da je rešenje ceo R.
             </p>
           </article>
         </div>

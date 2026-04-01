@@ -18,14 +18,14 @@ import cs from "@/styles/lesson-common.module.css";
 import s from "@/styles/lesson-layout.module.css";
 
 const NAV_LINKS = [
-  { href: "#zasto", label: "Zasto je vazno" },
+  { href: "#zasto", label: "Zašto je važno" },
   { href: "#pojam", label: "Pojam" },
   { href: "#monotonost", label: "Monotonost" },
   { href: "#postupak", label: "Postupak" },
   { href: "#interaktivni", label: "Interaktivni lab" },
-  { href: "#primeri", label: "Vodjeni primeri" },
-  { href: "#obrasci", label: "Kljucne formule" },
-  { href: "#greske", label: "Ceste greske" },
+  { href: "#primeri", label: "Vođeni primeri" },
+  { href: "#obrasci", label: "Ključne formule" },
+  { href: "#greske", label: "Česte greške" },
   { href: "#prijemni", label: "Prijemni fokus" },
   { href: "#vezbe", label: "Vezbe" },
   { href: "#rezime", label: "Rezime" },
@@ -40,49 +40,49 @@ export default function Lesson28Page() {
         title={
           <>
             Eksponencijalne{" "}
-            <span className={cs.tHeroAccent}>nejednacine</span>
+            <span className={cs.tHeroAccent}>nejednačine</span>
           </>
         }
-        description="Ovde nije dovoljno da znas kako se resavaju eksponencijalne jednacine. Moras da razumes i kako se ponasa funkcija y = a^x: ako raste, znak ostaje isti; ako opada, znak se okrece. Upravo na toj tacki prijemni najcesce odvaja sigurno znanje od rutinskog racunanja."
+        description="Ovde nije dovoljno da znaš kako se rešavaju eksponencijalne jednačine. Moraš da razumeš i kako se ponaša funkcija y = a^x: ako raste, znak ostaje isti; ako opada, znak se okreće. Upravo na toj tački prijemni najčešće odvaja sigurno znanje od rutinskog računanja."
         heroImageSrc="/api/lessons/28/hero"
-        heroImageAlt="Apstraktna matematicka ilustracija za lekciju o eksponencijalnim nejednacinama"
+        heroImageAlt="Apstraktna matematička ilustracija za lekciju o eksponencijalnim nejednačinama"
         cards={[
           {
-            label: "Sta ucis",
+            label: "Šta učiš",
             description:
-              "Kako da iz eksponencijalne nejednacine predjes na linearnu ili kvadratnu nejednacinu. Ucis redosled: baza, oblik zadatka, transformacija, pa tek onda resavanje.",
+              "Kako da iz eksponencijalne nejednačine pređeš na linearnu ili kvadratnu nejednačinu. Učiš redosled: baza, oblik zadatka, transformacija, pa tek onda rešavanje.",
           },
           {
-            label: "Najveca zamka",
+            label: "Najveća zamka",
             description:
-              "Znak se ne menja zato sto je zadatak tezan, vec zato sto je baza izmedju nule i jedan. Ko ovo radi napamet, lako okrene znak i kad ne sme ili zaboravi da ga okrene kada mora.",
+              "Znak se ne menja zato sto je zadatak težan, već zato sto je baza između nule i jedan. Ko ovo radi napamet, lako okrene znak i kad ne sme ili zaboravi da ga okrene kada mora.",
           },
           {
             label: "Prijemni fokus",
             description:
-              "Zadaci sa bazama 2, 4, 8, zatim 3, 9, 27 i smenom u = a^x pojavljuju se iznova. Brza promena baze i dobar uvid u intervale cesto vrede vise od dugog racuna.",
+              "Zadaci sa bazama 2, 4, 8, zatim 3, 9, 27 i smenom u = a^x pojavljuju se iznova. Brza promena baze i dobar uvid u intervale često vrede više od dugog računa.",
           },
         ]}
         stats={[
           {
             label: "Trajanje",
             description:
-              "90 do 110 minuta. Vredi proci sporije, jer ista logika kasnije ulazi i u logaritamske nejednacine.",
+              "90 do 110 minuta. Vredi proci sporije, jer ista logika kasnije ulazi i u logaritamske nejednačine.",
           },
           {
             label: "Predznanje",
             description:
-              "Stepeni, linearne i kvadratne nejednacine. Posebno su vazni lekcija 26 i lekcija 27: grafik a^x i smena u = a^x.",
+              "Stepeni, linearne i kvadratne nejednačine. Posebno su važni lekcija 26 i lekcija 27: grafik a^x i smena u = a^x.",
           },
           {
-            label: "Glavna vestina",
+            label: "Glavna veština",
             description:
               "Prepoznavanje da li znak ostaje ili se menja. To je prvi filter. Tek posle toga zadatak prelazi u poznati algebarski oblik.",
           },
           {
             label: "Interaktivni deo",
             description:
-              "Canvas laboratorija monotonosti. Vizuelno vidis vezu izmedju rasta ili pada funkcije, poredjenja eksponenata i skupa resenja.",
+              "Canvas laboratorija monotonosti. Vizuelno vidiš vezu između rasta ili pada funkcije, poređenja eksponenata i skupa rešenja.",
           },
         ]}
       />
@@ -93,25 +93,25 @@ export default function Lesson28Page() {
       {/* ═══════════ ZASTO JE VAZNO ═══════════ */}
       <LessonSection
         id="zasto"
-        eyebrow="Zasto je ova lekcija vazna"
-        title="Na prijemnom te cesce obori pogresna logika znaka nego tezina racuna"
-        description="Eksponencijalne nejednacine izgledaju slicno kao eksponencijalne jednacine, ali imaju jednu dodatnu logicku zamku. Cim ne znas da li funkcija raste ili opada, lako dobijes potpuno pogresan interval resenja iako je ostatak racuna bio korektan."
+        eyebrow="Zašto je ova lekcija važna"
+        title="Na prijemnom te češće obori pogrešna logika znaka nego težina računa"
+        description="Eksponencijalne nejednačine izgledaju slično kao eksponencijalne jednačine, ali imaju jednu dodatnu logičku zamku. Cim ne znaš da li funkcija raste ili opada, lako dobiješ potpuno pogresan interval rešenja iako je ostatak računa bio korektan."
       >
         <div className={s.grid3}>
-          <SectionCard title="Isti obrasci se ponavljaju, ali sad moras da mislis i o smeru poredjenja">
+          <SectionCard title="Isti obrasci se ponavljaju, ali sad moraš da misliš i o smeru poređenja">
             <p>
-              Svodjenje na istu bazu i smena{" "}
-              <InlineMath>{"u=a^x"}</InlineMath> ostaju, ali vise nije dovoljno
-              &ldquo;naci vrednost&rdquo;. Moras da odredis ceo skup resenja.
+              Svođenje na istu bazu i smena{" "}
+              <InlineMath>{"u=a^x"}</InlineMath> ostaju, ali više nije dovoljno
+              &ldquo;naci vrednost&rdquo;. Moraš da određiš ceo skup rešenja.
             </p>
           </SectionCard>
-          <SectionCard title="Rastuca funkcija cuva poredak, opadajuca ga okrece">
+          <SectionCard title="Rastuća funkcija čuva poredak, opadajuća ga okreće">
             <p>
-              To je centralna ideja ove lekcije. Ako je razumes, pravila neces
-              uciti napamet nego ces ih izvoditi iz smisla.
+              To je centralna ideja ove lekcije. Ako je razumeš, pravila nećes
+              učiti napamet nego ćeš ih izvoditi iz smisla.
             </p>
           </SectionCard>
-          <SectionCard title="Jedna ista greska se stalno pojavljuje u testovima">
+          <SectionCard title="Jedna ista greška se stalno pojavljuje u testovima">
             <p>
               Zadaci ciljaju baze manje od 1 kao sto su{" "}
               <InlineMath>{"\\tfrac{1}{2}"}</InlineMath>,{" "}
@@ -125,20 +125,20 @@ export default function Lesson28Page() {
 
         <InsightCard title="Prijemni refleks">
           <p>
-            Pre prvog racuna pitaj sebe tri stvari: koja je baza, mogu li baze
+            Pre prvog računa pitaj sebe tri stvari: koja je baza, mogu li baze
             da se povezu i da li u zadatku prepoznajem izraz{" "}
             <InlineMath>{"a^x"}</InlineMath> kao novu promenljivu.
           </p>
         </InsightCard>
 
         <MicroCheck
-          question="Mikro-provera: sta je vaznije od samog racunanja?"
+          question="Mikro-provera: šta je važnije od samog računanja?"
           answer={
             <p>
               Ako si u zadatku odmah krenuo da izjednacavas eksponente, a nisi
               proverio da li je baza veca ili manja od{" "}
-              <InlineMath>{"1"}</InlineMath>, preskocio si najvazniji korak. Kod
-              nejednacina redosled je: <strong>baza, oblik, racun</strong>.
+              <InlineMath>{"1"}</InlineMath>, preskočio si najvažniji korak. Kod
+              nejednačina redosled je: <strong>baza, oblik, račun</strong>.
             </p>
           }
         />
@@ -148,9 +148,9 @@ export default function Lesson28Page() {
       <LessonSection
         id="pojam"
         eyebrow="Pojam i ideja"
-        title="Sta zovemo eksponencijalnom nejednacinom"
+        title="Šta zovemo eksponencijalnom nejednačinom"
         description={
-          "To je nejednacina u kojoj se nepoznata pojavljuje u eksponentu. Najjednostavniji oblik je a^{f(x)} \u25FB a^{g(x)}, ali zadaci cesto dolaze i kao zbir ili razlika vise eksponencijalnih clanova, ili kao kvadratna nejednacina po izrazu a^x."
+          "To je nejednačina u kojoj se nepoznata pojavljuje u eksponentu. Najjednostavniji oblik je a^{f(x)} \u25FB a^{g(x)}, ali zadaci često dolaze i kao zbir ili razlika više eksponencijalnih članova, ili kao kvadratna nejednačina po izrazu a^x."
         }
       >
         <div className={s.grid2}>
@@ -161,72 +161,72 @@ export default function Lesson28Page() {
               {"A\\cdot a^{2x} + B\\cdot a^x + C \\square\\, 0"}
             </MathBlock>
             <p>
-              Prvi oblik trazi razumevanje monotonosti. Drugi trazi povezivanje
-              baza. Treci trazi smenu <InlineMath>{"u=a^x"}</InlineMath> i
-              resavanje nejednacine u novoj promenljivoj.
+              Prvi oblik traži razumevanje monotonosti. Drugi traži povezivanje
+              baza. Treći traži smenu <InlineMath>{"u=a^x"}</InlineMath> i
+              rešavanje nejednačine u novoj promenljivoj.
             </p>
           </SectionCard>
 
-          <SectionCard title="Sta proveravas pre nego sto krene racun">
+          <SectionCard title="Šta proveravaš pre nego sto krene račun">
             <ul>
               <li>
-                Da li je baza veca od <InlineMath>{"1"}</InlineMath> ili izmedju{" "}
+                Da li je baza veca od <InlineMath>{"1"}</InlineMath> ili između{" "}
                 <InlineMath>{"0"}</InlineMath> i <InlineMath>{"1"}</InlineMath>?
               </li>
               <li>
-                Da li baze mogu da se svedu na zajednicku osnovu, na primer{" "}
+                Da li baze mogu da se svedu na zajedničku osnovu, na primer{" "}
                 <InlineMath>{"4=2^2"}</InlineMath>,{" "}
                 <InlineMath>{"8=2^3"}</InlineMath>,{" "}
                 <InlineMath>{"27=3^3"}</InlineMath>?
               </li>
               <li>
-                Da li se pojavljuju clanovi{" "}
+                Da li se pojavljuju članovi{" "}
                 <InlineMath>{"a^{2x}"}</InlineMath> i{" "}
                 <InlineMath>{"a^x"}</InlineMath>, pa mogu da uvedem{" "}
                 <InlineMath>{"u=a^x>0"}</InlineMath>?
               </li>
               <li>
                 Da li je nejednakost stroga ili nestriktna, odnosno da li
-                krajevi intervala ulaze u resenje?
+                krajevi intervala ulaze u rešenje?
               </li>
             </ul>
           </SectionCard>
         </div>
 
         <div className={s.grid3}>
-          <SectionCard title="Obrazac 1: Direktno poredjenje eksponenata">
+          <SectionCard title="Obrazac 1: Direktno poređenje eksponenata">
             <p>
               Ako su baze iste, glavni posao je da pravilno preneses nejednakost
               na eksponente.
             </p>
           </SectionCard>
-          <SectionCard title="Obrazac 2: Prevodjenje na istu bazu">
+          <SectionCard title="Obrazac 2: Prevođenje na istu bazu">
             <p>
               Kod baza <InlineMath>{"4"}</InlineMath> i{" "}
               <InlineMath>{"8"}</InlineMath>, ili{" "}
               <InlineMath>{"\\tfrac{1}{4}"}</InlineMath> i{" "}
-              <InlineMath>{"\\tfrac{1}{2}"}</InlineMath>, stvar resava dobra
-              promena oblika pre bilo kakvog resavanja.
+              <InlineMath>{"\\tfrac{1}{2}"}</InlineMath>, stvar rešava dobra
+              promena oblika pre bilo kakvog rešavanja.
             </p>
           </SectionCard>
           <SectionCard title="Obrazac 3: Smena u = a^x">
             <p>
-              Kada vidis <InlineMath>{"a^{2x}"}</InlineMath> i{" "}
-              <InlineMath>{"a^x"}</InlineMath>, cesto resavas obicnu kvadratnu
-              nejednacinu uz obavezni uslov <InlineMath>{"u>0"}</InlineMath>.
+              Kada vidiš <InlineMath>{"a^{2x}"}</InlineMath> i{" "}
+              <InlineMath>{"a^x"}</InlineMath>, često rešavaš običnu kvadratnu
+              nejednačinu uz obavezni uslov <InlineMath>{"u>0"}</InlineMath>.
             </p>
           </SectionCard>
         </div>
 
         <MicroCheck
           question={
-            "Mikro-provera: da li je 2^x + 3 < 10 eksponencijalna nejednacina?"
+            "Mikro-provera: da li je 2^x + 3 < 10 eksponencijalna nejednačina?"
           }
           answer={
             <p>
               Jeste, jer se nepoznata <InlineMath>{"x"}</InlineMath> nalazi u
-              eksponentu u clanu <InlineMath>{"2^x"}</InlineMath>. Iako je
-              ostatak izraza algebarski jednostavan, pristup resavanju i dalje
+              eksponentu u članu <InlineMath>{"2^x"}</InlineMath>. Iako je
+              ostatak izraza algebarski jednostavan, pristup rešavanju i dalje
               koristi osobine eksponencijalne funkcije.
             </p>
           }
@@ -237,11 +237,11 @@ export default function Lesson28Page() {
       <LessonSection
         id="monotonost"
         eyebrow="Monotonost"
-        title="Zasto se znak nekad cuva, a nekad obrce"
-        description="Ovo je srce cele lekcije. Eksponencijalna funkcija y = a^x je strogo monotona. Kada a > 1, ona raste. Kada je 0 < a < 1, ona opada. Zbog toga je poredjenje vrednosti funkcije isto sto i poredjenje eksponenata samo kod rastuce funkcije; kod opadajuce se poredak obrce."
+        title="Zašto se znak nekad čuva, a nekad obrće"
+        description="Ovo je srce cele lekcije. Eksponencijalna funkcija y = a^x je strogo monotona. Kada a > 1, ona raste. Kada je 0 < a < 1, ona opada. Zbog toga je poređenje vrednosti funkcije isto sto i poređenje eksponenata samo kod rastuće funkcije; kod opadajuće se poredak obrće."
       >
         <div className={s.grid2}>
-          <SectionCard title="Slucaj a > 1: funkcija raste i cuva poredak">
+          <SectionCard title="Slučaj a > 1: funkcija raste i čuva poredak">
             <MathBlock>
               {"p < q \\Rightarrow a^p < a^q"}
             </MathBlock>
@@ -249,13 +249,13 @@ export default function Lesson28Page() {
               {"a^{f(x)} \\le a^{g(x)} \\Rightarrow f(x) \\le g(x)"}
             </MathBlock>
             <p>
-              Na primer, posto je <InlineMath>{"2^x"}</InlineMath> rastuca
+              Na primer, posto je <InlineMath>{"2^x"}</InlineMath> rastuća
               funkcija, iz <InlineMath>{"2^{x+1} > 2^3"}</InlineMath> odmah
               sledi <InlineMath>{"x+1>3"}</InlineMath>.
             </p>
           </SectionCard>
 
-          <SectionCard title="Slucaj 0 < a < 1: funkcija opada i obrce poredak">
+          <SectionCard title="Slučaj 0 < a < 1: funkcija opada i obrće poredak">
             <MathBlock>
               {"p < q \\Rightarrow a^p > a^q"}
             </MathBlock>
@@ -265,7 +265,7 @@ export default function Lesson28Page() {
             <p>
               Na primer, posto je{" "}
               <InlineMath>{"\\left(\\tfrac{1}{2}\\right)^x"}</InlineMath>{" "}
-              opadajuca funkcija, iz{" "}
+              opadajuća funkcija, iz{" "}
               <InlineMath>
                 {
                   "\\left(\\tfrac{1}{2}\\right)^{2x-1} \\le \\left(\\tfrac{1}{2}\\right)^3"
@@ -277,22 +277,22 @@ export default function Lesson28Page() {
         </div>
 
         <div className={s.grid2} style={{ marginTop: 16 }}>
-          <SectionCard title="Veci eksponent ne znaci uvek vecu vrednost">
+          <SectionCard title="Veći eksponent ne znači uvek veću vrednost">
             <p>
               Kod baze <InlineMath>{"2"}</InlineMath> eksponent{" "}
-              <InlineMath>{"5"}</InlineMath> daje vecu vrednost od eksponenta{" "}
+              <InlineMath>{"5"}</InlineMath> daje veću vrednost od eksponenta{" "}
               <InlineMath>{"2"}</InlineMath>. Kod baze{" "}
               <InlineMath>{"\\tfrac{1}{2}"}</InlineMath> desava se suprotno:{" "}
               <InlineMath>{"\\left(\\tfrac{1}{2}\\right)^5"}</InlineMath> je
               manje od{" "}
               <InlineMath>{"\\left(\\tfrac{1}{2}\\right)^2"}</InlineMath>. Zato
-              baza odlucuje kako citas nejednacinu.
+              baza odlučuje kako čitaš nejednačinu.
             </p>
           </SectionCard>
-          <SectionCard title="Ne menjas znak zato sto je eksponencijalno, nego zato sto je funkcija opadajuca">
+          <SectionCard title="Ne menjas znak zato sto je eksponencijalno, nego zato sto je funkcija opadajuća">
             <p>
-              Ovo je precizna formulacija koju vredi zapamtiti. Ako umes ovako
-              da je izgovoris, mnogo je manja sansa da pravilo pomesas u
+              Ovo je precizna formulacija koju vredi zapamtiti. Ako umeš ovako
+              da je izgovoris, mnogo je manja sansa da pravilo pomešaš u
               zadatku.
             </p>
           </SectionCard>
@@ -300,13 +300,13 @@ export default function Lesson28Page() {
 
         <MicroCheck
           question={
-            "Mikro-provera: sta sledi iz (1/3)^{x+2} > (1/3)^4?"
+            "Mikro-provera: šta sledi iz (1/3)^{x+2} > (1/3)^4?"
           }
           answer={
             <p>
-              Posto je baza <InlineMath>{"\\tfrac{1}{3}"}</InlineMath> izmedju{" "}
+              Posto je baza <InlineMath>{"\\tfrac{1}{3}"}</InlineMath> između{" "}
               <InlineMath>{"0"}</InlineMath> i <InlineMath>{"1"}</InlineMath>,
-              funkcija opada. Zato se znak obrce:{" "}
+              funkcija opada. Zato se znak obrće:{" "}
               <InlineMath>{"x+2 < 4"}</InlineMath>, pa je{" "}
               <InlineMath>{"x < 2"}</InlineMath>.
             </p>
@@ -318,26 +318,26 @@ export default function Lesson28Page() {
       <LessonSection
         id="postupak"
         eyebrow="Standardni postupak"
-        title="Kako prepoznajes koji metod resavanja treba primeniti"
-        description="Iza vecine zadataka stoje cetiri prepoznatljiva obrasca. Vazno je da ih vidis brzo, jer se tada eksponencijalna nejednacina svodi na nesto sto vec dobro umes: linearnu nejednacinu, kvadratnu nejednacinu ili interval po smeni u = a^x."
+        title="Kako prepoznaješ koji metod rešavanja treba primeniti"
+        description="Iza većine zadataka stoje četiri prepoznatljiva obrasca. Važno je da ih vidiš brzo, jer se tada eksponencijalna nejednačina svodi na nesto sto već dobro umeš: linearnu nejednačinu, kvadratnu nejednačinu ili interval po smeni u = a^x."
       >
         <div className={s.formulaGrid}>
           <FormulaCard
             title="1. Ista baza: poredi eksponente"
             formula={"2^{x+1} > 2^5 \\Rightarrow x+1 > 5"}
-            note="Najjednostavniji slucaj. Cela poenta je u pravilnom citanju monotonosti."
+            note="Najjednostavniji slučaj. Cela poenta je u pravilnom citanju monotonosti."
           />
           <FormulaCard
             title="2. Povezane baze: svedi na jednu osnovu"
             formula={"4^x \\ge 8^{x-1} \\Rightarrow 2^{2x} \\ge 2^{3x-3}"}
-            note="Najpre prevedi baze, pa tek onda uporedjuj eksponente."
+            note="Najpre prevedi baze, pa tek onda upoređuj eksponente."
           />
           <FormulaCard
             title="3. Izdvajanje faktora"
             formula={"2^{x+1}+2^x < 12 \\Rightarrow 3\\cdot 2^x < 12"}
             note={
               <>
-                Cesto je dovoljno da iskoristis{" "}
+                Često je dovoljno da iskoristiš{" "}
                 <InlineMath>{"a^{x+1}=a\\cdot a^x"}</InlineMath>.
               </>
             }
@@ -350,30 +350,30 @@ export default function Lesson28Page() {
             formula={"2^{2x}-5\\cdot 2^x+4 \\ge 0 \\Rightarrow u^2-5u+4 \\ge 0"}
             note={
               <>
-                Posle resavanja po <InlineMath>{"u"}</InlineMath> obavezno se
-                vracas na promenljivu <InlineMath>{"x"}</InlineMath>.
+                Posle rešavanja po <InlineMath>{"u"}</InlineMath> obavezno se
+                vraćas na promenljivu <InlineMath>{"x"}</InlineMath>.
               </>
             }
           />
         </div>
 
-        <InsightCard title="Pedagoski trik">
+        <InsightCard title="Pedagoški trik">
           <p>
-            Ako vidis <InlineMath>{"a^{2x}"}</InlineMath> i{" "}
-            <InlineMath>{"a^x"}</InlineMath>, skoro sigurno treba da pomislis na
-            smenu. Ako vidis baze <InlineMath>{"4"}</InlineMath> i{" "}
-            <InlineMath>{"8"}</InlineMath>, skoro sigurno treba da pomislis na
-            zajednicku osnovu <InlineMath>{"2"}</InlineMath>.
+            Ako vidiš <InlineMath>{"a^{2x}"}</InlineMath> i{" "}
+            <InlineMath>{"a^x"}</InlineMath>, skoro sigurno treba da pomisliš na
+            smenu. Ako vidiš baze <InlineMath>{"4"}</InlineMath> i{" "}
+            <InlineMath>{"8"}</InlineMath>, skoro sigurno treba da pomisliš na
+            zajedničku osnovu <InlineMath>{"2"}</InlineMath>.
           </p>
         </InsightCard>
 
         <MicroCheck
-          question="Mikro-provera: kada je uslov u = a^x > 0 zaista vazan?"
+          question="Mikro-provera: kada je uslov u = a^x > 0 zaista važan?"
           answer={
             <p>
-              Vazan je uvek, ali se najjace vidi kada kvadratna nejednacina po{" "}
+              Vazan je uvek, ali se najjace vidi kada kvadratna nejednačina po{" "}
               <InlineMath>{"u"}</InlineMath> daje intervale koji zahvataju i
-              negativne brojeve. Tada negativni deo moras da odbacis, jer{" "}
+              negativne brojeve. Tada negativni deo moraš da odbaciš, jer{" "}
               <InlineMath>{"a^x"}</InlineMath> za dozvoljenu bazu nikada nije
               negativan.
             </p>
@@ -385,20 +385,20 @@ export default function Lesson28Page() {
       <LessonSection
         id="interaktivni"
         eyebrow="Interaktivni deo"
-        title="Canvas laboratorija: promena ili cuvanje znaka u realnom vremenu"
-        description="Menjaj bazu, znak i koeficijente u eksponentima. Levo vidis kako izgleda y = a^t, a desno kako se ponasaju eksponenti. Donja brojna prava pokazuje konacni skup resenja."
+        title="Canvas laboratorija: promena ili čuvanje znaka u realnom vremenu"
+        description="Menjaj bazu, znak i koeficijente u eksponentima. Levo vidiš kako izgleda y = a^t, a desno kako se ponašaju eksponenti. Donja brojna prava pokazuje konačni skup rešenja."
       >
         <ExpInequalityLab />
 
         <MicroCheck
-          question="Mikro-provera: sta se desi ako istu nejednacinu prebacis sa baze 1/2 na bazu 2?"
+          question="Mikro-provera: šta se desi ako istu nejednačinu prebacis sa baze 1/2 na bazu 2?"
           answer={
             <p>
               Dobijes novi zapis sa bazom vecom od <InlineMath>{"1"}</InlineMath>
               , ali se minus iz negativnog eksponenta seli u linearnu
-              nejednacinu. Znak ne menjas po navici dva puta. Menja se samo onda
-              kada zaista delis ili mnozis nejednacinu negativnim brojem, ili
-              kada radis sa opadajucom funkcijom.
+              nejednačinu. Znak ne menjas po navici dva puta. Menja se samo onda
+              kada zaista deliš ili množiš nejednačinu negativnim brojem, ili
+              kada radiš sa opadajućom funkcijom.
             </p>
           }
         />
@@ -407,15 +407,15 @@ export default function Lesson28Page() {
       {/* ═══════════ VODJENI PRIMERI ═══════════ */}
       <LessonSection
         id="primeri"
-        eyebrow="Vodjeni primeri"
+        eyebrow="Vođeni primeri"
         title="Detaljni zadaci, korak po korak"
-        description="Primeri su poredjani tako da prvo ucvrste osnovnu logiku, a zatim polako uvedu tipicne prijemne oblike. Nemoj samo da pratis racun: gledaj zasto je bas taj metod izabran."
+        description="Primeri su poredjani tako da prvo učvrste osnovnu logiku, a zatim polako uvedu tipične prijemne oblike. Nemoj samo da pratis račun: gledaj zašto je baš taj metod izabran."
       >
         <div className={s.exampleGrid}>
           {/* Primer 1 */}
           <article className={s.exampleCard}>
             <h3 className={cs.tCardTitle}>
-              Primer 1: Resi <InlineMath>{"2^{x+1} > 8"}</InlineMath>
+              Primer 1: Reši <InlineMath>{"2^{x+1} > 8"}</InlineMath>
             </h3>
             <div className={s.walkthrough}>
               <WalkStep
@@ -438,10 +438,10 @@ export default function Lesson28Page() {
                 <p>Znak se ne menja:</p>
                 <MathBlock>{"x+1 > 3"}</MathBlock>
               </WalkStep>
-              <WalkStep number={3} title="Resi linearnu nejednacinu.">
+              <WalkStep number={3} title="Reši linearnu nejednačinu.">
                 <MathBlock>{"x > 2"}</MathBlock>
                 <p>
-                  Skup resenja: <InlineMath>{"S=(2,\\infty)"}</InlineMath>.
+                  Skup rešenja: <InlineMath>{"S=(2,\\infty)"}</InlineMath>.
                 </p>
               </WalkStep>
             </div>
@@ -474,21 +474,21 @@ export default function Lesson28Page() {
                 number={2}
                 title={
                   <>
-                    Baza je <InlineMath>{"\\tfrac{1}{2}"}</InlineMath> izmedju{" "}
+                    Baza je <InlineMath>{"\\tfrac{1}{2}"}</InlineMath> između{" "}
                     <InlineMath>{"0"}</InlineMath> i{" "}
                     <InlineMath>{"1"}</InlineMath>, funkcija opada.
                   </>
                 }
               >
-                <p>Znak se obrce:</p>
+                <p>Znak se obrće:</p>
                 <MathBlock>{"3x-1 \\ge -3"}</MathBlock>
               </WalkStep>
-              <WalkStep number={3} title="Resi linearnu nejednacinu.">
+              <WalkStep number={3} title="Reši linearnu nejednačinu.">
                 <MathBlock>
                   {"3x \\ge -2 \\Rightarrow x \\ge -\\tfrac{2}{3}"}
                 </MathBlock>
                 <p>
-                  Skup resenja:{" "}
+                  Skup rešenja:{" "}
                   <InlineMath>
                     {"S=\\left[-\\tfrac{2}{3},\\infty\\right)"}
                   </InlineMath>
@@ -534,7 +534,7 @@ export default function Lesson28Page() {
                   {"-x \\ge -3 \\Rightarrow x \\le 3"}
                 </MathBlock>
                 <p>
-                  Skup resenja:{" "}
+                  Skup rešenja:{" "}
                   <InlineMath>{"S=(-\\infty,3]"}</InlineMath>.
                 </p>
               </WalkStep>
@@ -574,7 +574,7 @@ export default function Lesson28Page() {
               >
                 <MathBlock>{"x < 2"}</MathBlock>
                 <p>
-                  Skup resenja:{" "}
+                  Skup rešenja:{" "}
                   <InlineMath>{"S=(-\\infty,2)"}</InlineMath>.
                 </p>
               </WalkStep>
@@ -592,7 +592,7 @@ export default function Lesson28Page() {
                 number={1}
                 title={
                   <>
-                    Uvedi smenu <InlineMath>{"u=2^x"}</InlineMath>. Vazno:{" "}
+                    Uvedi smenu <InlineMath>{"u=2^x"}</InlineMath>. Važno:{" "}
                     <InlineMath>{"u>0"}</InlineMath>.
                   </>
                 }
@@ -616,7 +616,7 @@ export default function Lesson28Page() {
                   <InlineMath>{"x \\ge 2"}</InlineMath>.
                 </p>
                 <p>
-                  Skup resenja:{" "}
+                  Skup rešenja:{" "}
                   <InlineMath>
                     {"S=(-\\infty,0]\\cup[2,\\infty)"}
                   </InlineMath>
@@ -650,7 +650,7 @@ export default function Lesson28Page() {
                 title="Negativan interval."
               >
                 <p>
-                  Nejednacina po <InlineMath>{"u"}</InlineMath> ima resenja za{" "}
+                  Nejednačina po <InlineMath>{"u"}</InlineMath> ima rešenja za{" "}
                   <InlineMath>{"-3 \\le u \\le -2"}</InlineMath>, ali to su
                   negativne vrednosti.
                 </p>
@@ -665,7 +665,7 @@ export default function Lesson28Page() {
                 }
               >
                 <p>
-                  Skup resenja: <InlineMath>{"S=\\varnothing"}</InlineMath>.
+                  Skup rešenja: <InlineMath>{"S=\\varnothing"}</InlineMath>.
                 </p>
               </WalkStep>
             </div>
@@ -673,15 +673,15 @@ export default function Lesson28Page() {
         </div>
 
         <MicroCheck
-          question="Mikro-provera: zasto je u petom primeru bilo vazno sto je nejednacina >= 0, a ne > 0?"
+          question="Mikro-provera: zašto je u petom primeru bilo važno sto je nejednačina >= 0, a ne > 0?"
           answer={
             <p>
               Zato sto se kod <InlineMath>{"\\ge 0"}</InlineMath> krajevi
-              intervala ukljucuju. Zbog toga su i{" "}
+              intervala uključuju. Zbog toga su i{" "}
               <InlineMath>{"u=1"}</InlineMath> i{" "}
               <InlineMath>{"u=4"}</InlineMath> dozvoljeni, pa kasnije dobijamo i{" "}
               <InlineMath>{"x=0"}</InlineMath> i{" "}
-              <InlineMath>{"x=2"}</InlineMath> kao deo resenja.
+              <InlineMath>{"x=2"}</InlineMath> kao deo rešenja.
             </p>
           }
         />
@@ -690,9 +690,9 @@ export default function Lesson28Page() {
       {/* ═══════════ KLJUCNE FORMULE ═══════════ */}
       <LessonSection
         id="obrasci"
-        eyebrow="Zakoni i kljucne formule"
-        title="Obrasci koje treba da vidis cim procitas zadatak"
-        description="Ove kartice nisu tu da ih mehanicki pamtis, vec da ti pomognu da brzo prepoznas pravi put resavanja. Kada obrazac vidis na vreme, ceo zadatak postaje kraci i mirniji."
+        eyebrow="Zakoni i ključne formule"
+        title="Obrasci koje treba da vidiš cim pročitaš zadatak"
+        description="Ove kartice nisu tu da ih mehanički pamtiš, već da ti pomognu da brzo prepoznaš pravi put rešavanja. Kada obrazac vidiš na vreme, ceo zadatak postaje kraći i mirniji."
       >
         <div className={s.formulaGrid}>
           <FormulaCard
@@ -703,7 +703,7 @@ export default function Lesson28Page() {
           <FormulaCard
             title="Monotonost za 0 < a < 1"
             formula={"a^{f(x)} \\le a^{g(x)} \\Rightarrow f(x) \\ge g(x)"}
-            note="Znak se obrce."
+            note="Znak se obrće."
           />
           <FormulaCard
             title="Povezivanje baza"
@@ -713,7 +713,7 @@ export default function Lesson28Page() {
           <FormulaCard
             title="Rastavljanje eksponenta"
             formula={"a^{x+k} = a^x \\cdot a^k"}
-            note="Izdvajanje zajednickog faktora."
+            note="Izdvajanje zajedničkog faktora."
           />
           <FormulaCard
             title="Smena"
@@ -722,7 +722,7 @@ export default function Lesson28Page() {
           />
           <FormulaCard
             title="Krajevi intervala"
-            formula={">\\,,< \\;\\text{ ne ukljucuju kraj;} \\quad \\ge\\,,\\le \\;\\text{ ukljucuju kraj.}"}
+            formula={">\\,,< \\;\\text{ ne uključuju kraj;} \\quad \\ge\\,,\\le \\;\\text{ uključuju kraj.}"}
             note="Stroga i nestriktna nejednakost nisu isto."
           />
         </div>
@@ -731,9 +731,9 @@ export default function Lesson28Page() {
       {/* ═══════════ CESTE GRESKE ═══════════ */}
       <LessonSection
         id="greske"
-        eyebrow="Ceste greske"
+        eyebrow="Česte greške"
         title="Mesta na kojima se najlakse gube poeni"
-        description='Ove greske nisu slucajne. One su tipicne zato sto zadaci cesto izgledaju "skoro isto". Bas zato je vazno da svaku od njih umes da prepoznas dok jos pises prvi red resenja.'
+        description='Ove greške nisu slučajne. One su tipične zato sto zadaci često izgledaju "skoro isto". Baš zato je važno da svaku od njih umeš da prepoznaš dok još pišeš prvi red rešenja.'
       >
         <div className={s.tipGrid}>
           <article className={s.tipCard}>
@@ -744,7 +744,7 @@ export default function Lesson28Page() {
             <p>
               Ispravno: kod baze <InlineMath>{"2"}</InlineMath>,{" "}
               <InlineMath>{"3"}</InlineMath>, <InlineMath>{"5"}</InlineMath> i
-              slicno funkcija raste, pa se znak ne menja.
+              slično funkcija raste, pa se znak ne menja.
             </p>
           </article>
           <article className={s.tipCard}>
@@ -753,9 +753,9 @@ export default function Lesson28Page() {
               <InlineMath>{"\\tfrac{1}{4}=(2)^{-2}"}</InlineMath>
             </h3>
             <p>
-              Vazno: ako predjes na bazu <InlineMath>{"2"}</InlineMath>, znak se
-              tada ne menja zbog baze, ali se moze promeniti kasnije kada delis
-              nejednacinu sa negativnim brojem.
+              Važno: ako pređeš na bazu <InlineMath>{"2"}</InlineMath>, znak se
+              tada ne menja zbog baze, ali se može promeniti kasnije kada deliš
+              nejednačinu sa negativnim brojem.
             </p>
           </article>
           <article className={s.tipCard}>
@@ -763,7 +763,7 @@ export default function Lesson28Page() {
               Poredjenje eksponenata pre nego sto su baze zaista iste
             </h3>
             <p>
-              Primer: iz <InlineMath>{"4^x \\ge 8^{x-1}"}</InlineMath> ne smes
+              Primer: iz <InlineMath>{"4^x \\ge 8^{x-1}"}</InlineMath> ne smeš
               odmah pisati <InlineMath>{"x \\ge x-1"}</InlineMath>. Prvo baze
               moraju biti povezane.
             </p>
@@ -774,7 +774,7 @@ export default function Lesson28Page() {
               <InlineMath>{"u=a^x"}</InlineMath>
             </h3>
             <p>
-              Podsetnik: cak i ako kvadratna nejednacina po{" "}
+              Podsetnik: čak i ako kvadratna nejednačina po{" "}
               <InlineMath>{"u"}</InlineMath> formalno daje negativan interval,
               on se odbacuje jer je <InlineMath>{"a^x>0"}</InlineMath>.
             </p>
@@ -792,11 +792,11 @@ export default function Lesson28Page() {
           </article>
           <article className={s.tipCard}>
             <h3 className={cs.tCardTitle}>
-              Previse rano posezanje za logaritmima
+              Previše rano posezanje za logaritmima
             </h3>
             <p>
-              Praksa: vecina zadataka iz ove lekcije resava se bez logaritama.
-              Ako mozes da svedes na istu bazu ili na smenu, to je cistiji put.
+              Praksa: većina zadataka iz ove lekcije rešava se bez logaritama.
+              Ako možes da svedeš na istu bazu ili na smenu, to je čistiji put.
             </p>
           </article>
         </div>
@@ -806,25 +806,25 @@ export default function Lesson28Page() {
       <LessonSection
         id="prijemni"
         eyebrow="Veza sa prijemnim zadacima"
-        title="Kako da organizujes resavanje pod pritiskom vremena"
-        description="Na prijemnom zadaci iz ove oblasti cesto nisu dugi, ali su namerno postavljeni tako da te navedu na jednu od standardnih gresaka. Zato je najbolja taktika da pratis jasan, kratak redosled."
+        title="Kako da organizuješ rešavanje pod pritiskom vremena"
+        description="Na prijemnom zadaci iz ove oblasti često nisu dugi, ali su namerno postavljeni tako da te navedu na jednu od standardnih grešaka. Zato je najbolja taktika da pratis jasan, kratak redosled."
       >
         <div className={s.grid2}>
-          <SectionCard title="Pet koraka koji stede vreme">
+          <SectionCard title="Pet koraka koji štede vreme">
             <ul>
               <li>
                 Proveri bazu: da li je <InlineMath>{"a>1"}</InlineMath> ili{" "}
                 <InlineMath>{"0<a<1"}</InlineMath>?
               </li>
               <li>
-                Ako baze nisu iste, povezi ih preko zajednicke osnove.
+                Ako baze nisu iste, povezi ih preko zajedničke osnove.
               </li>
               <li>
-                Ako vidis <InlineMath>{"a^{2x}"}</InlineMath> i{" "}
+                Ako vidiš <InlineMath>{"a^{2x}"}</InlineMath> i{" "}
                 <InlineMath>{"a^x"}</InlineMath>, uvedi{" "}
                 <InlineMath>{"u=a^x>0"}</InlineMath>.
               </li>
-              <li>Resi dobijenu linearnu ili kvadratnu nejednacinu.</li>
+              <li>Reši dobijenu linearnu ili kvadratnu nejednačinu.</li>
               <li>
                 Vrati se na <InlineMath>{"x"}</InlineMath> i proveri krajeve
                 intervala.
@@ -832,7 +832,7 @@ export default function Lesson28Page() {
             </ul>
           </SectionCard>
 
-          <SectionCard title="Sta zadatak pokusava da sakrije">
+          <SectionCard title="Šta zadatak pokušava da sakrije">
             <ul>
               <li>
                 Bazu manju od <InlineMath>{"1"}</InlineMath>, da bi te naterao
@@ -841,16 +841,16 @@ export default function Lesson28Page() {
               <li>
                 Baze <InlineMath>{"4"}</InlineMath>,{" "}
                 <InlineMath>{"8"}</InlineMath>, <InlineMath>{"9"}</InlineMath>,{" "}
-                <InlineMath>{"27"}</InlineMath>, da bi proverio da li vidis vezu
+                <InlineMath>{"27"}</InlineMath>, da bi proverio da li vidiš vezu
                 sa <InlineMath>{"2"}</InlineMath> ili{" "}
                 <InlineMath>{"3"}</InlineMath>.
               </li>
               <li>
                 Kvadratnu formu po <InlineMath>{"a^x"}</InlineMath>, da bi
-                proverio da li pamtis uslov <InlineMath>{"u>0"}</InlineMath>.
+                proverio da li pamtiš uslov <InlineMath>{"u>0"}</InlineMath>.
               </li>
               <li>
-                Strogu nejednacinu, da bi proverio da li umes da iskljucis
+                Strogu nejednačinu, da bi proverio da li umeš da isključiš
                 krajeve intervala.
               </li>
             </ul>
@@ -860,8 +860,8 @@ export default function Lesson28Page() {
         <InsightCard title="Jedna misaona navika pravi veliku razliku">
           <p>
             Umesto da pitas &ldquo;kako da resim ovaj zadatak?&rdquo;, pitaj
-            &ldquo;na sta mogu da ga svedem?&rdquo;. To je mnogo efikasniji
-            nacin razmisljanja za prijemni.
+            &ldquo;na šta mogu da ga svedem?&rdquo;. To je mnogo efikasniji
+            način razmisljanja za prijemni.
           </p>
         </InsightCard>
       </LessonSection>
@@ -870,15 +870,15 @@ export default function Lesson28Page() {
       <LessonSection
         id="vezbe"
         eyebrow="Vezbe na kraju"
-        title="Proveri da li umes samostalno"
-        description="Pokusaj prvo bez otvaranja resenja. Ako negde zapnes, ne gledaj odmah sve korake; pokusaj makar da odredis koji metod treba primeniti."
+        title="Proveri da li umeš samostalno"
+        description="Pokušaj prvo bez otvaranja rešenja. Ako negde zapneš, ne gledaj odmah sve korake; pokušaj makar da određiš koji metod treba primeniti."
       >
         <div className={s.exerciseGrid}>
           <ExerciseCard
             title="Vezba 1"
             problem={
               <p>
-                Resi <InlineMath>{"3^{x-2} < 9"}</InlineMath>.
+                Reši <InlineMath>{"3^{x-2} < 9"}</InlineMath>.
               </p>
             }
             solution={
@@ -911,7 +911,7 @@ export default function Lesson28Page() {
             solution={
               <>
                 <p>
-                  Pisemo{" "}
+                  Pišemo{" "}
                   <InlineMath>
                     {
                       "\\left(\\tfrac{1}{4}\\right)^{2x+1}=\\left(\\tfrac{1}{2}\\right)^{4x+2}"
@@ -923,8 +923,8 @@ export default function Lesson28Page() {
                       "\\left(\\tfrac{1}{2}\\right)^{4x+2} \\ge \\left(\\tfrac{1}{2}\\right)^6"
                     }
                   </InlineMath>
-                  . Baza je izmedju <InlineMath>{"0"}</InlineMath> i{" "}
-                  <InlineMath>{"1"}</InlineMath>, pa se znak obrce:{" "}
+                  . Baza je između <InlineMath>{"0"}</InlineMath> i{" "}
+                  <InlineMath>{"1"}</InlineMath>, pa se znak obrće:{" "}
                   <InlineMath>{"4x+2 \\le 6"}</InlineMath>. Dobijamo{" "}
                   <InlineMath>{"x \\le 1"}</InlineMath>.
                 </p>
@@ -937,7 +937,7 @@ export default function Lesson28Page() {
             title="Vezba 3"
             problem={
               <p>
-                Resi <InlineMath>{"25^x > 5^{x+2}"}</InlineMath>.
+                Reši <InlineMath>{"25^x > 5^{x+2}"}</InlineMath>.
               </p>
             }
             solution={
@@ -994,7 +994,7 @@ export default function Lesson28Page() {
                   dobijamo{" "}
                   <InlineMath>{"u^2-10u+9 < 0"}</InlineMath>, odnosno{" "}
                   <InlineMath>{"(u-1)(u-9) < 0"}</InlineMath>. Zato je{" "}
-                  <InlineMath>{"1 < u < 9"}</InlineMath>. Vracamo se na{" "}
+                  <InlineMath>{"1 < u < 9"}</InlineMath>. Vraćamo se na{" "}
                   <InlineMath>{"x"}</InlineMath>:{" "}
                   <InlineMath>{"1 < 3^x < 9"}</InlineMath>, pa{" "}
                   <InlineMath>{"0 < x < 2"}</InlineMath>.
@@ -1023,7 +1023,7 @@ export default function Lesson28Page() {
                   <InlineMath>{"u > 4"}</InlineMath>. Posto je{" "}
                   <InlineMath>{"u>0"}</InlineMath>, ostaje{" "}
                   <InlineMath>{"0 < u < 1"}</InlineMath> ili{" "}
-                  <InlineMath>{"u > 4"}</InlineMath>. Vracanjem dobijamo{" "}
+                  <InlineMath>{"u > 4"}</InlineMath>. Vraćanjem dobijamo{" "}
                   <InlineMath>{"x < 0"}</InlineMath> ili{" "}
                   <InlineMath>{"x > 2"}</InlineMath>.
                 </p>
@@ -1036,7 +1036,7 @@ export default function Lesson28Page() {
             title="Vezba 7"
             problem={
               <p>
-                Odredi skup resenja{" "}
+                Odredi skup rešenja{" "}
                 <InlineMath>{"2^{2x}+5\\cdot 2^x+6 \\le 0"}</InlineMath>.
               </p>
             }
@@ -1045,11 +1045,11 @@ export default function Lesson28Page() {
                 <p>
                   Po smeni <InlineMath>{"u=2^x>0"}</InlineMath> dobijamo{" "}
                   <InlineMath>{"u^2+5u+6 \\le 0"}</InlineMath>, odnosno{" "}
-                  <InlineMath>{"(u+2)(u+3) \\le 0"}</InlineMath>. To vazi samo
+                  <InlineMath>{"(u+2)(u+3) \\le 0"}</InlineMath>. To važi samo
                   za <InlineMath>{"-3 \\le u \\le -2"}</InlineMath>, ali su to
                   negativne vrednosti. Kako{" "}
-                  <InlineMath>{"u=2^x"}</InlineMath> ne moze biti negativan,
-                  resenja nema.
+                  <InlineMath>{"u=2^x"}</InlineMath> ne može biti negativan,
+                  rešenja nema.
                 </p>
                 <MathBlock>{"S=\\varnothing"}</MathBlock>
               </>
@@ -1060,11 +1060,11 @@ export default function Lesson28Page() {
 
       {/* ═══════════ ZAVRSNI UVID ═══════════ */}
       <LessonSection
-        eyebrow="Zavrsni uvid"
-        title="Prvo odlucujes kako se funkcija ponasa, pa tek onda racunas"
-        description="Ako iz ove lekcije poneses samo jednu recenicu, neka bude ova: baza odredjuje logiku nejednacine. Kada to uocis na vreme, zadatak se mirno svodi na poznat algebarski postupak."
+        eyebrow="Završni uvid"
+        title="Prvo odlučujes kako se funkcija ponaša, pa tek onda računaš"
+        description="Ako iz ove lekcije poneseš samo jednu rečenicu, neka bude ova: baza određuje logiku nejednačine. Kada to uočiš na vreme, zadatak se mirno svodi na poznat algebarski postupak."
       >
-        <InsightCard title="Najvazniji princip">
+        <InsightCard title="Najvažniji princip">
           <MathBlock>
             {
               "\\begin{gathered} a^{f(x)} < a^{g(x)} \\Longrightarrow f(x)<g(x) \\quad (a>1) \\\\ a^{f(x)} < a^{g(x)} \\Longrightarrow f(x)>g(x) \\quad (0<a<1) \\end{gathered}"
@@ -1076,48 +1076,48 @@ export default function Lesson28Page() {
       {/* ═══════════ REZIME ═══════════ */}
       <LessonSection
         id="rezime"
-        eyebrow="Zavrsni rezime"
-        title="Sta moras da zapamtis posle ove lekcije"
-        description="Ovo su tacke koje treba da ostanu sigurne i kada zadatak izgleda komplikovano. Ako njih drzis pod kontrolom, eksponencijalne nejednacine postaju znatno mirnija oblast."
+        eyebrow="Završni rezime"
+        title="Šta moraš da zapamtiš posle ove lekcije"
+        description="Ovo su tačke koje treba da ostanu sigurne i kada zadatak izgleda komplikovano. Ako njih držiš pod kontrolom, eksponencijalne nejednačine postaju znatno mirnija oblast."
       >
         <div className={s.summaryGrid}>
           <article className={s.summaryCard}>
             <h3 className={cs.tCardTitle}>1. Baza vodi pricu</h3>
             <p>
               Za <InlineMath>{"a>1"}</InlineMath> znak ostaje, za{" "}
-              <InlineMath>{"0<a<1"}</InlineMath> znak se obrce. To nije trik,
+              <InlineMath>{"0<a<1"}</InlineMath> znak se obrće. To nije trik,
               nego posledica monotonosti eksponencijalne funkcije.
             </p>
           </article>
           <article className={s.summaryCard}>
             <h3 className={cs.tCardTitle}>2. Prvo sredi oblik</h3>
             <p>
-              Povezi baze, izdvoj faktor ili uvedi smenu. Ne resavaj naslepo.
+              Povezi baze, izdvoj faktor ili uvedi smenu. Ne rešavaj naslepo.
               Najpre prepoznaj u koji standardni obrazac zadatak spada.
             </p>
           </article>
           <article className={s.summaryCard}>
             <h3 className={cs.tCardTitle}>
-              3. Kod smene vazi <InlineMath>{"u>0"}</InlineMath>
+              3. Kod smene važi <InlineMath>{"u>0"}</InlineMath>
             </h3>
             <p>
               Interval po <InlineMath>{"u"}</InlineMath> nikada ne prihvataj bez
               preseka sa pozitivnom poluosom. Ovo je obavezna kontrola kojom se
-              uklanjaju nedozvoljeni delovi resenja.
+              uklanjaju nedozvoljeni delovi rešenja.
             </p>
           </article>
           <article className={s.summaryCard}>
-            <h3 className={cs.tCardTitle}>4. Krajevi su vazni</h3>
+            <h3 className={cs.tCardTitle}>4. Krajevi su važni</h3>
             <p>
-              Pazi da li je nejednacina stroga ili nestriktna. Otvorena i
-              zatvorena krajnja tacka nisu ista stvar, posebno na prijemnom.
+              Pazi da li je nejednačina stroga ili nestriktna. Otvorena i
+              zatvorena krajnja tačka nisu ista stvar, posebno na prijemnom.
             </p>
           </article>
         </div>
 
         <p className={cs.footerNote}>
-          Sledeci logican korak u ucenju je prelazak na logaritme i logaritamske
-          funkcije. Tamo se prica o monotonosti vraca, samo u novom ruhu.
+          Sledeći logican korak u učenju je prelazak na logaritme i logaritamske
+          funkcije. Tamo se priča o monotonosti vraća, samo u novom ruhu.
         </p>
       </LessonSection>
     </LessonShell>

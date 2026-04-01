@@ -18,15 +18,15 @@ import cs from "@/styles/lesson-common.module.css";
 import s from "@/styles/lesson-layout.module.css";
 
 const NAV_LINKS = [
-  { href: "#zasto", label: "Zasto je vazno" },
+  { href: "#zasto", label: "Zašto je važno" },
   { href: "#definicija", label: "Definicija" },
   { href: "#inverznost", label: "Inverznost" },
   { href: "#pravila", label: "Pravila" },
   { href: "#promena-baze", label: "Promena baze" },
   { href: "#interaktivni", label: "Interaktivni lab" },
-  { href: "#primeri", label: "Vodjeni primeri" },
-  { href: "#obrasci", label: "Kljucne formule" },
-  { href: "#greske", label: "Ceste greske" },
+  { href: "#primeri", label: "Vođeni primeri" },
+  { href: "#obrasci", label: "Ključne formule" },
+  { href: "#greske", label: "Česte greške" },
   { href: "#prijemni", label: "Prijemni fokus" },
   { href: "#vezbe", label: "Vezbe" },
   { href: "#rezime", label: "Rezime" },
@@ -44,41 +44,41 @@ export default function Lesson29Page() {
             <span className={cs.tHeroAccent}>pravila logaritmovanja</span>
           </>
         }
-        description='Logaritam nije nova "cudna" operacija, vec drugo lice eksponenciranja. Kada pitas "na koji stepen treba dici bazu da dobijem zadati broj?", vec si postavio logaritamsko pitanje. Ova lekcija gradi taj smisao, a zatim pokazuje kako pravila logaritmovanja postaju prirodna posledica rada sa eksponentima.'
+        description='Logaritam nije nova "cudna" operacija, već drugo lice eksponenciranja. Kada pitas "na koji stepen treba dici bazu da dobijem zadati broj?", već si postavio logaritamsko pitanje. Ova lekcija gradi taj smisao, a zatim pokazuje kako pravila logaritmovanja postaju prirodna posledica rada sa eksponentima.'
         heroImageSrc="/api/lessons/29/hero"
-        heroImageAlt="Apstraktna matematicka ilustracija za lekciju o logaritmima"
+        heroImageAlt="Apstraktna matematička ilustracija za lekciju o logaritmima"
         cards={[
           {
-            label: "Sta ucis",
+            label: "Šta učiš",
             description:
-              "Kako da prevodis izmedju eksponencijalnog i logaritamskog jezika bez napamet naucenih koraka.",
+              "Kako da prevodis između eksponencijalnog i logaritamskog jezika bez napamet naučenih koraka.",
           },
           {
-            label: "Najveca zamka",
+            label: "Najveća zamka",
             description:
               "log_a(x+y) nije zbir logaritama, a baza i argument moraju da zadovolje uslove.",
           },
           {
             label: "Prijemni fokus",
             description:
-              "Zadaci cesto traze istovremenu primenu vise pravila i dobar osecaj za promenu baze.",
+              "Zadaci često traze istovremenu primenu više pravila i dobar osećaj za promenu baze.",
           },
         ]}
         stats={[
           {
             label: "Trajanje",
             description:
-              "90 do 110 minuta. Vredi uloziti vreme, jer ova lekcija otvara vrata jednacinama, nejednacinama i grafiku logaritma.",
+              "90 do 110 minuta. Vredi uloziti vreme, jer ova lekcija otvara vrata jednačinama, nejednačinama i grafiku logaritma.",
           },
           {
             label: "Predznanje",
             description:
-              "Stepeni i eksponencijalna funkcija. Bez sigurnog rada sa potencijama, pravila logaritmovanja deluju nasumicno umesto logicno.",
+              "Stepeni i eksponencijalna funkcija. Bez sigurnog rada sa potencijama, pravila logaritmovanja deluju nasumično umešto logicno.",
           },
           {
-            label: "Glavna vestina",
+            label: "Glavna veština",
             description:
-              "Prevodjenje i prepoznavanje obrasca. Na prijemnom cesto pobedjuje onaj ko brzo vidi koji zakon logaritmovanja treba primeniti.",
+              "Prevođenje i prepoznavanje obrasca. Na prijemnom često pobedjuje onaj ko brzo vidi koji zakon logaritmovanja treba primeniti.",
           },
           {
             label: "Interaktivni deo",
@@ -94,28 +94,28 @@ export default function Lesson29Page() {
       {/* ═══════════ ZASTO JE VAZNO ═══════════ */}
       <LessonSection
         id="zasto"
-        eyebrow="Zasto je ova lekcija vazna"
-        title="Logaritam je jezik kojim opisujes eksponent koji trazis"
-        description="Cim ne mozes lako da vidis koji stepen daje zadati broj, prirodno je da uvedes logaritam. Zato logaritmi nisu sporedna tema, vec most izmedju eksponencijalnog misljenja i kasnijih zadataka iz funkcija, jednacina i nejednacina."
+        eyebrow="Zašto je ova lekcija važna"
+        title="Logaritam je jezik kojim opišujes eksponent koji tražis"
+        description="Cim ne možes lako da vidiš koji stepen daje zadati broj, prirodno je da uvedes logaritam. Zato logaritmi nisu sporedna tema, već most između eksponencijalnog misljenja i kasnijih zadataka iz funkcija, jednačina i nejednačina."
       >
         <div className={s.grid3}>
           <SectionCard title="Veza sa prethodnim znanjem">
             <p>
-              Logaritam nastaje kao obrnuti proces eksponenciranju. Ako je
+              Logaritam nastaje kao obrnuti proćeš eksponenciranju. Ako je
               eksponencijalna funkcija govorila &ldquo;dizi bazu na
               stepen&rdquo;, logaritam odgovara na pitanje koji je to stepen.
             </p>
           </SectionCard>
           <SectionCard title="Prijemni zadaci">
             <p>
-              Na testu se cesto proverava da li razlikujes vazeca i nevazeca
-              pravila. Najcesce zamke su sirenje pravila na zbir, mesanje baze i
-              argumenta i pogresna promena baze.
+              Na testu se često proverava da li razlikuješ vazeca i nevazeca
+              pravila. Najčešće zamke su širenje pravila na zbir, mešanje baze i
+              argumenta i pogrešna promena baze.
             </p>
           </SectionCard>
           <SectionCard title="Kasnija korist">
             <p>
-              Bez ove lekcije tesko postaju stabilne logaritamske jednacine i
+              Bez ove lekcije teško postaju stabilne logaritamske jednačine i
               grafik funkcije. Ko sada dobro postavi definiciju i pravila, mnogo
               lakse kontrolise naredne lekcije.
             </p>
@@ -124,14 +124,14 @@ export default function Lesson29Page() {
 
         <InsightCard title="Prijemni refleks">
           <p>
-            Kada vidis logaritam, prvo pomisli na eksponent i proveri uslove. Tek
+            Kada vidiš logaritam, prvo pomisli na eksponent i proveri uslove. Tek
             posle toga razmisljaj o pravilima za proizvod, kolicnik, stepen ili
             promenu baze.
           </p>
         </InsightCard>
 
         <MicroCheck
-          question='Mikro-provera: zasto logaritam nije "samo jos jedna oznaka"?'
+          question='Mikro-provera: zašto logaritam nije "samo još jedna oznaka"?'
           answer={
             <p>
               Zato sto precizno odgovara na pitanje o eksponentu. Na primer,{" "}
@@ -148,8 +148,8 @@ export default function Lesson29Page() {
       <LessonSection
         id="definicija"
         eyebrow="Definicija i uslovi"
-        title="Sta tacno znaci log_a b"
-        description="Kada napisemo log_a b = c, tvrdimo da je c onaj eksponent na koji treba podici bazu a da bi se dobio broj b. Ovo je formalno i najvaznije znacenje logaritma."
+        title="Šta tačno znači log_a b"
+        description="Kada napišemo log_a b = c, tvrdimo da je c onaj eksponent na koji treba podici bazu a da bi se dobio broj b. Ovo je formalno i najvažnije znacenje logaritma."
       >
         <div className={s.grid2}>
           <SectionCard title="Logaritam je eksponent zapisan drugim jezikom">
@@ -157,7 +157,7 @@ export default function Lesson29Page() {
             <p>
               Leva strana je logaritamski zapis, a desna eksponencijalni. U
               praksi stalno prelazis s jednog zapisa na drugi, jer ti jedan ili
-              drugi bude pogodniji za racunanje.
+              drugi bude pogodniji za računanje.
             </p>
           </SectionCard>
 
@@ -203,7 +203,7 @@ export default function Lesson29Page() {
             <p>
               Zaista,{" "}
               <InlineMath>{"\\left(\\frac{1}{2}\\right)^{-3}=8"}</InlineMath>.
-              Ovo lepo pokazuje da logaritam moze biti i negativan.
+              Ovo lepo pokazuje da logaritam može biti i negativan.
             </p>
           </SectionCard>
         </div>
@@ -214,7 +214,7 @@ export default function Lesson29Page() {
             <p>
               Direktno po definiciji dobijas{" "}
               <InlineMath>{"3^4=81"}</InlineMath>. Uvek prevodi obe strane, ne
-              pokusavaj da pamtis posebne trikove za svaki tip zadatka.
+              pokušavaj da pamtiš posebne trikove za svaki tip zadatka.
             </p>
           }
         />
@@ -224,25 +224,25 @@ export default function Lesson29Page() {
       <LessonSection
         id="inverznost"
         eyebrow="Inverznost"
-        title="Zasto su eksponencijalna i logaritamska prica dve strane istog procesa"
-        description="Eksponenciranje i logaritmovanje se ponisavaju kada su baza i argument pravilno postavljeni. Ta ideja je toliko vazna da je vredi izdvojiti posebno, jer kasnije objasnjava i grafik logaritamske funkcije i mnoga skracenja u racunu."
+        title="Zašto su eksponencijalna i logaritamska priča dve strane istog procesa"
+        description="Eksponenciranje i logaritmovanje se ponisavaju kada su baza i argument pravilno postavljeni. Ta ideja je toliko važna da je vredi izdvojiti posebno, jer kasnije objasnjava i grafik logaritamske funkcije i mnoga skraćenja u računu."
       >
         <div className={s.grid2}>
-          <SectionCard title="Eksponenciranje ponistava logaritam">
+          <SectionCard title="Eksponenciranje poništava logaritam">
             <MathBlock>{"a^{\\log_a x} = x, \\qquad x > 0"}</MathBlock>
             <p>
               Ako je <InlineMath>{"\\log_a x"}</InlineMath> upravo eksponent koji
-              daje <InlineMath>{"x"}</InlineMath>, onda vracanjem baze{" "}
+              daje <InlineMath>{"x"}</InlineMath>, onda vraćanjem baze{" "}
               <InlineMath>{"a"}</InlineMath> na taj eksponent dobijas pocetni
               broj.
             </p>
           </SectionCard>
 
-          <SectionCard title="Logaritam ponistava stepen baze">
+          <SectionCard title="Logaritam poništava stepen baze">
             <MathBlock>{"\\log_a(a^x) = x"}</MathBlock>
             <p>
-              Ovde je vazna stvar da je baza ista. Ako menjas bazu, vise nema
-              direktnog ponisavanja, vec treba ukljuciti promenu baze ili
+              Ovde je važna stvar da je baza ista. Ako menjas bazu, više nema
+              direktnog ponisavanja, već treba uključiti promenu baze ili
               prepisivanje brojeva.
             </p>
           </SectionCard>
@@ -253,15 +253,15 @@ export default function Lesson29Page() {
             <p>
               Zato <InlineMath>{"\\log_{10} 1000 = 3"}</InlineMath>, ali i{" "}
               <InlineMath>{"\\log_2 \\frac{1}{8} = -3"}</InlineMath>. U oba
-              slucaja logaritam kaze koji eksponent radi posao, bilo da je
+              slučaja logaritam kaze koji eksponent radi posao, bilo da je
               pozitivan ili negativan.
             </p>
           </SectionCard>
-          <SectionCard title="Ako vidis log_3 x = 4, ne resavaj silom">
+          <SectionCard title="Ako vidiš log_3 x = 4, ne rešavaj silom">
             <p>
-              Samo predji na eksponencijalni zapis:{" "}
+              Samo pređi na eksponencijalni zapis:{" "}
               <InlineMath>{"x=3^4=81"}</InlineMath>. Upravo ta brzina
-              prevodjenja stedi vreme na prijemnom.
+              prevodjenja štedi vreme na prijemnom.
             </p>
           </SectionCard>
         </div>
@@ -270,7 +270,7 @@ export default function Lesson29Page() {
           question="Mikro-provera: da li je log_2(2^5) = 5 ili 32?"
           answer={
             <p>
-              Rezultat je <InlineMath>{"5"}</InlineMath>, jer logaritam vraca
+              Rezultat je <InlineMath>{"5"}</InlineMath>, jer logaritam vraća
               eksponent. Broj <InlineMath>{"32"}</InlineMath> bi bio rezultat
               izraza <InlineMath>{"2^5"}</InlineMath>, ali logaritam ga pretvara
               nazad u eksponent.
@@ -283,7 +283,7 @@ export default function Lesson29Page() {
       <LessonSection
         id="pravila"
         eyebrow="Pravila logaritmovanja"
-        title="Zasto proizvod postaje zbir, a kolicnik razlika"
+        title="Zašto proizvod postaje zbir, a kolicnik razlika"
         description="Ova pravila nisu proizvoljna. Ona dolaze iz zakona stepena. Ako je x = a^u i y = a^v, tada je xy = a^{u+v}, pa je logaritam proizvoda upravo zbir logaritama."
       >
         <div
@@ -338,9 +338,9 @@ export default function Lesson29Page() {
           />
         </div>
 
-        <InsightCard title="Vrlo vazna zabrana">
+        <InsightCard title="Vrlo važna zabrana">
           <p>
-            Ne postoji opste pravilo{" "}
+            Ne postoji opšte pravilo{" "}
             <InlineMath>
               {"\\log_a(x+y) = \\log_a x + \\log_a y"}
             </InlineMath>
@@ -349,12 +349,12 @@ export default function Lesson29Page() {
         </InsightCard>
 
         <MicroCheck
-          question="Mikro-provera: zasto je log_2 3 + log_2 5 = log_2 15, a ne log_2 8?"
+          question="Mikro-provera: zašto je log_2 3 + log_2 5 = log_2 15, a ne log_2 8?"
           answer={
             <p>
-              Zato sto zbir logaritama znaci logaritam proizvoda:{" "}
+              Zato sto zbir logaritama znači logaritam proizvoda:{" "}
               <InlineMath>{"\\log_2(3 \\cdot 5) = \\log_2 15"}</InlineMath>.
-              Broj <InlineMath>{"8"}</InlineMath> bi nastao kada bi neko pogresno
+              Broj <InlineMath>{"8"}</InlineMath> bi nastao kada bi neko pogrešno
               &ldquo;sabirao unutra&rdquo;, a to nije dozvoljeno.
             </p>
           }
@@ -365,8 +365,8 @@ export default function Lesson29Page() {
       <LessonSection
         id="promena-baze"
         eyebrow="Promena baze"
-        title="Kada ne mozes lako da radis u jednoj bazi, prebaci se u drugu"
-        description="Promena baze je praktican alat. Nekad sluzi da logaritam izracunas preko kalkulatora, a nekad da zadatak svedes na bazu koja ti je prirodnija, kao sto su 2, 3, 10 ili e."
+        title="Kada ne možes lako da radiš u jednoj bazi, prebaci se u drugu"
+        description="Promena baze je praktican alat. Nekad služi da logaritam izračunaš preko kalkulatora, a nekad da zadatak svedeš na bazu koja ti je prirodnija, kao sto su 2, 3, 10 ili e."
       >
         <div className={s.grid2}>
           <SectionCard title="Isti logaritam, druga baza">
@@ -374,18 +374,18 @@ export default function Lesson29Page() {
               {"\\log_a x = \\frac{\\log_b x}{\\log_b a}"}
             </MathBlock>
             <p>
-              Posebno su prakticni izbori{" "}
+              Posebno su praktični izbori{" "}
               <InlineMath>{"b=10"}</InlineMath> i{" "}
-              <InlineMath>{"b=e"}</InlineMath>, jer ih kalkulator obicno vec
+              <InlineMath>{"b=e"}</InlineMath>, jer ih kalkulator obično vec
               podrzava kroz tastere{" "}
               <InlineMath>{"\\log"}</InlineMath> i{" "}
               <InlineMath>{"\\ln"}</InlineMath>.
             </p>
           </SectionCard>
 
-          <SectionCard title='Cesto je pametnije promeniti bazu nego "nasilno" racunati'>
+          <SectionCard title='Često je pametnije promeniti bazu nego "nasilno" računati'>
             <p>
-              Ako je zadatak <InlineMath>{"\\log_4 8"}</InlineMath>, mozes odmah
+              Ako je zadatak <InlineMath>{"\\log_4 8"}</InlineMath>, možes odmah
               preci na bazu <InlineMath>{"2"}</InlineMath>:
             </p>
             <MathBlock>
@@ -397,7 +397,7 @@ export default function Lesson29Page() {
         <div className={s.grid3}>
           <SectionCard title="Kalkulator">
             <p>
-              <InlineMath>{"\\log_2 7"}</InlineMath> pises kao{" "}
+              <InlineMath>{"\\log_2 7"}</InlineMath> pišeš kao{" "}
               <InlineMath>
                 {"\\log_2 7 = \\frac{\\log 7}{\\log 2}"}
               </InlineMath>
@@ -414,7 +414,7 @@ export default function Lesson29Page() {
               .
             </p>
           </SectionCard>
-          <SectionCard title="Redosled je vazan">
+          <SectionCard title="Redosled je važan">
             <p>
               Ispravno je{" "}
               <InlineMath>
@@ -427,7 +427,7 @@ export default function Lesson29Page() {
         </div>
 
         <MicroCheck
-          question="Mikro-provera: zasto log_4 8 nije jednako log 4 / log 8?"
+          question="Mikro-provera: zašto log_4 8 nije jednako log 4 / log 8?"
           answer={
             <p>
               Zato sto formula glasi{" "}
@@ -450,21 +450,21 @@ export default function Lesson29Page() {
         id="interaktivni"
         eyebrow="Interaktivni deo"
         title="Canvas laboratorija: logaritamska masina"
-        description="U laboratoriji biras bazu a, eksponente u i v, kao i stepen n. Zatim pratis brojeve x = a^u i y = a^v, pa vidis kako logaritam proizvoda daje u+v, logaritam kolicnika u-v, a logaritam stepena n*u."
+        description="U laboratoriji biras bazu a, eksponente u i v, kao i stepen n. Zatim pratis brojeve x = a^u i y = a^v, pa vidiš kako logaritam proizvoda daje u+v, logaritam kolicnika u-v, a logaritam stepena n*u."
       >
         <LogarithmLab />
 
-        <InsightCard title="Kako da ucis iz ovog laboratorijuma">
+        <InsightCard title="Kako da učiš iz ovog laboratorijuma">
           <p>
-            Pokusaj da prvo sam pogodis sta ce se desiti sa eksponentima, pa tek
-            onda proveri ekran. Ako primecujes da se proizvodom eksponenti
+            Pokušaj da prvo sam pogodiš šta će se desiti sa eksponentima, pa tek
+            onda proveri ekran. Ako primećuješ da se proizvodom eksponenti
             sabiraju, a kolicnikom oduzimaju, upravo to i jeste poenta: logaritmi
-            prevode mnozenje u sabiranje.
+            prevode množenje u sabiranje.
           </p>
         </InsightCard>
 
         <MicroCheck
-          question="Mikro-provera: zasto je bas proizvod povezan sa sabiranjem logaritama?"
+          question="Mikro-provera: zašto je baš proizvod povezan sa sabiranjem logaritama?"
           answer={
             <p>
               Ako su <InlineMath>{"x=a^u"}</InlineMath> i{" "}
@@ -481,15 +481,15 @@ export default function Lesson29Page() {
       {/* ═══════════ VODJENI PRIMERI ═══════════ */}
       <LessonSection
         id="primeri"
-        eyebrow="Vodjeni primeri"
+        eyebrow="Vođeni primeri"
         title="Detaljni zadaci, od definicije do promene baze"
-        description="Svaki primer ima jasan cilj: ili da ucvrsti smisao definicije, ili da pokaze tacnu upotrebu pravila. Gledaj ne samo rezultat, nego i razlog zasto je izabran bas taj korak."
+        description="Svaki primer ima jasan cilj: ili da učvrsti smisao definicije, ili da pokaze tacnu upotrebu pravila. Gledaj ne samo rezultat, nego i razlog zašto je izabran baš taj korak."
       >
         <div className={s.exampleGrid}>
           {/* Primer 1 */}
           <article className={s.exampleCard}>
             <h3 className={cs.tCardTitle}>
-              Primer 1: Izracunaj <InlineMath>{"\\log_2 32"}</InlineMath>
+              Primer 1: Izračunaj <InlineMath>{"\\log_2 32"}</InlineMath>
             </h3>
             <div className={s.walkthrough}>
               <WalkStep
@@ -498,7 +498,7 @@ export default function Lesson29Page() {
               />
               <WalkStep number={2} title="Prepoznaj stepen.">
                 <p>
-                  Posto je <InlineMath>{"2^5=32"}</InlineMath>, trazeni
+                  Posto je <InlineMath>{"2^5=32"}</InlineMath>, traženi
                   eksponent je <InlineMath>{"5"}</InlineMath>.
                 </p>
                 <MathBlock>{"\\log_2 32 = 5"}</MathBlock>
@@ -509,7 +509,7 @@ export default function Lesson29Page() {
           {/* Primer 2 */}
           <article className={s.exampleCard}>
             <h3 className={cs.tCardTitle}>
-              Primer 2: Izracunaj{" "}
+              Primer 2: Izračunaj{" "}
               <InlineMath>{"\\log_{\\frac{1}{2}} 8"}</InlineMath>
             </h3>
             <div className={s.walkthrough}>
@@ -517,7 +517,7 @@ export default function Lesson29Page() {
                 number={1}
                 title={
                   <>
-                    Trazis eksponent <InlineMath>{"c"}</InlineMath> takav da{" "}
+                    Tražis eksponent <InlineMath>{"c"}</InlineMath> takav da{" "}
                     <InlineMath>
                       {"\\left(\\frac{1}{2}\\right)^c = 8"}
                     </InlineMath>
@@ -525,7 +525,7 @@ export default function Lesson29Page() {
                   </>
                 }
               />
-              <WalkStep number={2} title="Izracunaj.">
+              <WalkStep number={2} title="Izračunaj.">
                 <p>
                   Posto je{" "}
                   <InlineMath>
@@ -541,7 +541,7 @@ export default function Lesson29Page() {
           {/* Primer 3 */}
           <article className={s.exampleCard}>
             <h3 className={cs.tCardTitle}>
-              Primer 3: Resi <InlineMath>{"\\log_3 x = 4"}</InlineMath>
+              Primer 3: Reši <InlineMath>{"\\log_3 x = 4"}</InlineMath>
             </h3>
             <div className={s.walkthrough}>
               <WalkStep
@@ -554,7 +554,7 @@ export default function Lesson29Page() {
                 number={2}
                 title={
                   <>
-                    Izracunaj <InlineMath>{"3^4"}</InlineMath>.
+                    Izračunaj <InlineMath>{"3^4"}</InlineMath>.
                   </>
                 }
               >
@@ -615,7 +615,7 @@ export default function Lesson29Page() {
           {/* Primer 6 */}
           <article className={s.exampleCard}>
             <h3 className={cs.tCardTitle}>
-              Primer 6: Izracunaj <InlineMath>{"\\log_4 8"}</InlineMath>
+              Primer 6: Izračunaj <InlineMath>{"\\log_4 8"}</InlineMath>
             </h3>
             <div className={s.walkthrough}>
               <WalkStep
@@ -626,7 +626,7 @@ export default function Lesson29Page() {
                   {"\\log_4 8 = \\frac{\\log_2 8}{\\log_2 4}"}
                 </MathBlock>
               </WalkStep>
-              <WalkStep number={2} title="Izracunaj oba logaritma posebno.">
+              <WalkStep number={2} title="Izračunaj oba logaritma posebno.">
                 <MathBlock>
                   {"\\log_2 8 = 3, \\qquad \\log_2 4 = 2"}
                 </MathBlock>
@@ -639,11 +639,11 @@ export default function Lesson29Page() {
         </div>
 
         <MicroCheck
-          question="Mikro-provera: zasto u petom primeru ne ostaje 2 log_3 5 kao konacan odgovor?"
+          question="Mikro-provera: zašto u petom primeru ne ostaje 2 log_3 5 kao konacan odgovor?"
           answer={
             <p>
-              Zato sto je cilj obicno da izraz svedes na jedan logaritam ili na
-              sto jednostavniji oblik. Pravilo stepena omogucava upravo to:
+              Zato sto je cilj obično da izraz svedeš na jedan logaritam ili na
+              sto jednostavniji oblik. Pravilo stepena omogućava upravo to:
               koeficijent prelazi u eksponent argumenta.
             </p>
           }
@@ -653,9 +653,9 @@ export default function Lesson29Page() {
       {/* ═══════════ KLJUCNE FORMULE ═══════════ */}
       <LessonSection
         id="obrasci"
-        eyebrow="Kljucne formule"
+        eyebrow="Ključne formule"
         title="Formula-vault za brzo obnavljanje"
-        description='Ovde su skupljene formule koje treba da budu potpuno sigurne. Ako neku od njih moras da "rekonstruises" pod pritiskom, gubis vreme koje na prijemnom nemas.'
+        description='Ovde su skupljene formule koje treba da budu potpuno sigurne. Ako neku od njih moraš da "rekonstruises" pod pritiskom, gubiš vreme koje na prijemnom nemas.'
       >
         <div className={s.formulaGrid}>
           <FormulaCard
@@ -688,15 +688,15 @@ export default function Lesson29Page() {
       {/* ═══════════ CESTE GRESKE ═══════════ */}
       <LessonSection
         id="greske"
-        eyebrow="Ceste greske"
-        title="Tipicne greske koje kvare inace lagan zadatak"
-        description="Vecina poena se ovde ne gubi na teskim idejama, nego na prebrzom pisanju pogresnog pravila. Zato je korisno da ove zamke vidis unapred."
+        eyebrow="Česte greške"
+        title="Tipične greške koje kvare inače lagan zadatak"
+        description="Većina poena se ovde ne gubi na teskim idejama, nego na prebrzom pisanju pogrešnog pravila. Zato je korisno da ove zamke vidiš unapred."
       >
         <div className={s.tipGrid}>
           <article className={s.tipCard}>
             <h3 className={cs.tCardTitle}>Sirenje pravila na zbir</h3>
             <p>
-              <strong>Pogresno:</strong>{" "}
+              <strong>Pogrešno:</strong>{" "}
               <InlineMath>
                 {"\\log_a(x+y) = \\log_a x + \\log_a y"}
               </InlineMath>
@@ -708,21 +708,21 @@ export default function Lesson29Page() {
               Zaboravljanje uslova definisanosti
             </h3>
             <p>
-              <strong>Podsetnik:</strong> baza mora biti pozitivna i razlicita od{" "}
+              <strong>Podsetnik:</strong> baza mora biti pozitivna i različita od{" "}
               <InlineMath>{"1"}</InlineMath>, a argument pozitivan.
             </p>
           </article>
           <article className={s.tipCard}>
-            <h3 className={cs.tCardTitle}>Mesanje baze i argumenta</h3>
+            <h3 className={cs.tCardTitle}>Mešanje baze i argumenta</h3>
             <p>
               <InlineMath>{"\\log_2 8"}</InlineMath> i{" "}
               <InlineMath>{"\\log_8 2"}</InlineMath> nisu isti broj. U prvom
-              slucaju rezultat je <InlineMath>{"3"}</InlineMath>, u drugom{" "}
+              slučaju rezultat je <InlineMath>{"3"}</InlineMath>, u drugom{" "}
               <InlineMath>{"\\frac{1}{3}"}</InlineMath>.
             </p>
           </article>
           <article className={s.tipCard}>
-            <h3 className={cs.tCardTitle}>Pogresna promena baze</h3>
+            <h3 className={cs.tCardTitle}>Pogrešna promena baze</h3>
             <p>
               Ispravno je{" "}
               <InlineMath>
@@ -733,19 +733,19 @@ export default function Lesson29Page() {
           </article>
           <article className={s.tipCard}>
             <h3 className={cs.tCardTitle}>
-              Mesanje{" "}
+              Mešanje{" "}
               <InlineMath>{"\\log_a(x^2)"}</InlineMath> i{" "}
               <InlineMath>{"(\\log_a x)^2"}</InlineMath>
             </h3>
             <p>
               Razlika je velika: prvo je{" "}
               <InlineMath>{"2\\log_a x"}</InlineMath>, a drugo kvadrat vec
-              izracunatog logaritma.
+              izračunatog logaritma.
             </p>
           </article>
           <article className={s.tipCard}>
             <h3 className={cs.tCardTitle}>
-              Ocekivanje da svaki logaritam bude ceo broj
+              Očekivanje da svaki logaritam bude ceo broj
             </h3>
             <p>
               <InlineMath>{"\\log_4 8 = \\frac{3}{2}"}</InlineMath>. Logaritam
@@ -759,52 +759,52 @@ export default function Lesson29Page() {
       <LessonSection
         id="prijemni"
         eyebrow="Veza sa prijemnim zadacima"
-        title="Kako da organizujes resavanje pod pritiskom vremena"
-        description="Na prijemnom se logaritmi retko pojavljuju sami. Obicno traze da brzo odlucis da li broj mozes odmah prepoznati kao stepen baze, da li treba primeniti neko pravilo ili je vreme za promenu baze."
+        title="Kako da organizuješ rešavanje pod pritiskom vremena"
+        description="Na prijemnom se logaritmi retko pojavljuju sami. Obično traze da brzo odlučiš da li broj možes odmah prepoznati kao stepen baze, da li treba primeniti neko pravilo ili je vreme za promenu baze."
       >
         <div className={s.grid2}>
-          <SectionCard title="Pet koraka koji stede vreme">
+          <SectionCard title="Pet koraka koji štede vreme">
             <ul>
               <li>
-                Proveri uslove: baza pozitivna i razlicita od{" "}
+                Proveri uslove: baza pozitivna i različita od{" "}
                 <InlineMath>{"1"}</InlineMath>, argument pozitivan.
               </li>
-              <li>Zapitaj se da li broj mozes da napises kao stepen baze.</li>
+              <li>Zapitaj se da li broj možes da napišeš kao stepen baze.</li>
               <li>
-                Ako vidis zbir ili razliku logaritama iste baze, razmisljaj o
+                Ako vidiš zbir ili razliku logaritama iste baze, razmisljaj o
                 proizvodu ili kolicniku.
               </li>
               <li>
-                Ako vidis koeficijent ispred logaritma, proveri da li treba
+                Ako vidiš koeficijent ispred logaritma, proveri da li treba
                 pravilo stepena.
               </li>
-              <li>Ako baza nije zgodna, predji na novu bazu.</li>
+              <li>Ako baza nije zgodna, pređi na novu bazu.</li>
             </ul>
           </SectionCard>
 
-          <SectionCard title="Sta zadatak pokusava da ti sakrije">
+          <SectionCard title="Šta zadatak pokušava da ti sakrije">
             <ul>
               <li>
-                Zbir unutar logaritma, da bi proverio da li siris pravilo tamo
-                gde ne vazi.
+                Zbir unutar logaritma, da bi proverio da li širiš pravilo tamo
+                gde ne važi.
               </li>
               <li>
                 Brojeve poput <InlineMath>{"8"}</InlineMath> i{" "}
-                <InlineMath>{"4"}</InlineMath>, da vidis da li prepoznajes
+                <InlineMath>{"4"}</InlineMath>, da vidiš da li prepoznaješ
                 stepen dvojke.
               </li>
               <li>
                 Razlomke i negativne eksponente, da proveri negativne logaritme.
               </li>
-              <li>Nezgodnu bazu, da proveri da li znas promenu baze.</li>
+              <li>Nezgodnu bazu, da proveri da li znaš promenu baze.</li>
             </ul>
           </SectionCard>
         </div>
 
         <InsightCard title="Najkorisnija misaona navika">
           <p>
-            Ne pitaj odmah &ldquo;koje pravilo ovde pisem?&rdquo;, nego
-            &ldquo;sta ovaj logaritam zapravo meri?&rdquo;. Kada to shvatis,
+            Ne pitaj odmah &ldquo;koje pravilo ovde pišem?&rdquo;, nego
+            &ldquo;šta ovaj logaritam zapravo meri?&rdquo;. Kada to shvatiš,
             izbor pravila je mnogo prirodniji.
           </p>
         </InsightCard>
@@ -814,20 +814,20 @@ export default function Lesson29Page() {
       <LessonSection
         id="vezbe"
         eyebrow="Vezbe na kraju"
-        title="Proveri da li umes samostalno"
-        description="Probaj najpre bez pomoci. Ako negde zastanes, pokusaj makar da odredis koji princip stoji iza zadatka: definicija, pravilo logaritmovanja ili promena baze."
+        title="Proveri da li umeš samostalno"
+        description="Probaj najpre bez pomoci. Ako negde zastaneš, pokušaj makar da određiš koji princip stoji iza zadatka: definicija, pravilo logaritmovanja ili promena baze."
       >
         <div className={s.exerciseGrid}>
           <ExerciseCard
             title="Vezba 1"
             problem={
               <p>
-                Izracunaj <InlineMath>{"\\log_2 64"}</InlineMath>.
+                Izračunaj <InlineMath>{"\\log_2 64"}</InlineMath>.
               </p>
             }
             solution={
               <p>
-                Trazimo stepen na koji treba podici <InlineMath>{"2"}</InlineMath>{" "}
+                Tražimo stepen na koji treba podici <InlineMath>{"2"}</InlineMath>{" "}
                 da dobijemo <InlineMath>{"64"}</InlineMath>. Posto je{" "}
                 <InlineMath>{"2^6=64"}</InlineMath>, sledi{" "}
                 <InlineMath>{"\\log_2 64 = 6"}</InlineMath>.
@@ -838,13 +838,13 @@ export default function Lesson29Page() {
             title="Vezba 2"
             problem={
               <p>
-                Izracunaj{" "}
+                Izračunaj{" "}
                 <InlineMath>{"\\log_3 \\frac{1}{27}"}</InlineMath>.
               </p>
             }
             solution={
               <p>
-                Vazi <InlineMath>{"\\frac{1}{27} = 3^{-3}"}</InlineMath>, pa je{" "}
+                Važi <InlineMath>{"\\frac{1}{27} = 3^{-3}"}</InlineMath>, pa je{" "}
                 <InlineMath>{"\\log_3 \\frac{1}{27} = -3"}</InlineMath>.
               </p>
             }
@@ -853,7 +853,7 @@ export default function Lesson29Page() {
             title="Vezba 3"
             problem={
               <p>
-                Resi <InlineMath>{"\\log_5 x = -2"}</InlineMath>.
+                Reši <InlineMath>{"\\log_5 x = -2"}</InlineMath>.
               </p>
             }
             solution={
@@ -876,7 +876,7 @@ export default function Lesson29Page() {
                 <InlineMath>
                   {"\\log_2(5 \\cdot 8) = \\log_2 40"}
                 </InlineMath>
-                . To je vec dobar konacan oblik.
+                . To je već dobar konacan oblik.
               </p>
             }
           />
@@ -924,7 +924,7 @@ export default function Lesson29Page() {
             title="Vezba 7"
             problem={
               <p>
-                Izracunaj <InlineMath>{"\\log_9 27"}</InlineMath>.
+                Izračunaj <InlineMath>{"\\log_9 27"}</InlineMath>.
               </p>
             }
             solution={
@@ -943,7 +943,7 @@ export default function Lesson29Page() {
             title="Vezba 8"
             problem={
               <p>
-                Objasni zasto{" "}
+                Objasni zašto{" "}
                 <InlineMath>
                   {"\\log_2(3+5) \\neq \\log_2 3 + \\log_2 5"}
                 </InlineMath>
@@ -964,11 +964,11 @@ export default function Lesson29Page() {
 
       {/* ═══════════ ZAVRSNI UVID ═══════════ */}
       <LessonSection
-        eyebrow="Zavrsni uvid"
-        title="Logaritam je broj koji meri eksponent, pa zato prevodi mnozenje u sabiranje"
-        description="Ako ovu jednu misao zaista usvojis, vecina pravila prestaje da bude lista za pamcenje. Pocinjes da ih vidis kao prirodnu posledicu zakona stepena."
+        eyebrow="Završni uvid"
+        title="Logaritam je broj koji meri eksponent, pa zato prevodi množenje u sabiranje"
+        description="Ako ovu jednu misao zaista usvojiš, većina pravila prestaje da bude lista za pamćenje. Počinješ da ih vidiš kao prirodnu posledicu zakona stepena."
       >
-        <InsightCard title="Najvazniji princip">
+        <InsightCard title="Najvažniji princip">
           <MathBlock>{"\\log_a b = c \\iff a^c = b"}</MathBlock>
           <MathBlock>
             {
@@ -981,15 +981,15 @@ export default function Lesson29Page() {
       {/* ═══════════ REZIME ═══════════ */}
       <LessonSection
         id="rezime"
-        eyebrow="Zavrsni rezime"
-        title="Sta moras da zapamtis posle ove lekcije"
-        description="Ovo su glavne tacke koje treba da ostanu cvrste i kada zadatak izgleda gusce nego sto jeste."
+        eyebrow="Završni rezime"
+        title="Šta moraš da zapamtiš posle ove lekcije"
+        description="Ovo su glavne tačke koje treba da ostanu cvrste i kada zadatak izgleda gusce nego sto jeste."
       >
         <div className={s.summaryGrid}>
           <article className={s.summaryCard}>
             <h3 className={cs.tCardTitle}>1. Definicija</h3>
             <p>
-              <InlineMath>{"\\log_a b"}</InlineMath> trazi eksponent. Uvek se
+              <InlineMath>{"\\log_a b"}</InlineMath> traži eksponent. Uvek se
               vrati na pitanje: na koji stepen treba podici bazu{" "}
               <InlineMath>{"a"}</InlineMath> da se dobije{" "}
               <InlineMath>{"b"}</InlineMath>?
@@ -998,7 +998,7 @@ export default function Lesson29Page() {
           <article className={s.summaryCard}>
             <h3 className={cs.tCardTitle}>2. Uslovi</h3>
             <p>
-              Baza mora biti pozitivna i razlicita od <InlineMath>{"1"}</InlineMath>,
+              Baza mora biti pozitivna i različita od <InlineMath>{"1"}</InlineMath>,
               a argument pozitivan.
             </p>
           </article>
@@ -1013,13 +1013,13 @@ export default function Lesson29Page() {
             <h3 className={cs.tCardTitle}>4. Promena baze</h3>
             <p>
               Kada baza nije zgodna, prevedes je. Formula za promenu baze je
-              standardni alat i za tacne transformacije i za rad s kalkulatorom.
+              standardni alat i za tačne transformacije i za rad s kalkulatorom.
             </p>
           </article>
         </div>
 
         <p className={cs.footerNote}>
-          Sledeci logican korak je logaritamska funkcija i njen grafik. Tamo ce
+          Sledeći logican korak je logaritamska funkcija i njen grafik. Tamo ce
           ova ideja o inverznosti dobiti i jasan geometrijski oblik.
         </p>
       </LessonSection>

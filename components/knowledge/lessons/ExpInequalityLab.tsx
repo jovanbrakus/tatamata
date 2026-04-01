@@ -376,8 +376,8 @@ function drawMonotonicPlot(
   ctx.font = '600 12px "Public Sans", system-ui, sans-serif';
   ctx.fillText(
     data.base > 1
-      ? "Rastuca funkcija: veci eksponent daje vecu vrednost."
-      : "Opadajuca funkcija: veci eksponent daje manju vrednost.",
+      ? "Rastuća funkcija: veći eksponent daje veću vrednost."
+      : "Opadajuća funkcija: veći eksponent daje manju vrednost.",
     box.x + 18,
     box.y + box.h - 28
   );
@@ -389,7 +389,7 @@ function drawLinearPlot(
   data: Data,
   theme: ThemePalette
 ): { xMin: number; xMax: number } {
-  drawPanelBg(ctx, box.x, box.y, box.w, box.h, "Eksponenti i region resenja", theme);
+  drawPanelBg(ctx, box.x, box.y, box.w, box.h, "Eksponenti i region rešenja", theme);
   const span = Math.max(
     4,
     data.solved.boundary === null ? 4 : Math.abs(data.solved.boundary) + 1.5
@@ -482,7 +482,7 @@ function drawNumberLine(
   data: Data,
   theme: ThemePalette
 ) {
-  drawPanelBg(ctx, box.x, box.y, box.w, box.h, "Skup resenja na brojnoj pravoj", theme);
+  drawPanelBg(ctx, box.x, box.y, box.w, box.h, "Skup rešenja na brojnoj pravoj", theme);
   const { xMin, xMax } = range;
   const y = box.y + box.h / 2 + 18;
   const left = box.x + 22;
@@ -512,7 +512,7 @@ function drawNumberLine(
   if (data.solved.empty) {
     ctx.fillStyle = theme.emptyColor;
     ctx.font = '700 14px "Public Sans", system-ui, sans-serif';
-    ctx.fillText("Nema dozvoljenih tacaka.", box.x + 20, box.y + 34);
+    ctx.fillText("Nema dozvoljenih tačaka.", box.x + 20, box.y + 34);
     return;
   }
 
@@ -624,10 +624,10 @@ export default function ExpInequalityLab() {
   const solutionLatex = `\\(S=${intervalTex(data.solved)}\\)`;
 
   const baseInfoText = data.base > 1
-    ? "Baza je veca od 1, pa funkcija raste i znak na eksponentima ostaje isti."
-    : "Baza je izmedju 0 i 1, pa funkcija opada i znak na eksponentima mora da se obrne.";
+    ? "Baza je veća od 1, pa funkcija raste i znak na eksponentima ostaje isti."
+    : "Baza je između 0 i 1, pa funkcija opada i znak na eksponentima mora da se obrne.";
 
-  const sampleNoteLatex = `Za izabranu test tacku vazi \\(x_0=${numberTex(data.x0)}\\). Tada su eksponenti \\(t_1=${numberTex(data.t1)}\\) i \\(t_2=${numberTex(data.t2)}\\). To je ${data.sampleTruth ? "tacna" : "netacna"} tvrdnja za ovu tacku.`;
+  const sampleNoteLatex = `Za izabranu test tačku važi \\(x_0=${numberTex(data.x0)}\\). Tada su eksponenti \\(t_1=${numberTex(data.t1)}\\) i \\(t_2=${numberTex(data.t2)}\\). To je ${data.sampleTruth ? "tačna" : "netačna"} tvrdnja za ovu tačku.`;
 
   return (
     <>
@@ -636,7 +636,7 @@ export default function ExpInequalityLab() {
         <article className={s.interactiveCard} style={{ padding: 22 }}>
           <h3 className={cs.tCardTitle}>Podesi prijemni primer</h3>
           <p style={{ color: "var(--lesson-muted)", marginBottom: 16 }}>
-            Pocni od baze. To je najvazniji izbor u celoj laboratoriji.
+            Počni od baze. To je najvažniji izbor u celoj laboratoriji.
           </p>
 
           <div className={s.controlGrid}>
@@ -737,7 +737,7 @@ export default function ExpInequalityLab() {
             </div>
             <div className={s.rangeWrap}>
               <label>
-                Test tacka <MathJax inline dynamic>{"\\(x_0\\)"}</MathJax>:{" "}
+                Test tačka <MathJax inline dynamic>{"\\(x_0\\)"}</MathJax>:{" "}
                 <strong>{numberLabel(state.x0)}</strong>
               </label>
               <input
@@ -771,7 +771,7 @@ export default function ExpInequalityLab() {
             ref={canvasRef}
             className={s.polarCanvas}
             style={{ aspectRatio: "16 / 10", minHeight: 420 }}
-            aria-label="Interaktivni graf eksponencijalne nejednacine"
+            aria-label="Interaktivni graf eksponencijalne nejednačine"
           />
         </div>
       </div>
@@ -779,11 +779,11 @@ export default function ExpInequalityLab() {
       {/* Math output cards */}
       <div className={s.resultsGrid} style={{ gridTemplateColumns: "repeat(4, 1fr)", marginTop: 16 }}>
         <div className={s.resultCard}>
-          <strong>Originalna nejednacina</strong>
+          <strong>Originalna nejednačina</strong>
           <MathJax dynamic>{originalLatex}</MathJax>
         </div>
         <div className={s.resultCard}>
-          <strong>Nejednacina po eksponentima</strong>
+          <strong>Nejednačina po eksponentima</strong>
           <MathJax dynamic>{exponentLatex}</MathJax>
         </div>
         <div className={s.resultCard}>
@@ -791,7 +791,7 @@ export default function ExpInequalityLab() {
           <MathJax dynamic>{reducedLatex}</MathJax>
         </div>
         <div className={s.resultCard}>
-          <strong>Skup resenja</strong>
+          <strong>Skup rešenja</strong>
           <MathJax dynamic>{solutionLatex}</MathJax>
         </div>
       </div>

@@ -297,7 +297,7 @@ function drawBars(
   data: LabData,
   theme: ThemePalette
 ) {
-  drawPanel(ctx, x, y, w, h, "Eksponenti koje logaritam cita", theme);
+  drawPanel(ctx, x, y, w, h, "Eksponenti koje logaritam čita", theme);
 
   const items = [
     { label: "u", value: data.u, color: theme.accent },
@@ -545,7 +545,7 @@ function drawCanvas(canvas: HTMLCanvasElement, data: LabData) {
   ctx.fillStyle = theme.muted;
   ctx.font = '600 13px "Public Sans", system-ui, sans-serif';
   ctx.fillText(
-    "Ako su x i y stepeni iste baze, logaritam samo ocita njihove eksponente.",
+    "Ako su x i y stepeni iste baze, logaritam samo očita njihove eksponente.",
     28,
     286
   );
@@ -593,8 +593,8 @@ export default function LogarithmLab() {
 
   const baseInfoText =
     data.choice.label === "1/2"
-      ? `Baza \\(\\frac{1}{2}\\) je dozvoljena jer je pozitivna i razlicita od \\(1\\). Logaritam je i dalje eksponent, samo baza nije veca od \\(1\\).`
-      : `Baza \\(${data.choice.tex}\\) je dozvoljena jer je pozitivna i razlicita od \\(1\\). Svi generisani argumenti su pozitivni, pa su logaritmi definisani.`;
+      ? `Baza \\(\\frac{1}{2}\\) je dozvoljena jer je pozitivna i različita od \\(1\\). Logaritam je i dalje eksponent, samo baza nije veća od \\(1\\).`
+      : `Baza \\(${data.choice.tex}\\) je dozvoljena jer je pozitivna i različita od \\(1\\). Svi generisani argumenti su pozitivni, pa su logaritmi definisani.`;
 
   return (
     <div>
@@ -610,7 +610,7 @@ export default function LogarithmLab() {
             }}
           >
             Ova interakcija namerno koristi brojeve koji su stepeni baze, da
-            pravila postanu pregledna i tacna.
+            pravila postanu pregledna i tačna.
           </p>
 
           <div className={s.rangeWrap}>
@@ -643,7 +643,7 @@ export default function LogarithmLab() {
             <span
               style={{ fontSize: "0.88rem", color: "var(--lesson-muted)" }}
             >
-              Probaj i bazu 1/2, da vidis da definicija logaritma ostaje ista i
+              Probaj i bazu 1/2, da vidiš da definicija logaritma ostaje ista i
               kada je baza manja od 1.
             </span>
           </div>
@@ -745,7 +745,7 @@ export default function LogarithmLab() {
           <MathJax dynamic>{`\\(${productTex}\\)`}</MathJax>
         </div>
         <div className={s.resultCard}>
-          <strong>Kolicnik</strong>
+          <strong>Količnik</strong>
           <MathJax dynamic>{`\\(${quotientTex}\\)`}</MathJax>
         </div>
         <div className={s.resultCard}>
@@ -759,7 +759,7 @@ export default function LogarithmLab() {
         style={{ marginTop: 16, fontSize: "0.92rem" }}
       >
         <MathJax dynamic>
-          {`Za izabrane vrednosti dobijas \\(x=${rationalTex(data.x)}\\) i \\(y=${rationalTex(data.y)}\\). Posto je \\(x=${data.choice.tex}^{${data.u}}\\) i \\(y=${data.choice.tex}^{${data.v}}\\), proizvod je \\(xy=${data.choice.tex}^{${data.sum}}\\), kolicnik je \\(${data.choice.tex}^{${data.diff}}\\), a stepen \\(x^{${data.n}}=${data.choice.tex}^{${data.scaled}}\\). Zato logaritam samo cita nove eksponente.`}
+          {`Za izabrane vrednosti dobijaš \\(x=${rationalTex(data.x)}\\) i \\(y=${rationalTex(data.y)}\\). Pošto je \\(x=${data.choice.tex}^{${data.u}}\\) i \\(y=${data.choice.tex}^{${data.v}}\\), proizvod je \\(xy=${data.choice.tex}^{${data.sum}}\\), količnik je \\(${data.choice.tex}^{${data.diff}}\\), a stepen \\(x^{${data.n}}=${data.choice.tex}^{${data.scaled}}\\). Zato logaritam samo čita nove eksponente.`}
         </MathJax>
       </p>
     </div>

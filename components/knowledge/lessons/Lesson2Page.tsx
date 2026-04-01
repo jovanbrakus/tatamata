@@ -18,15 +18,15 @@ import cs from "@/styles/lesson-common.module.css";
 import s from "@/styles/lesson-layout.module.css";
 
 const NAV_LINKS = [
-  { href: "#vaznost", label: "Zasto je vazna" },
+  { href: "#vaznost", label: "Zašto je važna" },
   { href: "#osnove", label: "Osnovni pojmovi" },
   { href: "#operacije", label: "Operacije" },
   { href: "#laboratorija", label: "Interaktivni laboratorij" },
   { href: "#primeri", label: "Primeri" },
   { href: "#zakoni", label: "Korisni obrasci" },
-  { href: "#zamke", label: "Ceste greske" },
+  { href: "#zamke", label: "Česte greške" },
   { href: "#ispit", label: "Veza sa prijemnim" },
-  { href: "#vezba", label: "Vezbe" },
+  { href: "#vezba", label: "Vežbe" },
   { href: "#rezime", label: "Rezime" },
 ];
 
@@ -42,45 +42,45 @@ export default function Lesson2Page() {
             <span className={cs.tHeroAccent}>operacije nad skupovima</span>
           </>
         }
-        description="Skupovi su jezik kojim matematika vrlo precizno govori o tome sta pripada, sta ne pripada, sta je zajednicko i kako se uslovi medjusobno presecaju. Bez ovog jezika tesko je sigurno raditi sa intervalima, domenima i sistemima nejednacina."
+        description="Skupovi su jezik kojim matematika vrlo precizno govori o tome šta pripada, šta ne pripada, šta je zajedničko i kako se uslovi međusobno presecaju. Bez ovog jezika teško je sigurno raditi sa intervalima, domenima i sistemima nejednačina."
         heroImageSrc="/api/lessons/2/hero"
-        heroImageAlt="Apstraktna matematicka tabla sa simbolickim zapisima teorije skupova"
+        heroImageAlt="Apstraktna matematička tabla sa simboličkim zapisima teorije skupova"
         cards={[
           {
-            label: "Naucices",
+            label: "Naučićeš",
             description:
-              "kako da razlikujes element skupa, podskup i partitivni skup.",
+              "kako da razlikuješ element skupa, podskup i partitivni skup.",
           },
           {
-            label: "Najveca zamka",
+            label: "Najveća zamka",
             description:
-              "mesanje oznaka \u2208 i \u2286, kao i zamena unije i preseka.",
+              "mešanje oznaka \u2208 i \u2286, kao i zamena unije i preseka.",
           },
           {
             label: "Prijemni fokus",
             description:
-              "rad sa intervalima i pravilno presecanje uslova pri resavanju sistema nejednacina.",
+              "rad sa intervalima i pravilno presecanje uslova pri rešavanju sistema nejednačina.",
           },
         ]}
         stats={[
           {
             label: "Trajanje",
-            description: "30 do 40 minuta pazljivog rada",
+            description: "30 do 40 minuta pažljivog rada",
           },
           {
             label: "Predznanje",
             description:
-              "nije potrebno mnogo vise od osnovne logike i pazljivog citanja oznaka",
+              "nije potrebno mnogo više od osnovne logike i pažljivog čitanja oznaka",
           },
           {
-            label: "Glavna vestina",
+            label: "Glavna veština",
             description:
-              "precizno citanje pripadanja, podskupa i operacija nad skupovima",
+              "precizno čitanje pripadanja, podskupa i operacija nad skupovima",
           },
           {
             label: "Interaktivno",
             description:
-              "canvas Venn laboratorija za uniju, presek, razliku i simetricnu razliku",
+              "canvas Venn laboratorija za uniju, presek, razliku i simetričnu razliku",
           },
         ]}
       />
@@ -91,31 +91,31 @@ export default function Lesson2Page() {
       {/* ═══════════ 1. ZASTO JE VAZNA ═══════════ */}
       <LessonSection
         id="vaznost"
-        eyebrow="1. Zasto je ova lekcija vazna"
+        eyebrow="1. Zašto je ova lekcija važna"
         title="Skupovi su alat za organizovanje uslova"
-        description="Cim u zadatku imas vise ogranicenja, vise intervala ili vise mogucih slucajeva, skoro sigurno zapravo radis sa skupovima. Zbog toga ova lekcija nije izolovana teorija, vec osnova za mnogo kasnijih tema u algebri, analizi i geometriji."
+        description="Čim u zadatku imaš više ograničenja, više intervala ili više mogućih slučajeva, skoro sigurno zapravo radiš sa skupovima. Zbog toga ova lekcija nije izolovana teorija, već osnova za mnogo kasnijih tema u algebri, analizi i geometriji."
       >
         <div className={s.grid2}>
           <SectionCard title="Gde se skupovi pojavljuju kasnije">
             <ul>
-              <li>presek intervala kod sistema nejednacina</li>
+              <li>presek intervala kod sistema nejednačina</li>
               <li>
-                unija resenja kada zadatak ima vise dopustenih slucajeva
+                unija rešenja kada zadatak ima više dopuštenih slučajeva
               </li>
               <li>
                 domen funkcije kao skup svih dozvoljenih vrednosti
               </li>
             </ul>
           </SectionCard>
-          <SectionCard title="Sta ovde stvarno ucis">
+          <SectionCard title="Šta ovde stvarno učiš">
             <ul>
               <li>
-                kako da precizno citas oznake i ne mesas nivoe jezika
+                kako da precizno čitaš oznake i ne mešaš nivoe jezika
               </li>
               <li>
-                kako da vizuelizujes skupovne operacije preko Venovih dijagrama
+                kako da vizuelizuješ skupovne operacije preko Venovih dijagrama
               </li>
-              <li>kako da isti problem citas i graficki i algebarski</li>
+              <li>kako da isti problem čitaš i grafički i algebarski</li>
             </ul>
           </SectionCard>
         </div>
@@ -126,12 +126,12 @@ export default function Lesson2Page() {
         id="osnove"
         eyebrow="2. Osnovni pojmovi"
         title="Skup, element, podskup i partitivni skup"
-        description="Skup je dobro odredjena celina objekata. Objekte koji mu pripadaju zovemo elementi. Odatle pocinje cela prica."
+        description="Skup je dobro određena celina objekata. Objekte koji mu pripadaju zovemo elementi. Odatle počinje cela priča."
       >
         <div className={s.grid2}>
           <SectionCard title="Skup i pripadanje">
             <p>
-              Ako je <InlineMath>{"A = \\{1, 2, 4\\}"}</InlineMath>, onda vazi:
+              Ako je <InlineMath>{"A = \\{1, 2, 4\\}"}</InlineMath>, onda važi:
             </p>
             <MathBlock>{"2 \\in A, \\qquad 3 \\notin A"}</MathBlock>
             <p>
@@ -142,7 +142,7 @@ export default function Lesson2Page() {
 
           <SectionCard title="Podskup">
             <p>
-              Kazemo da je <InlineMath>{"A \\subseteq B"}</InlineMath> ako je
+              Kažemo da je <InlineMath>{"A \\subseteq B"}</InlineMath> ako je
               svaki element skupa <InlineMath>{"A"}</InlineMath> ujedno i element
               skupa <InlineMath>{"B"}</InlineMath>.
             </p>
@@ -161,7 +161,7 @@ export default function Lesson2Page() {
           <SectionCard title="Pravi podskup">
             <p>
               Ako je <InlineMath>{"A \\subseteq B"}</InlineMath>, ali pri tom{" "}
-              <InlineMath>{"A \\ne B"}</InlineMath>, onda pisemo{" "}
+              <InlineMath>{"A \\ne B"}</InlineMath>, onda pišemo{" "}
               <InlineMath>{"A \\subset B"}</InlineMath>.
             </p>
             <MathBlock>{"\\{1, 2\\} \\subset \\{1, 2, 3\\}"}</MathBlock>
@@ -188,7 +188,7 @@ export default function Lesson2Page() {
         </div>
 
         <MicroCheck
-          question="Proveri sebe: sta je pogresno u zapisu 2 \u2286 A?"
+          question="Proveri sebe: šta je pogrešno u zapisu 2 \u2286 A?"
           answer={
             <p>
               Broj <InlineMath>{"2"}</InlineMath> je element, nije skup. Zato
@@ -203,8 +203,8 @@ export default function Lesson2Page() {
       <LessonSection
         id="operacije"
         eyebrow="3. Operacije nad skupovima"
-        title="Unija, presek, razlika i simetricna razlika"
-        description="Svaka od ovih operacija odgovara vrlo jasnom pitanju: sta je zajedno, sta je zajednicko, sta ostaje samo levo i sta pripada tacno jednom od skupova."
+        title="Unija, presek, razlika i simetrična razlika"
+        description="Svaka od ovih operacija odgovara vrlo jasnom pitanju: šta je zajedno, šta je zajedničko, šta ostaje samo levo i šta pripada tačno jednom od skupova."
       >
         <div className={s.formulaGrid}>
           <FormulaCard
@@ -240,17 +240,17 @@ export default function Lesson2Page() {
             }
           />
           <FormulaCard
-            title="Simetricna razlika"
+            title="Simetrična razlika"
             formula={"A \\triangle B"}
-            note="Elementi koji pripadaju tacno jednom od skupova."
+            note="Elementi koji pripadaju tačno jednom od skupova."
           />
         </div>
 
-        <InsightCard title="Najkraca intuicija">
+        <InsightCard title="Najkraća intuicija">
           <p>
-            Unija spaja, presek zadrzava zajednicko, razlika uklanja ono sto je
-            u drugom skupu, a simetricna razlika zadrzava samo ono sto nije
-            zajednicko.
+            Unija spaja, presek zadržava zajedničko, razlika uklanja ono sto je
+            u drugom skupu, a simetrična razlika zadržava samo ono sto nije
+            zajedničko.
           </p>
         </InsightCard>
       </LessonSection>
@@ -260,16 +260,16 @@ export default function Lesson2Page() {
         id="laboratorija"
         eyebrow="4. Interaktivni laboratorij"
         title="Venn laboratorija za operacije nad skupovima"
-        description="Izaberi operaciju, zatim klikni neki element u dijagramu. Dobices odgovor da li taj element pripada rezultujucem skupu i zasto. Na ovaj nacin vrlo brzo razvijas sigurnu intuiciju za Venn dijagrame."
+        description="Izaberi operaciju, zatim klikni neki element u dijagramu. Dobićeš odgovor da li taj element pripada rezultujućem skupu i zašto. Na ovaj način vrlo brzo razvijaš sigurnu intuiciju za Venn dijagrame."
       >
         <VennDiagramLab />
 
-        <InsightCard title="Kako da ucis iz ovog laboratorijuma">
+        <InsightCard title="Kako da učiš iz ovog laboratorijuma">
           <p>
-            Pokusaj da prvo sam pogodis sta ce se desiti sa operacijom, pa tek
+            Pokušaj da prvo sam pogodiš šta će se desiti sa operacijom, pa tek
             onda proveri ekran. Ako rezultat odgovara tvojoj predikciji,
-            intuicija se izgradjuje. Ako ne odgovara, pazljivo procitaj
-            objasnjenje i pokusaj ponovo sa drugim elementom.
+            intuicija se izgrađuje. Ako ne odgovara, pažljivo pročitaj
+            objašnjenje i pokušaj ponovo sa drugim elementom.
           </p>
         </InsightCard>
       </LessonSection>
@@ -277,9 +277,9 @@ export default function Lesson2Page() {
       {/* ═══════════ 5. VODJENI PRIMERI ═══════════ */}
       <LessonSection
         id="primeri"
-        eyebrow="5. Vodjeni primeri"
-        title="Kako se racunaju skupovne operacije u praksi"
-        description="Primeri su rasporedjeni tako da idu od diskretnih skupova ka intervalima i Kartezijevom proizvodu."
+        eyebrow="5. Vođeni primeri"
+        title="Kako se računaju skupovne operacije u praksi"
+        description="Primeri su raspoređeni tako da idu od diskretnih skupova ka intervalima i Kartezijevom proizvodu."
       >
         {/* Primer 1: Diskretni skupovi */}
         <SectionCard title="Primer 1: Diskretni skupovi">
@@ -294,9 +294,9 @@ export default function Lesson2Page() {
           <MathBlock>{"B \\setminus A = \\{4,6\\}"}</MathBlock>
           <MathBlock>{"A \\triangle B = \\{1,2,4,6\\}"}</MathBlock>
           <p>
-            Vredi obratiti paznju da se zajednicki elementi{" "}
+            Vredi obratiti pažnju da se zajednički elementi{" "}
             <InlineMath>{"3"}</InlineMath> i <InlineMath>{"5"}</InlineMath>{" "}
-            pojavljuju u preseku, a nestaju iz simetricne razlike.
+            pojavljuju u preseku, a nestaju iz simetrične razlike.
           </p>
         </SectionCard>
 
@@ -307,7 +307,7 @@ export default function Lesson2Page() {
               Ne, jer je <InlineMath>{"3"}</InlineMath> i u skupu{" "}
               <InlineMath>{"A"}</InlineMath> i u skupu{" "}
               <InlineMath>{"B"}</InlineMath>. Razlika{" "}
-              <InlineMath>{"A \\setminus B"}</InlineMath> zadrzava samo ono sto
+              <InlineMath>{"A \\setminus B"}</InlineMath> zadržava samo ono sto
               je u <InlineMath>{"A"}</InlineMath>, a nije u{" "}
               <InlineMath>{"B"}</InlineMath>.
             </p>
@@ -318,18 +318,18 @@ export default function Lesson2Page() {
         <SectionCard title="Primer 2: Rad sa intervalima">
           <p>Neka su</p>
           <MathBlock>{"A = [-1,4), \\qquad B = (2,6]"}</MathBlock>
-          <p>Tada je zajednicki deo:</p>
+          <p>Tada je zajednički deo:</p>
           <MathBlock>{"A \\cap B = (2,4)"}</MathBlock>
           <p>Unija je:</p>
           <MathBlock>{"A \\cup B = [-1,6]"}</MathBlock>
           <p>
-            Razlika <InlineMath>{"A \\setminus B"}</InlineMath> zadrzava ono sto
+            Razlika <InlineMath>{"A \\setminus B"}</InlineMath> zadržava ono sto
             je u <InlineMath>{"A"}</InlineMath>, a nije u{" "}
             <InlineMath>{"B"}</InlineMath>:
           </p>
           <MathBlock>{"A \\setminus B = [-1,2]"}</MathBlock>
           <p>
-            Kod intervala je kljucno paziti na otvorene i zatvorene krajeve.
+            Kod intervala je ključno paziti na otvorene i zatvorene krajeve.
           </p>
         </SectionCard>
 
@@ -347,7 +347,7 @@ export default function Lesson2Page() {
             }
           </MathBlock>
           <p>
-            Najcesca greska je zaboravljanje praznog skupa i samog skupa{" "}
+            Najčešća greška je zaboravljanje praznog skupa i samog skupa{" "}
             <InlineMath>{"C"}</InlineMath>.
           </p>
         </SectionCard>
@@ -374,9 +374,9 @@ export default function Lesson2Page() {
             }
           </MathBlock>
           <p>
-            Redosled je vazan: uredjeni par{" "}
+            Redosled je važan: uređeni par{" "}
             <InlineMath>{"(1,a)"}</InlineMath> nije isto sto i{" "}
-            <InlineMath>{"(a,1)"}</InlineMath>. Bas zato je Kartezijev proizvod
+            <InlineMath>{"(a,1)"}</InlineMath>. Baš zato je Kartezijev proizvod
             prirodan uvod u koordinatni sistem.
           </p>
         </SectionCard>
@@ -387,23 +387,23 @@ export default function Lesson2Page() {
         id="zakoni"
         eyebrow="6. Korisni obrasci"
         title="Standardna pravila koja ubrzavaju rad"
-        description="Ove relacije ne treba samo pamtiti. Treba ih umeti procitati i odmah prepoznati u zadatku."
+        description="Ove relacije ne treba samo pamtiti. Treba ih umeti pročitati i odmah prepoznati u zadatku."
       >
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Komutativnost"
             formula={"A \\cup B = B \\cup A, \\quad A \\cap B = B \\cap A"}
-            note="Redosled skupova nije vazan za uniju i presek."
+            note="Redosled skupova nije važan za uniju i presek."
           />
           <FormulaCard
             title="Asocijativnost"
             formula={"(A \\cup B) \\cup C = A \\cup (B \\cup C)"}
-            note="Isto vazi i za presek. Grupisanje ne menja rezultat."
+            note="Isto važi i za presek. Grupisanje ne menja rezultat."
           />
           <FormulaCard
             title="Distributivnost"
             formula={"A \\cap (B \\cup C) = (A \\cap B) \\cup (A \\cap C)"}
-            note="Skupovne operacije imaju jasnu paralelu sa algebarskim racunom."
+            note="Skupovne operacije imaju jasnu paralelu sa algebarskim računom."
           />
           <FormulaCard
             title="De Morgan za skupove"
@@ -412,10 +412,10 @@ export default function Lesson2Page() {
           />
         </div>
 
-        <InsightCard title="Praktican savet">
+        <InsightCard title="Praktičan savet">
           <p>
-            Kad god se zbunis, nacrtaj mali Venn dijagram ili testiraj nekoliko
-            karakteristicnih elemenata. To vrlo brzo otkriva da li zapis koji si
+            Kad god se zbuniš, nacrtaj mali Venn dijagram ili testiraj nekoliko
+            karakterističnih elemenata. To vrlo brzo otkriva da li zapis koji si
             dobio ima smisla.
           </p>
         </InsightCard>
@@ -424,42 +424,42 @@ export default function Lesson2Page() {
       {/* ═══════════ 7. CESTE GRESKE ═══════════ */}
       <LessonSection
         id="zamke"
-        eyebrow="7. Ceste greske"
-        title="Ovde ucenici najcesce pogrese"
-        description="Skupovi deluju jednostavno, ali upravo zato mnogi preskoce preciznost i naprave formalnu gresku."
+        eyebrow="7. Česte greške"
+        title="Ovde učenici najčešće pogreše"
+        description="Skupovi deluju jednostavno, ali upravo zato mnogi preskoče preciznost i naprave formalnu grešku."
       >
         <div className={s.tipGrid}>
           <article className={s.tipCard}>
             <h3 className={cs.tCardTitle}>
-              Mesanje <InlineMath>{"\\in"}</InlineMath> i{" "}
+              Mešanje <InlineMath>{"\\in"}</InlineMath> i{" "}
               <InlineMath>{"\\subseteq"}</InlineMath>
             </h3>
             <p>
-              Jedno govori o pripadanju elementa skupu, drugo o odnosu izmedju
+              Jedno govori o pripadanju elementa skupu, drugo o odnosu između
               dva skupa.
             </p>
           </article>
           <article className={s.tipCard}>
             <h3 className={cs.tCardTitle}>Unija nije isto sto i presek</h3>
             <p>
-              Unija spaja sve, a presek zadrzava samo zajednicke elemente. To je
-              najcesca pocetna zamena.
+              Unija spaja sve, a presek zadržava samo zajedničke elemente. To je
+              najčešća početna zamena.
             </p>
           </article>
           <article className={s.tipCard}>
-            <h3 className={cs.tCardTitle}>Razlika nije simetricna</h3>
+            <h3 className={cs.tCardTitle}>Razlika nije simetrična</h3>
             <p>
-              Uglavnom vazi{" "}
+              Uglavnom važi{" "}
               <InlineMath>{"A \\setminus B \\ne B \\setminus A"}</InlineMath>.
-              Redosled ovde jeste vazan.
+              Redosled ovde jeste važan.
             </p>
           </article>
           <article className={s.tipCard}>
             <h3 className={cs.tCardTitle}>
-              Pogresno brojanje partitivnog skupa
+              Pogrešno brojanje partitivnog skupa
             </h3>
             <p>
-              Cesto se zaboravi prazni skup ili sam skup{" "}
+              Često se zaboravi prazni skup ili sam skup{" "}
               <InlineMath>{"A"}</InlineMath>, pa se dobije premalo podskupova.
             </p>
           </article>
@@ -471,39 +471,39 @@ export default function Lesson2Page() {
         id="ispit"
         eyebrow="8. Veza sa prijemnim zadacima"
         title="Kako se teorija skupova direktno koristi na prijemnom"
-        description="Najcesce se ne trazi suva definicija skupa, vec sposobnost da uslove i resenja zapises i kombinujes kao skupove."
+        description="Najčešće se ne traži suva definicija skupa, već sposobnost da uslove i rešenja zapišeš i kombinuješ kao skupove."
       >
         <div className={s.grid2}>
-          <SectionCard title="Sistemi nejednacina = presek skupova resenja">
+          <SectionCard title="Sistemi nejednačina = presek skupova rešenja">
             <p>
-              Ako prva nejednacina daje resenje{" "}
-              <InlineMath>{"A"}</InlineMath>, a druga resenje{" "}
-              <InlineMath>{"B"}</InlineMath>, onda sistem trazi oba uslova
+              Ako prva nejednačina daje rešenje{" "}
+              <InlineMath>{"A"}</InlineMath>, a druga rešenje{" "}
+              <InlineMath>{"B"}</InlineMath>, onda sistem traži oba uslova
               istovremeno:
             </p>
-            <MathBlock>{"\\text{resenje sistema} = A \\cap B"}</MathBlock>
+            <MathBlock>{"\\text{rešenje sistema} = A \\cap B"}</MathBlock>
             <p>
-              Ovo je jedan od najvaznijih prakticnih prenosa ove lekcije.
+              Ovo je jedan od najvažnijih praktičnih prenosa ove lekcije.
             </p>
           </SectionCard>
-          <SectionCard title="Vise slucajeva = unija skupova resenja">
+          <SectionCard title="Više slučajeva = unija skupova rešenja">
             <p>
-              Kada zadatak ima dva dozvoljena slucaja, recimo{" "}
+              Kada zadatak ima dva dozvoljena slučaja, recimo{" "}
               <InlineMath>{"x < -1"}</InlineMath> ili{" "}
-              <InlineMath>{"x > 3"}</InlineMath>, ukupno resenje nije presek
+              <InlineMath>{"x > 3"}</InlineMath>, ukupno rešenje nije presek
               nego unija:
             </p>
             <MathBlock>{"(-\\infty,-1) \\cup (3,\\infty)"}</MathBlock>
             <p>
-              Na prijemnim ispitima ovo je cesta tacka gubljenja poena.
+              Na prijemnim ispitima ovo je česta tačka gubljenja poena.
             </p>
           </SectionCard>
         </div>
 
         <InsightCard title="Prijemni mentalni test">
           <p>
-            Ako zadatak trazi da vaze svi uslovi odjednom, misli na presek. Ako
-            zadatak prihvata jedan ili drugi slucaj, misli na uniju.
+            Ako zadatak traži da vaze svi uslovi odjednom, misli na presek. Ako
+            zadatak prihvata jedan ili drugi slučaj, misli na uniju.
           </p>
         </InsightCard>
       </LessonSection>
@@ -513,14 +513,14 @@ export default function Lesson2Page() {
         id="vezba"
         eyebrow="9. Vezbe"
         title="Kratka provera razumevanja"
-        description="Probaj najpre samostalno, pa tek onda otvori resenje."
+        description="Probaj najpre samostalno, pa tek onda otvori rešenje."
       >
         <div className={s.exerciseGrid}>
           <ExerciseCard
             title="Zadatak 1: Pripadanje"
             problem={
               <p>
-                Ako je <InlineMath>{"A = \\{2,4,6\\}"}</InlineMath>, da li vazi{" "}
+                Ako je <InlineMath>{"A = \\{2,4,6\\}"}</InlineMath>, da li važi{" "}
                 <InlineMath>{"4 \\in A"}</InlineMath>?
               </p>
             }
@@ -581,17 +581,17 @@ export default function Lesson2Page() {
       {/* ═══════════ GLAVNI UVID ═══════════ */}
       <LessonSection
         eyebrow="Glavni uvid lekcije"
-        title="Skupovi su nacin organizovanja matematicnih uslova"
+        title="Skupovi su način organizovanja matematičnih uslova"
       >
-        <InsightCard title="Kljucni princip">
+        <InsightCard title="Ključni princip">
           <MathBlock>
             {
-              "\\text{zajednicki uslovi} = \\cap, \\qquad \\text{alternativni slucajevi} = \\cup"
+              "\\text{zajednički uslovi} = \\cap, \\qquad \\text{alternativni slučajevi} = \\cup"
             }
           </MathBlock>
           <p>
-            Skupovi nisu samo nacin zapisivanja elemenata. Oni su nacin
-            organizovanja matematicnih uslova.
+            Skupovi nisu samo način zapisivanja elemenata. Oni su način
+            organizovanja matematičnih uslova.
           </p>
         </InsightCard>
       </LessonSection>
@@ -599,9 +599,9 @@ export default function Lesson2Page() {
       {/* ═══════════ 10. ZAVRSNI REZIME ═══════════ */}
       <LessonSection
         id="rezime"
-        eyebrow="10. Zavrsni rezime"
-        title="Sta treba da zapamtis iz ove lekcije"
-        description="Ako sledece stavke citas bez nejasnoca, lekcija je dobro usvojena."
+        eyebrow="10. Završni rezime"
+        title="Šta treba da zapamtiš iz ove lekcije"
+        description="Ako sledeće stavke čitaš bez nejasnoća, lekcija je dobro usvojena."
       >
         <div className={s.summaryGrid}>
           <article className={s.summaryCard}>
@@ -622,7 +622,7 @@ export default function Lesson2Page() {
           <article className={s.summaryCard}>
             <h3 className={cs.tCardTitle}>Presek</h3>
             <p>
-              <InlineMath>{"A \\cap B"}</InlineMath> zadrzava samo zajednicke
+              <InlineMath>{"A \\cap B"}</InlineMath> zadržava samo zajedničke
               elemente.
             </p>
           </article>
@@ -645,20 +645,20 @@ export default function Lesson2Page() {
           <article className={s.summaryCard}>
             <h3 className={cs.tCardTitle}>Kartezijev proizvod</h3>
             <p>
-              Gradi skup uredjenih parova i uvodi te u koordinatni sistem.
+              Gradi skup uređenih parova i uvodi te u koordinatni sistem.
             </p>
           </article>
           <article className={s.summaryCard}>
             <h3 className={cs.tCardTitle}>Prijemni primena</h3>
             <p>
-              Na prijemnom, sistemi uslova se vrlo cesto citaju kao preseci ili
+              Na prijemnom, sistemi uslova se vrlo često čitaju kao preseci ili
               unije intervala.
             </p>
           </article>
         </div>
 
         <p className={cs.footerNote}>
-          Sledeci prirodan korak je lekcija o binarnim relacijama, gde
+          Sledeći prirodan korak je lekcija o binarnim relacijama, gde
           Kartezijev proizvod postaje osnova za relacije, klase ekvivalencije i
           poredak.
         </p>

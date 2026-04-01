@@ -18,17 +18,17 @@ import cs from "@/styles/lesson-common.module.css";
 import s from "@/styles/lesson-layout.module.css";
 
 const NAV_LINKS = [
-  { href: "#vaznost", label: "Zasto je vazna" },
+  { href: "#vaznost", label: "Zašto je važna" },
   { href: "#osnove", label: "Osnovna ideja" },
   { href: "#vrste", label: "Injekcija i surjekcija" },
   { href: "#laboratorija", label: "Interaktivni deo" },
   { href: "#kompozicija", label: "Kompozicija" },
   { href: "#inverzna", label: "Inverzna funkcija" },
-  { href: "#primeri", label: "Vodjeni primeri" },
-  { href: "#zakoni", label: "Kljucni zapisi" },
-  { href: "#zamke", label: "Ceste greske" },
+  { href: "#primeri", label: "Vođeni primeri" },
+  { href: "#zakoni", label: "Ključni zapisi" },
+  { href: "#zamke", label: "Česte greške" },
   { href: "#ispit", label: "Prijemni fokus" },
-  { href: "#vezba", label: "Vezbe" },
+  { href: "#vezba", label: "Vežbe" },
 ];
 
 export default function Lesson4Page() {
@@ -45,38 +45,38 @@ export default function Lesson4Page() {
             </span>
           </>
         }
-        description="Funkcija je jedno od najvaznijih matematickih orudja: svakom dozvoljenom ulazu dodeljuje tacno jedan izlaz. Iz te ideje nastaju kompozicija, inverzna funkcija i veliki deo zadataka na prijemnim ispitima gde moras da proveris domen, kodomen i ponasanje formule."
+        description="Funkcija je jedno od najvažnijih matematičkih oruđa: svakom dozvoljenom ulazu dodeljuje tačno jedan izlaz. Iz te ideje nastaju kompozicija, inverzna funkcija i veliki deo zadataka na prijemnim ispitima gde moraš da proveriš domen, kodomen i ponašanje formule."
         heroImageSrc="/api/lessons/4/hero"
-        heroImageAlt="Apstraktna matematicka tabla sa preslikavanjima i funkcijama"
+        heroImageAlt="Apstraktna matematička tabla sa preslikavanjima i funkcijama"
         cards={[
           {
-            label: "Naucices",
+            label: "Naučićeš",
             description:
-              "kako da razlikujes domen, kodomen i sliku, i kako da proveris da li je funkcija injektivna, surjektivna ili bijektivna.",
+              "kako da razlikuješ domen, kodomen i sliku, i kako da proveriš da li je funkcija injektivna, surjektivna ili bijektivna.",
           },
           {
-            label: "Najveca zamka",
+            label: "Najveća zamka",
             description:
-              "mesanje kodomena i slike, pa pogresan zakljucak da funkcija jeste ili nije surjektivna.",
+              "mešanje kodomena i slike, pa pogrešan zaključak da funkcija jeste ili nije surjektivna.",
           },
           {
             label: "Prijemni fokus",
             description:
-              "kompozicija funkcija, nalazenje inverza i izbor domena tako da funkcija postane invertibilna.",
+              "kompozicija funkcija, nalaženje inverza i izbor domena tako da funkcija postane invertibilna.",
           },
         ]}
         stats={[
           {
             label: "Trajanje",
-            description: "40 do 55 minuta pazljivog rada",
+            description: "40 do 55 minuta pažljivog rada",
           },
           {
             label: "Predznanje",
             description:
-              "skupovi, relacije, osnovna algebra i uredno citanje matematickog zapisa",
+              "skupovi, relacije, osnovna algebra i uredno čitanje matematičkog zapisa",
           },
           {
-            label: "Glavna vestina",
+            label: "Glavna veština",
             description:
               "provera da li relacija jeste funkcija, i zatim analiza injektivnosti, surjektivnosti, kompozicije i inverza",
           },
@@ -91,12 +91,12 @@ export default function Lesson4Page() {
       {/* ═══════════ NAV ═══════════ */}
       <LessonNav links={NAV_LINKS} />
 
-      {/* ═══════════ 1. ZASTO JE OVA LEKCIJA VAZNA ═══════════ */}
+      {/* ═══════════ 1. ZAŠTO JE OVA LEKCIJA VAŽNA ═══════════ */}
       <LessonSection
         id="vaznost"
-        eyebrow="1. Zasto je ova lekcija vazna"
+        eyebrow="1. Zašto je ova lekcija važna"
         title="Funkcija je osnovni jezik moderne matematike"
-        description="Kad god neka velicina zavisi od druge, iza scene stoji funkcija. Zato se ova lekcija vraca kasnije kroz polinome, eksponencijalne i logaritamske funkcije, trigonometriju, analiticku geometriju i matematicku analizu."
+        description="Kad god neka veličina zavisi od druge, iza scene stoji funkcija. Zato se ova lekcija vraća kasnije kroz polinome, eksponencijalne i logaritamske funkcije, trigonometriju, analitičku geometriju i matematičku analizu."
       >
         <div className={s.grid2}>
           <SectionCard title="Gde se funkcije pojavljuju kasnije">
@@ -110,7 +110,7 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                u grafiku i citanju zavisnosti izmedju promenljivih
+                u grafiku i čitanju zavisnosti između promenljivih
               </div>
               <div
                 style={{
@@ -121,7 +121,7 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                u resavanju jednacina preko zamene i kompozicije funkcija
+                u rešavanju jednačina preko zamene i kompozicije funkcija
               </div>
               <div
                 style={{
@@ -133,12 +133,12 @@ export default function Lesson4Page() {
                 }}
               >
                 u logaritamskim i inverznim trigonometrijskim funkcijama, gde je
-                bijektivnost kljucna
+                bijektivnost ključna
               </div>
             </div>
           </SectionCard>
 
-          <SectionCard title="Zasto je vazna na prijemnom">
+          <SectionCard title="Zašto je važna na prijemnom">
             <div style={{ display: "grid", gap: 10, marginTop: 14 }}>
               <div
                 style={{
@@ -149,7 +149,7 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                trazi se da prepoznas kada inverz postoji, a kada ne
+                traži se da prepoznaš kada inverz postoji, a kada ne
               </div>
               <div
                 style={{
@@ -160,9 +160,9 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                cesto moras da izracunas{" "}
+                često moraš da izračunaš{" "}
                 <InlineMath>{"g(f(x))"}</InlineMath> ili{" "}
-                <InlineMath>{"f(g(x))"}</InlineMath> bez greske u redosledu
+                <InlineMath>{"f(g(x))"}</InlineMath> bez greške u redosledu
               </div>
               <div
                 style={{
@@ -174,7 +174,7 @@ export default function Lesson4Page() {
                 }}
               >
                 vrlo lako se gube poeni ako se zanemari domen ili ako se{" "}
-                <InlineMath>{"f^{-1}"}</InlineMath> pomesa sa{" "}
+                <InlineMath>{"f^{-1}"}</InlineMath> pomeša sa{" "}
                 <InlineMath>{"\\frac{1}{f}"}</InlineMath>
               </div>
             </div>
@@ -193,15 +193,15 @@ export default function Lesson4Page() {
       <LessonSection
         id="osnove"
         eyebrow="2. Osnovna ideja"
-        title="Funkcija je relacija sa tacno jednom slikom za svaki ulaz"
-        description='Ako posmatras funkciju kao "masinu", onda je domen skup svih dozvoljenih ulaza, kodomen skup mogucih izlaza, a slika funkcije samo oni izlazi koji se zaista dobiju. Ova razlika je presudna.'
+        title="Funkcija je relacija sa tačno jednom slikom za svaki ulaz"
+        description='Ako posmatraš funkciju kao "mašinu", onda je domen skup svih dozvoljenih ulaza, kodomen skup mogućih izlaza, a slika funkcije samo oni izlazi koji se zaista dobiju. Ova razlika je presudna.'
       >
         <div className={s.grid2}>
           <SectionCard title="Formalni zapis">
             <MathBlock>{"f:A \\to B"}</MathBlock>
             <p>
-              To znaci: funkcija <InlineMath>{"f"}</InlineMath> svakom elementu{" "}
-              <InlineMath>{"x \\in A"}</InlineMath> pridruzuje tacno jedan
+              To znači: funkcija <InlineMath>{"f"}</InlineMath> svakom elementu{" "}
+              <InlineMath>{"x \\in A"}</InlineMath> pridružuje tačno jedan
               element <InlineMath>{"f(x) \\in B"}</InlineMath>.
             </p>
           </SectionCard>
@@ -210,12 +210,12 @@ export default function Lesson4Page() {
             <p>
               Domen je skup ulaza <InlineMath>{"A"}</InlineMath>. Kodomen je
               ciljni skup <InlineMath>{"B"}</InlineMath>. Slika funkcije je
-              skup svih stvarno pogodjenih vrednosti:
+              skup svih stvarno pogođenih vrednosti:
             </p>
             <MathBlock>{"f(A)=\\{f(x)\\mid x\\in A\\}"}</MathBlock>
           </SectionCard>
 
-          <SectionCard title="Sta mora da vazi da bi nesto bilo funkcija">
+          <SectionCard title="Šta mora da važi da bi nešto bilo funkcija">
             <div style={{ display: "grid", gap: 10, marginTop: 14 }}>
               <div
                 style={{
@@ -237,7 +237,7 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                nijedan element domena ne sme imati dve razlicite slike
+                nijedan element domena ne sme imati dve različite slike
               </div>
               <div
                 style={{
@@ -248,15 +248,15 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                vise razlicitih ulaza sme da ide u isti izlaz
+                više različitih ulaza sme da ide u isti izlaz
               </div>
             </div>
           </SectionCard>
 
-          <SectionCard title="Ne mora svaki izlaz da bude pogodjen">
+          <SectionCard title="Ne mora svaki izlaz da bude pogođen">
             <p>
-              Funkcija moze biti sasvim korektna i kada neki elementi kodomena
-              ostanu neiskorisceni. To samo znaci da funkcija mozda nije
+              Funkcija može biti sasvim korektna i kada neki elementi kodomena
+              ostanu neiskorišćeni. To samo znači da funkcija možda nije
               surjektivna.
             </p>
           </SectionCard>
@@ -269,7 +269,7 @@ export default function Lesson4Page() {
           Ovde je domen <InlineMath>{"A"}</InlineMath>, kodomen{" "}
           <InlineMath>{"B"}</InlineMath>, a slika funkcije je samo{" "}
           <InlineMath>{"\\{0,1\\}"}</InlineMath>, jer vrednost{" "}
-          <InlineMath>{"2"}</InlineMath> iz kodomena nije pogodjena.
+          <InlineMath>{"2"}</InlineMath> iz kodomena nije pogođena.
         </p>
 
         <div style={{ display: "grid", gap: 10, marginTop: 14 }}>
@@ -286,7 +286,7 @@ export default function Lesson4Page() {
             <InlineMath>
               {"f(1)=1,\\; f(0)=0,\\; f(-1)=1"}
             </InlineMath>
-            . To je i dalje funkcija, iako dva razlicita ulaza daju istu sliku.
+            . To je i dalje funkcija, iako dva različita ulaza daju istu sliku.
           </div>
           <div
             style={{
@@ -305,12 +305,12 @@ export default function Lesson4Page() {
         </div>
 
         <MicroCheck
-          question="Mikro-provera: da li je dozvoljeno da x_1 != x_2, a da ipak vazi f(x_1)=f(x_2)?"
+          question="Mikro-provera: da li je dozvoljeno da x_1 != x_2, a da ipak važi f(x_1)=f(x_2)?"
           answer={
             <p>
-              Da. To ne krsi definiciju funkcije. Definicija trazi samo da svaki
-              pojedinacni ulaz ima tacno jednu sliku, a ne da razliciti ulazi
-              moraju imati razlicite slike.
+              Da. To ne krši definiciju funkcije. Definicija traži samo da svaki
+              pojedinačni ulaz ima tačno jednu sliku, a ne da različiti ulazi
+              moraju imati različite slike.
             </p>
           }
         />
@@ -320,8 +320,8 @@ export default function Lesson4Page() {
       <LessonSection
         id="vrste"
         eyebrow="3. Injekcija, surjekcija i bijekcija"
-        title="Tri kljucne osobine koje moras da citas bez zabune"
-        description="Injekcija govori da razliciti ulazi ostaju razlikovani. Surjekcija govori da su svi elementi kodomena pogodjeni. Bijekcija znaci da vaze obe osobine i upravo tada funkcija moze imati inverz."
+        title="Tri ključne osobine koje moraš da čitaš bez zabune"
+        description="Injekcija govori da različiti ulazi ostaju razlikovani. Surjekcija govori da su svi elementi kodomena pogođeni. Bijekcija znači da važe obe osobine i upravo tada funkcija može imati inverz."
       >
         <div className={s.grid2}>
           <SectionCard title="Injekcija">
@@ -329,8 +329,8 @@ export default function Lesson4Page() {
               {"f(x_1)=f(x_2) \\Rightarrow x_1=x_2"}
             </MathBlock>
             <p>
-              Nijedna dva razlicita ulaza ne zavrsavaju u istom izlazu. Zamisli
-              da svaka strelica pogadja posebnu tacku sa desne strane.
+              Nijedna dva različita ulaza ne završavaju u istom izlazu. Zamisli
+              da svaka strelica pogađa posebnu tačku sa desne strane.
             </p>
           </SectionCard>
 
@@ -341,8 +341,8 @@ export default function Lesson4Page() {
               }
             </MathBlock>
             <p>
-              Svaki element kodomena dobija bar jednu strelicu. Kljucna rec je{" "}
-              <em>kodomen</em>, a ne &ldquo;sve moguce realne vrednosti&rdquo;.
+              Svaki element kodomena dobija bar jednu strelicu. Ključna reč je{" "}
+              <em>kodomen</em>, a ne &ldquo;sve moguće realne vrednosti&rdquo;.
             </p>
           </SectionCard>
 
@@ -353,7 +353,7 @@ export default function Lesson4Page() {
               }
             </MathBlock>
             <p>
-              Tacno jedan izlaz za svaki ulaz i tacno jedan pretslika za svaki
+              Tačno jedan izlaz za svaki ulaz i tačno jedan pretslika za svaki
               element kodomena. To je idealna situacija za pravljenje inverza.
             </p>
           </SectionCard>
@@ -406,8 +406,8 @@ export default function Lesson4Page() {
               }
             </MathBlock>
             <p>
-              Razliciti ulazi imaju razlicite slike, pa je funkcija injektivna.
-              Ali element <InlineMath>{"d"}</InlineMath> nije pogodjen, pa
+              Različiti ulazi imaju različite slike, pa je funkcija injektivna.
+              Ali element <InlineMath>{"d"}</InlineMath> nije pogođen, pa
               funkcija nije surjektivna.
             </p>
           </SectionCard>
@@ -420,7 +420,7 @@ export default function Lesson4Page() {
               Ova funkcija jeste surjektivna na kodomen{" "}
               <InlineMath>{"[0,\\infty)"}</InlineMath>, ali nije injektivna jer
               je <InlineMath>{"f(2)=f(-2)=4"}</InlineMath>. Ista formula sa
-              kodomenom <InlineMath>{"\\mathbb{R}"}</InlineMath> vise ne bi bila
+              kodomenom <InlineMath>{"\\mathbb{R}"}</InlineMath> više ne bi bila
               surjektivna.
             </p>
           </SectionCard>
@@ -429,15 +429,15 @@ export default function Lesson4Page() {
         <InsightCard title="Zapamti">
           <p>
             Surjekcija se proverava prema zadatom kodomenu. Ako promenis
-            kodomen, ista formula moze promeniti svoj status.
+            kodomen, ista formula može promeniti svoj status.
           </p>
         </InsightCard>
 
         <MicroCheck
-          question="Mikro-provera: moze li ista formula da bude surjektivna za jedan kodomen, a nesurjektivna za drugi?"
+          question="Mikro-provera: može li ista formula da bude surjektivna za jedan kodomen, a nesurjektivna za drugi?"
           answer={
             <p>
-              Moze. Na primer, <InlineMath>{"x^2"}</InlineMath> je surjektivna
+              Može. Na primer, <InlineMath>{"x^2"}</InlineMath> je surjektivna
               kao funkcija{" "}
               <InlineMath>{"\\mathbb{R}\\to[0,\\infty)"}</InlineMath>, ali nije
               surjektivna kao funkcija{" "}
@@ -452,16 +452,16 @@ export default function Lesson4Page() {
       <LessonSection
         id="laboratorija"
         eyebrow="4. Interaktivni laboratorijum"
-        title="Vizuelno proveri da li je nesto funkcija i kakvog je tipa"
-        description="Prebacuj izmedju tipicnih primera ili rucno podesi funkciju. Canvas prikazuje strelice izmedju domena i kodomena, a ispod odmah dobijas klasifikaciju i objasnjenje sta tacno radi, a sta ne radi."
+        title="Vizuelno proveri da li je nešto funkcija i kakvog je tipa"
+        description="Prebacuj između tipičnih primera ili ručno podesi funkciju. Canvas prikazuje strelice između domena i kodomena, a ispod odmah dobijaš klasifikaciju i objašnjenje šta tačno radi, a šta ne radi."
       >
         <MappingLab />
 
-        <InsightCard title="Kako da ucis iz ovog laboratorijuma">
+        <InsightCard title="Kako da učiš iz ovog laboratorijuma">
           <p>
-            Pokusaj da prvo sam pogodis klasifikaciju na osnovu strelica, pa tek
-            onda procitaj analizu. Ako vidis da za jednu strelicu manje
-            potpuno menja tip, to je upravo poenta: male razlike cesto donose
+            Pokušaj da prvo sam pogodiš klasifikaciju na osnovu strelica, pa tek
+            onda pročitaj analizu. Ako vidiš da za jednu strelicu manje
+            potpuno menja tip, to je upravo poenta: male razlike često donose
             veliki preokret u svojstvima funkcije.
           </p>
         </InsightCard>
@@ -471,23 +471,23 @@ export default function Lesson4Page() {
       <LessonSection
         id="kompozicija"
         eyebrow="5. Kompozicija funkcija"
-        title="Kompozicija znaci da izlaz prve funkcije ulazi u drugu"
-        description="Kompozicija je lancano primenjivanje funkcija. Ako jedna funkcija proizvodi ono sto drugoj treba kao ulaz, mozes ih spojiti u jednu novu funkciju."
+        title="Kompozicija znači da izlaz prve funkcije ulazi u drugu"
+        description="Kompozicija je lančano primenjivanje funkcija. Ako jedna funkcija proizvodi ono što drugoj treba kao ulaz, možeš ih spojiti u jednu novu funkciju."
       >
         <div className={s.grid2}>
           <SectionCard title="Osnovni zapis">
             <MathBlock>{"(g\\circ f)(x)=g(f(x))"}</MathBlock>
             <p>
-              Cita se: najpre primeni <InlineMath>{"f"}</InlineMath>, pa onda na
+              Čita se: najpre primeni <InlineMath>{"f"}</InlineMath>, pa onda na
               dobijeni rezultat primeni <InlineMath>{"g"}</InlineMath>. Zato se
-              kompozicija racuna zdesna nalevo.
+              kompozicija računa zdesna nalevo.
             </p>
           </SectionCard>
 
           <SectionCard title="Uslov da kompozicija ima smisla">
             <MathBlock>{"f:A\\to B,\\qquad g:B\\to C"}</MathBlock>
             <p>
-              Kodomen prve funkcije mora biti uskladjen sa domenom druge. Inace{" "}
+              Kodomen prve funkcije mora biti usklađen sa domenom druge. Inače{" "}
               <InlineMath>{"g(f(x))"}</InlineMath> nema smisla za sve elemente
               domena funkcije <InlineMath>{"f"}</InlineMath>.
             </p>
@@ -498,8 +498,8 @@ export default function Lesson4Page() {
         <MathBlock>{"(g\\circ f)(x)=g(2x+1)=(2x+1)^2"}</MathBlock>
         <MathBlock>{"(f\\circ g)(x)=f(x^2)=2x^2+1"}</MathBlock>
         <p style={{ color: "var(--lesson-muted)" }}>
-          Ova dva rezultata nisu ista, pa je vazno da redosled ne menjas
-          proizvoljno. U vecini slucajeva vazi{" "}
+          Ova dva rezultata nisu ista, pa je važno da redosled ne menjaš
+          proizvoljno. U većini slučajeva važi{" "}
           <InlineMath>{"g\\circ f \\ne f\\circ g"}</InlineMath>.
         </p>
 
@@ -508,7 +508,7 @@ export default function Lesson4Page() {
           answer={
             <p>
               Prvo radi <InlineMath>{"f"}</InlineMath>, jer je{" "}
-              <InlineMath>{"f(x)"}</InlineMath> unutrasnji deo zapisa. Tek onda
+              <InlineMath>{"f(x)"}</InlineMath> unutrašnji deo zapisa. Tek onda
               se na taj rezultat primenjuje <InlineMath>{"g"}</InlineMath>.
             </p>
           }
@@ -519,23 +519,23 @@ export default function Lesson4Page() {
       <LessonSection
         id="inverzna"
         eyebrow="6. Inverzna funkcija"
-        title="Inverz postoji samo kada svaka vrednost moze jedinstveno da se vrati na polazni ulaz"
-        description='Inverzna funkcija "ponistava" originalnu funkciju. To je moguce samo ako nijedna informacija nije izgubljena: svaki izlaz mora odgovarati tacno jednom ulazu. Zato je bijektivnost prirodan uslov.'
+        title="Inverz postoji samo kada svaka vrednost može jedinstveno da se vrati na polazni ulaz"
+        description='Inverzna funkcija "poništava" originalnu funkciju. To je moguće samo ako nijedna informacija nije izgubljena: svaki izlaz mora odgovarati tačno jednom ulazu. Zato je bijektivnost prirodan uslov.'
       >
         <div className={s.grid2}>
-          <SectionCard title="Kako se pise inverz">
+          <SectionCard title="Kako se piše inverz">
             <MathBlock>
               {
                 "f^{-1}:B\\to A, \\qquad f^{-1}(y)=x \\Longleftrightarrow f(x)=y"
               }
             </MathBlock>
             <p>
-              Inverzna funkcija menja uloge domena i kodomena i vraca te sa
+              Inverzna funkcija menja uloge domena i kodomena i vraća te sa
               izlaza na jedinstven polazni ulaz.
             </p>
           </SectionCard>
 
-          <SectionCard title="Zasto je potrebna bijekcija">
+          <SectionCard title="Zašto je potrebna bijekcija">
             <div style={{ display: "grid", gap: 10, marginTop: 14 }}>
               <div
                 style={{
@@ -546,7 +546,7 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                ako funkcija nije injektivna, jedan izlaz ima vise pretslika
+                ako funkcija nije injektivna, jedan izlaz ima više pretslika
               </div>
               <div
                 style={{
@@ -557,7 +557,7 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                ako funkcija nije surjektivna, neki elementi kodomena uopste
+                ako funkcija nije surjektivna, neki elementi kodomena uopšte
                 nemaju pretsliku
               </div>
               <div
@@ -569,21 +569,21 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                zato samo bijekcija dopusta inverz koji je opet funkcija
+                zato samo bijekcija dopušta inverz koji je opet funkcija
               </div>
             </div>
           </SectionCard>
         </div>
 
         <div className={s.grid2} style={{ marginTop: 16 }}>
-          <SectionCard title="Standardni algoritam za nalazenje inverza">
+          <SectionCard title="Standardni algoritam za nalaženje inverza">
             <div className={s.walkthrough}>
-              <WalkStep number={1} title="proveri da li je funkcija bijektivna ili ogranici domen tako da to postane" />
+              <WalkStep number={1} title="proveri da li je funkcija bijektivna ili ograniči domen tako da to postane" />
               <WalkStep
                 number={2}
                 title={
                   <>
-                    napisi <InlineMath>{"y=f(x)"}</InlineMath>
+                    napiši <InlineMath>{"y=f(x)"}</InlineMath>
                   </>
                 }
               />
@@ -601,7 +601,7 @@ export default function Lesson4Page() {
                 title={
                   <>
                     zameni oznake <InlineMath>{"x"}</InlineMath> i{" "}
-                    <InlineMath>{"y"}</InlineMath>, pa napisi{" "}
+                    <InlineMath>{"y"}</InlineMath>, pa napiši{" "}
                     <InlineMath>{"f^{-1}(x)"}</InlineMath>
                   </>
                 }
@@ -609,7 +609,7 @@ export default function Lesson4Page() {
             </div>
           </SectionCard>
 
-          <SectionCard title="Vazan kontraprimer">
+          <SectionCard title="Važan kontraprimer">
             <MathBlock>
               {"f:\\mathbb{R}\\to\\mathbb{R}, \\qquad f(x)=x^2"}
             </MathBlock>
@@ -617,8 +617,8 @@ export default function Lesson4Page() {
               Ova funkcija nema inverz na celoj{" "}
               <InlineMath>{"\\mathbb{R}"}</InlineMath>, jer{" "}
               <InlineMath>{"f(2)=f(-2)=4"}</InlineMath>, pa izlaz{" "}
-              <InlineMath>{"4"}</InlineMath> ne zna iz kog je ulaza dosao. Ako
-              domen ogranicis na <InlineMath>{"[0,\\infty)"}</InlineMath>, tada
+              <InlineMath>{"4"}</InlineMath> ne zna iz kog je ulaza došao. Ako
+              domen ograničiš na <InlineMath>{"[0,\\infty)"}</InlineMath>, tada
               inverz postaje <InlineMath>{"\\sqrt{x}"}</InlineMath>.
             </p>
           </SectionCard>
@@ -630,17 +630,17 @@ export default function Lesson4Page() {
           }
         </MathBlock>
         <p style={{ color: "var(--lesson-muted)" }}>
-          Kod linearnih funkcija ovaj postupak je obicno direktan. Tezi deo je
-          da ne zaboravis proveru domena i uslova za invertibilnost.
+          Kod linearnih funkcija ovaj postupak je obično direktan. Teži deo je
+          da ne zaboraviš proveru domena i uslova za invertibilnost.
         </p>
 
         <MicroCheck
-          question="Mikro-provera: da li zapis f^{-1}(x) znaci isto sto i 1/f(x)?"
+          question="Mikro-provera: da li zapis f^{-1}(x) znači isto što i 1/f(x)?"
           answer={
             <p>
-              Ne. <InlineMath>{"f^{-1}(x)"}</InlineMath> oznacava inverznu
+              Ne. <InlineMath>{"f^{-1}(x)"}</InlineMath> označava inverznu
               funkciju, a <InlineMath>{"\\frac{1}{f(x)}"}</InlineMath>{" "}
-              reciprocnu vrednost funkcije. Na primer, ako je{" "}
+              recipročnu vrednost funkcije. Na primer, ako je{" "}
               <InlineMath>{"f(x)=2x"}</InlineMath>, onda je{" "}
               <InlineMath>{"f^{-1}(x)=\\frac{x}{2}"}</InlineMath>, a{" "}
               <InlineMath>{"\\frac{1}{f(x)}=\\frac{1}{2x}"}</InlineMath>. To
@@ -650,17 +650,17 @@ export default function Lesson4Page() {
         />
       </LessonSection>
 
-      {/* ═══════════ 7. VODJENI PRIMERI ═══════════ */}
+      {/* ═══════════ 7. VOĐENI PRIMERI ═══════════ */}
       <LessonSection
         id="primeri"
-        eyebrow="7. Vodjeni primeri"
-        title="Tri tipicna pitanja koja moras umeti da resis samostalno"
-        description="Svaka kartica je pisana tako da vodi kroz prirodan redosled razmisljanja, a ne samo kroz formalne formule."
+        eyebrow="7. Vođeni primeri"
+        title="Tri tipična pitanja koja moraš umeti da rešiš samostalno"
+        description="Svaka kartica je pisana tako da vodi kroz prirodan redosled razmišljanja, a ne samo kroz formalne formule."
       >
         <div className={s.grid3}>
           <article className={s.exampleCard}>
             <h3 className={cs.tCardTitle}>
-              Klasifikacija konacne funkcije
+              Klasifikacija konačne funkcije
             </h3>
             <p>
               Data je funkcija{" "}
@@ -683,7 +683,7 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                Svaki ulaz ima tacno jednu sliku, dakle jeste funkcija.
+                Svaki ulaz ima tačno jednu sliku, dakle jeste funkcija.
               </div>
               <div
                 style={{
@@ -694,7 +694,7 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                Slike su razlicite, pa je funkcija injektivna.
+                Slike su različite, pa je funkcija injektivna.
               </div>
               <div
                 style={{
@@ -705,7 +705,7 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                Element <InlineMath>{"8"}</InlineMath> nije pogodjen, pa
+                Element <InlineMath>{"8"}</InlineMath> nije pogođen, pa
                 funkcija nije surjektivna.
               </div>
               <div
@@ -717,33 +717,33 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                Zakljucak: nije bijekcija, pa nema inverz na zadati kodomen.
+                Zaključak: nije bijekcija, pa nema inverz na zadati kodomen.
               </div>
             </div>
           </article>
 
           <article className={s.exampleCard}>
             <h3 className={cs.tCardTitle}>
-              Kompozicija bez greske u redosledu
+              Kompozicija bez greške u redosledu
             </h3>
             <p>
               Neka su <InlineMath>{"f(x)=x-3"}</InlineMath> i{" "}
-              <InlineMath>{"g(x)=x^2+1"}</InlineMath>. Nadji{" "}
+              <InlineMath>{"g(x)=x^2+1"}</InlineMath>. Nađi{" "}
               <InlineMath>{"(g\\circ f)(x)"}</InlineMath>.
             </p>
             <MathBlock>
               {"(g\\circ f)(x)=g(x-3)=(x-3)^2+1=x^2-6x+10"}
             </MathBlock>
             <p>
-              Najcesca greska je da neko napise{" "}
-              <InlineMath>{"f(g(x))"}</InlineMath>. Kompozicija mora da se cita
+              Najčešća greška je da neko napiše{" "}
+              <InlineMath>{"f(g(x))"}</InlineMath>. Kompozicija mora da se čita
               iznutra napolje.
             </p>
           </article>
 
           <article className={s.exampleCard}>
             <h3 className={cs.tCardTitle}>
-              Inverz kvadratne funkcije posle ogranicenja domena
+              Inverz kvadratne funkcije posle ograničenja domena
             </h3>
             <p>
               Posmatraj funkciju{" "}
@@ -796,12 +796,12 @@ export default function Lesson4Page() {
         </div>
       </LessonSection>
 
-      {/* ═══════════ 8. KLJUCNI ZAPISI ═══════════ */}
+      {/* ═══════════ 8. KLJUČNI ZAPISI ═══════════ */}
       <LessonSection
         id="zakoni"
-        eyebrow="8. Kljucni zapisi"
-        title="Formule i recenice koje treba da prepoznajes na prvi pogled"
-        description="Ove kartice nisu tu za bubanje napamet, nego da brze povezes simboliku sa znacenjem."
+        eyebrow="8. Ključni zapisi"
+        title="Formule i rečenice koje treba da prepoznaješ na prvi pogled"
+        description="Ove kartice nisu tu za bubanje napamet, nego da brže povežeš simboliku sa značenjem."
       >
         <div className={s.formulaGrid}>
           <FormulaCard
@@ -809,58 +809,58 @@ export default function Lesson4Page() {
             formula={"f:A\\to B"}
             note={
               <>
-                Cita se: funkcija <InlineMath>{"f"}</InlineMath> preslikava
+                Čita se: funkcija <InlineMath>{"f"}</InlineMath> preslikava
                 elemente skupa <InlineMath>{"A"}</InlineMath> u skup{" "}
                 <InlineMath>{"B"}</InlineMath>.
               </>
             }
           />
           <FormulaCard
-            title="Razliciti ulazi ostaju razliciti"
+            title="Različiti ulazi ostaju različiti"
             formula={"f(x_1)=f(x_2) \\Rightarrow x_1=x_2"}
             note="Ako se dve slike poklope, polazni ulazi moraju biti isti."
           />
           <FormulaCard
-            title="Svaki element kodomena je pogodjen"
+            title="Svaki element kodomena je pogođen"
             formula={"\\forall y \\in B \\; \\exists x \\in A:\\ f(x)=y"}
-            note='Ne proveravas "sve realne brojeve", nego bas zadati kodomen.'
+            note='Ne proveravaš "sve realne brojeve", nego baš zadati kodomen.'
           />
           <FormulaCard
-            title="Ulancavanje funkcija"
+            title="Ulančavanje funkcija"
             formula={"(g\\circ f)(x)=g(f(x))"}
-            note="Prvo se primenjuje unutrasnja funkcija, zatim spoljasnja."
+            note="Prvo se primenjuje unutrašnja funkcija, zatim spoljašnja."
           />
           <FormulaCard
             title="Povratak na ulaz"
             formula={"f^{-1}(y)=x \\Longleftrightarrow f(x)=y"}
-            note="Inverzna funkcija ponistava dejstvo originalne funkcije."
+            note="Inverzna funkcija poništava dejstvo originalne funkcije."
           />
           <FormulaCard
-            title="Najvazniji uslov"
+            title="Najvažniji uslov"
             formula={"f \\text{ bijektivna } \\Longleftrightarrow \\forall y\\in B\\ \\exists!\\,x\\in A:\\ f(x)=y"}
             note={
               <>
-                Znak <InlineMath>{"\\exists!"}</InlineMath> znaci &ldquo;postoji
-                tacno jedan&rdquo;. To je srz invertibilnosti.
+                Znak <InlineMath>{"\\exists!"}</InlineMath> znači &ldquo;postoji
+                tačno jedan&rdquo;. To je srž invertibilnosti.
               </>
             }
           />
         </div>
       </LessonSection>
 
-      {/* ═══════════ 9. CESTE GRESKE ═══════════ */}
+      {/* ═══════════ 9. ČESTE GREŠKE ═══════════ */}
       <LessonSection
         id="zamke"
-        eyebrow="9. Ceste greske"
-        title="Tipicne greske koje prave ucenici na zadacima o funkcijama"
-        description="Ovo nisu opsti saveti, vec konkretne greske koje se redovno pojavljuju u skolskim i prijemnim zadacima."
+        eyebrow="9. Česte greške"
+        title="Tipične greške koje prave učenici na zadacima o funkcijama"
+        description="Ovo nisu opšti saveti, već konkretne greške koje se redovno pojavljuju u školskim i prijemnim zadacima."
       >
         <div className={s.grid2}>
           <article className={s.tipCard}>
-            <h3 className={cs.tCardTitle}>Mesanje kodomena i slike</h3>
+            <h3 className={cs.tCardTitle}>Mešanje kodomena i slike</h3>
             <p>
-              Ako vidis da neki broj nije postignut, odmah zakljucis da funkcija
-              &ldquo;nije dobra&rdquo;. Ne: to znaci samo da mozda nije
+              Ako vidiš da neki broj nije postignut, odmah zaključiš da funkcija
+              &ldquo;nije dobra&rdquo;. Ne: to znači samo da možda nije
               surjektivna na dati kodomen.
             </p>
           </article>
@@ -869,17 +869,17 @@ export default function Lesson4Page() {
               Pretpostavka da je svaka formula automatski invertibilna
             </h3>
             <p>
-              Formula sama nije dovoljna. Moras proveriti da li je funkcija
-              bijektivna ili da li treba ograniciti domen.
+              Formula sama nije dovoljna. Moraš proveriti da li je funkcija
+              bijektivna ili da li treba ograničiti domen.
             </p>
           </article>
           <article className={s.tipCard}>
             <h3 className={cs.tCardTitle}>
-              Pogresan redosled u kompoziciji
+              Pogrešan redosled u kompoziciji
             </h3>
             <p>
-              <InlineMath>{"g\\circ f"}</InlineMath> nije isto sto i{" "}
-              <InlineMath>{"f\\circ g"}</InlineMath>. Citaj kompoziciju iznutra
+              <InlineMath>{"g\\circ f"}</InlineMath> nije isto što i{" "}
+              <InlineMath>{"f\\circ g"}</InlineMath>. Čitaj kompoziciju iznutra
               ka spolja.
             </p>
           </article>
@@ -889,8 +889,8 @@ export default function Lesson4Page() {
               <InlineMath>{"\\frac{1}{f(x)}"}</InlineMath>
             </h3>
             <p>
-              Jedno je inverzna funkcija, drugo reciprocna vrednost. Ove dve
-              stvari su skoro uvek razlicite.
+              Jedno je inverzna funkcija, drugo recipročna vrednost. Ove dve
+              stvari su skoro uvek različite.
             </p>
           </article>
         </div>
@@ -901,10 +901,10 @@ export default function Lesson4Page() {
         id="ispit"
         eyebrow="10. Veza sa prijemnim zadacima"
         title="Kako se tema zaista pojavljuje na ispitima"
-        description="Na prijemnom se retko trazi samo gola definicija. Obicno dobijas formulu i moras da zakljucis sta je domen, da li kompozicija ima smisla i pod kojim uslovom postoji inverz."
+        description="Na prijemnom se retko traži samo gola definicija. Obično dobijaš formulu i moraš da zaključiš šta je domen, da li kompozicija ima smisla i pod kojim uslovom postoji inverz."
       >
         <div className={s.grid2}>
-          <SectionCard title="Tipicne forme zadataka">
+          <SectionCard title="Tipične forme zadataka">
             <div style={{ display: "grid", gap: 10, marginTop: 14 }}>
               <div
                 style={{
@@ -915,7 +915,7 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                izracunaj <InlineMath>{"(g\\circ f)(x)"}</InlineMath> i{" "}
+                izračunaj <InlineMath>{"(g\\circ f)(x)"}</InlineMath> i{" "}
                 <InlineMath>{"(f\\circ g)(x)"}</InlineMath>
               </div>
               <div
@@ -927,7 +927,7 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                nadji <InlineMath>{"f^{-1}(x)"}</InlineMath> i proveri da li
+                nađi <InlineMath>{"f^{-1}(x)"}</InlineMath> i proveri da li
                 je dobijeni izraz smislen
               </div>
               <div
@@ -950,13 +950,13 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                zakljuci da li je data funkcija injektivna, surjektivna ili
+                zaključi da li je data funkcija injektivna, surjektivna ili
                 bijektivna
               </div>
             </div>
           </SectionCard>
 
-          <SectionCard title="Najcesce zamke na ispitu">
+          <SectionCard title="Najčešće zamke na ispitu">
             <div style={{ display: "grid", gap: 10, marginTop: 14 }}>
               <div
                 style={{
@@ -979,7 +979,7 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                zaboravljen kodomen, pa pogresna procena surjekcije
+                zaboravljen kodomen, pa pogrešna procena surjekcije
               </div>
               <div
                 style={{
@@ -990,7 +990,7 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                mehanicko resavanje bez provere da li je funkcija uopste
+                mehaničko rešavanje bez provere da li je funkcija uopšte
                 bijektivna
               </div>
               <div
@@ -1002,7 +1002,7 @@ export default function Lesson4Page() {
                   color: "var(--lesson-muted-strong)",
                 }}
               >
-                pogresna zamena mesta promenljivih pri nalazenju inverza
+                pogrešna zamena mesta promenljivih pri nalaženju inverza
               </div>
             </div>
           </SectionCard>
@@ -1010,23 +1010,23 @@ export default function Lesson4Page() {
 
         <InsightCard title="Prijemni kontrolna lista">
           <p>
-            Prvo napisi domen i kodomen, zatim proveri da li je pravilo zaista
+            Prvo napiši domen i kodomen, zatim proveri da li je pravilo zaista
             funkcija, potom ispitaj injekciju i surjekciju, a tek onda radi
             kompoziciju ili inverz.
           </p>
         </InsightCard>
       </LessonSection>
 
-      {/* ═══════════ 11. VEZBE ═══════════ */}
+      {/* ═══════════ 11. VEŽBE ═══════════ */}
       <LessonSection
         id="vezba"
-        eyebrow="11. Vezbe"
+        eyebrow="11. Vežbe"
         title="Kratka provera razumevanja"
-        description="Resi samostalno, pa tek onda otvori resenje. Zadrzi paznju na domenu, kodomenu i redosledu koraka."
+        description="Reši samostalno, pa tek onda otvori rešenje. Zadrži pažnju na domenu, kodomenu i redosledu koraka."
       >
         <div className={s.exerciseGrid}>
           <ExerciseCard
-            title="Zadatak 1: Klasifikacija konacne funkcije"
+            title="Zadatak 1: Klasifikacija konačne funkcije"
             problem={
               <p>
                 Data je funkcija{" "}
@@ -1043,9 +1043,9 @@ export default function Lesson4Page() {
             solution={
               <p>
                 Funkcija nije injektivna jer{" "}
-                <InlineMath>{"f(3)=f(4)=c"}</InlineMath> za razlicite ulaze.
+                <InlineMath>{"f(3)=f(4)=c"}</InlineMath> za različite ulaze.
                 Jeste surjektivna jer su svi elementi kodomena{" "}
-                <InlineMath>{"a,b,c"}</InlineMath> pogodjeni. Zato nije
+                <InlineMath>{"a,b,c"}</InlineMath> pogođeni. Zato nije
                 bijektivna.
               </p>
             }
@@ -1076,7 +1076,7 @@ export default function Lesson4Page() {
           />
 
           <ExerciseCard
-            title="Zadatak 3: Nadji inverz"
+            title="Zadatak 3: Nađi inverz"
             problem={
               <p>
                 Data je funkcija{" "}
@@ -1109,7 +1109,7 @@ export default function Lesson4Page() {
             problem={
               <p>
                 Ako su <InlineMath>{"f(x)=2x-3"}</InlineMath> i{" "}
-                <InlineMath>{"g(x)=x^2"}</InlineMath>, izracunaj{" "}
+                <InlineMath>{"g(x)=x^2"}</InlineMath>, izračunaj{" "}
                 <InlineMath>{"(f\\circ g)(x)"}</InlineMath> i{" "}
                 <InlineMath>{"(g\\circ f)(x)"}</InlineMath>.
               </p>
@@ -1119,7 +1119,7 @@ export default function Lesson4Page() {
                 <MathBlock>{"(f\\circ g)(x)=f(x^2)=2x^2-3"}</MathBlock>
                 <MathBlock>{"(g\\circ f)(x)=g(2x-3)=(2x-3)^2"}</MathBlock>
                 <p>
-                  Rezultati nisu isti, sto jos jednom pokazuje da redosled u
+                  Rezultati nisu isti, što još jednom pokazuje da redosled u
                   kompoziciji nije proizvoljan.
                 </p>
               </>
@@ -1130,14 +1130,14 @@ export default function Lesson4Page() {
 
       {/* ═══════════ GLAVNI UVID ═══════════ */}
       <LessonSection
-        eyebrow="Zavrsni uvid"
+        eyebrow="Završni uvid"
         title="Glavna poruka ove teme"
-        description="Dobar refleks nije da odmah racunas, nego da prvo proveris strukturu: da li pravilo zaista jeste funkcija, da li razlikuje ulaze, da li pogadja ceo kodomen i da li zato moze da se vrati unazad."
+        description="Dobar refleks nije da odmah računaš, nego da prvo proveriš strukturu: da li pravilo zaista jeste funkcija, da li razlikuje ulaze, da li pogađa ceo kodomen i da li zato može da se vrati unazad."
       >
-        <InsightCard title="Najvazniji princip">
+        <InsightCard title="Najvažniji princip">
           <MathBlock>
             {
-              "\\text{inverz postoji} \\qquad \\Longleftrightarrow \\qquad \\text{svaki izlaz ima tacno jednog pretsliku}"
+              "\\text{inverz postoji} \\qquad \\Longleftrightarrow \\qquad \\text{svaki izlaz ima tačno jednog pretsliku}"
             }
           </MathBlock>
         </InsightCard>
@@ -1145,57 +1145,57 @@ export default function Lesson4Page() {
 
       {/* ═══════════ ZAVRSNI REZIME ═══════════ */}
       <LessonSection
-        eyebrow="12. Zavrsni rezime"
-        title="Sta treba da zapamtis iz ove lekcije"
-        description="Ako ove tvrdnje mozes samostalno da objasnis, lekcija je sustinski savladana."
+        eyebrow="12. Završni rezime"
+        title="Šta treba da zapamtiš iz ove lekcije"
+        description="Ako ove tvrdnje možeš samostalno da objasniš, lekcija je suštinski savladana."
       >
         <div className={s.summaryGrid}>
           <article className={s.summaryCard}>
             <h3 className={cs.tCardTitle}>1. Definicija funkcije</h3>
             <p>
               Funkcija <InlineMath>{"f:A\\to B"}</InlineMath> svakom elementu
-              domena <InlineMath>{"A"}</InlineMath> dodeljuje tacno jednu sliku u
+              domena <InlineMath>{"A"}</InlineMath> dodeljuje tačno jednu sliku u
               kodomenu <InlineMath>{"B"}</InlineMath>.
             </p>
           </article>
           <article className={s.summaryCard}>
             <h3 className={cs.tCardTitle}>2. Domen, kodomen i slika</h3>
             <p>
-              Domen, kodomen i slika nisu isto; surjekcija se proverava bas prema
+              Domen, kodomen i slika nisu isto; surjekcija se proverava baš prema
               kodomenu.
             </p>
           </article>
           <article className={s.summaryCard}>
             <h3 className={cs.tCardTitle}>3. Injekcija</h3>
             <p>
-              Injekcija znaci da se razliciti ulazi ne sudaraju u istoj slici.
+              Injekcija znači da se različiti ulazi ne sudaraju u istoj slici.
             </p>
           </article>
           <article className={s.summaryCard}>
             <h3 className={cs.tCardTitle}>4. Surjekcija</h3>
             <p>
-              Surjekcija znaci da svaki element kodomena ima bar jednu pretsliku.
+              Surjekcija znači da svaki element kodomena ima bar jednu pretsliku.
             </p>
           </article>
           <article className={s.summaryCard}>
             <h3 className={cs.tCardTitle}>5. Bijekcija i inverz</h3>
             <p>
-              Bijekcija znaci &ldquo;i injekcija i surjekcija&rdquo;, pa
+              Bijekcija znači &ldquo;i injekcija i surjekcija&rdquo;, pa
               upravo tada postoji inverzna funkcija.
             </p>
           </article>
           <article className={s.summaryCard}>
             <h3 className={cs.tCardTitle}>6. Kompozicija</h3>
             <p>
-              Kompozicija se racuna zdesna nalevo: najpre unutrasnja funkcija, pa
-              spoljasnja.
+              Kompozicija se računa zdesna nalevo: najpre unutrašnja funkcija, pa
+              spoljašnja.
             </p>
           </article>
         </div>
 
         <p className={cs.footerNote}>
-          Sledeci prirodan korak je da isti jezik funkcija prepoznas u
-          konkretnim tipovima funkcija i jednacina koje dolaze kasnije kroz
+          Sledeći prirodan korak je da isti jezik funkcija prepoznaš u
+          konkretnim tipovima funkcija i jednačina koje dolaze kasnije kroz
           algebru i analizu.
         </p>
       </LessonSection>

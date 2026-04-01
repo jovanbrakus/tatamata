@@ -102,7 +102,7 @@ function domainLatex(p: number): string {
 }
 
 function asymptoteLatex(p: number, a: number): string {
-  const mono = a > 1 ? "\\text{Rastuca}" : "\\text{Opadajuca}";
+  const mono = a > 1 ? "\\text{Rastuća}" : "\\text{Opadajuća}";
   return `x=${latexNum(p)},\\quad ${mono}`;
 }
 
@@ -403,7 +403,7 @@ export default function LogGraphLab() {
         <div className={s.interactiveCard}>
           <h3 className={cs.tCardTitle}>Kontrole</h3>
           <p style={{ fontSize: "0.92rem", color: "var(--lesson-muted)" }}>
-            Za svaku novu postavku pokusaj najpre da sam predvidis: domen, asimptotu i smer grafa.
+            Za svaku novu postavku pokušaj najpre da sam predvidiš: domen, asimptotu i smer grafa.
           </p>
 
           <div className={s.rangeWrap}>
@@ -434,7 +434,7 @@ export default function LogGraphLab() {
               ))}
             </select>
             <span style={{ fontSize: "0.88rem", color: "var(--lesson-muted)" }}>
-              Prve dve baze odmah otkrivaju razliku izmedju rastuceg i opadajuceg logaritma.
+              Prve dve baze odmah otkrivaju razliku između rastućeg i opadajućeg logaritma.
             </span>
           </div>
 
@@ -474,13 +474,13 @@ export default function LogGraphLab() {
               onChange={(e) => setQ(Number(e.target.value))}
             />
             <span style={{ fontSize: "0.88rem", color: "var(--lesson-muted)" }}>
-              Menja visinu karakteristicnih tacaka, ali ne menja domen.
+              Menja visinu karakterističnih tačaka, ali ne menja domen.
             </span>
           </div>
 
           <div className={s.rangeWrap}>
             <label>
-              Probna tacka <em>x</em>{" "}
+              Probna tačka <em>x</em>{" "}
               <span style={{ color: "var(--lesson-primary-soft)" }}>
                 {fmt(state.xProbe)}
               </span>
@@ -546,14 +546,14 @@ export default function LogGraphLab() {
           <strong>Trenutna funkcija</strong>
           <MathJax dynamic>{`\\(${formulaLatex(state.base, state.p, state.q)}\\)`}</MathJax>
           <p style={{ fontSize: "0.88rem", color: "var(--lesson-muted)", marginTop: 4 }}>
-            Ovo je logaritamska funkcija koju trenutno crtas.
+            Ovo je logaritamska funkcija koju trenutno crtaš.
           </p>
         </div>
         <div className={s.resultCard}>
           <strong>Inverzna funkcija</strong>
           <MathJax dynamic>{`\\(${inverseLatex(state.base, state.p, state.q)}\\)`}</MathJax>
           <p style={{ fontSize: "0.88rem", color: "var(--lesson-muted)", marginTop: 4 }}>
-            Ljubicasta kriva na grafiku.
+            Ljubičasta kriva na grafiku.
           </p>
         </div>
         <div className={s.resultCard}>
@@ -571,17 +571,17 @@ export default function LogGraphLab() {
           </p>
         </div>
         <div className={s.resultCard}>
-          <strong>Karakteristicne tacke</strong>
+          <strong>Karakteristične tačke</strong>
           <MathJax dynamic>{`\\(${keyPointsLatex(state.base, state.p, state.q)}\\)`}</MathJax>
           <p style={{ fontSize: "0.88rem", color: "var(--lesson-muted)", marginTop: 4 }}>
-            Tacke za argument 1, a i 1/a.
+            Tačke za argument 1, a i 1/a.
           </p>
         </div>
         <div className={s.resultCard}>
-          <strong>Vrednost u probnoj tacki</strong>
+          <strong>Vrednost u probnoj tački</strong>
           <MathJax dynamic>{`\\(${probeLatex(state.base, state.p, state.q, state.xProbe)}\\)`}</MathJax>
           <p style={{ fontSize: "0.88rem", color: "var(--lesson-muted)", marginTop: 4 }}>
-            Koristi je da proveris citanje funkcije bez kalkulatora.
+            Koristi je da proveriš čitanje funkcije bez kalkulatora.
           </p>
         </div>
       </div>

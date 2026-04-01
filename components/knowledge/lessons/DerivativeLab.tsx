@@ -36,7 +36,7 @@ const PRESETS: FunctionPreset[] = [
     ruleName: "Linearnost i stepena funkcija",
     ruleFormula: "(x^n)'=nx^{n-1},\\qquad (u\\pm v)'=u'\\pm v'",
     advice:
-      "Ovde nema proizvoda ni kolicnika. Polinom se diferencira clan po clan.",
+      "Ovde nema proizvoda ni količnika. Polinom se diferencira član po član.",
     evaluate: (x) => x * x * x - 3 * x + 1,
     derivativeAt: (x) => 3 * x * x - 3,
   },
@@ -52,7 +52,7 @@ const PRESETS: FunctionPreset[] = [
     ruleName: "Pravilo proizvoda",
     ruleFormula: "(uv)'=u'v+uv'",
     advice:
-      "Ako pomnozis izvode, promasio si pravilo. Oba clana moraju da se zapisu.",
+      "Ako pomnožiš izvode, promašio si pravilo. Oba člana moraju da se zapišu.",
     evaluate: (x) => x * x * Math.sin(x),
     derivativeAt: (x) => 2 * x * Math.sin(x) + x * x * Math.cos(x),
   },
@@ -65,7 +65,7 @@ const PRESETS: FunctionPreset[] = [
     initial: 0.2,
     formula: "f(x)=\\frac{x^2+1}{x+2}",
     derivative: "f'(x)=\\frac{x^2+4x-1}{(x+2)^2}",
-    ruleName: "Pravilo kolicnika",
+    ruleName: "Pravilo količnika",
     ruleFormula: "\\left(\\frac{u}{v}\\right)'=\\frac{u'v-uv'}{v^2}",
     advice:
       "Brojilac i imenilac se ne diferenciraju odvojeno. Redosled u brojniku je bitan.",
@@ -84,7 +84,7 @@ const PRESETS: FunctionPreset[] = [
     ruleName: "Pravilo lanca",
     ruleFormula: "(u\\circ v)'(x)=u'(v(x))\\cdot v'(x)",
     advice:
-      "Spolja diferenciras cetvrti stepen, unutra ostaje 3x\u00B2+1, a na kraju obavezno mnozis sa 6x.",
+      "Spolja diferenciraš četvrti stepen, unutra ostaje 3x\u00B2+1, a na kraju obavezno množiš sa 6x.",
     evaluate: (x) => Math.pow(3 * x * x + 1, 4),
     derivativeAt: (x) => 24 * x * Math.pow(3 * x * x + 1, 3),
   },
@@ -100,7 +100,7 @@ const PRESETS: FunctionPreset[] = [
     ruleName: "Pravilo lanca na korenu",
     ruleFormula: "\\bigl(\\sqrt{u(x)}\\bigr)'=\\frac{u'(x)}{2\\sqrt{u(x)}}",
     advice:
-      "Koren je spoljasnja funkcija. Posto je unutrasnji izvod jednak 2, formula se sredjuje.",
+      "Koren je spoljašnja funkcija. Pošto je unutrašnji izvod jednak 2, formula se sređuje.",
     evaluate: (x) => Math.sqrt(2 * x + 3),
     derivativeAt: (x) => 1 / Math.sqrt(2 * x + 3),
   },
@@ -113,10 +113,10 @@ const PRESETS: FunctionPreset[] = [
     initial: 0.7,
     formula: "f(x)=\\sin(2x^2-1)",
     derivative: "f'(x)=4x\\cos(2x^2-1)",
-    ruleName: "Trigonometrijska slozena funkcija",
+    ruleName: "Trigonometrijska složena funkcija",
     ruleFormula: "(\\sin u(x))'=\\cos(u(x))\\cdot u'(x)",
     advice:
-      "Najcesca greska je da se stane na kosinusu. Faktor 4x ne sme da se izostavi.",
+      "Najčešća greška je da se stane na kosinusu. Faktor 4x ne sme da se izostavi.",
     evaluate: (x) => Math.sin(2 * x * x - 1),
     derivativeAt: (x) => 4 * x * Math.cos(2 * x * x - 1),
   },
@@ -347,7 +347,7 @@ export default function DerivativeLab() {
 
           <div className={s.rangeWrap}>
             <label>
-              Tacka dodira{" "}
+              Tačka dodira{" "}
               <span style={{ color: "var(--lesson-primary-soft)" }}>
                 x&#8320; = {fmt(x0)}
               </span>
@@ -366,9 +366,9 @@ export default function DerivativeLab() {
             className={s.labNote}
             style={{ marginTop: 16, fontSize: "0.92rem" }}
           >
-            Narandzasto: graf funkcije. Plavo: tangenta u tacki x&#8320;. Bela
-            tacka: polozaj (x&#8320;, f(x&#8320;)). Kada je tangenta strmo
-            rastuca, izvod je velik i pozitivan; kada pada, izvod je negativan.
+            Narandžasto: graf funkcije. Plavo: tangenta u tački x&#8320;. Bela
+            tačka: položaj (x&#8320;, f(x&#8320;)). Kada je tangenta strmo
+            rastuća, izvod je velik i pozitivan; kada pada, izvod je negativan.
           </p>
         </div>
 
@@ -403,7 +403,7 @@ export default function DerivativeLab() {
           <MathJax dynamic>{`\\(${preset.derivative}\\)`}</MathJax>
         </div>
         <div className={s.resultCard}>
-          <strong>U tacki x&#8320;</strong>
+          <strong>U tački x&#8320;</strong>
           <MathJax dynamic>
             {`\\(f(${fmt(x0)})=${fmt(y0)},\\quad f'(${fmt(x0)})=${fmt(slope)}\\)`}
           </MathJax>

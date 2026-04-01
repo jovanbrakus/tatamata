@@ -295,7 +295,7 @@ function centersReadout(
   // all
   return {
     r1: "Sve četiri konstrukcije daju različite centre, ali ne i iste osobine.",
-    r1t: "G i I su uvek unutra; H i O zavise od tipa trougla.",
+    r1t: "G i I su uvek unutra; H i O zaviše od tipa trougla.",
     r2: "Ojlerova prava povezuje O, G i H.",
     r2t: "Kod opšteg trougla ove tri tačke su kolinearne, a važi i odnos OG:GH = 1:2.",
     r3: `Trenutni trougao je ${tp}.`,
@@ -1020,7 +1020,7 @@ export default function Lesson42Page() {
         id="podudarnost"
         eyebrow="Podudarnost trouglova"
         title="Podudarni trouglovi imaju isti oblik i istu veličinu"
-        description="Dva trougla su podudarna ako se mogu poklopiti bez rastezanja. To znači da su im odgovarajuće stranice jednake i odgovarajući uglovi jednaki. U praksi ne proveravaš baš sve odjednom, nego koristiš dovoljne kriterijume."
+        description="Dva trougla su podudarna ako se mogu poklopiti bez rastežanja. To znači da su im odgovarajuće stranice jednake i odgovarajući uglovi jednaki. U praksi ne proveravaš baš sve odjednom, nego koristiš dovoljne kriterijume."
       >
         {/* Criteria table */}
         <div style={{ overflowX: "auto" }}>
@@ -1490,7 +1490,7 @@ export default function Lesson42Page() {
               Težište <InlineMath>{"G"}</InlineMath> i centar upisane kružnice{" "}
               <InlineMath>{"I"}</InlineMath> su uvek unutar trougla. Ortocentar{" "}
               <InlineMath>{"H"}</InlineMath> i centar opisane kružnice{" "}
-              <InlineMath>{"O"}</InlineMath> zavise od tipa trougla.
+              <InlineMath>{"O"}</InlineMath> zaviše od tipa trougla.
             </p>
           }
         />
@@ -1526,7 +1526,7 @@ export default function Lesson42Page() {
             <p>
               Kad se u trouglu pojavi prava paralelna jednoj stranici, ne kreći
               od Pitagore. Najpre napiši sličnost manjih i većih trouglova, pa
-              zatim izvuci proporcije za duži.
+              zatim izvuči proporcije za duži.
             </p>
           </SectionCard>
           <SectionCard title="Primer 3: tip trougla određuje položaj centra">
@@ -1916,7 +1916,7 @@ export default function Lesson42Page() {
               <InlineMath>{"G"}</InlineMath> i{" "}
               <InlineMath>{"I"}</InlineMath> su uvek unutra;{" "}
               <InlineMath>{"H"}</InlineMath> i{" "}
-              <InlineMath>{"O"}</InlineMath> zavise od toga da li je trougao
+              <InlineMath>{"O"}</InlineMath> zaviše od toga da li je trougao
               oštrougli, pravougli ili tupougli.
             </p>
           </SectionCard>

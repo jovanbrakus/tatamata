@@ -173,8 +173,8 @@ function getCountdown(targetDate: string | null) {
 
 function getMotivationalMessage(): string {
   const messages = [
-    "Danas je odlican dan za naprednu trigonometriju.",
-    "Svaki reseni zadatak te priblizava cilju!",
+    "Danas je odličan dan za naprednu trigonometriju.",
+    "Svaki rešeni zadatak te približava cilju!",
     "Fokus i upornost donose rezultate.",
     "Nastavi tako, na dobrom si putu!",
     "Matematika je jezik univerzuma.",

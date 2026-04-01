@@ -396,13 +396,13 @@ function drawGraph(
   ctx.fillText("x", width - 18, axisX - 8);
   ctx.fillText("y", axisY + 10, 14);
   ctx.fillStyle = theme.domainLabel;
-  ctx.fillText(`domena pocinje od x=${fmt(domainStart)}`, 18, 24);
+  ctx.fillText(`domena počinje od x=${fmt(domainStart)}`, 18, 24);
   ctx.fillStyle = theme.sqrtLabel;
   ctx.fillText(`y=sqrt(${fmtLinear(p)})`, 18, 44);
   ctx.fillStyle = theme.lineLabel;
   ctx.fillText(`y=${fmtLinear(q)}`, 18, 64);
   ctx.fillStyle = theme.solutionLabel;
-  ctx.fillText(`resenje za znak ${op}`, 18, 84);
+  ctx.fillText(`rešenje za znak ${op}`, 18, 84);
 }
 
 function drawLine(
@@ -433,7 +433,7 @@ function drawLine(
   drawIntervals(ctx, width, y, solution, theme.solutionColor, theme.openCircleBg);
   ctx.fillStyle = theme.hintText;
   ctx.font = '12px "Public Sans", system-ui, sans-serif';
-  ctx.fillText("Brojevna prava: obojen je skup resenja u prikazanom prozoru.", 18, 24);
+  ctx.fillText("Brojevna prava: obojen je skup rešenja u prikazanom prozoru.", 18, 24);
 }
 
 /* ── Preset definitions ── */
@@ -491,24 +491,24 @@ export default function IrrationalInequalityLab() {
   if (isGtType) {
     branch1Latex = `\\begin{cases} ${rad}\\ge 0 \\\\ ${line}<0 \\end{cases}`;
     branch1Note = firstBranch.length
-      ? `Ovde je nejednacina automatski tacna. Ova grana daje ${setToPlain(firstBranch)}.`
-      : "Ova automatski tacna grana je prazna za izabrane parametre.";
+      ? `Ovde je nejednačina automatski tačna. Ova grana daje ${setToPlain(firstBranch)}.`
+      : "Ova automatski tačna grana je prazna za izabrane parametre.";
   } else {
     if (op === "<=") {
-      branch1Latex = `${line}<0 \\Rightarrow \\sqrt{${rad}}\\le ${line}\\ \\text{nema resenja}`;
+      branch1Latex = `${line}<0 \\Rightarrow \\sqrt{${rad}}\\le ${line}\\ \\text{nema rešenja}`;
     } else {
-      branch1Latex = `${line}\\le 0 \\Rightarrow \\sqrt{${rad}}< ${line}\\ \\text{nema resenja}`;
+      branch1Latex = `${line}\\le 0 \\Rightarrow \\sqrt{${rad}}< ${line}\\ \\text{nema rešenja}`;
     }
-    branch1Note = "Kod znakova < i <= negativna ili nepozitivna desna strana ne pomaze, nego iskljucuje resenja.";
+    branch1Note = "Kod znakova < i <= negativna ili nepozitivna desna strana ne pomaže, nego isključuje rešenja.";
   }
 
   /* branch 2 description */
   const signCond = op === "<" ? `${line}>0` : `${line}\\ge 0`;
   const sqSign = op === ">=" ? "\\ge" : op === ">" ? ">" : op === "<=" ? "\\le" : "<";
   const branch2Latex = `\\begin{cases} ${rad}\\ge 0 \\\\ ${signCond} \\\\ ${rad} ${sqSign} (${line})^2 \\end{cases}`;
-  let branch2Note = `U ovoj grani resavas odnos ${rad} ${op} (${line})^2 uz uslove domene i znaka desne strane.`;
+  let branch2Note = `U ovoj grani rešavaš odnos ${rad} ${op} (${line})^2 uz uslove domene i znaka desne strane.`;
   if (secondData.roots) {
-    branch2Note += ` D=${fmt(secondData.discriminant)}, karakteristicne tacke su priblizno ${fmt(secondData.roots[0])} i ${fmt(secondData.roots[1])}.`;
+    branch2Note += ` D=${fmt(secondData.discriminant)}, karakteristične tačke su približno ${fmt(secondData.roots[0])} i ${fmt(secondData.roots[1])}.`;
   } else {
     branch2Note += ` D=${fmt(secondData.discriminant)}, pa kvadratna grana nema realne nule.`;
   }
@@ -556,8 +556,8 @@ export default function IrrationalInequalityLab() {
               />
             </div>
             <p style={{ marginTop: 8 }}>
-              Model koristi <InlineMath dynamic>{`\\sqrt{${fmtLinear(p)}}`}</InlineMath>. Veci{" "}
-              <InlineMath>{"p"}</InlineMath> pomera pocetak domene ulevo.
+              Model koristi <InlineMath dynamic>{`\\sqrt{${fmtLinear(p)}}`}</InlineMath>. Veći{" "}
+              <InlineMath>{"p"}</InlineMath> pomera početak domene ulevo.
             </p>
           </div>
 
@@ -578,7 +578,7 @@ export default function IrrationalInequalityLab() {
             </div>
             <p style={{ marginTop: 8 }}>
               Desna strana je <InlineMath dynamic>{fmtLinear(q)}</InlineMath>. Njena nula
-              odredjuje gde se logika zadatka lomi.
+              određuje gde se logika zadatka lomi.
             </p>
           </div>
 
@@ -594,7 +594,7 @@ export default function IrrationalInequalityLab() {
             </div>
             <p style={{ marginTop: 8 }}>
               Menjaj znak i posmatraj kako negativna desna strana prelazi iz
-              pomoci u prepreku.
+              pomoći u prepreku.
             </p>
           </div>
 
@@ -613,16 +613,16 @@ export default function IrrationalInequalityLab() {
                     }
                     onClick={() => applyPreset(name)}
                   >
-                    {name === "classic" && "Klasicna zamka"}
+                    {name === "classic" && "Klasična zamka"}
                     {name === "strict" && "Strogo manje"}
-                    {name === "wide" && "Siroka domena"}
-                    {name === "impossible" && "Skoro nemoguce"}
+                    {name === "wide" && "Široka domena"}
+                    {name === "impossible" && "Skoro nemoguće"}
                   </button>
                 )
               )}
             </div>
             <p style={{ marginTop: 8 }}>
-              Preseti sluze da brzo vidis razlicite tipove zadataka i nacin
+              Preseti služe da brzo vidiš različite tipove zadataka i način
               grananja.
             </p>
           </div>
@@ -658,10 +658,10 @@ export default function IrrationalInequalityLab() {
               borderColor: "rgba(255,154,106,0.22)",
             }}
           >
-            <strong>Skup resenja</strong>
+            <strong>Skup rešenja</strong>
             <InlineMath dynamic>{setToLatex(solution)}</InlineMath>
             <p style={{ color: "var(--lesson-muted)", marginTop: 6, fontSize: "0.92rem" }}>
-              Konacno resenje dobijes kao uniju prve i druge grane.
+              Konačno rešenje dobiješ kao uniju prve i druge grane.
             </p>
           </div>
         </div>
@@ -690,11 +690,11 @@ export default function IrrationalInequalityLab() {
             color: "var(--lesson-muted)",
           }}
         >
-          Napomena: ova laboratorija resava tacno model{" "}
-          <InlineMath>{"\\sqrt{x+p}\\,\\square\\,(x+q)"}</InlineMath>. Za opsti
+          Napomena: ova laboratorija rešava tačno model{" "}
+          <InlineMath>{"\\sqrt{x+p}\\,\\square\\,(x+q)"}</InlineMath>. Za opšti
           oblik{" "}
           <InlineMath>{"\\sqrt{A(x)}\\,\\square\\,B(x)"}</InlineMath> koristi
-          istu logiku, ali racun u drugoj grani moze biti slozeniji.
+          istu logiku, ali račun u drugoj grani može biti složeniji.
         </p>
       </div>
     </div>

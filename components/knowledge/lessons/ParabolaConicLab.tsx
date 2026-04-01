@@ -251,7 +251,7 @@ export default function ParabolaConicLab() {
   const [lVal, setLVal] = useState(2.0);
   const [mode, setMode] = useState<Mode>("tangent");
   const [captionText, setCaptionText] = useState(
-    "Savet: prvo klikni na preset Tangenta, pa onda malo pomeraj klizac za l levo i desno da vidis prelaz izmedju tri polozaja prave."
+    "Savet: prvo klikni na preset Tangenta, pa onda malo pomeraj klizač za l levo i desno da vidiš prelaz između tri položaja prave."
   );
   const [summaryText, setSummaryText] = useState("");
   const [relationText, setRelationText] = useState("");
@@ -267,34 +267,34 @@ export default function ParabolaConicLab() {
     const relationValue = 2 * state.k * state.l;
     const tIntercept = tangentLValue(state.p, state.k);
     setRelationText(
-      `Trenutno je 2kl = ${relationValue.toFixed(2)}, a p = ${state.p.toFixed(2)}. Za isti p i k, tangentni polozaj bi imao l \u2248 ${tIntercept.toFixed(2)}.`
+      `Trenutno je 2kl = ${relationValue.toFixed(2)}, a p = ${state.p.toFixed(2)}. Za isti p i k, tangentni položaj bi imao l \u2248 ${tIntercept.toFixed(2)}.`
     );
 
     if (curMode === "tangent") {
       const x0 = state.p / (2 * state.k * state.k);
       const y0 = state.p / state.k;
       setSummaryText(
-        `Vazi 2kl \u2248 p, pa je prava tangenta. Tacka dodira je priblizno (${x0.toFixed(2)}, ${y0.toFixed(2)}).`
+        `Važi 2kl \u2248 p, pa je prava tangenta. Tačka dodira je približno (${x0.toFixed(2)}, ${y0.toFixed(2)}).`
       );
       setCaptionText(
-        "Prava je u granicnom polozaju. Ako sada malo povecas ili smanjs l, videces kako tangenta prelazi u secicu ili spoljasnju pravu."
+        "Prava je u graničnom položaju. Ako sada malo povećaš ili smanjiš l, videćeš kako tangenta prelazi u sečicu ili spoljašnju pravu."
       );
     } else if (curMode === "secant") {
       const pointText = points
         .map((pt) => `(${pt.x.toFixed(2)}, ${pt.y.toFixed(2)})`)
         .join(" i ");
       setSummaryText(
-        `Posto je p > 2kl, sistem daje dve realne tacke preseka: ${pointText}.`
+        `Pošto je p > 2kl, sistem daje dve realne tačke preseka: ${pointText}.`
       );
       setCaptionText(
-        "Ovde prava probija parabolu. Da bi postala tangenta, moras je pomeriti tako da odrzis isti nagib, ali preciznije podesis l."
+        "Ovde prava probija parabolu. Da bi postala tangenta, moraš je pomeriti tako da održiš isti nagib, ali preciznije podesiš l."
       );
     } else {
       setSummaryText(
-        "Posto je p < 2kl, prava nema realan presek sa parabolom. Upravo iz ovog polozaja se vidi zasto je tangenta granica izmedju preseka i promasaja."
+        "Pošto je p < 2kl, prava nema realan presek sa parabolom. Upravo iz ovog položaja se vidi zašto je tangenta granica između preseka i promašaja."
       );
       setCaptionText(
-        "Ovo je odlican polozaj za razmisljanje o minimalnoj distanci: najbliza paralelna prava nece ostati spoljasnja, nego ce sici do tacnog tangencijalnog polozaja."
+        "Ovo je odličan položaj za razmišljanje o minimalnoj distanci: najbliža paralelna prava neće ostati spoljašnja, nego će sići do tačnog tangencijalnog položaja."
       );
     }
   }, [pVal, kVal, lVal]);
@@ -325,8 +325,8 @@ export default function ParabolaConicLab() {
     mode === "tangent"
       ? "Tangenta"
       : mode === "secant"
-        ? "Secica"
-        : "Spoljasnja prava";
+        ? "Sečica"
+        : "Spoljašnja prava";
 
   const modeStyle =
     mode === "tangent"
@@ -465,7 +465,7 @@ export default function ParabolaConicLab() {
           </div>
 
           <div className={s.field}>
-            <label>Kljucna relacija</label>
+            <label>Ključna relacija</label>
             <div
               style={{
                 padding: "16px 18px",
@@ -483,13 +483,13 @@ export default function ParabolaConicLab() {
 
         <div className={cs.presetRow} style={{ marginTop: 18 }}>
           <button className={s.presetBtn} onClick={() => applyPreset("secant")}>
-            Secica
+            Sečica
           </button>
           <button className={s.presetBtn} onClick={() => applyPreset("tangent")}>
             Tangenta
           </button>
           <button className={s.presetBtn} onClick={() => applyPreset("outside")}>
-            Spoljasnja
+            Spoljašnja
           </button>
           <button className={s.presetBtn} onClick={() => applyPreset("distance")}>
             Minimum distance
@@ -507,9 +507,9 @@ export default function ParabolaConicLab() {
             fontSize: "0.92rem",
           }}
         >
-          Napomena: klizac za k namerno izbegava nulu, jer formula p=2kl opisuje
+          Napomena: klizač za k namerno izbegava nulu, jer formula p=2kl opisuje
           tangente zapisane kao y=kx+l. Vertikalna tangenta u temenu x=0 je
-          poseban slucaj.
+          poseban slučaj.
         </div>
       </div>
     </div>

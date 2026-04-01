@@ -35,7 +35,7 @@ const OPERATIONS: Record<OpKey, Operation> = {
     label: "A \\cup B",
     formula: "A \\cup B",
     description:
-      "Unija sadrzi sve elemente koji se nalaze u skupu A, u skupu B, ili u oba skupa odjednom.",
+      "Unija sadrži sve elemente koji se nalaze u skupu A, u skupu B, ili u oba skupa odjednom.",
     contains: (r) => r === "Aonly" || r === "Bonly" || r === "both",
     highlightRegions: ["Aonly", "Bonly", "both"],
   },
@@ -43,7 +43,7 @@ const OPERATIONS: Record<OpKey, Operation> = {
     label: "A \\cap B",
     formula: "A \\cap B",
     description:
-      "Presek zadrzava samo elemente koji pripadaju i skupu A i skupu B.",
+      "Presek zadržava samo elemente koji pripadaju i skupu A i skupu B.",
     contains: (r) => r === "both",
     highlightRegions: ["both"],
   },
@@ -51,7 +51,7 @@ const OPERATIONS: Record<OpKey, Operation> = {
     label: "A \\setminus B",
     formula: "A \\setminus B",
     description:
-      "Razlika A \\ B sadrzi elemente koji su u A, ali nisu u B.",
+      "Razlika A \\ B sadrži elemente koji su u A, ali nisu u B.",
     contains: (r) => r === "Aonly",
     highlightRegions: ["Aonly"],
   },
@@ -59,7 +59,7 @@ const OPERATIONS: Record<OpKey, Operation> = {
     label: "B \\setminus A",
     formula: "B \\setminus A",
     description:
-      "Razlika B \\ A sadrzi elemente koji su u B, ali nisu u A.",
+      "Razlika B \\ A sadrži elemente koji su u B, ali nisu u A.",
     contains: (r) => r === "Bonly",
     highlightRegions: ["Bonly"],
   },
@@ -67,7 +67,7 @@ const OPERATIONS: Record<OpKey, Operation> = {
     label: "A \\triangle B",
     formula: "A \\triangle B",
     description:
-      "Simetricna razlika sadrzi elemente koji pripadaju tacno jednom od skupova, ali ne i preseku.",
+      "Simetrična razlika sadrži elemente koji pripadaju tačno jednom od skupova, ali ne i preseku.",
     contains: (r) => r === "Aonly" || r === "Bonly",
     highlightRegions: ["Aonly", "Bonly"],
   },
@@ -169,7 +169,7 @@ export default function VennDiagramLab() {
     ctx.fillStyle = T.muted;
     ctx.font = '400 14px "Public Sans", system-ui, sans-serif';
     ctx.fillText(
-      "Klikni broj u dijagramu i proveri pripadnost rezultujucem skupu",
+      "Klikni broj u dijagramu i proveri pripadnost rezultujućem skupu",
       26,
       66
     );
@@ -285,7 +285,7 @@ export default function VennDiagramLab() {
     ctx.textAlign = "left";
     ctx.textBaseline = "alphabetic";
     ctx.fillText(
-      "Zelenkasto obelezeni elementi pripadaju trenutno izabranoj operaciji.",
+      "Zelenkasto obeleženi elementi pripadaju trenutno izabranoj operaciji.",
       28,
       H - 22
     );

@@ -175,27 +175,27 @@ export default function SystemLab() {
   let countText: string;
   let interpText: string;
   if (sol.kind === "all") {
-    countText = "Beskonacno mnogo resenja";
+    countText = "Beskonačno mnogo rešenja";
     interpText =
-      "Dve krive se potpuno poklapaju, pa je svaka njihova tacka resenje sistema.";
+      "Dve krive se potpuno poklapaju, pa je svaka njihova tačka rešenje sistema.";
   } else if (points.length === 0) {
-    countText = "0 realnih resenja";
+    countText = "0 realnih rešenja";
     interpText =
       sol.discriminant !== null
         ? `Posle redukcije diskriminanta je negativna: \u0394 = ${fmt(sol.discriminant!)}.`
-        : "Krive se u realnoj ravni ne seku.";
+        : "Krive se u realnoj ravni ne seku."
   } else if (points.length === 1) {
-    countText = "1 realno resenje";
+    countText = "1 realno rešenje";
     interpText =
       sol.discriminant !== null
         ? `Jedan dodir. \u0394 = ${fmt(sol.discriminant!)}.`
-        : "Redukcija vodi na linearnu jednacinu ili dvostruki koren.";
+        : "Redukcija vodi na linearnu jednačinu ili dvostruki koren.";
   } else {
-    countText = `${points.length} realna resenja`;
+    countText = `${points.length} realna rešenja`;
     interpText =
       sol.discriminant !== null
         ? `Dva preseka. \u0394 = ${fmt(sol.discriminant!)}.`
-        : "Broj preseka potice iz jednacine posle zamene.";
+        : "Broj preseka potiče iz jednačine posle zamene.";
   }
 
   const solLatex = (() => {
@@ -610,16 +610,16 @@ export default function SystemLab() {
           <h3 className={cs.tCardTitle}>Analiza sistema</h3>
           <div className={s.resultsGrid}>
             <div className={s.resultCard}>
-              <strong>Jednacine krivih</strong>
+              <strong>Jednačine krivih</strong>
               <MathJax dynamic>{`\\[${curve1Latex}\\]`}</MathJax>
               <MathJax dynamic>{`\\[${curve2Latex}\\]`}</MathJax>
             </div>
             <div className={s.resultCard}>
-              <strong>Posle zamene / izjednacavanja</strong>
+              <strong>Posle zamene / izjednačavanja</strong>
               <MathJax dynamic>{`\\[${reductionLatex}\\]`}</MathJax>
             </div>
             <div className={s.resultCard}>
-              <strong>Broj realnih resenja</strong>
+              <strong>Broj realnih rešenja</strong>
               <p
                 style={{
                   fontWeight: 700,
@@ -634,7 +634,7 @@ export default function SystemLab() {
               </p>
             </div>
             <div className={s.resultCard}>
-              <strong>Priblizna resenja</strong>
+              <strong>Približna rešenja</strong>
               <MathJax dynamic>{`\\[${solLatex}\\]`}</MathJax>
             </div>
           </div>

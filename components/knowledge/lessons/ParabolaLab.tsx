@@ -439,7 +439,7 @@ export default function ParabolaLab() {
             </select>
             <span style={{ fontSize: "0.88rem", color: "var(--lesson-muted)" }}>
               Znak od <em>a</em> menja smer otvaranja, a njegova apsolutna
-              vrednost menja &quot;sirinu&quot; parabole.
+              vrednost menja &quot;širinu&quot; parabole.
             </span>
           </div>
 
@@ -459,8 +459,8 @@ export default function ParabolaLab() {
               onChange={(e) => setB(Number(e.target.value))}
             />
             <span style={{ fontSize: "0.88rem", color: "var(--lesson-muted)" }}>
-              Koeficijent <em>b</em> zajedno sa <em>a</em> odredjuje osu
-              simetrije i polozaj temena.
+              Koeficijent <em>b</em> zajedno sa <em>a</em> određuje osu
+              simetrije i položaj temena.
             </span>
           </div>
 
@@ -480,14 +480,14 @@ export default function ParabolaLab() {
               onChange={(e) => setC(Number(e.target.value))}
             />
             <span style={{ fontSize: "0.88rem", color: "var(--lesson-muted)" }}>
-              Posto je f(0)=c, ovaj koeficijent direktno pomera presek sa
+              Pošto je f(0)=c, ovaj koeficijent direktno pomera presek sa
               y-osom.
             </span>
           </div>
 
           <div className={s.rangeWrap}>
             <label>
-              Proveri vrednost u tacki <em>x</em>{" "}
+              Proveri vrednost u tački <em>x</em>{" "}
               <span style={{ color: "var(--lesson-primary-soft)" }}>
                 {fmt(state.xProbe)}
               </span>
@@ -522,8 +522,8 @@ export default function ParabolaLab() {
             style={{ marginTop: 16, fontSize: "0.92rem" }}
           >
             Posmatraj kako se osa simetrije i nule &quot;dogovaraju&quot;: kada
-            postoje dve nule, teme je tacno na sredini izmedju njih. Kada nula
-            nema, znak cele funkcije odredjuje samo polozaj temena i smer
+            postoje dve nule, teme je tačno na sredini između njih. Kada nula
+            nema, znak cele funkcije određuje samo položaj temena i smer
             otvaranja.
           </p>
         </div>
@@ -565,7 +565,7 @@ export default function ParabolaLab() {
           <MathJax dynamic>{`\\(${signLatex(state.a, state.b, state.c)}\\)`}</MathJax>
         </div>
         <div className={s.resultCard}>
-          <strong>Vrednost u tacki</strong>
+          <strong>Vrednost u tački</strong>
           <MathJax dynamic>{`\\(${probeLatex(state.a, state.b, state.c, state.xProbe)}\\)`}</MathJax>
         </div>
       </div>

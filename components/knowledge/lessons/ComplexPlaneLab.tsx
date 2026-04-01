@@ -279,7 +279,7 @@ export default function ComplexPlaneLab() {
   if (st.op === "add") {
     const r = calculate(z, w, "add")!;
     formulaLatex = `(${complexLatex(z)}) + (${complexLatex(w)}) = ${complexLatex(r)}`;
-    hint = "Sabiranje i oduzimanje su najcistiji deo price: komponente iste vrste idu zajedno.";
+    hint = "Sabiranje i oduzimanje su najčistiji deo price: komponente iste vrste idu zajedno.";
   } else if (st.op === "sub") {
     const r = calculate(z, w, "sub")!;
     formulaLatex = `(${complexLatex(z)}) - (${complexLatex(w)}) = ${complexLatex(r)}`;
@@ -287,7 +287,7 @@ export default function ComplexPlaneLab() {
   } else if (st.op === "mul") {
     const r = calculate(z, w, "mul")!;
     formulaLatex = `(${complexLatex(z)})(${complexLatex(w)}) = ${complexLatex(r)}`;
-    hint = "Kod mnozenja kljucni prelaz je zamena i^2 = -1. Tu se znak najcesce pogresi.";
+    hint = "Kod množenja ključni prelaz je zamena i^2 = -1. Tu se znak najčešće pogresi.";
   } else if (st.op === "div") {
     const den = modulusSq(w);
     if (den === 0) {
@@ -298,7 +298,7 @@ export default function ComplexPlaneLab() {
       const imNum = z.im * w.re - z.re * w.im;
       const cw = conjugate(w);
       formulaLatex = `\\frac{${complexLatex(z)}}{${complexLatex(w)}} = \\frac{(${complexLatex(z)})(${complexLatex(cw)})}{${w.re}^2 + (${w.im})^2} = ${complexFractionLatex(reNum, imNum, den)}`;
-      hint = "Konjugovani broj sluzi samo da imenilac postane realan: (c+di)(c-di) = c^2+d^2.";
+      hint = "Konjugovani broj služi samo da imenilac postane realan: (c+di)(c-di) = c^2+d^2.";
     }
   }
 
@@ -306,7 +306,7 @@ export default function ComplexPlaneLab() {
     <div className={s.interactiveShell}>
       <article className={s.interactiveCard}>
         <h3 className={cs.tCardTitle}>Kontrole</h3>
-        <p>U interaktivnom delu su koeficijenti celobrojni da bi koraci ostali pregledni i da bi racun ostao slican tipicnim prijemnim zadacima.</p>
+        <p>U interaktivnom delu su koeficijenti celobrojni da bi koraci ostali pregledni i da bi račun ostao sličan tipičnim prijemnim zadacima.</p>
 
         <div className={s.controlGrid}>
           <div className={s.field}>
@@ -354,7 +354,7 @@ export default function ComplexPlaneLab() {
         <div className={cs.presetRow} style={{ marginTop: 14 }}>
           {Object.entries(PRESETS).map(([key, preset]) => (
             <button key={key} className={s.presetBtn} onClick={() => setSt(preset)}>
-              {{ add: "Primer za sabiranje", mul: "Primer za mnozenje", div: "Primer za deljenje", mod: "Primer za modul" }[key]}
+              {{ add: "Primer za sabiranje", mul: "Primer za množenje", div: "Primer za deljenje", mod: "Primer za modul" }[key]}
             </button>
           ))}
         </div>

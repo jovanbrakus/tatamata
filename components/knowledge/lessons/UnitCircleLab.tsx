@@ -298,7 +298,7 @@ function drawCanvas(canvas: HTMLCanvasElement, data: DrawData) {
 
   ctx.fillStyle = "rgba(255,255,255,0.55)";
   ctx.font = '600 13px "Public Sans", system-ui, sans-serif';
-  ctx.fillText("Jedinicna kruznica", 92, 38);
+  ctx.fillText("Jedinična kružnica", 92, 38);
   ctx.fillText("r = 1", 92, 60);
 
   // right panel
@@ -399,7 +399,7 @@ function drawCanvas(canvas: HTMLCanvasElement, data: DrawData) {
   ctx.font = '600 13px "Public Sans", system-ui, sans-serif';
   ctx.fillText("Referentni ugao: " + fmt(data.refDeg, 0) + "\u00b0", panelX + 18, 336);
   ctx.fillText("Dodaj ili oduzmi 360\u00b0 da bi dobio koterminalni ugao.", panelX + 18, 360);
-  ctx.fillText("Na kruznici vaznija je krajnja tacka nego broj okreta.", panelX + 18, 384);
+  ctx.fillText("Na kružnici važnija je krajnja tačka nego broj okreta.", panelX + 18, 384);
 }
 
 /* ── component ── */
@@ -485,7 +485,7 @@ export default function UnitCircleLab() {
                   setAngleDeg(Number(e.target.value));
               }}
             >
-              <option value="custom">Prilagodeno</option>
+              <option value="custom">Prilagođeno</option>
               {PRESET_ANGLES.map((a) => (
                 <option key={a} value={a}>
                   {a === 360
@@ -520,7 +520,7 @@ export default function UnitCircleLab() {
           <strong style={{ color: "var(--lesson-muted-strong)" }}>
             {fmt(principalDeg, 0)}&deg;
           </strong>
-          , tacka na kruznici je u poziciji {quad}.
+          , tačka na kružnici je u poziciji {quad}.
         </p>
       </div>
 
@@ -529,7 +529,7 @@ export default function UnitCircleLab() {
         <canvas
           ref={canvasRef}
           className={s.polarCanvas}
-          aria-label="Interaktivna jedinicna kruznica sa radijanima i projekcijama"
+          aria-label="Interaktivna jedinična kružnica sa radijanima i projekcijama"
         />
         <p
           style={{
@@ -538,9 +538,9 @@ export default function UnitCircleLab() {
             color: "var(--lesson-muted)",
           }}
         >
-          Narandzasto je terminalni krak, plavo cos-projekcija, zeleno
-          sin-projekcija, a ljubicasti markeri pokazuju polozaj istog ugla na
-          kruznici i na skalama.
+          Narandžasto je terminalni krak, plavo cos-projekcija, zeleno
+          sin-projekcija, a ljubičasti markeri pokazuju položaj istog ugla na
+          kružnici i na skalama.
         </p>
       </div>
 
@@ -563,7 +563,7 @@ export default function UnitCircleLab() {
           </p>
         </div>
         <div className={s.resultCard}>
-          <strong>Tacka na kruznici</strong>
+          <strong>Tačka na kružnici</strong>
           <p style={{ color: "var(--lesson-muted-strong)" }}>
             P = ({fmt(cosVal, 4)}, {fmt(sinVal, 4)})
           </p>

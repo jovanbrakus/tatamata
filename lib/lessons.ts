@@ -32,9 +32,21 @@ interface LessonsIndex {
 let _index: LessonsIndex | null = null;
 let _allLessons: LessonMeta[] | null = null;
 
+const EMPTY_INDEX: LessonsIndex = {
+  generatedAt: "",
+  totalLessons: 0,
+  lessons: {},
+  categories: [],
+};
+
 function getIndex(): LessonsIndex {
   if (!_index || process.env.NODE_ENV === "development") {
     const indexPath = path.join(process.cwd(), "database", "lessons-index.json");
+    if (!fs.existsSync(indexPath)) {
+      _index = EMPTY_INDEX;
+      _allLessons = null;
+      return _index;
+    }
     _index = JSON.parse(fs.readFileSync(indexPath, "utf-8"));
     _allLessons = null;
   }

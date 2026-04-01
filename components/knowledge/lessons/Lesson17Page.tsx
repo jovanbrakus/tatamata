@@ -55,8 +55,8 @@ function classifySystem(
     return {
       delta,
       type: "none",
-      geometry: "Bar jedna jednacina je kontradiktorna.",
-      hint: "Sistem nema resenje.",
+      geometry: "Bar jedna jednačina je kontradiktorna.",
+      hint: "Sistem nema rešenje.",
     };
   }
 
@@ -64,7 +64,7 @@ function classifySystem(
     return {
       delta,
       type: "infinite",
-      geometry: "Jedna jednacina ne ogranicava; beskonacno mnogo resenja.",
+      geometry: "Jedna jednačina ne ogranicava; beskonačno mnogo rešenja.",
       hint: "Sistem je zavisan.",
     };
   }
@@ -79,8 +79,8 @@ function classifySystem(
       type: "unique",
       x,
       y,
-      geometry: `Prave se seku u tacki (${fmt(x)}, ${fmt(y)}).`,
-      hint: "Jedinstveno resenje (Kramer).",
+      geometry: `Prave se seku u tački (${fmt(x)}, ${fmt(y)}).`,
+      hint: "Jedinstveno rešenje (Kramer).",
     };
   }
 
@@ -94,7 +94,7 @@ function classifySystem(
     return {
       delta,
       type: "infinite",
-      geometry: "Prave se poklapaju; beskonacno mnogo resenja.",
+      geometry: "Prave se poklapaju; beskonačno mnogo rešenja.",
       hint: "Sistem je zavisan.",
     };
   }
@@ -102,8 +102,8 @@ function classifySystem(
   return {
     delta,
     type: "none",
-    geometry: "Prave su paralelne i razlicite; nema resenja.",
-    hint: "Sistem je nemoguci.",
+    geometry: "Prave su paralelne i različite; nema rešenja.",
+    hint: "Sistem je nemogući.",
   };
 }
 
@@ -247,9 +247,9 @@ function SystemLab() {
   const result = classifySystem(a1, b1, c1, a2, b2, c2);
 
   const presets = [
-    { label: "Jedno resenje", vals: [1, 1, 2, 1, -1, 0] },
-    { label: "Beskonacno mnogo", vals: [1, 1, 2, 2, 2, 4] },
-    { label: "Nema resenja", vals: [1, 1, 2, 2, 2, 5] },
+    { label: "Jedno rešenje", vals: [1, 1, 2, 1, -1, 0] },
+    { label: "Beskonačno mnogo", vals: [1, 1, 2, 2, 2, 4] },
+    { label: "Nema rešenja", vals: [1, 1, 2, 2, 2, 5] },
     { label: "Mesoviti koef.", vals: [2, 1, 5, -1, 2, 1] },
   ];
 
@@ -316,10 +316,10 @@ function SystemLab() {
         {/* Controls panel */}
         <SectionCard title="Kontrole">
           <div style={{ display: "grid", gap: 14 }}>
-            {slider("a_1", a1, setA1, "Prva jednacina: a_1 x + b_1 y = c_1")}
+            {slider("a_1", a1, setA1, "Prva jednačina: a_1 x + b_1 y = c_1")}
             {slider("b_1", b1, setB1, "")}
-            {slider("c_1", c1, setC1, "Slobodan clan pomera pravu.")}
-            {slider("a_2", a2, setA2, "Druga jednacina: a_2 x + b_2 y = c_2")}
+            {slider("c_1", c1, setC1, "Slobodan član pomera pravu.")}
+            {slider("a_2", a2, setA2, "Druga jednačina: a_2 x + b_2 y = c_2")}
             {slider("b_2", b2, setB2, "")}
             {slider("c_2", c2, setC2, "")}
 
@@ -353,8 +353,8 @@ function SystemLab() {
               }}
             >
               <p style={{ color: "var(--muted, #a68a72)", fontSize: "0.93rem" }}>
-                Pokusaj da pre pomeranja klizaca prvo napamet predvidis da li ce
-                sistem imati jedno, nijedno ili beskonacno mnogo resenja. Zatim
+                Pokušaj da pre pomeranja klizaca prvo napamet predvidiš da li ce
+                sistem imati jedno, nijedno ili beskonačno mnogo rešenja. Zatim
                 proveri grafik.
               </p>
             </div>
@@ -389,9 +389,9 @@ function SystemLab() {
         </SectionCard>
         <SectionCard title="Tip sistema">
           <p>
-            {result.type === "unique" && "Jedinstveno resenje."}
-            {result.type === "infinite" && "Beskonacno mnogo resenja."}
-            {result.type === "none" && "Nema resenja."}
+            {result.type === "unique" && "Jedinstveno rešenje."}
+            {result.type === "infinite" && "Beskonačno mnogo rešenja."}
+            {result.type === "none" && "Nema rešenja."}
           </p>
         </SectionCard>
         <SectionCard title="Geometrija">
@@ -418,16 +418,16 @@ function SystemLab() {
    ──────────────────────────────────────────── */
 
 const NAV_LINKS = [
-  { href: "#zasto", label: "Zasto je vazno" },
+  { href: "#zasto", label: "Zašto je važno" },
   { href: "#osnovna-ideja", label: "Osnovna ideja" },
   { href: "#metode-2x2", label: "Metode za 2x2" },
   { href: "#kramer", label: "Kramerovo pravilo" },
   { href: "#gaus", label: "Gausov algoritam" },
-  { href: "#parametar", label: "Parametar i broj resenja" },
+  { href: "#parametar", label: "Parametar i broj rešenja" },
   { href: "#interaktivno", label: "Interaktivni deo" },
-  { href: "#primeri", label: "Vodjeni primeri" },
-  { href: "#formule", label: "Kljucne formule" },
-  { href: "#greske", label: "Ceste greske" },
+  { href: "#primeri", label: "Vođeni primeri" },
+  { href: "#formule", label: "Ključne formule" },
+  { href: "#greske", label: "Česte greške" },
   { href: "#prijemni", label: "Prijemni fokus" },
   { href: "#vezbe", label: "Vezbe" },
   { href: "#rezime", label: "Rezime" },
@@ -445,47 +445,47 @@ export default function Lesson17Page() {
         eyebrow="Matoteka znanje · Lekcija 17"
         title={
           <>
-            Sistemi linearnih jednacina{" "}
+            Sistemi linearnih jednačina{" "}
             <span className={cs.tHeroAccent}>
               Kramerovo pravilo i Gausov algoritam
             </span>
           </>
         }
-        description="Kada vidis sistem jednacina, ne gledas dve ili tri zasebne formule, vec trazis zajednicko resenje. Upravo ta promena perspektive cini ovu lekciju vaznom. Za prijemni nije dovoljno da znas da racunas: moras da prepoznas koji metod je najbrzi, kada determinant pomaze, a kada moras da predjes na pazljivu diskusiju slucajeva."
+        description="Kada vidiš sistem jednačina, ne gledas dve ili tri zasebne formule, već tražis zajedničko rešenje. Upravo ta promena perspektive čini ovu lekciju važnom. Za prijemni nije dovoljno da znaš da računaš: moraš da prepoznaš koji metod je najbrži, kada determinant pomaže, a kada moraš da pređeš na pažljivu diskusiju slučajeva."
         heroImageSrc="/api/lessons/17/hero"
-        heroImageAlt="Ilustracija sistema linearnih jednacina, Kramerovog pravila i Gausovog algoritma"
+        heroImageAlt="Ilustracija sistema linearnih jednačina, Kramerovog pravila i Gausovog algoritma"
         cards={[
           {
-            label: "Sta ces nauciti",
+            label: "Šta ćeš naučiti",
             description:
-              "Kako da resavas sisteme 2x2 i 3x3, kako da biras metod i kako da procenis broj resenja.",
+              "Kako da rešavaš sisteme 2x2 i 3x3, kako da biras metod i kako da procenis broj rešenja.",
           },
           {
-            label: "Najveca zamka",
+            label: "Najveća zamka",
             description:
-              "Zakljucak da iz Δ = 0 automatski sledi da sistem nema resenje. To nikako nije dovoljno.",
+              "Zaključak da iz Δ = 0 automatski sledi da sistem nema rešenje. To nikako nije dovoljno.",
           },
           {
             label: "Prijemni fokus",
             description:
-              "Parametarski sistemi, mali aritmeticki detalji u determinantama i pravilna upotreba Gausove eliminacije.",
+              "Parametarski sistemi, mali aritmetički detalji u determinantama i pravilna upotreba Gausove eliminacije.",
           },
         ]}
         stats={[
           {
             label: "Trajanje",
             description:
-              "Oko 75 minuta za teoriju, vodjene primere i interaktivni deo.",
+              "Oko 75 minuta za teoriju, vođene primere i interaktivni deo.",
           },
           {
             label: "Predznanje",
             description:
-              "Linearne jednacine, determinante drugog i treceg reda i rad sa razlomcima.",
+              "Linearne jednačine, determinante drugog i trećeg reda i rad sa razlomcima.",
           },
           {
-            label: "Glavna vestina",
+            label: "Glavna veština",
             description:
-              "Da za svaki sistem brzo odaberes odgovarajuci metod i sigurno proveris broj resenja.",
+              "Da za svaki sistem brzo odabereš odgovarajuči metod i sigurno proveriš broj rešenja.",
           },
           {
             label: "Interaktivni deo",
@@ -501,41 +501,41 @@ export default function Lesson17Page() {
       {/* ═══════════ ZASTO JE VAZNO ═══════════ */}
       <LessonSection
         id="zasto"
-        eyebrow="Zasto je ova lekcija vazna"
-        title="Sistem jednacina se pojavljuje svuda"
-        description="Sistemi linearnih jednacina se pojavljuju kao prirodan nastavak linearne funkcije: vise uslova odjednom treba zadovoljiti istim nepoznatim velicinama."
+        eyebrow="Zašto je ova lekcija važna"
+        title="Sistem jednačina se pojavljuje svuda"
+        description="Sistemi linearnih jednačina se pojavljuju kao prirodan nastavak linearne funkcije: više uslova odjednom treba zadovoljiti istim nepoznatim veličinama."
       >
         <div className={s.grid3}>
-          <SectionCard title="Na prijemnom proverava vise stvari odjednom">
+          <SectionCard title="Na prijemnom proverava više stvari odjednom">
             <p>
-              Jedan zadatak moze istovremeno da proveri racunanje, logiku,
-              geometrijsku interpretaciju, paznju na parametar i organizaciju
-              resenja.
+              Jedan zadatak može istovremeno da proveri računanje, logiku,
+              geometrijsku interpretaciju, pažnju na parametar i organizaciju
+              rešenja.
             </p>
           </SectionCard>
-          <SectionCard title="Uci te da biras metod, ne samo da racunas">
+          <SectionCard title="Uči te da biras metod, ne samo da računaš">
             <p>
-              Nije poenta da svaki sistem resavas istom tehnikom. Nekad je zamena
-              najkraca, nekad suprotni koeficijenti, nekad determinant, a nekad
+              Nije poenta da svaki sistem rešavaš istom tehnikom. Nekad je zamena
+              najkraća, nekad suprotni koeficijenti, nekad determinant, a nekad
               Gausov algoritam.
             </p>
           </SectionCard>
-          <SectionCard title="Priprema za slozenije oblasti">
+          <SectionCard title="Priprema za složenije oblasti">
             <p>
               Matrice, vektori, analiticka geometrija i linearna algebra kasnije
-              se oslanjaju upravo na ideje koje ovde prvi put sreces:
-              kompatibilnost uslova, rang, eliminaciju i tumacenje broja resenja.
+              se oslanjaju upravo na ideje koje ovde prvi put srećeš:
+              kompatibilnost uslova, rang, eliminaciju i tumacenje broja rešenja.
             </p>
           </SectionCard>
         </div>
         <MicroCheck
-          question="Mikro-provera: Sta je glavna mentalna promena u odnosu na jednu jednacinu?"
+          question="Mikro-provera: Šta je glavna mentalna promena u odnosu na jednu jednačinu?"
           answer={
             <p>
-              Kod sistema ne trazis broj koji zadovoljava jednu relaciju, vec
-              uredjeni par ili trojku koja istovremeno zadovoljava sve relacije. To
-              znaci da svaka transformacija mora da sacuva bas taj zajednicki skup
-              resenja.
+              Kod sistema ne tražis broj koji zadovoljava jednu relaciju, vec
+              uređeni par ili trojku koja istovremeno zadovoljava sve relacije. To
+              znači da svaka transformacija mora da sačuva baš taj zajednički skup
+              rešenja.
             </p>
           }
         />
@@ -545,11 +545,11 @@ export default function Lesson17Page() {
       <LessonSection
         id="osnovna-ideja"
         eyebrow="Osnovna ideja"
-        title="Sta zapravo predstavlja sistem"
-        description="Sistem linearnih jednacina je skup linearnih jednacina koje imaju iste nepoznate. Resenje sistema je svaka vrednost nepoznatih koja sve jednacine cini tacnim u isto vreme."
+        title="Šta zapravo predstavlja sistem"
+        description="Sistem linearnih jednačina je skup linearnih jednačina koje imaju iste nepoznate. Rešenje sistema je svaka vrednost nepoznatih koja sve jednačine čini tacnim u isto vreme."
       >
         <div className={s.grid3}>
-          <SectionCard title="Opsti oblik sistema 2x2">
+          <SectionCard title="Opšti oblik sistema 2x2">
             <MathBlock>
               {
                 "\\begin{cases} a_1x+b_1y=c_1 \\\\ a_2x+b_2y=c_2 \\end{cases}"
@@ -565,16 +565,16 @@ export default function Lesson17Page() {
 
           <SectionCard title="Geometrijska slika">
             <p>
-              Svaka linearna jednacina sa dve nepoznate predstavlja pravu u ravni.
-              Zato sistem <InlineMath>{"2\\times2"}</InlineMath> znaci: trazimo
-              tacku koja pripada i prvoj i drugoj pravoj.
+              Svaka linearna jednačina sa dve nepoznate predstavlja pravu u ravni.
+              Zato sistem <InlineMath>{"2\\times2"}</InlineMath> znači: tražimo
+              tačku koja pripada i prvoj i drugoj pravoj.
             </p>
             <p style={{ marginTop: 8 }}>
-              Jedno resenje &harr; prave se seku u jednoj tacki
+              Jedno rešenje &harr; prave se seku u jednoj tački
               <br />
-              Nema resenja &harr; prave su paralelne i razlicite
+              Nema rešenja &harr; prave su paralelne i različite
               <br />
-              Beskonacno mnogo resenja &harr; prave se poklapaju
+              Beskonačno mnogo rešenja &harr; prave se poklapaju
             </p>
           </SectionCard>
 
@@ -585,27 +585,27 @@ export default function Lesson17Page() {
               }
             </MathBlock>
             <p>
-              Geometrijska slika je sada slozenija jer svaka jednacina predstavlja
-              ravan u prostoru. Zato se u praksi cesce oslanjamo na algoritam i
-              racun nego na cisto vizuelnu interpretaciju.
+              Geometrijska slika je sada složenija jer svaka jednačina predstavlja
+              ravan u prostoru. Zato se u praksi češće oslanjamo na algoritam i
+              račun nego na čisto vizuelnu interpretaciju.
             </p>
           </SectionCard>
         </div>
 
-        <InsightCard title="Najvaznija poruka">
+        <InsightCard title="Najvažnija poruka">
           <p>
-            Sistem nije zbir odvojenih jednacina. Uvek razmisljaj o{" "}
-            <strong>zajednickom resenju</strong>, odnosno o preseku svih uslova.
+            Sistem nije zbir odvojenih jednačina. Uvek razmisljaj o{" "}
+            <strong>zajedničkom resenju</strong>, odnosno o preseku svih uslova.
           </p>
         </InsightCard>
 
         <MicroCheck
-          question="Mikro-provera: Da li sistem moze imati tacno dva resenja?"
+          question="Mikro-provera: Da li sistem može imati tačno dva rešenja?"
           answer={
             <p>
-              Za linearni sistem <InlineMath>{"2\\times2"}</InlineMath> ne moze.
-              Dve prave mogu da seku u jednoj tacki, da se ne seku ili da se
-              poklapaju. Dakle: jedno, nijedno ili beskonacno mnogo resenja.
+              Za linearni sistem <InlineMath>{"2\\times2"}</InlineMath> ne može.
+              Dve prave mogu da seku u jednoj tački, da se ne seku ili da se
+              poklapaju. Dakle: jedno, nijedno ili beskonačno mnogo rešenja.
             </p>
           }
         />
@@ -616,18 +616,18 @@ export default function Lesson17Page() {
         id="metode-2x2"
         eyebrow="Metode za sisteme 2x2"
         title="Zamena i suprotni koeficijenti"
-        description="U srednjoskolskim zadacima za sistem sa dve nepoznate najcesce koristis metodu zamene ili metodu suprotnih koeficijenata. Obe su tacne; razlika je u tome koja je zgodnija za konkretne brojeve."
+        description="U srednjoškolskim zadacima za sistem sa dve nepoznate najčešće koristiš metodu zamene ili metodu suprotnih koeficijenata. Obe su tačne; razlika je u tome koja je zgodnija za konkretne brojeve."
       >
         <div className={s.grid2}>
           <SectionCard title="Metoda zamene">
             <p>
-              Iz jedne jednacine izdvojis jednu nepoznatu, a zatim taj izraz
-              uvrstis u drugu jednacinu. Ova metoda je odlicna kada se jedna
+              Iz jedne jednačine izdvojis jednu nepoznatu, a zatim taj izraz
+              uvrstis u drugu jednačinu. Ova metoda je odlična kada se jedna
               nepoznata lako izoluje, na primer kada joj je koeficijent{" "}
               <InlineMath>{"1"}</InlineMath> ili <InlineMath>{"-1"}</InlineMath>.
             </p>
             <div className={s.walkthrough}>
-              <WalkStep number={1} title="Izaberi jednacinu iz koje se nepoznata najlakse izdvaja." />
+              <WalkStep number={1} title="Izaberi jednačinu iz koje se nepoznata najlakse izdvaja." />
               <WalkStep
                 number={2}
                 title={
@@ -637,24 +637,24 @@ export default function Lesson17Page() {
                   </>
                 }
               />
-              <WalkStep number={3} title="Taj izraz zameni u drugoj jednacini." />
-              <WalkStep number={4} title="Resi dobijenu jednacinu sa jednom nepoznatom." />
-              <WalkStep number={5} title="Vracanjem izracunaj drugu nepoznatu." />
+              <WalkStep number={3} title="Taj izraz zameni u drugoj jednačini." />
+              <WalkStep number={4} title="Reši dobijenu jednačinu sa jednom nepoznatom." />
+              <WalkStep number={5} title="Vraćanjem izračunaj drugu nepoznatu." />
             </div>
           </SectionCard>
 
           <SectionCard title="Metoda suprotnih koeficijenata">
             <p>
-              Jednacine mnozis pogodnim brojevima tako da koeficijenti uz jednu
+              Jednačine množiš pogodnim brojevima tako da koeficijenti uz jednu
               nepoznatu postanu suprotni, pa se sabiranjem ta nepoznata eliminise.
-              Ovo je cesto najbrzi put kada su koeficijenti celi brojevi.
+              Ovo je često najbrži put kada su koeficijenti celi brojevi.
             </p>
             <div className={s.walkthrough}>
               <WalkStep number={1} title="Odaberi koju nepoznatu eliminises." />
-              <WalkStep number={2} title="Pomnozi jednacine tako da koeficijenti uz tu nepoznatu budu suprotni." />
-              <WalkStep number={3} title="Saberi jednacine i dobijas novu jednacinu sa jednom nepoznatom." />
-              <WalkStep number={4} title="Izracunaj prvu nepoznatu." />
-              <WalkStep number={5} title="Uvrsti nazad i nadji drugu." />
+              <WalkStep number={2} title="Pomnozi jednačine tako da koeficijenti uz tu nepoznatu budu suprotni." />
+              <WalkStep number={3} title="Saberi jednačine i dobijas novu jednačinu sa jednom nepoznatom." />
+              <WalkStep number={4} title="Izračunaj prvu nepoznatu." />
+              <WalkStep number={5} title="Uvrsti nazad i nađi drugu." />
             </div>
           </SectionCard>
         </div>
@@ -663,24 +663,24 @@ export default function Lesson17Page() {
           <FormulaCard
             title="Kada biras zamenu"
             formula={"x = \\ldots \\text{ ili koeficijent } \\pm 1"}
-            note="Ako u jednacini vec imas oblik gde je jedna nepoznata lako izdvojiva, ne komplikuj: zamena je tada prirodna."
+            note="Ako u jednačini već imaš oblik gde je jedna nepoznata lako izdvojiva, ne komplikuj: zamena je tada prirodna."
           />
           <FormulaCard
             title="Kada biras eliminaciju"
             formula={"\\text{NZS koeficijenata je pregledan}"}
-            note="Ako su koeficijenti mali i lepo se uskladjuju, eliminacija je cesto brza od uvrstanja razlomaka."
+            note="Ako su koeficijenti mali i lepo se usklađuju, eliminacija je često brza od uvrstanja razlomaka."
           />
           <FormulaCard
             title="Ne zaboravi proveru"
-            formula={"(x_0, y_0) \\text{ mora zadovoljiti obe jednacine}"}
-            note="Posebno kod prijemnog, brza provera na kraju otkriva gresku u znaku pre nego sto predas zadatak."
+            formula={"(x_0, y_0) \\text{ mora zadovoljiti obe jednačine}"}
+            note="Posebno kod prijemnog, brza provera na kraju otkriva grešku u znaku pre nego sto predas zadatak."
           />
         </div>
 
         <InsightCard title="Brz ispitni izbor">
           <p>
-            Ako vidis da ce zamena odmah stvoriti razlomke, probaj eliminaciju.
-            Ako eliminacija trazi velika mnozenja, proveri da li je zamena
+            Ako vidiš da će zamena odmah stvoriti razlomke, probaj eliminaciju.
+            Ako eliminacija traži velika množenja, proveri da li je zamena
             elegantnija.
           </p>
         </InsightCard>
@@ -695,7 +695,7 @@ export default function Lesson17Page() {
               </MathBlock>
               <p>
                 zamena je prirodna jer je <InlineMath>{"x"}</InlineMath> vec
-                izdvojen. Nema smisla dodatno preuredivati jednacine.
+                izdvojen. Nema smisla dodatno preuredivati jednačine.
               </p>
             </>
           }
@@ -707,7 +707,7 @@ export default function Lesson17Page() {
         id="kramer"
         eyebrow="Kramerovo pravilo"
         title="Determinante u sluzbi sistema"
-        description="Kramerovo pravilo koristi determinante da direktno izrazi nepoznate. To je elegantna metoda, ali vazi samo kada je determinant koeficijenata razlicit od nule."
+        description="Kramerovo pravilo koristi determinante da direktno izrazi nepoznate. To je elegantna metoda, ali važi samo kada je determinant koeficijenata različit od nule."
       >
         <div className={s.grid3}>
           <SectionCard title="Ideja za sistem 2x2">
@@ -723,7 +723,7 @@ export default function Lesson17Page() {
             </MathBlock>
             <p>
               Ako je <InlineMath>{"\\Delta \\neq 0"}</InlineMath>, postoji
-              jedinstveno resenje:
+              jedinstveno rešenje:
             </p>
             <MathBlock>
               {"x=\\frac{\\Delta_x}{\\Delta},\\qquad y=\\frac{\\Delta_y}{\\Delta}"}
@@ -733,7 +733,7 @@ export default function Lesson17Page() {
           <SectionCard title="Ideja za sistem 3x3">
             <p>
               Za tri nepoznate zamenjujes odgovarajucu kolonu koeficijenata
-              kolonom slobodnih clanova:
+              kolonom slobodnih članova:
             </p>
             <MathBlock>
               {
@@ -752,18 +752,18 @@ export default function Lesson17Page() {
 
           <SectionCard title="Kada je metoda dobra, a kada nije">
             <p>
-              Kramer je zgodan kada su brojevi mali, determinant se lako racuna i
-              kada zelis jasan kriterijum za jedinstveno resenje. Ako su brojevi
+              Kramer je zgodan kada su brojevi mali, determinant se lako računa i
+              kada želiš jasan kriterijum za jedinstveno rešenje. Ako su brojevi
               veliki ili sistem ima parametar koji komplikuje manje determinante,
-              Gausov algoritam cesto bude pregledniji.
+              Gausov algoritam često bude pregledniji.
             </p>
           </SectionCard>
         </div>
 
         <div className={s.grid2} style={{ marginTop: 16 }}>
-          <SectionCard title="Kako racunas determinantu 3. reda">
+          <SectionCard title="Kako računaš determinantu 3. reda">
             <p>
-              U skolskim zadacima najcesce koristis Sarrusovo pravilo:
+              U školskim zadacima najčešće koristiš Sarrusovo pravilo:
             </p>
             <MathBlock>
               {
@@ -771,35 +771,35 @@ export default function Lesson17Page() {
               }
             </MathBlock>
             <p>
-              Vazno je da tri &ldquo;pozitivna&rdquo; i tri &ldquo;negativna&rdquo;
-              proizvoda racunas pazljivo. Najvise gresaka nastaje upravo u poslednjem
+              Važno je da tri &ldquo;pozitivna&rdquo; i tri &ldquo;negativna&rdquo;
+              proizvoda računaš pažljivo. Najviše grešaka nastaje upravo u poslednjem
               znaku.
             </p>
           </SectionCard>
 
-          <SectionCard title="Pedagoski trik za pamcenje">
+          <SectionCard title="Pedagoški trik za pamćenje">
             <p>
-              Nemoj pokusavati da mehanicki pamtis sest clanova. Nacrtaj dve
-              dodatne kolone i prati tri dijagonale nanize i tri dijagonale navise.
-              Vizuelni obrazac je mnogo pouzdaniji od suvog pamcenja.
+              Nemoj pokušavati da mehanički pamtiš sest članova. Nacrtaj dve
+              dodatne kolone i prati tri dijagonale nanize i tri dijagonale naviše.
+              Vizuelni obrazac je mnogo pouzdaniji od suvog pamćenja.
             </p>
             <InsightCard title="Ali oprez">
               <p>
-                Sarrusovo pravilo vazi samo za determinantu treceg reda, ne i za
-                vece determinante.
+                Sarrusovo pravilo važi samo za determinantu trećeg reda, ne i za
+                veće determinante.
               </p>
             </InsightCard>
           </SectionCard>
         </div>
 
         <MicroCheck
-          question="Mikro-provera: Da li smes primeniti Kramerovo pravilo kada je Δ=0?"
+          question="Mikro-provera: Da li smeš primeniti Kramerovo pravilo kada je Δ=0?"
           answer={
             <p>
-              Ne za racunanje jedinstvenog resenja. Kada je{" "}
+              Ne za računanje jedinstvenog rešenja. Kada je{" "}
               <InlineMath>{"\\Delta=0"}</InlineMath>, Kramerovo pravilo u
-              standardnom obliku ne odlucuje da li sistem nema resenje ili ih ima
-              beskonacno mnogo. Tada radis dodatnu diskusiju.
+              standardnom obliku ne odlučuje da li sistem nema rešenje ili ih ima
+              beskonačno mnogo. Tada radiš dodatnu diskusiju.
             </p>
           }
         />
@@ -809,20 +809,20 @@ export default function Lesson17Page() {
       <LessonSection
         id="gaus"
         eyebrow="Gausov algoritam"
-        title="Najuniverzalniji alat za resavanje sistema"
-        description="Gausov algoritam je najuniverzalniji alat za resavanje sistema. Ideja je da nizom dozvoljenih transformacija postepeno pojednostavis sistem dok ne dobijes trougaoni ili gotovo dijagonalni oblik."
+        title="Najuniverzalniji alat za rešavanje sistema"
+        description="Gausov algoritam je najuniverzalniji alat za rešavanje sistema. Ideja je da nizom dozvoljenih transformacija postepeno pojednostavis sistem dok ne dobiješ trougaoni ili gotovo dijagonalni oblik."
       >
         <div className={s.grid3}>
-          <SectionCard title="Prosirena matrica">
-            <p>Sistem zapisujes u obliku prosirene matrice:</p>
+          <SectionCard title="Proširena matrica">
+            <p>Sistem zapisuješ u obliku proširene matrice:</p>
             <MathBlock>
               {
                 "\\left[\\begin{array}{ccc|c} a_1 & b_1 & c_1 & d_1\\\\ a_2 & b_2 & c_2 & d_2\\\\ a_3 & b_3 & c_3 & d_3 \\end{array}\\right]"
               }
             </MathBlock>
             <p>
-              Tako jasnije vidis koje operacije primenjujes istovremeno na
-              koeficijente i slobodne clanove.
+              Tako jasnije vidiš koje operacije primenjujes istovremeno na
+              koeficijente i slobodne članove.
             </p>
           </SectionCard>
 
@@ -830,40 +830,40 @@ export default function Lesson17Page() {
             <ul>
               <li>Zamena mesta dva reda.</li>
               <li>Mnozenje reda nenultim brojem.</li>
-              <li>Dodavanje jednom redu nekog visekratnika drugog reda.</li>
+              <li>Dodavanje jednom redu nekog višekratnika drugog reda.</li>
             </ul>
             <p>
-              Ove operacije ne menjaju skup resenja sistema. To je razlog zasto
-              smes da ih koristis.
+              Ove operacije ne menjaju skup rešenja sistema. To je razlog zašto
+              smeš da ih koristiš.
             </p>
           </SectionCard>
 
-          <SectionCard title="Sta je cilj eliminacije">
+          <SectionCard title="Šta je cilj eliminacije">
             <p>
-              Prvo ponistvas clanove ispod vodeceg koeficijenta u prvoj koloni,
-              zatim u drugoj, pa po potrebi i dalje. Kada dobijes trougaoni
-              sistem, poslednja jednacina obicno sadrzi jednu nepoznatu, pa mozes
+              Prvo ponistvas članove ispod vodeceg koeficijenta u prvoj koloni,
+              zatim u drugoj, pa po potrebi i dalje. Kada dobiješ trougaoni
+              sistem, poslednja jednačina obično sadrzi jednu nepoznatu, pa možes
               da krenes unazad.
             </p>
           </SectionCard>
         </div>
 
         <div className={s.grid2} style={{ marginTop: 16 }}>
-          <SectionCard title="Zasto je Gaus posebno vazan">
+          <SectionCard title="Zašto je Gaus posebno važan">
             <p>
               Za razliku od Kramera, Gaus radi i kada sistem nema jedinstveno
-              resenje. Upravo zato je odlican za zadatke sa parametrom, za proveru
-              kompatibilnosti i za sisteme sa vise jednacina ili vise nepoznatih.
+              rešenje. Upravo zato je odličan za zadatke sa parametrom, za proveru
+              kompatibilnosti i za sisteme sa više jednačina ili više nepoznatih.
             </p>
             <MathBlock>{"0x + 0y + 0z = 5"}</MathBlock>
             <p>
-              Ako tokom eliminacije dobijes ovakvu jednacinu, sistem je nemoguc.
-              Ako dobijes <InlineMath>{"0x+0y+0z=0"}</InlineMath>, jedan red je
-              suvisan i sistem moze imati beskonacno mnogo resenja.
+              Ako tokom eliminacije dobiješ ovakvu jednačinu, sistem je nemoguć.
+              Ako dobiješ <InlineMath>{"0x+0y+0z=0"}</InlineMath>, jedan red je
+              suvisan i sistem može imati beskonačno mnogo rešenja.
             </p>
           </SectionCard>
 
-          <SectionCard title="Pedagoski savet za racun">
+          <SectionCard title="Pedagoški savet za račun">
             <p>
               Ne juri odmah lepe brojeve. Ponekad je korisnije prvo zameniti
               redove da bi vodeci koeficijent bio{" "}
@@ -872,18 +872,18 @@ export default function Lesson17Page() {
             </p>
             <InsightCard title="Prakticno pravilo">
               <p>
-                Kada biras pivot, gledaj da bude broj sa kojim ce eliminacija
-                biti najcistija.
+                Kada biras pivot, gledaj da bude broj sa kojim će eliminacija
+                biti najčistija.
               </p>
             </InsightCard>
           </SectionCard>
         </div>
 
         <MicroCheck
-          question="Mikro-provera: Zasto u Gausu moras da transformises i slobodne clanove?"
+          question="Mikro-provera: Zašto u Gausu moraš da transformises i slobodne članove?"
           answer={
             <p>
-              Zato sto menjas celu jednacinu, ne samo njen levi deo. Ako bi
+              Zato sto menjas celu jednačinu, ne samo njen levi deo. Ako bi
               transformisao samo koeficijente uz nepoznate, dobio bi sasvim
               drugi sistem i izgubio ekvivalentnost.
             </p>
@@ -894,25 +894,25 @@ export default function Lesson17Page() {
       {/* ═══════════ PARAMETAR I BROJ RESENJA ═══════════ */}
       <LessonSection
         id="parametar"
-        eyebrow="Parametar i broj resenja"
-        title="Diskusija slucajeva"
-        description="Parametarski zadaci su veoma cesti jer proveravaju da li razumes mehanizam sistema, a ne samo jedan konkretan racun. Najvaznije je da sistematski razdvojis slucaj Δ ≠ 0 od slucaja Δ = 0."
+        eyebrow="Parametar i broj rešenja"
+        title="Diskusija slučajeva"
+        description="Parametarski zadaci su veoma cesti jer proveravaju da li razumeš mehanizam sistema, a ne samo jedan konkretan račun. Najvažnije je da sistematski razdvojis slučaj Δ ≠ 0 od slučaja Δ = 0."
       >
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Ako je Δ ≠ 0"
-            formula={"\\Delta \\neq 0 \\Longrightarrow \\text{jedinstveno resenje}"}
-            note="Tu je prica zavrsena: sistem ima jedinstveno resenje. Dalje mozes racunati Kramerom ili nekom drugom metodom."
+            formula={"\\Delta \\neq 0 \\Longrightarrow \\text{jedinstveno rešenje}"}
+            note="Tu je priča zavrsena: sistem ima jedinstveno rešenje. Dalje možes računati Kramerom ili nekom drugom metodom."
           />
           <FormulaCard
             title="Ako je Δ = 0"
             formula={"\\Delta = 0 \\Longrightarrow \\text{dodatna provera}"}
-            note="Ne donosis jos zakljucak. Tada proveriavas da li su jednacine medjusobno saglasne ili protivreCne."
+            note="Ne donosiš još zaključak. Tada proveravaš da li su jednačine međusobno saglasne ili protivrečne."
           />
           <FormulaCard
             title="Iste prave ili paralelne prave"
             formula={"\\frac{a_1}{a_2}=\\frac{b_1}{b_2}=\\frac{c_1}{c_2}\\ ?"}
-            note="Kada su koeficijenti proporcionalni, odlucujes prema slobodnim clanovima: ako su i oni proporcionalni, prave se poklapaju; ako nisu, prave su paralelne."
+            note="Kada su koeficijenti proporcionalni, odlučujes prema slobodnim članovima: ako su i oni proporcionalni, prave se poklapaju; ako nisu, prave su paralelne."
           />
         </div>
 
@@ -931,7 +931,7 @@ export default function Lesson17Page() {
           >
             <thead>
               <tr>
-                {["Situacija", "Algebarski signal", "Geometrijsko znacenje", "Broj resenja"].map((h) => (
+                {["Situacija", "Algebarski signal", "Geometrijsko znacenje", "Broj rešenja"].map((h) => (
                   <th
                     key={h}
                     style={{
@@ -952,13 +952,13 @@ export default function Lesson17Page() {
             <tbody>
               {[
                 [
-                  "Jedinstveno resenje",
+                  "Jedinstveno rešenje",
                   <InlineMath key="d1">{"\\Delta \\neq 0"}</InlineMath>,
-                  "Dve prave seku se u jednoj tacki",
+                  "Dve prave seku se u jednoj tački",
                   "1",
                 ],
                 [
-                  "Beskonacno mnogo resenja",
+                  "Beskonačno mnogo rešenja",
                   <span key="d2">
                     <InlineMath>{"\\Delta=0"}</InlineMath> i sve proporcije
                     odgovaraju
@@ -967,12 +967,12 @@ export default function Lesson17Page() {
                   <InlineMath key="inf">{"\\infty"}</InlineMath>,
                 ],
                 [
-                  "Nema resenja",
+                  "Nema rešenja",
                   <span key="d3">
-                    <InlineMath>{"\\Delta=0"}</InlineMath>, ali slobodni clanovi
+                    <InlineMath>{"\\Delta=0"}</InlineMath>, ali slobodni članovi
                     kvare proporciju
                   </span>,
-                  "Prave su paralelne i razlicite",
+                  "Prave su paralelne i različite",
                   "0",
                 ],
               ].map((row, i) => (
@@ -999,20 +999,20 @@ export default function Lesson17Page() {
           </table>
         </div>
 
-        <InsightCard title="Najcesca prijemna zamka">
+        <InsightCard title="Najčešća prijemna zamka">
           <p>
-            Kandidat izracuna <InlineMath>{"\\Delta=0"}</InlineMath> i odmah
-            napise &ldquo;nema resenja&rdquo;. To je pogresno. Prvo proveri da li
-            je sistem mozda zavisan, odnosno da li ima beskonacno mnogo resenja.
+            Kandidat izračuna <InlineMath>{"\\Delta=0"}</InlineMath> i odmah
+            napise &ldquo;nema rešenja&rdquo;. To je pogrešno. Prvo proveri da li
+            je sistem možda zavisan, odnosno da li ima beskonačno mnogo rešenja.
           </p>
         </InsightCard>
 
         <MicroCheck
-          question="Mikro-provera: Sta se dogadja sa sistemom x+y=2, 2x+2y=4?"
+          question="Mikro-provera: Šta se događa sa sistemom x+y=2, 2x+2y=4?"
           answer={
             <p>
-              Druga jednacina je samo dvostruka prve. To znaci da obe opisuju
-              istu pravu, pa sistem ima beskonacno mnogo resenja.
+              Druga jednačina je samo dvostruka prve. To znači da obe opišuju
+              istu pravu, pa sistem ima beskonačno mnogo rešenja.
             </p>
           }
         />
@@ -1023,21 +1023,21 @@ export default function Lesson17Page() {
         id="interaktivno"
         eyebrow="Interaktivni deo"
         title="Interaktivna laboratorija: sistem 2x2 uzivo"
-        description="Menjaj koeficijente sistema i posmatraj kako se u isto vreme menja geometrijska slika, determinant i broj resenja. Ovo je najbrzi nacin da osetis vezu izmedju racuna i grafika."
+        description="Menjaj koeficijente sistema i posmatraj kako se u isto vreme menja geometrijska slika, determinant i broj rešenja. Ovo je najbrži način da osetiš vezu između računa i grafika."
       >
         <SystemLab />
 
         <MicroCheck
-          question="Kako da koristis laboratoriju pametno?"
+          question="Kako da koristiš laboratoriju pametno?"
           answer={
             <div>
               <p>Za svaku novu postavku uradi kratki mentalni redosled:</p>
               <ul style={{ marginLeft: 18 }}>
                 <li>
-                  izracunaj ili proceni{" "}
+                  izračunaj ili proceni{" "}
                   <InlineMath>{"\\Delta=a_1b_2-a_2b_1"}</InlineMath>,
                 </li>
-                <li>predvidi broj resenja,</li>
+                <li>predvidi broj rešenja,</li>
                 <li>
                   zamisli geometriju: seku li se prave, poklapaju ili su
                   paralelne,
@@ -1052,15 +1052,15 @@ export default function Lesson17Page() {
       {/* ═══════════ VODJENI PRIMERI ═══════════ */}
       <LessonSection
         id="primeri"
-        eyebrow="Vodjeni primeri"
+        eyebrow="Vođeni primeri"
         title="Primeri koji grade rutinu za prijemni"
-        description="Ovde vidis kako teorija prelazi u konkretan racun. Pokusaj da svaki primer prvo sam zapocnes, makar prvih nekoliko koraka, pa tek onda pogledaj kompletno vodjenje."
+        description="Ovde vidiš kako teorija prelazi u konkretan račun. Pokušaj da svaki primer prvo sam započneš, makar prvih nekoliko koraka, pa tek onda pogledaj kompletno vođenje."
       >
         <div className={s.exampleGrid}>
           {/* Primer 1 */}
           <article className={s.exampleCard}>
             <h3 className={cs.tCardTitle}>Primer 1: metoda zamene</h3>
-            <p>Resi sistem</p>
+            <p>Reši sistem</p>
             <MathBlock>
               {"\\begin{cases} x=2y+1\\\\ 3x-y=14 \\end{cases}"}
             </MathBlock>
@@ -1069,8 +1069,8 @@ export default function Lesson17Page() {
                 number={1}
                 title={
                   <>
-                    Posto je <InlineMath>{"x"}</InlineMath> vec izdvojen, odmah
-                    ga menjamo u drugoj jednacini.
+                    Posto je <InlineMath>{"x"}</InlineMath> već izdvojen, odmah
+                    ga menjamo u drugoj jednačini.
                   </>
                 }
               />
@@ -1089,7 +1089,7 @@ export default function Lesson17Page() {
                 number={4}
                 title={
                   <>
-                    Vracamo u <InlineMath>{"x=2y+1"}</InlineMath>:
+                    Vraćamo u <InlineMath>{"x=2y+1"}</InlineMath>:
                   </>
                 }
               >
@@ -1108,7 +1108,7 @@ export default function Lesson17Page() {
             <h3 className={cs.tCardTitle}>
               Primer 2: metoda suprotnih koeficijenata
             </h3>
-            <p>Resi sistem</p>
+            <p>Reši sistem</p>
             <MathBlock>
               {"\\begin{cases} 2x+3y=7\\\\ 4x-3y=5 \\end{cases}"}
             </MathBlock>
@@ -1123,12 +1123,12 @@ export default function Lesson17Page() {
                   </>
                 }
               />
-              <WalkStep number={2} title="Sabiranjem jednacina dobijamo 6x=12.">
+              <WalkStep number={2} title="Sabiranjem jednačina dobijamo 6x=12.">
                 <p>
                   Pa je <InlineMath>{"x=2"}</InlineMath>.
                 </p>
               </WalkStep>
-              <WalkStep number={3} title="Uvrstimo u prvu jednacinu.">
+              <WalkStep number={3} title="Uvrstimo u prvu jednačinu.">
                 <MathBlock>
                   {"2\\cdot 2+3y=7,\\quad 3y=3,\\quad y=1"}
                 </MathBlock>
@@ -1142,7 +1142,7 @@ export default function Lesson17Page() {
             <h3 className={cs.tCardTitle}>
               Primer 3: sistem 3x3 Kramerovim pravilom
             </h3>
-            <p>Resi sistem</p>
+            <p>Reši sistem</p>
             <MathBlock>
               {
                 "\\begin{cases} x+y+z=6\\\\ x-y+z=2\\\\ 2x+y-z=1 \\end{cases}"
@@ -1156,7 +1156,7 @@ export default function Lesson17Page() {
                   }
                 </MathBlock>
               </WalkStep>
-              <WalkStep number={2} title="Posto je Δ ≠ 0, postoji jedinstveno resenje." />
+              <WalkStep number={2} title="Posto je Δ ≠ 0, postoji jedinstveno rešenje." />
               <WalkStep number={3} title="Racunamo pomoćne determinante.">
                 <MathBlock>
                   {
@@ -1179,14 +1179,14 @@ export default function Lesson17Page() {
             <h3 className={cs.tCardTitle}>
               Primer 4: sistem 3x3 Gausovim algoritmom
             </h3>
-            <p>Resi sistem</p>
+            <p>Reši sistem</p>
             <MathBlock>
               {
                 "\\begin{cases} x+y+z=4\\\\ 2x-y+z=1\\\\ 3x+y-z=2 \\end{cases}"
               }
             </MathBlock>
             <div className={s.walkthrough}>
-              <WalkStep number={1} title="Zapisujemo prosirenu matricu.">
+              <WalkStep number={1} title="Zapišujemo proširenu matricu.">
                 <MathBlock>
                   {
                     "\\left[\\begin{array}{ccc|c} 1&1&1&4\\\\ 2&-1&1&1\\\\ 3&1&-1&2 \\end{array}\\right]"
@@ -1211,7 +1211,7 @@ export default function Lesson17Page() {
                   }
                 </MathBlock>
               </WalkStep>
-              <WalkStep number={4} title="Odredjujemo nepoznate unazad.">
+              <WalkStep number={4} title="Određujemo nepoznate unazad.">
                 <MathBlock>
                   {
                     "z=\\frac{8}{5},\\qquad y=\\frac{9}{5},\\qquad x=\\frac{3}{5}"
@@ -1232,7 +1232,7 @@ export default function Lesson17Page() {
               Primer 5: diskusija sistema sa parametrom
             </h3>
             <p>
-              Odredi broj resenja sistema u zavisnosti od parametra{" "}
+              Odredi broj rešenja sistema u zavisnosti od parametra{" "}
               <InlineMath>{"m"}</InlineMath>:
             </p>
             <MathBlock>
@@ -1251,7 +1251,7 @@ export default function Lesson17Page() {
                 title={
                   <>
                     Ako je <InlineMath>{"m \\neq 2"}</InlineMath>, determinant
-                    nije nula i sistem ima jedinstveno resenje.
+                    nije nula i sistem ima jedinstveno rešenje.
                   </>
                 }
               />
@@ -1269,15 +1269,15 @@ export default function Lesson17Page() {
                   }
                 </MathBlock>
                 <p>
-                  Druga jednacina nije dvostruka prve, pa su prave paralelne i
-                  razlicite.
+                  Druga jednačina nije dvostruka prve, pa su prave paralelne i
+                  različite.
                 </p>
               </WalkStep>
             </div>
-            <InsightCard title="Zakljucak">
+            <InsightCard title="Zaključak">
               <p>
                 Za <InlineMath>{"m \\neq 2"}</InlineMath> sistem ima jedno
-                resenje, a za <InlineMath>{"m=2"}</InlineMath> nema resenja.
+                rešenje, a za <InlineMath>{"m=2"}</InlineMath> nema rešenja.
               </p>
             </InsightCard>
           </article>
@@ -1287,9 +1287,9 @@ export default function Lesson17Page() {
       {/* ═══════════ KLJUCNE FORMULE ═══════════ */}
       <LessonSection
         id="formule"
-        eyebrow="Kljucne formule"
-        title="Ovo mora da iskoci cim vidis zadatak"
-        description="Ovu sekciju posmatraj kao brzi pregled pred kontrolni ili prijemni: sta treba da zapamtis, ali i kada to treba da upotrebis."
+        eyebrow="Ključne formule"
+        title="Ovo mora da iskoci cim vidiš zadatak"
+        description="Ovu sekciju posmatraj kao brzi pregled pred kontrolni ili prijemni: šta treba da zapamtiš, ali i kada to treba da upotrebis."
       >
         <div className={s.formulaGrid}>
           <FormulaCard
@@ -1298,14 +1298,14 @@ export default function Lesson17Page() {
             note={
               <>
                 Ako je <InlineMath>{"\\Delta \\neq 0"}</InlineMath>, sistem ima
-                jedinstveno resenje.
+                jedinstveno rešenje.
               </>
             }
           />
           <FormulaCard
             title="Kramer (2x2)"
             formula={"x=\\frac{\\Delta_x}{\\Delta},\\qquad y=\\frac{\\Delta_y}{\\Delta}"}
-            note="Dobre su kada su koeficijenti mali i kada zelis brz kriterijum."
+            note="Dobre su kada su koeficijenti mali i kada želiš brz kriterijum."
           />
           <FormulaCard
             title="Sarrus (determinanta 3. reda)"
@@ -1315,7 +1315,7 @@ export default function Lesson17Page() {
                 Koristi ga za <InlineMath>{"\\Delta"}</InlineMath>,{" "}
                 <InlineMath>{"\\Delta_x"}</InlineMath>,{" "}
                 <InlineMath>{"\\Delta_y"}</InlineMath> i{" "}
-                <InlineMath>{"\\Delta_z"}</InlineMath>, ali pazljivo prati
+                <InlineMath>{"\\Delta_z"}</InlineMath>, ali pažljivo prati
                 znakove.
               </>
             }
@@ -1323,7 +1323,7 @@ export default function Lesson17Page() {
           <FormulaCard
             title="Elementarne transformacije (Gaus)"
             formula={"R_i \\leftrightarrow R_j,\\qquad R_i \\leftarrow \\lambda R_i,\\qquad R_i \\leftarrow R_i + \\lambda R_j"}
-            note="Ovo je univerzalni metod, narocito koristan kada treba da otkrijes i nemoguc ili zavisan sistem."
+            note="Ovo je univerzalni metod, naročito koristan kada treba da otkriješ i nemoguć ili zavisan sistem."
           />
         </div>
 
@@ -1342,21 +1342,21 @@ export default function Lesson17Page() {
                 Kramera.
               </li>
               <li>
-                Ako sistem ima tri nepoznate ili parametar pravi vise slucajeva,
-                Gaus je cesto najsigurniji.
+                Ako sistem ima tri nepoznate ili parametar pravi više slučajeva,
+                Gaus je često najsigurniji.
               </li>
             </ul>
           </SectionCard>
 
-          <SectionCard title="Sta nikako da ne preskocis">
+          <SectionCard title="Šta nikako da ne preskočis">
             <ul>
               <li>
                 Proveru da li je <InlineMath>{"\\Delta=0"}</InlineMath>.
               </li>
               <li>Kontrolu znakova u determinantama.</li>
-              <li>Transformaciju i slobodnih clanova u Gausu.</li>
+              <li>Transformaciju i slobodnih članova u Gausu.</li>
               <li>
-                Razdvajanje slucajeva kada parametar ponisti neki koeficijent ili
+                Razdvajanje slučajeva kada parametar poništi neki koeficijent ili
                 determinant.
               </li>
             </ul>
@@ -1367,25 +1367,25 @@ export default function Lesson17Page() {
       {/* ═══════════ CESTE GRESKE ═══════════ */}
       <LessonSection
         id="greske"
-        eyebrow="Ceste greske"
+        eyebrow="Česte greške"
         title="Ovde se gube laki poeni"
-        description="U ovoj lekciji greske retko dolaze iz neznanja formule. Cesce dolaze iz brzine, loseg izbora metode ili preuranjenog zakljucivanja."
+        description="U ovoj lekciji greške retko dolaze iz neznanja formule. Češće dolaze iz brzine, lošeg izbora metode ili preuranjenog zaključivanja."
       >
         <div className={s.tipGrid}>
           <article className={s.tipCard}>
             <h3 className={cs.tCardTitle}>
-              <InlineMath>{"\\Delta=0"}</InlineMath> znaci &ldquo;nema
-              resenja&rdquo;
+              <InlineMath>{"\\Delta=0"}</InlineMath> znači &ldquo;nema
+              rešenja&rdquo;
             </h3>
             <p>
-              Ne. To samo znaci da nemas jedinstveno resenje preko Kramera. Tek
-              dodatna provera govori da li je sistem nemoguc ili zavisan.
+              Ne. To samo znači da nemas jedinstveno rešenje preko Kramera. Tek
+              dodatna provera govori da li je sistem nemoguć ili zavisan.
             </p>
           </article>
           <article className={s.tipCard}>
-            <h3 className={cs.tCardTitle}>Los znak u determinanti</h3>
+            <h3 className={cs.tCardTitle}>Loš znak u determinanti</h3>
             <p>
-              Jedan pogresan minus menja celo resenje. Posebno kod Sarrusa
+              Jedan pogresan minus menja celo rešenje. Posebno kod Sarrusa
               prati tri negativna proizvoda do kraja.
             </p>
           </article>
@@ -1394,8 +1394,8 @@ export default function Lesson17Page() {
               U Gausu se menja samo leva strana
             </h3>
             <p>
-              Slobodni clanovi moraju da prolaze kroz iste transformacije kao i
-              koeficijenti. U suprotnom resavas drugi sistem.
+              Slobodni članovi moraju da prolaze kroz iste transformacije kao i
+              koeficijenti. U suprotnom rešavaš drugi sistem.
             </p>
           </article>
           <article className={s.tipCard}>
@@ -1403,8 +1403,8 @@ export default function Lesson17Page() {
               Deljenje izrazom sa parametrom bez provere
             </h3>
             <p>
-              Ako delis izrazom koji moze biti nula, moras izdvojiti poseban
-              slucaj. U suprotnom gubis moguca resenja ili uvodis nedozvoljen
+              Ako deliš izrazom koji može biti nula, moraš izdvojiti poseban
+              slučaj. U suprotnom gubiš moguća rešenja ili uvodis nedozvoljen
               korak.
             </p>
           </article>
@@ -1415,37 +1415,37 @@ export default function Lesson17Page() {
       <LessonSection
         id="prijemni"
         eyebrow="Veza sa prijemnim zadacima"
-        title="Sta se najcesce trazi na testu"
-        description="Na prijemnim ispitima sistemi linearnih jednacina se javljaju u cistom obliku, ali i kao sakriveni deo veceg problema: u zadacima sa parametrima, analitickom geometrijom, presekom grafika ili rekonstrukcijom koeficijenata."
+        title="Šta se najčešće traži na testu"
+        description="Na prijemnim ispitima sistemi linearnih jednačina se javljaju u čistom obliku, ali i kao sakriveni deo većeg problema: u zadacima sa parametrima, analitickom geometrijom, presekom grafika ili rekonstrukcijom koeficijenata."
       >
         <div className={s.grid3}>
-          <SectionCard title="Sta se cesto trazi">
+          <SectionCard title="Šta se često traži">
             <p>
               Resavanje sistema <InlineMath>{"2\\times2"}</InlineMath>,
               razmatranje sistema sa parametrom, izbor metode ili utvrdivanje
-              broja resenja.
+              broja rešenja.
             </p>
           </SectionCard>
           <SectionCard title="Gde nastaju zamke">
             <p>
-              U pogresnom mnozenju pri eliminaciji, u brzom racunanju
-              determinanti i u preskakanju specijalnog slucaja{" "}
+              U pogrešnom mnozenju pri eliminaciji, u brzom računanju
+              determinanti i u preskakanju specijalnog slučaja{" "}
               <InlineMath>{"\\Delta=0"}</InlineMath>.
             </p>
           </SectionCard>
-          <SectionCard title="Sta proveriavas pod pritiskom vremena">
+          <SectionCard title="Šta proveravaš pod pritiskom vremena">
             <p>
               Da li postoji laksa metoda, da li si transformisao i desnu stranu,
-              i da li zakljucak o broju resenja zaista prati iz racuna.
+              i da li zaključak o broju rešenja zaista prati iz računa.
             </p>
           </SectionCard>
         </div>
 
         <InsightCard title="Brz ispitni redosled">
           <p>
-            Procitaj sistem, proceni najkraci metod, proveri da li postoji
-            parametar ili determinant, uradi racun smireno i na kraju proveri da
-            li dobijeno resenje zadovoljava originalni sistem.
+            Pročitaj sistem, proceni najkraći metod, proveri da li postoji
+            parametar ili determinant, uradi račun smireno i na kraju proveri da
+            li dobijeno rešenje zadovoljava originalni sistem.
           </p>
         </InsightCard>
       </LessonSection>
@@ -1455,14 +1455,14 @@ export default function Lesson17Page() {
         id="vezbe"
         eyebrow="Vezbe za samostalni rad"
         title="Samostalna provera razumevanja"
-        description="Prvo pokusaj bez pomoci. Ako zapnes, otvori resenje i uporedi svoj tok razmisljanja sa ponudjenim koracima."
+        description="Prvo pokušaj bez pomoci. Ako zapneš, otvori rešenje i uporedi svoj tok razmisljanja sa ponudjenim koracima."
       >
         <div className={s.exerciseGrid}>
           <ExerciseCard
             title="Zadatak 1"
             problem={
               <>
-                <p>Resi sistem metodom zamene:</p>
+                <p>Reši sistem metodom zamene:</p>
                 <MathBlock>
                   {"\\begin{cases} y=3x-2\\\\ 2x+y=8 \\end{cases}"}
                 </MathBlock>
@@ -1471,7 +1471,7 @@ export default function Lesson17Page() {
             solution={
               <>
                 <p>
-                  Uvrsti <InlineMath>{"y=3x-2"}</InlineMath> u drugu jednacinu:
+                  Uvrsti <InlineMath>{"y=3x-2"}</InlineMath> u drugu jednačinu:
                 </p>
                 <MathBlock>
                   {"2x+(3x-2)=8 \\Rightarrow 5x=10 \\Rightarrow x=2"}
@@ -1479,7 +1479,7 @@ export default function Lesson17Page() {
                 <p>Zatim je</p>
                 <MathBlock>{"y=3\\cdot 2-2=4"}</MathBlock>
                 <p>
-                  Resenje je <InlineMath>{"(2,4)"}</InlineMath>.
+                  Rešenje je <InlineMath>{"(2,4)"}</InlineMath>.
                 </p>
               </>
             }
@@ -1489,7 +1489,7 @@ export default function Lesson17Page() {
             title="Zadatak 2"
             problem={
               <>
-                <p>Resi sistem metodom suprotnih koeficijenata:</p>
+                <p>Reši sistem metodom suprotnih koeficijenata:</p>
                 <MathBlock>
                   {"\\begin{cases} 3x+2y=11\\\\ 5x-2y=9 \\end{cases}"}
                 </MathBlock>
@@ -1498,20 +1498,20 @@ export default function Lesson17Page() {
             solution={
               <>
                 <p>
-                  Sabiranjem jednacina eliminise se{" "}
+                  Sabiranjem jednačina eliminise se{" "}
                   <InlineMath>{"y"}</InlineMath>:
                 </p>
                 <MathBlock>
                   {"8x=20 \\Rightarrow x=\\frac{5}{2}"}
                 </MathBlock>
-                <p>Uvrstimo u prvu jednacinu:</p>
+                <p>Uvrstimo u prvu jednačinu:</p>
                 <MathBlock>
                   {
                     "3\\cdot\\frac{5}{2}+2y=11 \\Rightarrow 2y=\\frac{7}{2} \\Rightarrow y=\\frac{7}{4}"
                   }
                 </MathBlock>
                 <p>
-                  Resenje je{" "}
+                  Rešenje je{" "}
                   <InlineMath>
                     {"\\left(\\frac{5}{2},\\frac{7}{4}\\right)"}
                   </InlineMath>
@@ -1525,7 +1525,7 @@ export default function Lesson17Page() {
             title="Zadatak 3"
             problem={
               <>
-                <p>Resi sistem Gausovim algoritmom:</p>
+                <p>Reši sistem Gausovim algoritmom:</p>
                 <MathBlock>
                   {
                     "\\begin{cases} x+y+z=5\\\\ 2x-y+z=2\\\\ x+2y-z=1 \\end{cases}"
@@ -1536,7 +1536,7 @@ export default function Lesson17Page() {
             solution={
               <>
                 <p>
-                  Oduzmi dva puta prvi red od drugog i prvi red od treceg:
+                  Oduzmi dva puta prvi red od drugog i prvi red od trećeg:
                 </p>
                 <MathBlock>
                   {
@@ -1544,7 +1544,7 @@ export default function Lesson17Page() {
                   }
                 </MathBlock>
                 <p>
-                  Zatim ponisti clan u drugoj koloni treceg reda, na primer
+                  Zatim poništi član u drugoj koloni trećeg reda, na primer
                   operacijom <InlineMath>{"R_3 \\leftarrow 3R_3+R_2"}</InlineMath>
                   :
                 </p>
@@ -1567,7 +1567,7 @@ export default function Lesson17Page() {
             problem={
               <>
                 <p>
-                  Odredi broj resenja sistema u zavisnosti od parametra{" "}
+                  Odredi broj rešenja sistema u zavisnosti od parametra{" "}
                   <InlineMath>{"p"}</InlineMath>:
                 </p>
                 <MathBlock>
@@ -1583,12 +1583,12 @@ export default function Lesson17Page() {
                 </p>
                 <ul style={{ marginLeft: 18 }}>
                   <li>
-                    Ako je <InlineMath>{"p=2"}</InlineMath>, druga jednacina je
-                    tacno dvostruka prve i sistem ima beskonacno mnogo resenja.
+                    Ako je <InlineMath>{"p=2"}</InlineMath>, druga jednačina je
+                    tačno dvostruka prve i sistem ima beskonačno mnogo rešenja.
                   </li>
                   <li>
                     Ako je <InlineMath>{"p \\neq 2"}</InlineMath>, leve strane
-                    su proporcionalne, a desne nisu, pa sistem nema resenje.
+                    su proporcionalne, a desne nisu, pa sistem nema rešenje.
                   </li>
                 </ul>
               </>
@@ -1599,7 +1599,7 @@ export default function Lesson17Page() {
             title="Zadatak 5"
             problem={
               <>
-                <p>Resi sistem Kramerovim pravilom:</p>
+                <p>Reši sistem Kramerovim pravilom:</p>
                 <MathBlock>
                   {
                     "\\begin{cases} x+y+z=3\\\\ x-y+z=1\\\\ 2x+y-z=2 \\end{cases}"
@@ -1616,7 +1616,7 @@ export default function Lesson17Page() {
                   }
                 </MathBlock>
                 <p>
-                  Dalje dobijes{" "}
+                  Dalje dobiješ{" "}
                   <InlineMath>{"\\Delta_x=6"}</InlineMath>,{" "}
                   <InlineMath>{"\\Delta_y=6"}</InlineMath> i{" "}
                   <InlineMath>{"\\Delta_z=6"}</InlineMath>.
@@ -1630,15 +1630,15 @@ export default function Lesson17Page() {
 
       {/* ═══════════ ZAVRSNI UVID ═══════════ */}
       <LessonSection
-        eyebrow="Zavrsni uvid"
+        eyebrow="Završni uvid"
         title="Glavna poruka ove teme"
-        description="U sustini, cela lekcija moze da se sazme ovako: sistem linearnih jednacina je pitanje kompatibilnosti vise uslova."
+        description="U sustini, cela lekcija može da se sažme ovako: sistem linearnih jednačina je pitanje kompatibilnosti više uslova."
       >
-        <InsightCard title="Najvazniji princip">
+        <InsightCard title="Najvažniji princip">
           <p>
-            Kada to razumes, vise ne biras metod naslepo. Zamena, eliminacija,
-            Kramer i Gaus postaju samo razliciti alati za isti cilj: da otkrijes
-            da li zajednicko resenje postoji i kako se najbrze nalazi.
+            Kada to razumeš, više ne biras metod naslepo. Zamena, eliminacija,
+            Kramer i Gaus postaju samo različiti alati za isti cilj: da otkriješ
+            da li zajedničko rešenje postoji i kako se najbrže nalazi.
           </p>
         </InsightCard>
       </LessonSection>
@@ -1646,19 +1646,19 @@ export default function Lesson17Page() {
       {/* ═══════════ REZIME ═══════════ */}
       <LessonSection
         id="rezime"
-        eyebrow="Zavrsni rezime"
-        title="Sta moras da poneses iz ove lekcije"
+        eyebrow="Završni rezime"
+        title="Šta moraš da poneseš iz ove lekcije"
         description="Ovo je lista ideja koje zaista treba da ostanu u glavi nakon lekcije."
       >
         <div className={s.summaryGrid}>
           <article className={s.summaryCard}>
             <h3 className={cs.tCardTitle}>1. Osnovna slika</h3>
             <p>
-              Sistem trazi zajednicko resenje. Kod{" "}
+              Sistem traži zajedničko rešenje. Kod{" "}
               <InlineMath>{"2\\times2"}</InlineMath> to je presek dve prave.
-              Zato sistem moze imati <strong>jedno</strong>,{" "}
+              Zato sistem može imati <strong>jedno</strong>,{" "}
               <strong>nijedno</strong> ili{" "}
-              <strong>beskonacno mnogo</strong> resenja.
+              <strong>beskonačno mnogo</strong> rešenja.
             </p>
           </article>
           <article className={s.summaryCard}>
@@ -1666,30 +1666,30 @@ export default function Lesson17Page() {
             <p>
               Biraj prema strukturi zadatka. Zamena i eliminacija su prirodne za{" "}
               <InlineMath>{"2\\times2"}</InlineMath>. Kramer je dobar kada je
-              racun sa determinantama pregledan. Gaus je univerzalniji i posebno
+              račun sa determinantama pregledan. Gaus je univerzalniji i posebno
               koristan za <InlineMath>{"3\\times3"}</InlineMath> i parametarske
               sisteme.
             </p>
           </article>
           <article className={s.summaryCard}>
-            <h3 className={cs.tCardTitle}>3. Kljucna opomena</h3>
+            <h3 className={cs.tCardTitle}>3. Ključna opomena</h3>
             <p>
               <InlineMath>{"\\Delta=0"}</InlineMath> nije kraj price. Tada
-              dodatno proveriavas da li sistem postaje nemoguc ili zavisan. Ovo
-              je jedna od najvaznijih prijemnih zamki.
+              dodatno proveravaš da li sistem postaje nemoguć ili zavisan. Ovo
+              je jedna od najvažnijih prijemnih zamki.
             </p>
           </article>
           <article className={s.summaryCard}>
-            <h3 className={cs.tCardTitle}>4. Sledeci korak</h3>
+            <h3 className={cs.tCardTitle}>4. Sledeći korak</h3>
             <p>
-              Najvise koristi imaces ako sada samostalno resavas zadatke sa
-              parametrom i vezbas prepoznavanje najkraceg metoda.
+              Najviše koristi imaćeš ako sada samostalno rešavaš zadatke sa
+              parametrom i vezbaš prepoznavanje najkraćeg metoda.
             </p>
           </article>
         </div>
 
         <p className={cs.footerNote}>
-          Lekcija 17 zatvara temu o sistemima linearnih jednacina: od osnovne
+          Lekcija 17 zatvara temu o sistemima linearnih jednačina: od osnovne
           geometrijske slike do Kramera, Gausa i diskusije sa parametrom.
         </p>
       </LessonSection>

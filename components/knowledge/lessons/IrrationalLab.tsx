@@ -115,7 +115,7 @@ function getDomain(data: CoefData): DomainResult {
   const boundary = -b / a;
   return {
     kind: a > 0 ? "right" : "left",
-    text: a > 0 ? "Domena pocinje od granicne tacke i ide udesno." : "Domena ide ulevo od granicne tacke.",
+    text: a > 0 ? "Domena počinje od granične tačke i ide udesno." : "Domena ide ulevo od granične tačke.",
     latex: a > 0 ? `x \\ge ${rationalLatex(-b, a)}` : `x \\le ${rationalLatex(-b, a)}`,
     boundary,
   };
@@ -353,10 +353,10 @@ const PRESETS: Record<string, CoefData> = {
 };
 
 const PRESET_LABELS: Record<string, string> = {
-  single: "Jedno resenje",
-  fake: "Lazno resenje",
-  double: "Dva resenja",
-  none: "Bez resenja",
+  single: "Jedno rešenje",
+  fake: "Lažno rešenje",
+  double: "Dva rešenja",
+  none: "Bez rešenja",
 };
 
 /* ── Component ── */
@@ -404,13 +404,13 @@ export default function IrrationalLab() {
   const rejectedCount = result.candidates.length - result.actualSolutions.length;
   let message: string;
   if (result.kind === "all") {
-    message = "Ovde se grafovi poklapaju, pa svako realno x zadovoljava jednacinu.";
+    message = "Ovde se grafovi poklapaju, pa svako realno x zadovoljava jednačinu.";
   } else if (!result.actualSolutions.length) {
-    message = "Grafovi se ne seku. Kvadrirana jednacina moze dati kandidate, ali original nema realno resenje.";
+    message = "Grafovi se ne seku. Kvadrirana jednačina može dati kandidate, ali original nema realno rešenje.";
   } else if (rejectedCount > 0) {
-    message = "Kvadriranje je proizvelo dodatnog kandidata koji otpada u originalu. To je tipicno lazno resenje.";
+    message = "Kvadriranje je proizvelo dodatnog kandidata koji otpada u originalu. To je tipično lažno rešenje.";
   } else {
-    message = "Ovde se svi kandidati poklapaju sa stvarnim resenjima. I dalje proveru ne preskaces.";
+    message = "Ovde se svi kandidati poklapaju sa stvarnim rešenjima. I dalje proveru ne preskačeš.";
   }
 
   return (
@@ -420,8 +420,8 @@ export default function IrrationalLab() {
         <div className={cs.eyebrow}>Postavke</div>
         <h3 className={cs.tCardTitle}>Menjaj koeficijente</h3>
         <p style={{ color: "var(--lesson-muted)", marginBottom: 14 }}>
-          Isprobaj gotove primere, a zatim pomeraj klizace. Posebno gledaj sta
-          se desava kada je desna strana negativna za deo domena.
+          Isprobaj gotove primere, a zatim pomeraj klizače. Posebno gledaj šta
+          se dešava kada je desna strana negativna za deo domena.
         </p>
 
         <div className={cs.presetRow}>
@@ -445,7 +445,7 @@ export default function IrrationalLab() {
             const labels: Record<string, string> = { a: "a", b: "b", c: "c", d: "d" };
             const helps: Record<string, string> = {
               a: "U radikandu je izraz ax+b.",
-              b: "Pomera pocetak domene ulevo ili udesno.",
+              b: "Pomera početak domene ulevo ili udesno.",
               c: "Nagib desne strane cx+d.",
               d: "Vertikalni pomeraj desne strane.",
             };
@@ -477,10 +477,10 @@ export default function IrrationalLab() {
       <div>
         <div className={s.interactiveCard}>
           <div className={cs.eyebrow}>Analiza modela</div>
-          <h3 className={cs.tCardTitle}>Sta algebra kaze</h3>
+          <h3 className={cs.tCardTitle}>Šta algebra kaže</h3>
           <div style={{ display: "grid", gap: 14, marginTop: 16 }}>
             <div className={s.mathBlock}>
-              <strong style={{ display: "block", marginBottom: 6 }}>Model jednacina</strong>
+              <strong style={{ display: "block", marginBottom: 6 }}>Model jednačina</strong>
               <MathJax dynamic>{`\\[${equationLatex}\\]`}</MathJax>
             </div>
             <div className={s.mathBlock} style={{ borderColor: "rgba(255, 195, 127, 0.24)", background: "rgba(255, 195, 127, 0.08)" }}>
@@ -493,7 +493,7 @@ export default function IrrationalLab() {
               <p style={{ marginTop: 10, color: "var(--lesson-muted)" }}>{result.domain.text}</p>
             </div>
             <div className={s.mathBlock}>
-              <strong style={{ display: "block", marginBottom: 6 }}>Kvadrirana jednacina</strong>
+              <strong style={{ display: "block", marginBottom: 6 }}>Kvadrirana jednačina</strong>
               <MathJax dynamic>{`\\[${squaredLatex}\\]`}</MathJax>
             </div>
             <div className={s.mathBlock}>
@@ -501,7 +501,7 @@ export default function IrrationalLab() {
               <MathJax dynamic>{`\\[${candidateSet}\\]`}</MathJax>
             </div>
             <div className={s.mathBlock} style={{ borderColor: "rgba(117, 223, 184, 0.24)", background: "rgba(117, 223, 184, 0.08)" }}>
-              <strong style={{ display: "block", marginBottom: 6 }}>Stvarna resenja</strong>
+              <strong style={{ display: "block", marginBottom: 6 }}>Stvarna rešenja</strong>
               <MathJax dynamic>{`\\[${actualSet}\\]`}</MathJax>
             </div>
           </div>
@@ -511,11 +511,11 @@ export default function IrrationalLab() {
         </div>
 
         <div className={s.interactiveCard} style={{ marginTop: 16 }}>
-          <div className={cs.eyebrow}>Graficka intuicija</div>
-          <h3 className={cs.tCardTitle}>Presek funkcija daje pravo resenje</h3>
+          <div className={cs.eyebrow}>Grafička intuicija</div>
+          <h3 className={cs.tCardTitle}>Presek funkcija daje pravo rešenje</h3>
           <p style={{ color: "var(--lesson-muted)" }}>
-            Zasenceni deo na osi <MathJax inline>{"\\(x\\)"}</MathJax> oznacava
-            domenu korena. Ako kvadratna jednacina da kandidata van tog dela ili
+            Zasenjeni deo na osi <MathJax inline>{"\\(x\\)"}</MathJax> označava
+            domenu korena. Ako kvadratna jednačina da kandidata van tog dela ili
             na mestu gde je prava negativna, taj kandidat otpada.
           </p>
           <div className={s.canvasWrap} style={{ marginTop: 16 }}>
@@ -536,7 +536,7 @@ export default function IrrationalLab() {
             </span>
             <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
               <i style={{ width: 12, height: 12, borderRadius: 999, background: "#75dfb8", display: "inline-block" }} />
-              stvarno resenje
+              stvarno rešenje
             </span>
             <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
               <i style={{ width: 12, height: 12, borderRadius: 999, background: "rgba(117,223,184,0.22)", display: "inline-block" }} />

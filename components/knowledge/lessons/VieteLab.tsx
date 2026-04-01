@@ -200,7 +200,7 @@ function drawCanvas(
 
   ctx.fillStyle = T.text;
   ctx.font = '700 20px "Public Sans", system-ui, sans-serif';
-  ctx.fillText("Veza izmedju korenova i koeficijenata", 22, 34);
+  ctx.fillText("Veza između korenova i koeficijenata", 22, 34);
   ctx.fillStyle = T.muted;
   ctx.font = '400 13px "Public Sans", system-ui, sans-serif';
   ctx.fillText(
@@ -365,7 +365,7 @@ export default function VieteLab() {
         {/* Controls panel */}
         <div>
           <article className={s.interactiveCard} style={{ padding: 22 }}>
-            <h3 className={cs.tCardTitle}>Podesavanja</h3>
+            <h3 className={cs.tCardTitle}>Podešavanja</h3>
             <div className={s.controlGrid}>
               <div className={s.field}>
                 <label>Stepen polinoma</label>
@@ -379,12 +379,12 @@ export default function VieteLab() {
                   }
                 >
                   <option value={3}>Kubni</option>
-                  <option value={4}>Cetvrti stepen</option>
+                  <option value={4}>Četvrti stepen</option>
                 </select>
               </div>
               <div className={s.field}>
                 <label>
-                  Vodeci koeficijent{" "}
+                  Vodeći koeficijent{" "}
                   <MathJax inline style={{ display: "inline" }}>
                     {"\\(a\\)"}
                   </MathJax>
@@ -456,7 +456,7 @@ export default function VieteLab() {
               className={s.presetBtn}
               onClick={() => applyPreset("symmetric")}
             >
-              Simetricni
+              Simetrični
             </button>
             <button
               className={s.presetBtn}
@@ -474,7 +474,7 @@ export default function VieteLab() {
               ref={canvasRef}
               className={s.polarCanvas}
               style={{ aspectRatio: "16 / 10" }}
-              aria-label="Canvas prikaz izabranih korenova i simetricnih suma"
+              aria-label="Canvas prikaz izabranih korenova i simetričnih suma"
             />
           </div>
 
@@ -499,24 +499,24 @@ export default function VieteLab() {
 
       {/* Notes below the lab */}
       <div className={s.grid3} style={{ marginTop: 16 }}>
-        <SectionCardInline title="Kako da citas alat">
+        <SectionCardInline title="Kako da čitaš alat">
           <p>
             Prvo gledaj raspored, pa formule. Ako korenovi postanu
-            simetricni oko nule, odmah prati koje neparne koeficijente alat
+            simetrični oko nule, odmah prati koje neparne koeficijente alat
             &ldquo;gasi&rdquo;.
           </p>
         </SectionCardInline>
-        <SectionCardInline title="Pedagoska napomena">
+        <SectionCardInline title="Pedagoška napomena">
           <p>
-            Laboratorija koristi realne korenove. Osnovni stav algebre vazi
-            u kompleksnom skupu, ali za intuiciju je korisnije da ovde vidis
+            Laboratorija koristi realne korenove. Osnovni stav algebre važi
+            u kompleksnom skupu, ali za intuiciju je korisnije da ovde vidiš
             korenove na brojevnoj pravoj.
           </p>
         </SectionCardInline>
         <SectionCardInline title="Prijemni signal">
           <p>
-            Trazi skrivenu strukturu. Posebno obrati paznju na simetriju,
-            visestruke korenove i aritmeticku progresiju. To su najcesci
+            Traži skrivenu strukturu. Posebno obrati pažnju na simetriju,
+            višestruke korenove i aritmetičku progresiju. To su najčešći
             &ldquo;ulazi&rdquo; u zadatak.
           </p>
         </SectionCardInline>

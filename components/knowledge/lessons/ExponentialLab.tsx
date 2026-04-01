@@ -100,8 +100,8 @@ function pointLatex(x: number, y: number): string {
 
 function monotonicityLatex(a: number): string {
   return a > 1
-    ? "\\text{Rastuca funkcija na }\\mathbb{R}."
-    : "\\text{Opadajuca funkcija na }\\mathbb{R}.";
+    ? "\\text{Rastuća funkcija na }\\mathbb{R}."
+    : "\\text{Opadajuća funkcija na }\\mathbb{R}.";
 }
 
 function rangeLatex(q: number): string {
@@ -370,7 +370,7 @@ export default function ExponentialLab() {
               ))}
             </select>
             <span style={{ fontSize: "0.88rem", color: "var(--lesson-muted)" }}>
-              Tri prve baze daju opadajuce grafike, a poslednje tri rastuce.
+              Tri prve baze daju opadajuće grafike, a poslednje tri rastuće.
             </span>
           </div>
 
@@ -416,7 +416,7 @@ export default function ExponentialLab() {
 
           <div className={s.rangeWrap}>
             <label>
-              Posmatrana tacka <em>x</em>{" "}
+              Posmatrana tačka <em>x</em>{" "}
               <span style={{ color: "var(--lesson-primary-soft)" }}>
                 {fmt(state.xProbe)}
               </span>
@@ -430,7 +430,7 @@ export default function ExponentialLab() {
               onChange={(e) => setX(Number(e.target.value))}
             />
             <span style={{ fontSize: "0.88rem", color: "var(--lesson-muted)" }}>
-              Plava tacka pokazuje konkretnu vrednost funkcije za izabrano{" "}
+              Plava tačka pokazuje konkretnu vrednost funkcije za izabrano{" "}
               <em>x</em>.
             </span>
           </div>
@@ -459,9 +459,9 @@ export default function ExponentialLab() {
             className={s.labNote}
             style={{ marginTop: 16, fontSize: "0.92rem" }}
           >
-            Ne pomeraj kontrole nasumice. Za svaku novu postavku prvo pokusaj da
-            sam predvidis: da li funkcija raste ili opada, gde je asimptota i
-            koja je tacka sa eksponentom 0.
+            Ne pomeraj kontrole nasumice. Za svaku novu postavku prvo pokušaj da
+            sam predvidiš: da li funkcija raste ili opada, gde je asimptota i
+            koja je tačka sa eksponentom 0.
           </p>
         </div>
 
@@ -485,14 +485,14 @@ export default function ExponentialLab() {
           <strong>Trenutna funkcija</strong>
           <MathJax dynamic>{`\\(${formulaLatex(state.base, state.p, state.q)}\\)`}</MathJax>
           <p style={{ fontSize: "0.88rem", color: "var(--lesson-muted)", marginTop: 4 }}>
-            Ovo je zapis koji trenutno crtas.
+            Ovo je zapis koji trenutno crtaš.
           </p>
         </div>
         <div className={s.resultCard}>
           <strong>Asimptota</strong>
           <MathJax dynamic>{`\\(y=${latexNum(state.q)}\\)`}</MathJax>
           <p style={{ fontSize: "0.88rem", color: "var(--lesson-muted)", marginTop: 4 }}>
-            Grafik joj se priblizava, ali je ne sece.
+            Grafik joj se približava, ali je ne seče.
           </p>
         </div>
         <div className={s.resultCard}>
@@ -510,17 +510,17 @@ export default function ExponentialLab() {
           </p>
         </div>
         <div className={s.resultCard}>
-          <strong>Karakteristicne tacke</strong>
+          <strong>Karakteristične tačke</strong>
           <MathJax dynamic>{`\\(${pointsLatex(state.base, state.p, state.q)}\\)`}</MathJax>
           <p style={{ fontSize: "0.88rem", color: "var(--lesson-muted)", marginTop: 4 }}>
-            Najvaznija je tacka u kojoj je eksponent jednak nuli.
+            Najvažnija je tačka u kojoj je eksponent jednak nuli.
           </p>
         </div>
         <div className={s.resultCard}>
-          <strong>Vrednost u izabranoj tacki</strong>
+          <strong>Vrednost u izabranoj tački</strong>
           <MathJax dynamic>{`\\(${probeLatex(state.base, state.p, state.q, state.xProbe)}\\)`}</MathJax>
           <p style={{ fontSize: "0.88rem", color: "var(--lesson-muted)", marginTop: 4 }}>
-            Koristi je da proveris da li umes da citas funkciju bez kalkulatora.
+            Koristi je da proveriš da li umeš da čitaš funkciju bez kalkulatora.
           </p>
         </div>
       </div>

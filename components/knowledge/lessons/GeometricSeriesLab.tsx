@@ -41,11 +41,11 @@ function finiteSum(st: State) {
 
 function seqType(st: State) {
   if (Math.abs(st.q - 1) < EPS) return "Konstantan niz";
-  if (Math.abs(st.q) < EPS) return "Niz sa nulama posle prvog clana";
+  if (Math.abs(st.q) < EPS) return "Niz sa nulama posle prvog člana";
   if (st.q > 1) return "Rast po faktoru";
   if (st.q > 0 && st.q < 1) return "Pozitivno opadanje";
-  if (st.q < 0 && Math.abs(st.q) < 1) return "Naizmenicno smirivanje";
-  return "Naizmenicna divergencija";
+  if (st.q < 0 && Math.abs(st.q) < 1) return "Naizmenično smirivanje";
+  return "Naizmenična divergencija";
 }
 
 function convergenceInfo(st: State) {
@@ -53,14 +53,14 @@ function convergenceInfo(st: State) {
     return {
       kind: st.q < 0 ? "alternating" : "convergent",
       label: "Red konvergira",
-      text: "Posto je |q| < 1, clanovi idu ka nuli i parcijalne sume imaju granicu.",
+      text: "Pošto je |q| < 1, članovi idu ka nuli i parcijalne sume imaju granicu.",
       infSum: st.a1 / (1 - st.q),
     };
   }
   return {
     kind: "divergent",
     label: "Red divergira",
-    text: "Posto |q| nije manje od 1, beskonacna suma nije definisana geometrijskom formulom.",
+    text: "Pošto |q| nije manje od 1, beskonačna suma nije definisana geometrijskom formulom.",
     infSum: null as number | null,
   };
 }
@@ -258,7 +258,7 @@ export default function GeometricSeriesLab() {
       w: frameW - pad * 2,
       h: frameH * 0.42,
     };
-    drawPanel(ctx, topArea.x, topArea.y, topArea.w, topArea.h, "Prvih n clanova geometrijskog niza");
+    drawPanel(ctx, topArea.x, topArea.y, topArea.w, topArea.h, "Prvih n članova geometrijskog niza");
     drawPanel(ctx, botArea.x, botArea.y, botArea.w, botArea.h, "Parcijalne sume S1, S2, ..., Sn");
     drawBars(ctx, data.terms, topArea);
     drawSums(ctx, data.partials, conv.infSum, botArea);
@@ -281,8 +281,8 @@ export default function GeometricSeriesLab() {
 
   const captionText =
     conv.infSum === null
-      ? "Parcijalne sume ne prilaze stabilnoj granici, pa beskonacna suma nije definisana geometrijskom formulom."
-      : `Parcijalne sume se priblizavaju granici ${fmt(conv.infSum)} dok broj clanova raste.`;
+      ? "Parcijalne sume ne prilaze stabilnoj granici, pa beskonačna suma nije definisana geometrijskom formulom."
+      : `Parcijalne sume se približavaju granici ${fmt(conv.infSum)} dok broj članova raste.`;
 
   const remainder =
     conv.infSum !== null ? conv.infSum - sn : null;
@@ -292,7 +292,7 @@ export default function GeometricSeriesLab() {
       : `S\u221E = ${fmt(conv.infSum)}`;
   const remainderText =
     remainder !== null
-      ? ` Posle prvih ${n} clanova do granice ostaje jos ${fmt(remainder)}.`
+      ? ` Posle prvih ${n} članova do granice ostaje još ${fmt(remainder)}.`
       : "";
 
   const kindClass =
@@ -319,7 +319,7 @@ export default function GeometricSeriesLab() {
             {captionText}
           </p>
           <p className={s.labNote}>
-            Ako je |q| &lt; 1, iscrtava se i isprekidana linija beskonacne sume. Kada je q negativan, stubici menjaju smer, a linija suma osciluje.
+            Ako je |q| &lt; 1, iscrtava se i isprekidana linija beskonačne sume. Kada je q negativan, stubići menjaju smer, a linija suma osciluje.
           </p>
         </div>
 
@@ -330,7 +330,7 @@ export default function GeometricSeriesLab() {
             <div className={s.controlGrid}>
               <div className={s.field}>
                 <label>
-                  Prvi clan a<sub>1</sub>{" "}
+                  Prvi član a<sub>1</sub>{" "}
                   <span style={{ color: "var(--lesson-primary-soft)", fontWeight: 800 }}>
                     {fmt(a1)}
                   </span>
@@ -346,7 +346,7 @@ export default function GeometricSeriesLab() {
               </div>
               <div className={s.field}>
                 <label>
-                  Kolicnik q{" "}
+                  Količnik q{" "}
                   <span style={{ color: "var(--lesson-primary-soft)", fontWeight: 800 }}>
                     {fmt(q)}
                   </span>
@@ -362,7 +362,7 @@ export default function GeometricSeriesLab() {
               </div>
               <div className={s.field}>
                 <label>
-                  Broj prikazanih clanova n{" "}
+                  Broj prikazanih članova n{" "}
                   <span style={{ color: "var(--lesson-primary-soft)", fontWeight: 800 }}>
                     {n}
                   </span>
@@ -389,7 +389,7 @@ export default function GeometricSeriesLab() {
                 Rast
               </button>
               <button className={s.presetBtn} type="button" onClick={() => applyPreset("alternating")}>
-                Naizmenicno
+                Naizmenično
               </button>
               <button className={s.presetBtn} type="button" onClick={() => applyPreset("triangles")}>
                 Trouglovi
@@ -408,19 +408,19 @@ export default function GeometricSeriesLab() {
                 </p>
               </div>
               <div className={s.resultCard}>
-                <strong>Poslednji prikazani clan</strong>
+                <strong>Poslednji prikazani član</strong>
                 <p style={{ color: "var(--lesson-muted)" }}>
                   a{n} = {fmt(lastTerm)}
                 </p>
               </div>
               <div className={s.resultCard}>
-                <strong>Konacna suma</strong>
+                <strong>Konačna suma</strong>
                 <p style={{ color: "var(--lesson-muted)" }}>
                   S{n} = {fmt(sn)}
                 </p>
               </div>
               <div className={s.resultCard}>
-                <strong>Beskonacna suma</strong>
+                <strong>Beskonačna suma</strong>
                 <p style={{ color: "var(--lesson-muted)" }}>{infLabel}</p>
               </div>
             </div>

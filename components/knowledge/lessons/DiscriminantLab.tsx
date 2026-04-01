@@ -53,7 +53,7 @@ function rootsDescription(a: number, b: number, delta: number): RootInfo {
       nature: "Jedan dvostruki realan",
       roots: `x = ${fmt(x)}`,
       message:
-        "Diskriminanta je nula, pa parabola dodiruje x-osu i jedna\u010Dina ima jedan dvostruki realan koren.",
+        "Diskriminanta je nula, pa parabola dodiruje x-osu i jednačina ima jedan dvostruki realan koren.",
     };
   }
   const real = -b / (2 * a);
@@ -277,12 +277,12 @@ export default function DiscriminantLab() {
       {/* Controls panel */}
       <div>
         <article className={s.interactiveCard} style={{ padding: 22 }}>
-          <h3 className={cs.tCardTitle}>Koeficijenti jednacine</h3>
+          <h3 className={cs.tCardTitle}>Koeficijenti jednačine</h3>
           <p>
-            Posmatramo jednacinu oblika{" "}
+            Posmatramo jednačinu oblika{" "}
             <MathJax inline>{"\\(ax^2+bx+c=0\\)"}</MathJax>. Koeficijent{" "}
             <MathJax inline>{"\\(a\\)"}</MathJax> je namerno bez nule, da bi
-            jednacina ostala kvadratna.
+            jednačina ostala kvadratna.
           </p>
 
           <div className={s.rangeWrap}>
@@ -403,7 +403,7 @@ export default function DiscriminantLab() {
             fontSize: "0.92rem",
           }}
         >
-          Zuta tacka oznacava teme parabole. Zelene tacke se pojavljuju kada
+          Žuta tačka označava teme parabole. Zelene tačke se pojavljuju kada
           postoje realni koreni.
         </p>
 
@@ -412,7 +412,7 @@ export default function DiscriminantLab() {
           style={{ gridTemplateColumns: "repeat(4, 1fr)" }}
         >
           <div className={s.resultCard}>
-            <strong>Jednacina</strong>
+            <strong>Jednačina</strong>
             <p style={{ color: "var(--lesson-text)", fontWeight: 700, fontSize: "1.05rem" }}>
               {equationString(a, bVal, cVal)}
             </p>
@@ -424,7 +424,7 @@ export default function DiscriminantLab() {
             </p>
           </div>
           <div className={s.resultCard}>
-            <strong>Priroda resenja</strong>
+            <strong>Priroda rešenja</strong>
             <p style={{ color: "var(--lesson-text)", fontWeight: 700, fontSize: "1.05rem" }}>
               {rootInfo.nature}
             </p>

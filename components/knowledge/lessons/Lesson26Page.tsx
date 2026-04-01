@@ -18,17 +18,17 @@ import cs from "@/styles/lesson-common.module.css";
 import s from "@/styles/lesson-layout.module.css";
 
 const NAV_LINKS = [
-  { href: "#zasto", label: "Zasto je vazno" },
+  { href: "#zasto", label: "Zašto je važno" },
   { href: "#osnovni", label: "Osnovni oblik" },
   { href: "#rastpad", label: "Rast i pad" },
   { href: "#transformacije", label: "Pomeraji" },
   { href: "#crtanje", label: "Crtanje" },
   { href: "#interaktivno", label: "Interaktivni deo" },
-  { href: "#primeri", label: "Vodjeni primeri" },
-  { href: "#formule", label: "Kljucne formule" },
-  { href: "#greske", label: "Ceste greske" },
+  { href: "#primeri", label: "Vođeni primeri" },
+  { href: "#formule", label: "Ključne formule" },
+  { href: "#greske", label: "Česte greške" },
   { href: "#prijemni", label: "Prijemni fokus" },
-  { href: "#vezbe", label: "Vezbe" },
+  { href: "#vezbe", label: "Vežbe" },
   { href: "#rezime", label: "Rezime" },
 ];
 
@@ -44,31 +44,31 @@ export default function Lesson26Page() {
             <span className={cs.tHeroAccent}>i njen grafik</span>
           </>
         }
-        description="Kada je promenljiva u eksponentu, grafik vise ne lici ni na pravu ni na parabolu. Upravo zato ova lekcija trazi novi mentalni model: baza odredjuje da li funkcija raste ili opada, a pomeraji menjaju polozaj cele krive i njene asimptote. Ako ovo razumes kako treba, sledece lekcije o eksponencijalnim jednacinama i logaritmima postaju mnogo preglednije."
+        description="Kada je promenljiva u eksponentu, grafik više ne liči ni na pravu ni na parabolu. Upravo zato ova lekcija traži novi mentalni model: baza određuje da li funkcija raste ili opada, a pomeraji menjaju položaj cele krive i njene asimptote. Ako ovo razumeš kako treba, sledeće lekcije o eksponencijalnim jednačinama i logaritmima postaju mnogo preglednije."
         heroImageSrc="/api/lessons/26/hero"
-        heroImageAlt="Apstraktna matematicka ilustracija za lekciju o eksponencijalnoj funkciji"
+        heroImageAlt="Apstraktna matematička ilustracija za lekciju o eksponencijalnoj funkciji"
         cards={[
           {
-            label: "Naucices",
+            label: "Naučićeš",
             description:
-              "Kako da iz jedne formule procitas rast, pad, asimptotu i kljucne tacke. Neces crtati naslepo, vec po jasnom algoritmu koji radi i za pomerene grafike.",
+              "Kako da iz jedne formule pročitaš rast, pad, asimptotu i ključne tačke. Neces crtati naslepo, već po jasnom algoritmu koji radi i za pomerene grafike.",
           },
           {
-            label: "Najveca zamka",
+            label: "Najveća zamka",
             description:
-              "Mesanje slucajeva a > 1 i 0 < a < 1. Kod baze manje od 1 funkcija opada, i to je mesto na kome se na prijemnom cesto gube laki poeni.",
+              "Mešanje slučajeva a > 1 i 0 < a < 1. Kod baze manje od 1 funkcija opada, i to je mesto na kome se na prijemnom često gube laki poeni.",
           },
           {
             label: "Prijemni fokus",
             description:
-              "Prvi pogled mora da ide na bazu i horizontalnu asimptotu. Kad to vidis odmah, pola zadatka je vec organizovano pre racunanja.",
+              "Prvi pogled mora da ide na bazu i horizontalnu asimptotu. Kad to vidiš odmah, pola zadatka je već organizovano pre računanja.",
           },
         ]}
         stats={[
           {
             label: "Trajanje",
             description:
-              "70 do 90 minuta sa crtanjem, laboratorijumom i vodjenim primerima.",
+              "70 do 90 minuta sa crtanjem, laboratorijumom i vođenim primerima.",
           },
           {
             label: "Predznanje",
@@ -76,14 +76,14 @@ export default function Lesson26Page() {
               "Stepeni i osobine funkcija. Potreban ti je siguran rad sa potencijama i osnovno razumevanje domena, skupa vrednosti i monotonosti.",
           },
           {
-            label: "Glavna vestina",
+            label: "Glavna veština",
             description:
-              "Citanje funkcije bez kalkulatora. Iz baze i pomeraja treba odmah da vidis da li funkcija raste, gde joj je asimptota i koje su lake tacke za crtanje.",
+              "Čitanje funkcije bez kalkulatora. Iz baze i pomeraja treba odmah da vidiš da li funkcija raste, gde joj je asimptota i koje su lake tačke za crtanje.",
           },
           {
             label: "Interaktivni deo",
             description:
-              "Canvas laboratorija. Menjas bazu i pomeraje, a zatim posmatras kako se u realnom vremenu menja grafik funkcije y = a^(x-p) + q.",
+              "Canvas laboratorija. Menjaš bazu i pomeraje, a zatim posmatraš kako se u realnom vremenu menja grafik funkcije y = a^(x-p) + q.",
           },
         ]}
       />
@@ -94,32 +94,32 @@ export default function Lesson26Page() {
       {/* ═══════════ ZASTO JE VAZNO ═══════════ */}
       <LessonSection
         id="zasto"
-        eyebrow="Zasto je ova lekcija vazna"
+        eyebrow="Zašto je ova lekcija važna"
         title="Eksponent menja sve: od brzine rasta do oblika grafika"
-        description="Eksponencijalna funkcija je prvi ozbiljan susret sa funkcijom ciji je argument u eksponentu. To znaci da se promena ne odvija ravnomerno kao kod linearne funkcije, niti po paraboli kao kod kvadratne, vec mnogo brze ili mnogo sporije, u zavisnosti od baze."
+        description="Eksponencijalna funkcija je prvi ozbiljan susret sa funkcijom ciji je argument u eksponentu. To znači da se promena ne odvija ravnomerno kao kod linearne funkcije, niti po paraboli kao kod kvadratne, već mnogo brže ili mnogo sporije, u zavisnosti od baze."
       >
         <div className={s.grid3}>
-          <SectionCard title="Temelj za sledece lekcije">
+          <SectionCard title="Temelj za sledeće lekcije">
             <p>
-              Eksponencijalne jednacine i nejednacine neces resavati sigurno ako
-              ne razumes kako se ponasa funkcija{" "}
-              <InlineMath>{"a^x"}</InlineMath> i zasto monotono raste ili opada.
+              Eksponencijalne jednačine i nejednačine neces rešavati sigurno ako
+              ne razumeš kako se ponasa funkcija{" "}
+              <InlineMath>{"a^x"}</InlineMath> i zašto monotono raste ili opada.
               Logaritamska funkcija ce kasnije biti njena inverzna slika.
             </p>
           </SectionCard>
-          <SectionCard title="Tipican prijemni obrazac">
+          <SectionCard title="Tipičan prijemni obrazac">
             <p>
-              Na prijemnom se cesto trazi da sa malo racuna zakljucis znak,
-              monotonost, broj preseka sa pravom ili polozaj asimptote. To su
-              zadaci koji nagradjuju razumevanje, a kaznjavaju mehanicko
-              racunanje.
+              Na prijemnom se često traži da sa malo računa zaključiš znak,
+              monotonost, broj preseka sa pravom ili položaj asimptote. To su
+              zadaci koji nagrađuju razumevanje, a kažnjavaju mehaničko
+              računanje.
             </p>
           </SectionCard>
           <SectionCard title="Praktican mentalni model">
             <p>
-              Dobar ucenik ovde ne pamti samo formulu. On vidi sliku: jedna
-              kriva uvek ostaje iznad asimptote, prolazi kroz karakteristicnu
-              tacku i menja smer rasta u zavisnosti od baze.
+              Dobar učenik ovde ne pamti samo formulu. On vidi sliku: jedna
+              kriva uvek ostaje iznad asimptote, prolazi kroz karakterističnu
+              tačku i menja smer rasta u zavisnosti od baze.
             </p>
           </SectionCard>
         </div>
@@ -128,9 +128,9 @@ export default function Lesson26Page() {
           question="Mikro-provera: koja dva velika poglavlja direktno nastavljaju ovu lekciju?"
           answer={
             <p>
-              Eksponencijalne jednacine i nejednacine, a zatim logaritamske
-              funkcije i logaritamske jednacine. Ako ovde razumes graf, kasniji
-              algebrajski postupci imaju mnogo vise smisla.
+              Eksponencijalne jednačine i nejednačine, a zatim logaritamske
+              funkcije i logaritamske jednačine. Ako ovde razumeš graf, kasniji
+              algebrajski postupci imaju mnogo više smisla.
             </p>
           }
         />
@@ -141,25 +141,25 @@ export default function Lesson26Page() {
         id="osnovni"
         eyebrow="Definicija"
         title="Osnovni oblik: sta je eksponencijalna funkcija"
-        description="Eksponencijalna funkcija je funkcija oblika f(x) = a^x, gde je baza a pozitivan broj razlicit od 1. Kljucna novina je to sto je promenljiva x u eksponentu, a ne ispred baze."
+        description="Eksponencijalna funkcija je funkcija oblika f(x) = a^x, gde je baza a pozitivan broj različit od 1. Ključna novina je to što je promenljiva x u eksponentu, a ne ispred baze."
       >
         <div className={s.grid2}>
           <SectionCard title="Formalni zapis">
             <MathBlock>{"f(x)=a^x,\\qquad a>0,\\quad a\\neq 1"}</MathBlock>
             <p>
-              U skolskim zadacima baza je najcesce{" "}
+              U školskim zadacima baza je najčešće{" "}
               <InlineMath>{"2"}</InlineMath>, <InlineMath>{"3"}</InlineMath>,{" "}
               <InlineMath>{"\\frac{1}{2}"}</InlineMath>,{" "}
-              <InlineMath>{"\\frac{1}{3}"}</InlineMath>, ali moze biti bilo koji
+              <InlineMath>{"\\frac{1}{3}"}</InlineMath>, ali može biti bilo koji
               pozitivan realan broj osim jedinice.
             </p>
           </SectionCard>
-          <SectionCard title="Zasto vaze uslovi za bazu">
+          <SectionCard title="Zašto vaze uslovi za bazu">
             <ul>
               <li>
-                Ako je <InlineMath>{"a=1"}</InlineMath>, dobijas konstantnu
-                funkciju <InlineMath>{"1^x=1"}</InlineMath>, pa vise nema pravog
-                eksponencijalnog ponasanja.
+                Ako je <InlineMath>{"a=1"}</InlineMath>, dobijaš konstantnu
+                funkciju <InlineMath>{"1^x=1"}</InlineMath>, pa više nema pravog
+                eksponencijalnog ponašanja.
               </li>
               <li>
                 Ako je <InlineMath>{"a\\le 0"}</InlineMath>, izraz{" "}
@@ -167,7 +167,7 @@ export default function Lesson26Page() {
                 realno <InlineMath>{"x"}</InlineMath>.
               </li>
               <li>
-                Zato u realnoj analizi trazimo upravo{" "}
+                Zato u realnoj analizi tražimo upravo{" "}
                 <InlineMath>{"a>0"}</InlineMath> i{" "}
                 <InlineMath>{"a\\neq 1"}</InlineMath>.
               </li>
@@ -184,19 +184,19 @@ export default function Lesson26Page() {
               <InlineMath>{"x"}</InlineMath>-osu.
             </p>
           </SectionCard>
-          <SectionCard title="Karakteristicne cinjenice">
+          <SectionCard title="Karakteristicne činjenice">
             <ul>
               <li>
                 <InlineMath>{"f(0)=a^0=1"}</InlineMath>, pa grafik uvek prolazi
-                kroz tacku <InlineMath>{"(0,1)"}</InlineMath>.
+                kroz tačku <InlineMath>{"(0,1)"}</InlineMath>.
               </li>
               <li>
                 <InlineMath>{"f(1)=a"}</InlineMath>, pa baza direktno daje
-                visinu tacke sa <InlineMath>{"x=1"}</InlineMath>.
+                visinu tačke sa <InlineMath>{"x=1"}</InlineMath>.
               </li>
               <li>
-                <InlineMath>{"f(-1)=\\frac{1}{a}"}</InlineMath>, sto je jos
-                jedna brza tacka za skicu.
+                <InlineMath>{"f(-1)=\\frac{1}{a}"}</InlineMath>, što je još
+                jedna brza tačka za skicu.
               </li>
               <li>
                 Horizontalna asimptota osnovnog grafa je{" "}
@@ -207,12 +207,12 @@ export default function Lesson26Page() {
         </div>
 
         <MicroCheck
-          question="Mikro-provera: zasto svaki grafik y = a^x prolazi kroz (0, 1)?"
+          question="Mikro-provera: zašto svaki grafik y = a^x prolazi kroz (0, 1)?"
           answer={
             <p>
-              Zato sto za svaku dozvoljenu bazu vazi{" "}
-              <InlineMath>{"a^0=1"}</InlineMath>. Cim u eksponent stavis{" "}
-              <InlineMath>{"x=0"}</InlineMath>, dobijas vrednost{" "}
+              Zato što za svaku dozvoljenu bazu vazi{" "}
+              <InlineMath>{"a^0=1"}</InlineMath>. Čim u eksponent stavis{" "}
+              <InlineMath>{"x=0"}</InlineMath>, dobijaš vrednost{" "}
               <InlineMath>{"1"}</InlineMath>.
             </p>
           }
@@ -223,30 +223,30 @@ export default function Lesson26Page() {
       <LessonSection
         id="rastpad"
         eyebrow="Monotonost"
-        title="Rast i pad: najvaznija podela cele lekcije"
-        description="Sve se menja u zavisnosti od toga da li je baza veca od 1 ili izmedju 0 i 1. To nije sitnica, nego glavno pravilo za citanje eksponencijalnog grafa i resavanje zadataka."
+        title="Rast i pad: najvažnija podela cele lekcije"
+        description="Sve se menja u zavisnosti od toga da li je baza veća od 1 ili između 0 i 1. To nije sitnica, nego glavno pravilo za čitanje eksponencijalnog grafa i resavanje zadataka."
       >
         <div className={s.grid2}>
-          <SectionCard title="Slucaj a > 1: funkcija raste">
+          <SectionCard title="Slučaj a > 1: funkcija raste">
             <MathBlock>
               {"x_1<x_2 \\Rightarrow a^{x_1}<a^{x_2}"}
             </MathBlock>
             <p>
-              Ako je baza veca od <InlineMath>{"1"}</InlineMath>, svako
-              povecanje eksponenta daje vecu vrednost. Zato grafik ide navise
-              kada se kreces udesno. Primeri su{" "}
+              Ako je baza veća od <InlineMath>{"1"}</InlineMath>, svako
+              povećanje eksponenta daje vecu vrednost. Zato grafik ide naviše
+              kada se krećeš udesno. Primeri su{" "}
               <InlineMath>{"2^x"}</InlineMath>, <InlineMath>{"3^x"}</InlineMath>
               , <InlineMath>{"10^x"}</InlineMath>.
             </p>
           </SectionCard>
-          <SectionCard title="Slucaj 0 < a < 1: funkcija opada">
+          <SectionCard title="Slučaj 0 < a < 1: funkcija opada">
             <MathBlock>
               {"x_1<x_2 \\Rightarrow a^{x_1}>a^{x_2}"}
             </MathBlock>
             <p>
-              Ako je baza razlomak izmedju <InlineMath>{"0"}</InlineMath> i{" "}
-              <InlineMath>{"1"}</InlineMath>, svako povecanje eksponenta daje
-              manju vrednost. Zato grafik opada kada se kreces udesno. Primeri su{" "}
+              Ako je baza razlomak između <InlineMath>{"0"}</InlineMath> i{" "}
+              <InlineMath>{"1"}</InlineMath>, svako povećanje eksponenta daje
+              manju vrednost. Zato grafik opada kada se krećeš udesno. Primeri su{" "}
               <InlineMath>{"\\left(\\frac{1}{2}\\right)^x"}</InlineMath> i{" "}
               <InlineMath>{"\\left(\\frac{1}{3}\\right)^x"}</InlineMath>.
             </p>
@@ -254,19 +254,19 @@ export default function Lesson26Page() {
           <SectionCard title="Intuitivni trik: odnos susednih vrednosti">
             <MathBlock>{"f(x+1)=a\\cdot f(x)"}</MathBlock>
             <p>
-              Kada pomeris <InlineMath>{"x"}</InlineMath> za{" "}
+              Kada pomeriš <InlineMath>{"x"}</InlineMath> za{" "}
               <InlineMath>{"1"}</InlineMath>, vrednost funkcije se mnozi bazom{" "}
-              <InlineMath>{"a"}</InlineMath>. Ako mnozis brojem vecim od{" "}
+              <InlineMath>{"a"}</InlineMath>. Ako mnozis brojem većim od{" "}
               <InlineMath>{"1"}</InlineMath>, vrednosti rastu. Ako mnozis brojem
-              izmedju <InlineMath>{"0"}</InlineMath> i{" "}
+              između <InlineMath>{"0"}</InlineMath> i{" "}
               <InlineMath>{"1"}</InlineMath>, vrednosti opadaju.
             </p>
           </SectionCard>
-          <SectionCard title="Brzo poredjenje bez racunanja">
+          <SectionCard title="Brzo poređenje bez računanja">
             <p>
-              Za rastucu funkciju je veci eksponent dovoljan da zakljucis vecu
-              vrednost. Za opadajucu funkciju vazi obrnuto. Ovo je veoma korisno
-              kod poredjenja izraza na prijemnom.
+              Za rastuću funkciju je veći eksponent dovoljan da zaključiš vecu
+              vrednost. Za opadajucu funkciju važi obrnuto. Ovo je veoma korisno
+              kod poređenja izraza na prijemnom.
             </p>
             <MathBlock>
               {
@@ -281,9 +281,9 @@ export default function Lesson26Page() {
           answer={
             <p>
               Opada, jer je baza <InlineMath>{"\\frac{1}{4}"}</InlineMath>{" "}
-              izmedju <InlineMath>{"0"}</InlineMath> i{" "}
-              <InlineMath>{"1"}</InlineMath>. To je najvazniji signal koji moras
-              odmah da vidis.
+              između <InlineMath>{"0"}</InlineMath> i{" "}
+              <InlineMath>{"1"}</InlineMath>. To je najvažniji signal koji moras
+              odmah da vidiš.
             </p>
           }
         />
@@ -294,7 +294,7 @@ export default function Lesson26Page() {
         id="transformacije"
         eyebrow="Transformacije"
         title="Pomeraji i asimptota: kako nastaje novi grafik"
-        description="Na prijemnom se retko ostaje samo na cistoj funkciji a^x. Mnogo cesce dobijas pomeren oblik. Zato moras da umes da procitas funkciju g(x) = a^(x-p) + q bez panike i bez precrtavanja od nule."
+        description="Na prijemnom se retko ostaje samo na čistoj funkciji a^x. Mnogo češće dobijaš pomeren oblik. Zato moraš da umeš da pročitaš funkciju g(x) = a^(x-p) + q bez panike i bez precrtavanja od nule."
       >
         <div className={s.grid3}>
           <SectionCard title="Horizontalni pomeraj">
@@ -303,15 +303,15 @@ export default function Lesson26Page() {
               Ako je u eksponentu <InlineMath>{"x-p"}</InlineMath>, osnovni
               grafik se pomera udesno za <InlineMath>{"p"}</InlineMath>. Ako je{" "}
               <InlineMath>{"x+p"}</InlineMath>, pomera se ulevo za{" "}
-              <InlineMath>{"p"}</InlineMath>. Tacka u kojoj je eksponent nula
-              postaje <InlineMath>{"x=p"}</InlineMath>, pa tada dobijas vrednost{" "}
+              <InlineMath>{"p"}</InlineMath>. Tačka u kojoj je eksponent nula
+              postaje <InlineMath>{"x=p"}</InlineMath>, pa tada dobijaš vrednost{" "}
               <InlineMath>{"1"}</InlineMath>.
             </p>
           </SectionCard>
           <SectionCard title="Vertikalni pomeraj">
             <MathBlock>{"g(x)=a^{x-p}+q"}</MathBlock>
             <p>
-              Sabiranje broja <InlineMath>{"q"}</InlineMath> pomera grafik navise
+              Sabiranje broja <InlineMath>{"q"}</InlineMath> pomera grafik naviše
               za <InlineMath>{"q"}</InlineMath> ako je{" "}
               <InlineMath>{"q>0"}</InlineMath>, odnosno nanize ako je{" "}
               <InlineMath>{"q<0"}</InlineMath>. Zajedno sa grafikom pomera se i
@@ -321,10 +321,10 @@ export default function Lesson26Page() {
           <SectionCard title="Asimptota novog grafa">
             <MathBlock>{"y=q"}</MathBlock>
             <p>
-              Posto je <InlineMath>{"a^{x-p}"}</InlineMath> uvek pozitivno,
+              Pošto je <InlineMath>{"a^{x-p}"}</InlineMath> uvek pozitivno,
               funkcija <InlineMath>{"a^{x-p}+q"}</InlineMath> ostaje strogo
-              iznad prave <InlineMath>{"y=q"}</InlineMath>. Grafik moze da joj
-              se priblizava beskonacno, ali je ne dodiruje.
+              iznad prave <InlineMath>{"y=q"}</InlineMath>. Grafik može da joj
+              se približava beskonačno, ali je ne dodiruje.
             </p>
           </SectionCard>
           <SectionCard title="Domen i skup vrednosti">
@@ -334,17 +334,17 @@ export default function Lesson26Page() {
             <p>
               Horizontalni i vertikalni pomeraj ne kvare domen: i dalje je{" "}
               <InlineMath>{"\\mathbb{R}"}</InlineMath>. Ali se skup vrednosti
-              pomera navise ili nanize zajedno sa asimptotom.
+              pomera naviše ili nanize zajedno sa asimptotom.
             </p>
           </SectionCard>
-          <SectionCard title="Najvaznija laka tacka">
+          <SectionCard title="Najvažnija laka tačka">
             <p>
-              Kada je eksponent jednak nuli, dobijas vrednost{" "}
+              Kada je eksponent jednak nuli, dobijaš vrednost{" "}
               <InlineMath>{"1"}</InlineMath>. Zato za funkciju{" "}
-              <InlineMath>{"g(x)=a^{x-p}+q"}</InlineMath> odmah dobijas tacku
+              <InlineMath>{"g(x)=a^{x-p}+q"}</InlineMath> odmah dobijaš tačku
             </p>
             <MathBlock>{"(p,\\,1+q)"}</MathBlock>
-            <p>To je cesto najbolja polazna tacka za crtanje.</p>
+            <p>To je često najbolja polažna tačka za crtanje.</p>
           </SectionCard>
           <SectionCard title="Napredna napomena za prijemni">
             <p>
@@ -375,8 +375,8 @@ export default function Lesson26Page() {
       <LessonSection
         id="crtanje"
         eyebrow="Algoritam"
-        title="Kako da nacrtas grafik bez lutanja"
-        description="Crtanje eksponencijalne funkcije nije takmicenje u broju tacaka. Dovoljno je nekoliko dobro izabranih informacija: baza, asimptota, smer rasta i jedna ili dve karakteristicne tacke."
+        title="Kako da nacrtaš grafik bez lutanja"
+        description="Crtanje eksponencijalne funkcije nije takmicenje u broju tacaka. Dovoljno je nekoliko dobro izabranih informacija: baza, asimptota, smer rasta i jedna ili dve karakteristične tačke."
       >
         <div className={s.grid2}>
           <SectionCard title="Algoritam za funkciju a^(x-p) + q">
@@ -400,7 +400,7 @@ export default function Lesson26Page() {
                 number={3}
                 title={
                   <>
-                    Nadji tacku gde je eksponent nula:{" "}
+                    Nađi tačku gde je eksponent nula:{" "}
                     <InlineMath>{"x=p"}</InlineMath>.
                   </>
                 }
@@ -413,7 +413,7 @@ export default function Lesson26Page() {
                 number={4}
                 title={
                   <>
-                    Dodaj jos jednu laku tacku, na primer za{" "}
+                    Dodaj još jednu laku tačku, na primer za{" "}
                     <InlineMath>{"x=p+1"}</InlineMath>.
                   </>
                 }
@@ -427,18 +427,18 @@ export default function Lesson26Page() {
                 title="Skiciraj glatku krivu."
               >
                 <p>
-                  Kriva prolazi kroz te tacke i priblizava se asimptoti bez
+                  Kriva prolazi kroz te tačke i približava se asimptoti bez
                   presecanja.
                 </p>
               </WalkStep>
             </div>
           </SectionCard>
 
-          <SectionCard title="Vazno upozorenje">
+          <SectionCard title="Važno upozorenje">
             <p>
-              Eksponencijalni grafik ne sece horizontalnu asimptotu. Ako si na
+              Eksponencijalni grafik ne seče horizontalnu asimptotu. Ako si na
               skici presekao pravu <InlineMath>{"y=q"}</InlineMath>, skica je
-              pogresna. Druga tipicna greska je da se zaboravi da je{" "}
+              pogrešna. Druga tipična greška je da se zaboravi da je{" "}
               <InlineMath>{"a^{x-p}"}</InlineMath> uvek pozitivno.
             </p>
             <MathBlock>
@@ -449,18 +449,18 @@ export default function Lesson26Page() {
 
         <SectionCard title="Mini-skica za g(x) = 2^(x-1) - 3">
           <p>
-            Ovo je rastuca eksponencijalna funkcija, jer je baza{" "}
+            Ovo je rastuća eksponencijalna funkcija, jer je baza{" "}
             <InlineMath>{"2>1"}</InlineMath>. Horizontalna asimptota je{" "}
             <InlineMath>{"y=-3"}</InlineMath>. Kada je eksponent nula, to jest za{" "}
-            <InlineMath>{"x=1"}</InlineMath>, dobijas tacku{" "}
+            <InlineMath>{"x=1"}</InlineMath>, dobijaš tačku{" "}
             <InlineMath>{"g(1)=2^0-3=1-3=-2"}</InlineMath>, pa je jedna sigurna
-            tacka <InlineMath>{"(1,-2)"}</InlineMath>. Za{" "}
-            <InlineMath>{"x=2"}</InlineMath> dobijas{" "}
+            tačka <InlineMath>{"(1,-2)"}</InlineMath>. Za{" "}
+            <InlineMath>{"x=2"}</InlineMath> dobijaš{" "}
             <InlineMath>{"g(2)=2^1-3=-1"}</InlineMath>, a za{" "}
-            <InlineMath>{"x=3"}</InlineMath> dobijas{" "}
-            <InlineMath>{"g(3)=2^2-3=1"}</InlineMath>. Dovoljno da vidis rastucu
+            <InlineMath>{"x=3"}</InlineMath> dobijaš{" "}
+            <InlineMath>{"g(3)=2^2-3=1"}</InlineMath>. Dovoljno da vidiš rastuću
             krivu koja dolazi blizu prave <InlineMath>{"y=-3"}</InlineMath> s
-            leve strane, a zatim se dize navise.
+            leve strane, a zatim se dize naviše.
           </p>
           <MathBlock>
             {"y=-3,\\qquad (1,-2),\\qquad (2,-1),\\qquad (3,1)"}
@@ -468,13 +468,13 @@ export default function Lesson26Page() {
         </SectionCard>
 
         <MicroCheck
-          question="Mikro-provera: koja je najbrza tacka za funkciju h(x) = 3^(x+2) + 1?"
+          question="Mikro-provera: koja je najbrza tačka za funkciju h(x) = 3^(x+2) + 1?"
           answer={
             <p>
               Eksponent je nula kada je <InlineMath>{"x+2=0"}</InlineMath>,
               dakle za <InlineMath>{"x=-2"}</InlineMath>. Tada je{" "}
               <InlineMath>{"h(-2)=1+1=2"}</InlineMath>, pa je najbrza
-              karakteristicna tacka <InlineMath>{"(-2,2)"}</InlineMath>.
+              karakteristična tačka <InlineMath>{"(-2,2)"}</InlineMath>.
             </p>
           }
         />
@@ -485,12 +485,12 @@ export default function Lesson26Page() {
         id="interaktivno"
         eyebrow="Interaktivni deo"
         title="Interaktivna laboratorija: baza i pomeraji"
-        description="U ovoj laboratoriji menjas funkciju y = a^(x-p) + q. Posmatraj kako se istovremeno menja smer rasta ili pada, polozaj asimptote, karakteristicne tacke i vrednost funkcije u izabranoj tacki."
+        description="U ovoj laboratoriji menjaš funkciju y = a^(x-p) + q. Posmatraj kako se istovremeno menja smer rasta ili pada, položaj asimptote, karakteristične tačke i vrednost funkcije u izabranoj tački."
       >
         <ExponentialLab />
 
         <MicroCheck
-          question="Kako da laboratorija zaista sluzi ucenju?"
+          question="Kako da laboratorija zaista služi učenju?"
           answer={
             <ul>
               <li>
@@ -501,11 +501,11 @@ export default function Lesson26Page() {
                 Zatim odredi asimptotu <InlineMath>{"y=q"}</InlineMath>.
               </li>
               <li>
-                Nadji tacku <InlineMath>{"x=p"}</InlineMath>, jer je tada
+                Nađi tačku <InlineMath>{"x=p"}</InlineMath>, jer je tada
                 eksponent jednak <InlineMath>{"0"}</InlineMath>.
               </li>
               <li>
-                Tek onda proveri svoj zakljucak na crtezu i u karticama sa
+                Tek onda proveri svoj zaključak na crtežu i u karticama sa
                 rezultatima.
               </li>
             </ul>
@@ -517,8 +517,8 @@ export default function Lesson26Page() {
       <LessonSection
         id="primeri"
         eyebrow="Korak po korak"
-        title="Vodjeni primeri"
-        description="U primerima je najvaznije da pratis redosled razmisljanja. Cilj nije samo tacan odgovor, nego i siguran obrazac koji mozes da preneses na prijemni zadatak."
+        title="Vođeni primeri"
+        description="U primerima je najvažnije da pratiš redosled razmisljanja. Cilj nije samo tacan odgovor, nego i siguran obrazac koji možeš da preneses na prijemni zadatak."
       >
         <div className={s.exampleGrid}>
           {/* Primer 1 */}
@@ -532,7 +532,7 @@ export default function Lesson26Page() {
               tacaka potrebnih za skicu.
             </p>
             <div className={s.walkthrough}>
-              <WalkStep number={1} title="Baza je 2 > 1, pa je funkcija rastuca." />
+              <WalkStep number={1} title="Baza je 2 > 1, pa je funkcija rastuća." />
               <WalkStep
                 number={2}
                 title={
@@ -567,7 +567,7 @@ export default function Lesson26Page() {
                 number={5}
                 title={
                   <>
-                    Brze tacke su{" "}
+                    Brze tačke su{" "}
                     <InlineMath>
                       {"(-1,\\frac{1}{2}),\\ (0,1),\\ (1,2)"}
                     </InlineMath>
@@ -580,8 +580,8 @@ export default function Lesson26Page() {
               {"D(f)=\\mathbb{R},\\qquad V(f)=(0,\\infty),\\qquad y=0"}
             </MathBlock>
             <p>
-              Poenta ovog primera je da vidis koliko mnogo zakljucaka dobijas bez
-              ikakve teske racunice.
+              Poenta ovog primera je da vidiš koliko mnogo zaključaka dobijaš bez
+              ikakve teške računice.
             </p>
           </article>
 
@@ -591,7 +591,7 @@ export default function Lesson26Page() {
             <p>
               Data je funkcija{" "}
               <InlineMath>{"g(x)=\\left(\\frac{1}{3}\\right)^x"}</InlineMath>.
-              Odredi monotonost i resi nejednacinu{" "}
+              Odredi monotonost i reši nejednačinu{" "}
               <InlineMath>{"g(x)>1"}</InlineMath>.
             </p>
             <div className={s.walkthrough}>
@@ -599,7 +599,7 @@ export default function Lesson26Page() {
                 number={1}
                 title={
                   <>
-                    Baza <InlineMath>{"\\frac{1}{3}"}</InlineMath> je izmedju{" "}
+                    Baza <InlineMath>{"\\frac{1}{3}"}</InlineMath> je između{" "}
                     <InlineMath>{"0"}</InlineMath> i{" "}
                     <InlineMath>{"1"}</InlineMath>, pa funkcija opada.
                   </>
@@ -615,15 +615,15 @@ export default function Lesson26Page() {
               />
               <WalkStep
                 number={3}
-                title="Kod opadajuce funkcije vrednosti levo od 0 bice vece od 1, a desno od 0 manje od 1."
+                title="Kod opadajuce funkcije vrednosti levo od 0 biće veće od 1, a desno od 0 manje od 1."
               />
             </div>
             <MathBlock>
               {"\\left(\\frac{1}{3}\\right)^x > 1 \\iff x<0"}
             </MathBlock>
             <p>
-              Ovo je lep primer kako monotono ponasanje resava zadatak brze od
-              grubog racunanja.
+              Ovo je lep primer kako monotono ponašanje rešava zadatak brže od
+              grubog računanja.
             </p>
           </article>
 
@@ -634,14 +634,14 @@ export default function Lesson26Page() {
               <InlineMath>{"h(x)=2^{x-1}-3"}</InlineMath>
             </h3>
             <p>
-              Odredi asimptotu, jednu kljucnu tacku, presek sa{" "}
+              Odredi asimptotu, jednu ključnu tačku, presek sa{" "}
               <InlineMath>{"y"}</InlineMath>-osom i presek sa{" "}
               <InlineMath>{"x"}</InlineMath>-osom.
             </p>
             <div className={s.walkthrough}>
               <WalkStep
                 number={1}
-                title="Baza je 2 > 1, pa je grafik rastuci."
+                title="Baza je 2 > 1, pa je grafik rastući."
               />
               <WalkStep
                 number={2}
@@ -656,7 +656,7 @@ export default function Lesson26Page() {
                 title={
                   <>
                     Eksponent je nula za <InlineMath>{"x=1"}</InlineMath>, pa je{" "}
-                    <InlineMath>{"h(1)=1-3=-2"}</InlineMath>. Dakle, tacka{" "}
+                    <InlineMath>{"h(1)=1-3=-2"}</InlineMath>. Dakle, tačka{" "}
                     <InlineMath>{"(1,-2)"}</InlineMath> je sigurna.
                   </>
                 }
@@ -696,11 +696,11 @@ export default function Lesson26Page() {
           {/* Primer 4 */}
           <article className={s.exampleCard}>
             <h3 className={cs.tCardTitle}>
-              Primer 4: odredjivanje baze iz tacke
+              Primer 4: određivanje baze iz tačke
             </h3>
             <p>
               Funkcija je oblika <InlineMath>{"f(x)=a^x+2"}</InlineMath> i
-              prolazi kroz tacku <InlineMath>{"(1,5)"}</InlineMath>. Odredi{" "}
+              prolazi kroz tačku <InlineMath>{"(1,5)"}</InlineMath>. Odredi{" "}
               <InlineMath>{"a"}</InlineMath> i osnovne osobine grafa.
             </p>
             <div className={s.walkthrough}>
@@ -708,7 +708,7 @@ export default function Lesson26Page() {
                 number={1}
                 title={
                   <>
-                    Uvrsti koordinatu tacke:{" "}
+                    Uvrsti koordinatu tačke:{" "}
                     <InlineMath>{"f(1)=a^1+2=5"}</InlineMath>.
                   </>
                 }
@@ -717,7 +717,7 @@ export default function Lesson26Page() {
                 number={2}
                 title={
                   <>
-                    Odavde dobijas <InlineMath>{"a=3"}</InlineMath>.
+                    Odavde dobijaš <InlineMath>{"a=3"}</InlineMath>.
                   </>
                 }
               />
@@ -755,14 +755,14 @@ export default function Lesson26Page() {
             <p>
               Posmatraj funkciju{" "}
               <InlineMath>{"k(x)=2^{x-2}+1"}</InlineMath>. Da li njen grafik
-              sece <InlineMath>{"x"}</InlineMath>-osu?
+              seče <InlineMath>{"x"}</InlineMath>-osu?
             </p>
             <div className={s.walkthrough}>
               <WalkStep
                 number={1}
                 title={
                   <>
-                    Posto je <InlineMath>{"2^{x-2}>0"}</InlineMath> za svako{" "}
+                    Pošto je <InlineMath>{"2^{x-2}>0"}</InlineMath> za svako{" "}
                     <InlineMath>{"x"}</InlineMath>, vazi{" "}
                     <InlineMath>{"2^{x-2}+1>1"}</InlineMath>.
                   </>
@@ -770,7 +770,7 @@ export default function Lesson26Page() {
               />
               <WalkStep
                 number={2}
-                title="To znaci da je funkcija uvek strogo pozitivna."
+                title="To znači da je funkcija uvek strogo pozitivna."
               />
               <WalkStep
                 number={3}
@@ -786,21 +786,21 @@ export default function Lesson26Page() {
               {"k(x)>1 \\quad \\text{za svaki } x\\in\\mathbb{R}"}
             </MathBlock>
             <p>
-              Ovo je vazan prijemni refleks: pre nego sto krenes da resavas
-              jednacinu, proveri da li je presek uopste moguc.
+              Ovo je važan prijemni refleks: pre nego što kreneš da rešavaš
+              jednačinu, proveri da li je presek uopste moguc.
             </p>
           </article>
 
           {/* Primer 6 */}
           <article className={s.exampleCard}>
             <h3 className={cs.tCardTitle}>
-              Primer 6: nemoj mesati{" "}
+              Primer 6: nemoj mešati{" "}
               <InlineMath>{"2^{x-2}"}</InlineMath> i{" "}
               <InlineMath>{"2^x-2"}</InlineMath>
             </h3>
             <p>
               Uporedi funkcije <InlineMath>{"u(x)=2^{x-2}"}</InlineMath> i{" "}
-              <InlineMath>{"v(x)=2^x-2"}</InlineMath>. Objasni zasto nisu isti
+              <InlineMath>{"v(x)=2^x-2"}</InlineMath>. Objasni zašto nisu isti
               pomeraj.
             </p>
             <div className={s.walkthrough}>
@@ -829,7 +829,7 @@ export default function Lesson26Page() {
                 title={
                   <>
                     Zato <InlineMath>{"u"}</InlineMath> i{" "}
-                    <InlineMath>{"v"}</InlineMath> imaju razlicite asimptote: za{" "}
+                    <InlineMath>{"v"}</InlineMath> imaju različite asimptote: za{" "}
                     <InlineMath>{"u"}</InlineMath> je to{" "}
                     <InlineMath>{"y=0"}</InlineMath>, a za{" "}
                     <InlineMath>{"v"}</InlineMath> je{" "}
@@ -844,7 +844,7 @@ export default function Lesson26Page() {
               }
             </MathBlock>
             <p>
-              Ovo je jedna od najcescih grafickih zamki u celoj oblasti
+              Ovo je jedna od najčešćih grafičkih zamki u celoj oblasti
               eksponencijalnih funkcija.
             </p>
           </article>
@@ -854,15 +854,15 @@ export default function Lesson26Page() {
       {/* ═══════════ KLJUCNE FORMULE ═══════════ */}
       <LessonSection
         id="formule"
-        eyebrow="Sazetak"
-        title="Kljucne formule i obrasci"
+        eyebrow="Sažetak"
+        title="Ključne formule i obrasci"
         description="Ovo je deo koji vredi ponavljati pred kontrolni ili prijemni. Svaka kartica nosi jedan osnovni refleks."
       >
         <div className={s.formulaGrid}>
           <FormulaCard
             title="Definicija"
             formula={"f(x)=a^x,\quad a>0,\ a\neq 1"}
-            note="Promenljiva je u eksponentu, a baza mora biti pozitivna i razlicita od 1."
+            note="Promenljiva je u eksponentu, a baza mora biti pozitivna i različita od 1."
           />
           <FormulaCard
             title="Domen i vrednosti"
@@ -870,14 +870,14 @@ export default function Lesson26Page() {
             note="Eksponencijalna funkcija je svuda definisana i uvek pozitivna."
           />
           <FormulaCard
-            title="Karakteristicna tacka"
+            title="Karakteristicna tačka"
             formula="f(0)=1"
             note="Zato osnovni grafik uvek prolazi kroz (0, 1)."
           />
           <FormulaCard
             title="Monotonost"
-            formula={"a>1 \Rightarrow \text{rastuca},\qquad 0<a<1 \Rightarrow \text{opadajuca}"}
-            note="Smer rasta odredjuje samo baza."
+            formula={"a>1 \Rightarrow \text{rastuća},\qquad 0<a<1 \Rightarrow \text{opadajuća}"}
+            note="Smer rasta određuje samo baza."
           />
           <FormulaCard
             title="Pomerena funkcija"
@@ -896,35 +896,35 @@ export default function Lesson26Page() {
       <LessonSection
         id="greske"
         eyebrow="Zamke"
-        title="Ceste greske"
-        description="Ovde su greske koje se stalno ponavljaju. Prodji kroz njih pazljivo, jer su upravo one tipicne prijemne zamke."
+        title="Česte greške"
+        description="Ovde su greške koje se stalno ponavljaju. Prodji kroz njih pažljivo, jer su upravo one tipične prijemne zamke."
       >
         <div className={s.tipGrid}>
           <article className={s.tipCard}>
             <h3 className={cs.tCardTitle}>
-              Pogresno tumacenje baze manje od 1
+              Pogrešno tumacenje baze manje od 1
             </h3>
             <p>
-              Ucenik vidi pozitivan broj i automatski kaze &ldquo;rastuca&rdquo;.
-              To nije tacno. Ako je baza izmedju <InlineMath>{"0"}</InlineMath> i{" "}
+              Učenik vidi pozitivan broj i automatski kaže &ldquo;rastuća&rdquo;.
+              To nije tačno. Ako je baza između <InlineMath>{"0"}</InlineMath> i{" "}
               <InlineMath>{"1"}</InlineMath>, funkcija opada.
             </p>
           </article>
           <article className={s.tipCard}>
             <h3 className={cs.tCardTitle}>
-              Mesanje <InlineMath>{"a^{x-p}"}</InlineMath> i{" "}
+              Mešanje <InlineMath>{"a^{x-p}"}</InlineMath> i{" "}
               <InlineMath>{"a^x-p"}</InlineMath>
             </h3>
             <p>
               Prvi zapis menja grafik horizontalno, drugi vertikalno. Ako to
-              zamenis, dobijas potpuno pogresnu asimptotu i pogresnu skicu.
+              zameniš, dobijaš potpuno pogrešnu asimptotu i pogrešnu skicu.
             </p>
           </article>
           <article className={s.tipCard}>
             <h3 className={cs.tCardTitle}>Crtanje preseka sa asimptotom</h3>
             <p>
-              Eksponencijalni grafik moze beskonacno da se priblizava asimptoti,
-              ali je ne sece. Ako je presekao, crtez nije dobar.
+              Eksponencijalni grafik može beskonačno da se približava asimptoti,
+              ali je ne seče. Ako je presekao, crtež nije dobar.
             </p>
           </article>
           <article className={s.tipCard}>
@@ -932,26 +932,26 @@ export default function Lesson26Page() {
               Verovanje da vertikalni pomeraj menja domen
             </h3>
             <p>
-              Nije tacno. Funkcija{" "}
+              Nije tačno. Funkcija{" "}
               <InlineMath>{"a^{x-p}+q"}</InlineMath> je i dalje definisana za
               svaki realan broj <InlineMath>{"x"}</InlineMath>.
             </p>
           </article>
           <article className={s.tipCard}>
             <h3 className={cs.tCardTitle}>
-              Forsiranje preseka sa <InlineMath>{"x"}</InlineMath>-osom
+              Forširanje preseka sa <InlineMath>{"x"}</InlineMath>-osom
             </h3>
             <p>
               Ako je funkcija stalno iznad svoje asimptote i asimptota je iznad
               ili na <InlineMath>{"x"}</InlineMath>-osi, presek sa{" "}
-              <InlineMath>{"x"}</InlineMath>-osom cesto ni ne postoji.
+              <InlineMath>{"x"}</InlineMath>-osom često ni ne postoji.
             </p>
           </article>
           <article className={s.tipCard}>
-            <h3 className={cs.tCardTitle}>Suvise mnogo racunanja</h3>
+            <h3 className={cs.tCardTitle}>Suviše mnogo računanja</h3>
             <p>
-              Mnogi ucenici odmah krecu u detaljne racune, a zaborave da baza,
-              asimptota i jedna karakteristicna tacka vec daju gotovo celu sliku.
+              Mnogi učenici odmah krecu u detaljne račune, a zaborave da baza,
+              asimptota i jedna karakteristična tačka već daju gotovo celu sliku.
             </p>
           </article>
         </div>
@@ -962,32 +962,32 @@ export default function Lesson26Page() {
         id="prijemni"
         eyebrow="Ispitna strategija"
         title="Veza sa prijemnim zadacima"
-        description="Na prijemnom se ova tema retko pojavljuje kao 'nacrtaj grafik i nista vise'. Mnogo cesce se trazi tumacenje grafa, broj resenja jednacine, poredjenje vrednosti ili prepoznavanje ispravnog crteza."
+        description="Na prijemnom se ova tema retko pojavljuje kao 'nacrtaj grafik i nista vise'. Mnogo češće se traži tumacenje grafa, broj rešenja jednačine, poređenje vrednosti ili prepoznavanje ispravnog crteža."
       >
         <div className={s.tipGrid}>
           <article className={s.tipCard}>
             <h3 className={cs.tCardTitle}>1. Prvi pogled na bazu</h3>
             <p>
-              Cim vidis funkciju, odmah odluci:{" "}
+              Čim vidiš funkciju, odmah odluci:{" "}
               <InlineMath>{"a>1"}</InlineMath> ili{" "}
-              <InlineMath>{"0<a<1"}</InlineMath>. To resava pitanje rasta i
+              <InlineMath>{"0<a<1"}</InlineMath>. To rešava pitanje rasta i
               pada.
             </p>
           </article>
           <article className={s.tipCard}>
             <h3 className={cs.tCardTitle}>2. Odmah upisi asimptotu</h3>
             <p>
-              Ako imas oblik <InlineMath>{"a^{x-p}+q"}</InlineMath>, prvo zapisi{" "}
+              Ako imaš oblik <InlineMath>{"a^{x-p}+q"}</InlineMath>, prvo zapisi{" "}
               <InlineMath>{"y=q"}</InlineMath>. To je sidro celog grafa.
             </p>
           </article>
           <article className={s.tipCard}>
             <h3 className={cs.tCardTitle}>
-              3. Nadji tacku sa eksponentom 0
+              3. Nađi tačku sa eksponentom 0
             </h3>
             <p>
-              To je najbrzi nacin da dobijas pouzdanu tacku bez komplikovanog
-              racunanja.
+              To je najbrzi način da dobijaš pouzdanu tačku bez komplikovanog
+              računanja.
             </p>
           </article>
           <article className={s.tipCard}>
@@ -995,8 +995,8 @@ export default function Lesson26Page() {
               4. Presek sa <InlineMath>{"x"}</InlineMath>-osom proveri logicki
             </h3>
             <p>
-              Pre racunanja se pitaj da li je uopste moguc. Ako je funkcija uvek
-              iznad nule, nema svrhe resavati jednacinu.
+              Pre računanja se pitaj da li je uopste moguc. Ako je funkcija uvek
+              iznad nule, nema svrhe rešavati jednačinu.
             </p>
           </article>
           <article className={s.tipCard}>
@@ -1004,27 +1004,27 @@ export default function Lesson26Page() {
               5. Poredjenja radi preko monotonosti
             </h3>
             <p>
-              Kod istih baza cesto ne moras nista da racunas. Dovoljno je da
-              znas kako se funkcija ponasa.
+              Kod istih baza često ne moraš nista da računaš. Dovoljno je da
+              znaš kako se funkcija ponasa.
             </p>
           </article>
           <article className={s.tipCard}>
             <h3 className={cs.tCardTitle}>
-              6. Citaj zadatak graficki i algebarski
+              6. Citaj zadatak grafički i algebarski
             </h3>
             <p>
-              Dobar rezultat dolazi kada isti zadatak vidis i kao formulu i kao
-              sliku. To ubrzava proveru gresaka.
+              Dobar rezultat dolazi kada isti zadatak vidiš i kao formulu i kao
+              sliku. To ubrzava proveru grešaka.
             </p>
           </article>
         </div>
 
-        <InsightCard title="Kljucna poruka lekcije">
+        <InsightCard title="Ključna poruka lekcije">
           <p>
-            Eksponencijalni grafik se ne crta iz mnogo slucajnih tacaka. Prvo
-            gledas bazu, zatim asimptotu, pa tacku u kojoj je eksponent jednak
+            Eksponencijalni grafik se ne crta iz mnogo slučajnih tacaka. Prvo
+            gledaš bazu, zatim asimptotu, pa tačku u kojoj je eksponent jednak
             nuli. To je najbrzi i najpouzdaniji put do dobre skice i dobrog
-            resenja.
+            rešenja.
           </p>
         </InsightCard>
       </LessonSection>
@@ -1033,12 +1033,12 @@ export default function Lesson26Page() {
       <LessonSection
         id="vezbe"
         eyebrow="Samostalni rad"
-        title="Vezbe za kraj lekcije"
-        description="Pokusaj da zadatke uradis samostalno, pa tek onda otvori resenje. Najvise koristi imas ako prvo sam formiras skicu i zakljucke."
+        title="Vežbe za kraj lekcije"
+        description="Pokušaj da zadatke uradiš samostalno, pa tek onda otvori rešenje. Najviše koristi imaš ako prvo sam formiraš skicu i zakljucke."
       >
         <div className={s.exerciseGrid}>
           <ExerciseCard
-            title="Vezba 1"
+            title="Vežba 1"
             problem={
               <p>
                 Za funkciju <InlineMath>{"f(x)=3^x"}</InlineMath> odredi domen,
@@ -1048,8 +1048,8 @@ export default function Lesson26Page() {
             solution={
               <>
                 <p>
-                  Posto je baza <InlineMath>{"3>1"}</InlineMath>, funkcija je
-                  rastuca. Domen je <InlineMath>{"\\mathbb{R}"}</InlineMath>,
+                  Pošto je baza <InlineMath>{"3>1"}</InlineMath>, funkcija je
+                  rastuća. Domen je <InlineMath>{"\\mathbb{R}"}</InlineMath>,
                   skup vrednosti <InlineMath>{"(0,\\infty)"}</InlineMath>, a
                   horizontalna asimptota <InlineMath>{"y=0"}</InlineMath>.
                 </p>
@@ -1060,7 +1060,7 @@ export default function Lesson26Page() {
             }
           />
           <ExerciseCard
-            title="Vezba 2"
+            title="Vežba 2"
             problem={
               <p>
                 Za funkciju{" "}
@@ -1075,7 +1075,7 @@ export default function Lesson26Page() {
               <>
                 <p>
                   Asimptota je <InlineMath>{"y=-2"}</InlineMath>. Presek sa{" "}
-                  <InlineMath>{"x"}</InlineMath>-osom dobijas iz{" "}
+                  <InlineMath>{"x"}</InlineMath>-osom dobijaš iz{" "}
                   <InlineMath>
                     {
                       "\\left(\\frac{1}{2}\\right)^{x+1}-2=0"
@@ -1095,7 +1095,7 @@ export default function Lesson26Page() {
             }
           />
           <ExerciseCard
-            title="Vezba 3"
+            title="Vežba 3"
             problem={
               <p>
                 Funkcija je oblika <InlineMath>{"h(x)=a^x"}</InlineMath> i vazi{" "}
@@ -1107,7 +1107,7 @@ export default function Lesson26Page() {
               <>
                 <p>
                   Iz uslova sledi <InlineMath>{"a^2=9"}</InlineMath>. Kako baza
-                  eksponencijalne funkcije mora biti pozitivna, dobijas{" "}
+                  eksponencijalne funkcije mora biti pozitivna, dobijaš{" "}
                   <InlineMath>{"a=3"}</InlineMath>, a ne{" "}
                   <InlineMath>{"-3"}</InlineMath>.
                 </p>
@@ -1116,7 +1116,7 @@ export default function Lesson26Page() {
             }
           />
           <ExerciseCard
-            title="Vezba 4"
+            title="Vežba 4"
             problem={
               <p>
                 Da li grafik funkcije{" "}
@@ -1127,7 +1127,7 @@ export default function Lesson26Page() {
             solution={
               <>
                 <p>
-                  Ne sece. Posto je <InlineMath>{"2^{x-2}>0"}</InlineMath> za
+                  Ne seče. Pošto je <InlineMath>{"2^{x-2}>0"}</InlineMath> za
                   svaki <InlineMath>{"x"}</InlineMath>, sledi{" "}
                   <InlineMath>{"k(x)>1"}</InlineMath>. Dakle, funkcija je uvek
                   pozitivna.
@@ -1141,10 +1141,10 @@ export default function Lesson26Page() {
             }
           />
           <ExerciseCard
-            title="Vezba 5"
+            title="Vežba 5"
             problem={
               <p>
-                Resi bez kalkulatora nejednacinu{" "}
+                Reši bez kalkulatora nejednačinu{" "}
                 <InlineMath>
                   {"\\left(\\frac{1}{4}\\right)^{x+2}<1"}
                 </InlineMath>
@@ -1154,24 +1154,24 @@ export default function Lesson26Page() {
             solution={
               <>
                 <p>
-                  Za bazu izmedju <InlineMath>{"0"}</InlineMath> i{" "}
+                  Za bazu između <InlineMath>{"0"}</InlineMath> i{" "}
                   <InlineMath>{"1"}</InlineMath> vrednost funkcije je jednaka{" "}
                   <InlineMath>{"1"}</InlineMath> kada je eksponent{" "}
                   <InlineMath>{"0"}</InlineMath>, a manja od{" "}
                   <InlineMath>{"1"}</InlineMath> kada je eksponent pozitivan.
-                  Zato treba da vazi <InlineMath>{"x+2>0"}</InlineMath>, pa je
-                  resenje <InlineMath>{"x>-2"}</InlineMath>.
+                  Zato treba da važi <InlineMath>{"x+2>0"}</InlineMath>, pa je
+                  rešenje <InlineMath>{"x>-2"}</InlineMath>.
                 </p>
                 <MathBlock>{"x>-2"}</MathBlock>
               </>
             }
           />
           <ExerciseCard
-            title="Vezba 6"
+            title="Vežba 6"
             problem={
               <p>
-                Za funkciju <InlineMath>{"m(x)=3^{x-1}+4"}</InlineMath> napisi
-                jednu sigurnu tacku i horizontalnu asimptotu.
+                Za funkciju <InlineMath>{"m(x)=3^{x-1}+4"}</InlineMath> napiši
+                jednu sigurnu tačku i horizontalnu asimptotu.
               </p>
             }
             solution={
@@ -1179,7 +1179,7 @@ export default function Lesson26Page() {
                 <p>
                   Eksponent je nula kada je <InlineMath>{"x=1"}</InlineMath>.
                   Tada je <InlineMath>{"m(1)=1+4=5"}</InlineMath>, pa je sigurna
-                  tacka <InlineMath>{"(1,5)"}</InlineMath>. Horizontalna
+                  tačka <InlineMath>{"(1,5)"}</InlineMath>. Horizontalna
                   asimptota je <InlineMath>{"y=4"}</InlineMath>.
                 </p>
                 <MathBlock>{"(1,5),\\qquad y=4"}</MathBlock>
@@ -1193,12 +1193,12 @@ export default function Lesson26Page() {
       <LessonSection
         id="rezime"
         eyebrow="Za ponavljanje"
-        title="Zavrsni rezime"
-        description="Na kraju ove lekcije cilj je da eksponencijalnu funkciju vidis kao celinu, a ne kao izolovanu formulu."
+        title="Završni rezime"
+        description="Na kraju ove lekcije cilj je da eksponencijalnu funkciju vidiš kao celinu, a ne kao izolovanu formulu."
       >
         <div className={s.summaryGrid}>
           <article className={s.summaryCard}>
-            <h3 className={cs.tCardTitle}>Sta moras da zapamtis</h3>
+            <h3 className={cs.tCardTitle}>Sta moraš da zapamtiš</h3>
             <ul>
               <li>
                 <InlineMath>{"f(x)=a^x"}</InlineMath> sa uslovima{" "}
@@ -1216,7 +1216,7 @@ export default function Lesson26Page() {
             </ul>
           </article>
           <article className={s.summaryCard}>
-            <h3 className={cs.tCardTitle}>Najvazniji uvid</h3>
+            <h3 className={cs.tCardTitle}>Najvažniji uvid</h3>
             <ul>
               <li>
                 Ako je <InlineMath>{"a>1"}</InlineMath>, funkcija raste.
@@ -1226,22 +1226,22 @@ export default function Lesson26Page() {
               </li>
               <li>
                 Kod oblika <InlineMath>{"a^{x-p}+q"}</InlineMath> asimptota je{" "}
-                <InlineMath>{"y=q"}</InlineMath>, a brza tacka je{" "}
+                <InlineMath>{"y=q"}</InlineMath>, a brza tačka je{" "}
                 <InlineMath>{"(p,1+q)"}</InlineMath>.
               </li>
             </ul>
           </article>
           <article className={s.summaryCard}>
-            <h3 className={cs.tCardTitle}>Sledeci logican korak</h3>
+            <h3 className={cs.tCardTitle}>Sledeći logičan korak</h3>
             <ul>
               <li>
-                Predji na eksponencijalne jednacine i primeni ideju istih baza.
+                Predji na eksponencijalne jednačine i primeni ideju istih baza.
               </li>
               <li>
                 Zatim povezi ovu temu sa logaritmima kao obrnutim procesom.
               </li>
               <li>
-                Dok radis zadatke, uvek spajaj formulu i graficku sliku.
+                Dok radis zadatke, uvek spajaj formulu i grafičku sliku.
               </li>
             </ul>
           </article>
@@ -1249,8 +1249,8 @@ export default function Lesson26Page() {
 
         <p className={cs.footerNote}>
           Lekcija 26 postavlja temelj za ceo blok eksponencijalnih i
-          logaritamskih funkcija: od definicije i grafika do jednacina i
-          nejednacina.
+          logaritamskih funkcija: od definicije i grafika do jednačina i
+          nejednačina.
         </p>
       </LessonSection>
     </LessonShell>

@@ -40,7 +40,7 @@ const PRESETS: Record<string, Preset> = {
     codomain: ["a", "b", "c"],
     formula: "R \\subseteq A \\times B",
     description:
-      "Prvi element domena ima dve razlicite slike, a treci nema nijednu. Zato jos nismo ni stigli do pitanja injekcije ili surjekcije.",
+      "Prvi element domena ima dve različite slike, a treći nema nijednu. Zato još nismo ni stigli do pitanja injekcije ili surjekcije.",
     arrows: [
       ["1", "a"],
       ["1", "b"],
@@ -54,7 +54,7 @@ const PRESETS: Record<string, Preset> = {
     codomain: ["a", "b", "c", "d"],
     formula: "f:\\{1,2,3\\}\\to\\{a,b,c,d\\}",
     description:
-      "Svi ulazi idu u razlicite izlaze, ali element d ostaje nepogodjen, pa funkcija nije surjektivna.",
+      "Svi ulazi idu u različite izlaze, ali element d ostaje nepogođen, pa funkcija nije surjektivna.",
     mapping: { "1": "a", "2": "b", "3": "c" },
   },
   surjection: {
@@ -79,7 +79,7 @@ const PRESETS: Record<string, Preset> = {
   },
   manual: {
     type: "function",
-    label: "Rucno podesavanje funkcije",
+    label: "Ručno podešavanje funkcije",
     domain: ["1", "2", "3", "4"],
     codomain: ["p", "q", "r", "s"],
     formula: "f:A\\to B",
@@ -94,7 +94,7 @@ const MODE_LABELS: Record<string, string> = {
   injection: "Samo injekcija",
   surjection: "Samo surjekcija",
   bijection: "Bijekcija",
-  manual: "Rucno menjanje",
+  manual: "Ručno menjanje",
 };
 
 /* ────────────────────────────────────────────
@@ -189,7 +189,7 @@ function describeScenario(analysis: Analysis): string {
     const parts: string[] = [];
     if (analysis.multiDomain.length) {
       parts.push(
-        `element(i) domena ${analysis.multiDomain.join(", ")} imaju vise od jedne slike`
+        `element(i) domena ${analysis.multiDomain.join(", ")} imaju više od jedne slike`
       );
     }
     if (analysis.missingDomain.length) {
@@ -197,16 +197,16 @@ function describeScenario(analysis: Analysis): string {
         `element(i) domena ${analysis.missingDomain.join(", ")} nemaju nijednu sliku`
       );
     }
-    return `Ova relacija nije funkcija zato sto ${parts.join(" i ")}. Dok to ne popravis, nema smisla govoriti o inverzu kao o funkciji.`;
+    return `Ova relacija nije funkcija zato što ${parts.join(" i ")}. Dok to ne popraviš, nema smisla govoriti o inverzu kao o funkciji.`;
   }
   if (analysis.bijective) {
-    return "Ovo je idealan slucaj: funkcija je i injektivna i surjektivna, pa svaki izlaz iz kodomena vodi nazad do tacno jednog ulaza.";
+    return "Ovo je idealan slučaj: funkcija je i injektivna i surjektivna, pa svaki izlaz iz kodomena vodi nazad do tačno jednog ulaza.";
   }
   if (analysis.injective) {
-    return "Funkcija razlikuje sve ulaze, ali bar jedan element kodomena ostaje nepogodjen. Zato jos nema inverz na dati kodomen.";
+    return "Funkcija razlikuje sve ulaze, ali bar jedan element kodomena ostaje nepogođen. Zato još nema inverz na dati kodomen.";
   }
   if (analysis.surjective) {
-    return "Svi elementi kodomena jesu pogodjeni, ali neki izlaz ima vise od jedne pretslike. Zato povratak unazad nije jednoznacan.";
+    return "Svi elementi kodomena jesu pogođeni, ali neki izlaz ima više od jedne pretslike. Zato povratak unazad nije jednoznačan.";
   }
   return "Funkcija jeste pravilno definisana, ali nije ni injektivna ni surjektivna na dati kodomen.";
 }
@@ -499,9 +499,9 @@ function renderCanvas(
   ctx.textAlign = "center";
   const centerNote = analysis.isFunction
     ? analysis.bijective
-      ? "Bijekcija: svaki izlaz ima tacno jednu pretsliku."
+      ? "Bijekcija: svaki izlaz ima tačno jednu pretsliku."
       : "Funkcija postoji. Sada proveravaj da li ima sudara i praznih mesta."
-    : "Najpre popravi relaciju tako da svaki ulaz ima tacno jednu sliku.";
+    : "Najpre popravi relaciju tako da svaki ulaz ima tačno jednu sliku.";
   ctx.fillText(centerNote, width / 2, height - 22);
 }
 
@@ -713,7 +713,7 @@ export default function MappingLab() {
               disabled={!currentAnalysis.bijective}
               style={{ accentColor: "var(--lesson-primary)" }}
             />
-            Prikazi obrnute strelice ako funkcija postane bijektivna
+            Prikaži obrnute strelice ako funkcija postane bijektivna
           </label>
         </div>
       )}
@@ -735,7 +735,7 @@ export default function MappingLab() {
             onChange={(e) => setShowInverse(e.target.checked)}
             style={{ accentColor: "var(--lesson-primary)" }}
           />
-          Prikazi obrnute strelice (inverz)
+          Prikaži obrnute strelice (inverz)
         </label>
       )}
 
@@ -756,8 +756,8 @@ export default function MappingLab() {
             fontSize: "0.95rem",
           }}
         >
-          Levo je domen, desno kodomen. Crvene situacije znace da relacija jos
-          nije funkcija; zelene i narandzaste prikazuju funkcije razlicitih
+          Levo je domen, desno kodomen. Crvene situacije znače da relacija još
+          nije funkcija; zelene i narandžaste prikazuju funkcije različitih
           tipova.
         </p>
       </div>
@@ -780,8 +780,8 @@ export default function MappingLab() {
               tone={currentAnalysis.isFunction ? "ok" : "bad"}
               note={
                 currentAnalysis.isFunction
-                  ? "Svaki element domena ima tacno jednu sliku."
-                  : "Bar jedan element domena nema sliku ili ima vise razlicitih slika."
+                  ? "Svaki element domena ima tačno jednu sliku."
+                  : "Bar jedan element domena nema sliku ili ima više različitih slika."
               }
             />
             <StatusCard
@@ -801,9 +801,9 @@ export default function MappingLab() {
               note={
                 currentAnalysis.isFunction
                   ? currentAnalysis.injective
-                    ? "Razliciti ulazi ne dele istu sliku."
-                    : "Postoje bar dva razlicita ulaza sa istom slikom."
-                  : "Najpre moras imati funkciju da bi proveravao injekciju."
+                    ? "Različiti ulazi ne dele istu sliku."
+                    : "Postoje bar dva različita ulaza sa istom slikom."
+                  : "Najpre moraš imati funkciju da bi proveravao injekciju."
               }
             />
             <StatusCard
@@ -824,8 +824,8 @@ export default function MappingLab() {
                 currentAnalysis.isFunction
                   ? currentAnalysis.surjective
                     ? "Svaki element kodomena ima bar jednu pretsliku."
-                    : "Bar jedan element kodomena ostaje nepogodjen."
-                  : "Najpre moras imati funkciju da bi proveravao surjekciju."
+                    : "Bar jedan element kodomena ostaje nepogođen."
+                  : "Najpre moraš imati funkciju da bi proveravao surjekciju."
               }
             />
             <StatusCard
@@ -878,11 +878,11 @@ export default function MappingLab() {
             }}
           >
             <strong style={{ color: "var(--lesson-accent)" }}>
-              Kako da citas sliku:
+              Kako da čitaš sliku:
             </strong>
             <p style={{ color: "var(--lesson-muted)" }}>
-              Prvo proveri da li svaki element domena ima tacno jednu izlaznu
-              strelicu. Tek onda ima smisla pricati o injekciji, surjekciji i
+              Prvo proveri da li svaki element domena ima tačno jednu izlaznu
+              strelicu. Tek onda ima smisla pričati o injekciji, surjekciji i
               bijekciji.
             </p>
           </div>
