@@ -36,6 +36,7 @@ next-env.d.ts
 
 # local problem HTML files
 /problems/
+/problems_v2/
 
 # claude code
 .claude/
