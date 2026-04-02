@@ -94,7 +94,6 @@ interface DashboardData {
     testSize: string;
     startedAt: string;
   }>;
-  season: { name: string; examPeriodStart: string } | null;
 }
 
 /* ─── exam table helpers ─── */

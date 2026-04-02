@@ -48,14 +48,6 @@ export const faculties = pgTable("faculties", {
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
 
-export const seasons = pgTable("seasons", {
-  id: varchar("id", { length: 10 }).primaryKey(),
-  name: varchar("name", { length: 50 }).notNull(),
-  examPeriodStart: date("exam_period_start").notNull(),
-  isActive: boolean("is_active").notNull().default(false),
-  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
-});
-
 export const bookmarks = pgTable(
   "bookmarks",
   {
@@ -162,47 +154,6 @@ export const leaderboardScores = pgTable(
   (table) => [
     index("idx_leaderboard_total").on(table.totalScore),
   ]
-);
-
-export const aiSolutions = pgTable(
-  "ai_solutions",
-  {
-    id: uuid("id").primaryKey().defaultRandom(),
-    userId: uuid("user_id")
-      .notNull()
-      .references(() => users.id),
-    contextType: varchar("context_type", { length: 20 }).notNull(),
-    sourceProblemId: varchar("source_problem_id", { length: 20 }),
-    title: varchar("title", { length: 255 }).notNull(),
-    promptText: text("prompt_text"),
-    hadScreenshot: boolean("had_screenshot").notNull().default(false),
-    contextHint: text("context_hint"),
-    htmlContent: text("html_content").notNull(),
-    llmProvider: varchar("llm_provider", { length: 20 }).notNull(),
-    llmModel: varchar("llm_model", { length: 50 }).notNull(),
-    inputTokens: integer("input_tokens").notNull().default(0),
-    outputTokens: integer("output_tokens").notNull().default(0),
-    costUsd: numeric("cost_usd", { precision: 10, scale: 6 }).notNull().default("0"),
-    latencyMs: integer("latency_ms"),
-    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
-  },
-  (table) => [
-    index("idx_ai_solutions_user").on(table.userId),
-    index("idx_ai_solutions_created").on(table.createdAt),
-    index("idx_ai_solutions_source").on(table.sourceProblemId),
-  ]
-);
-
-export const aiDailyUsage = pgTable(
-  "ai_daily_usage",
-  {
-    userId: uuid("user_id")
-      .notNull()
-      .references(() => users.id),
-    date: date("date").notNull().defaultNow(),
-    count: integer("count").notNull().default(0),
-  },
-  (table) => [primaryKey({ columns: [table.userId, table.date] })]
 );
 
 export const solutionViews = pgTable(

@@ -6,7 +6,6 @@ import {
   faculties,
   leaderboardScores,
   users,
-  seasons,
   userAnalytics,
 } from "@/drizzle/schema";
 import { eq, sql, gt, desc, and } from "drizzle-orm";
@@ -27,7 +26,6 @@ export async function GET() {
     solvedIdsResult,
     examHistoryResult,
     myScoreResult,
-    seasonResult,
     facultyResult,
   ] = await Promise.all([
     // User info (streak, target faculties)
@@ -83,9 +81,6 @@ export async function GET() {
       .where(eq(leaderboardScores.userId, userId))
       .limit(1),
 
-    // Active season
-    db.select().from(seasons).where(eq(seasons.isActive, true)).limit(1),
-
     // Faculty info (for exam dates)
     db.select().from(faculties),
   ]);
@@ -136,12 +131,9 @@ export async function GET() {
       examDate: f.examDate,
     }));
 
-  // Calculate countdown to earliest exam
+  // Calculate countdown to earliest exam from faculty dates
   let countdownTarget: string | null = null;
-  if (seasonResult.length > 0) {
-    countdownTarget = seasonResult[0].examPeriodStart;
-  }
-  // If user has target faculties with exam dates, use the earliest one
+  // Use the earliest exam date from user's target faculties
   const facultyDates = facultyExamDates
     .filter((f) => f.examDate)
     .map((f) => new Date(f.examDate!).getTime());
@@ -262,7 +254,6 @@ export async function GET() {
       startedAt: e.startedAt,
     })),
     facultyExamDates,
-    season: seasonResult[0] ?? null,
     recommendations,
   });
 }

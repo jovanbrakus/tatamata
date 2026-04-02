@@ -4,6 +4,7 @@ import { TopNav } from "@/components/nav/top-nav";
 import AuthenticatedLayout from "@/components/layout/authenticated-layout";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/lib/auth";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Matoteka — Prijemni ispit iz matematike | 4000+ zadataka",
@@ -59,6 +60,7 @@ export default async function RootLayout({
             </>
           )}
         </SessionProvider>
+        <Analytics />
       </body>
     </html>
   );
