@@ -6,42 +6,46 @@ import { users } from "@/drizzle/schema";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 
+const passwordEnabled = process.env.AUTH_PASSWORD_ENABLED !== "false";
+
 const providers = [
-  Credentials({
-      credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Lozinka", type: "password" },
-      },
-      async authorize(credentials) {
-        const email = credentials?.email as string | undefined;
-        const password = credentials?.password as string | undefined;
+  ...(passwordEnabled
+    ? [Credentials({
+        credentials: {
+          email: { label: "Email", type: "email" },
+          password: { label: "Lozinka", type: "password" },
+        },
+        async authorize(credentials) {
+          const email = credentials?.email as string | undefined;
+          const password = credentials?.password as string | undefined;
 
-        if (!email || !password) return null;
+          if (!email || !password) return null;
 
-        const result = await db
-          .select()
-          .from(users)
-          .where(eq(users.email, email))
-          .limit(1);
+          const result = await db
+            .select()
+            .from(users)
+            .where(eq(users.email, email))
+            .limit(1);
 
-        const user = result[0];
-        if (!user || !user.passwordHash) return null;
+          const user = result[0];
+          if (!user || !user.passwordHash) return null;
 
-        const isValid = await bcrypt.compare(password, user.passwordHash);
-        if (!isValid) return null;
+          const isValid = await bcrypt.compare(password, user.passwordHash);
+          if (!isValid) return null;
 
-        return {
-          id: user.id,
-          email: user.email,
-          name: user.displayName,
-          image: user.avatarUrl,
-          displayName: user.displayName,
-          role: user.role,
-          targetFaculties: (user.targetFaculties as string[]) || [],
-          needsOnboarding: user.displayName === user.email?.split("@")[0],
-        };
-      },
-  }),
+          return {
+            id: user.id,
+            email: user.email,
+            name: user.displayName,
+            image: user.avatarUrl,
+            displayName: user.displayName,
+            role: user.role,
+            targetFaculties: (user.targetFaculties as string[]) || [],
+            needsOnboarding: user.displayName === user.email?.split("@")[0],
+          };
+        },
+      })]
+    : []),
   ...(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
     ? [Google({
         clientId: process.env.GOOGLE_CLIENT_ID,
